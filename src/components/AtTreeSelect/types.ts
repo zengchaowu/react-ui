@@ -1,0 +1,1 @@
+export type { TreeSelectProps } from 'antd/es/tree-select'
