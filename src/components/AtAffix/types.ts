@@ -1,0 +1,1 @@
+export type { AffixProps } from 'antd/es/affix'

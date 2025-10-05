@@ -1,0 +1,1 @@
+export type { TimePickerProps } from 'antd/es/time-picker'
