@@ -1,0 +1,1 @@
+export type { BackTopProps } from 'antd/es/back-top'
