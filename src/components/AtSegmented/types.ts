@@ -1,0 +1,1 @@
+export type { SegmentedProps } from 'antd'
