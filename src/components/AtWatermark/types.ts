@@ -1,0 +1,1 @@
+export type { WatermarkProps } from 'antd/es/watermark'
