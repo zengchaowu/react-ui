@@ -1,0 +1,1 @@
+export type { TransferProps } from 'antd/es/transfer'

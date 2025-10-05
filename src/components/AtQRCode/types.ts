@@ -1,0 +1,1 @@
+export type { QRCodeProps } from 'antd/es/qr-code/interface'

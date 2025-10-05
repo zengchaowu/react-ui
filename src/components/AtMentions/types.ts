@@ -1,0 +1,1 @@
+export type { MentionsProps } from 'antd/es/mentions'
