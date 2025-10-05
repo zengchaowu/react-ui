@@ -1,0 +1,1 @@
+export type { FloatButtonProps } from 'antd/es/float-button/interface'
