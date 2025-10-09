@@ -5,7 +5,7 @@
 本组件库按照前缀进行分组，包含两种类型的组件：
 
 1. Ant Design 包装组件 (At 前缀)：以 `At` 开头，包装 Ant Design React 组件库，完全透传原组件功能
-2. 自研组件 (Lr 前缀)：以 `Lr` 开头的自主研发组件，实现特定业务需求和自定义功能（仅使用 Tailwind CSS）
+2. 自研组件 (Cw 前缀)：以 `Cw` 开头的自主研发组件，实现特定业务需求和自定义功能（仅使用 Tailwind CSS）
 
 ## 基本规范
 
@@ -14,7 +14,7 @@
 3. 每个组件都必须提供 Storybook 示例
 4. 所有组件都放在 `src/components` 目录下
 5. 每个组件使用独立文件夹，固定包含：`index.ts`、`component.tsx`（组件实现文件，命名为具体组件名，如 `AtButton.tsx`）、`component.stories.tsx`、`types.ts`。所有类型统一放在 `types.ts` 中；At 前缀组件的 `types.ts` 仅做类型重导出（从 antd 引入再导出），禁止自定义类型。
-6. 自研组件（Lr 开头）必须有自定义逻辑，并且样式只允许使用 Tailwind CSS（禁止自定义 CSS）
+6. 自研组件（Cw 开头）必须有自定义逻辑，并且样式只允许使用 Tailwind CSS（禁止自定义 CSS）
 7. 需要双向交互的组件，在 Storybook 中通过受控模式演示
 
 ### 1. 组件代码与目录结构（强制）
@@ -32,7 +32,7 @@ src/components/AtButton/
 - 子组件与父组件同目录存放，如：`AtForm.tsx` 与 `AtFormItem.tsx`；它们的导出都集中在同一个 `index.ts` 中。
 - `types.ts` 是组件唯一的类型出口：
   - At 前缀组件：只从 antd 重导出类型，例如 `export type { ButtonProps } from 'antd'`
-  - Lr 前缀组件：定义并导出自研组件的类型，例如 `export interface LrCardProps { ... }`
+  - Cw 前缀组件：定义并导出自研组件的类型，例如 `export interface CwCardProps { ... }`
 
 #### 1.2 第三方库包装组件格式（At 开头）
 
@@ -59,7 +59,7 @@ export default AtButton
 
 #### 1.3 组件聚合导出文件（index.ts，强制）
 
-- 单组件导出（At 或 Lr 通用）：
+- 单组件导出（At 或 Cw 通用）：
 ```ts
 export { default as AtButton } from './AtButton'
 export * from './types'
@@ -99,11 +99,11 @@ export const Primary: StoryObj<typeof AtButton> = {}
 
 本组件库采用分离式入口文件结构，按组件类型分别导出：
 
-#### 3.1 主入口文件 `src/index.ts`（仅导出 Lr 组件）
+#### 3.1 主入口文件 `src/index.ts`（仅导出 Cw 组件）
 ```ts
-// Lr 组件 - 按字母顺序导出
-export * from './components/LrCard'
-export * from './components/LrSomething'
+// Cw 组件 - 按字母顺序导出
+export * from './components/CwCard'
+export * from './components/CwSomething'
 ```
 
 #### 3.2 Ant Design 组件入口文件 `src/at.ts`
@@ -128,22 +128,22 @@ export * from './components/AtSelect'
 export type { ButtonProps } from 'antd'
 ```
 
-- Lr 前缀组件：在 `types.ts` 中定义并导出所有类型
+- Cw 前缀组件：在 `types.ts` 中定义并导出所有类型
 ```ts
-export interface LrCardProps {
+export interface CwCardProps {
   title: string
   children?: React.ReactNode
 }
 ```
 
-### 5. 样式规范（强制，仅 Lr 组件）
+### 5. 样式规范（强制，仅 Cw 组件）
 
 1. 只能使用 Tailwind CSS 类名
 2. 禁止编写任何自定义 CSS 文件或样式
 
-示例（Lr 组件）：
+示例（Cw 组件）：
 ```tsx
-export function LrCard({ title, children }: { title: string; children?: React.ReactNode }) {
+export function CwCard({ title, children }: { title: string; children?: React.ReactNode }) {
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
       <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
