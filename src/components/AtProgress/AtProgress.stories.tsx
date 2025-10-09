@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtProgress } from './index'
 
 const meta: Meta<typeof AtProgress> = {
-  title: 'Ant Design/AtProgress',
+  title: 'At/AtProgress',
   component: AtProgress,
   args: {
     percent: 50,

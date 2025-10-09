@@ -3,7 +3,7 @@ import { AtForm, AtFormItem } from './index'
 import { AtInput } from '../AtInput'
 
 const meta: Meta<typeof AtForm> = {
-  title: 'Ant Design/AtForm',
+  title: 'At/AtForm',
   component: AtForm,
   args: {
     layout: 'vertical',

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtBadge } from './index'
 
 const meta: Meta<typeof AtBadge> = {
-  title: 'Ant Design/AtBadge',
+  title: 'At/AtBadge',
   component: AtBadge,
   args: {
     count: 5,

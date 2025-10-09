@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtSegmented } from './index'
 
 const meta: Meta<typeof AtSegmented> = {
-  title: 'Ant Design/AtSegmented',
+  title: 'At/AtSegmented',
   component: AtSegmented,
   args: {
     options: ['日', '周', '月'],

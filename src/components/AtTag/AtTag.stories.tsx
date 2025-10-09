@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtTag } from './index'
 
 const meta: Meta<typeof AtTag> = {
-  title: 'Ant Design/AtTag',
+  title: 'At/AtTag',
   component: AtTag,
   args: {
     color: 'blue',

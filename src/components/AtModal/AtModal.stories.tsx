@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtModal } from './index'
 
 const meta: Meta<typeof AtModal> = {
-  title: 'Ant Design/AtModal',
+  title: 'At/AtModal',
   component: AtModal,
   args: {
     open: true,
-    title: '标题',
+    title: 'At/AtModal',
     children: '内容',
   },
 }

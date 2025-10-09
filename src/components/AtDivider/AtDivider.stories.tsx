@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtDivider } from './index'
 
 const meta: Meta<typeof AtDivider> = {
-  title: 'Ant Design/AtDivider',
+  title: 'At/AtDivider',
   component: AtDivider,
   args: {
     children: '分割线',

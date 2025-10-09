@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtCascader } from './index'
 
 const meta: Meta<typeof AtCascader> = {
-  title: 'Ant Design/AtCascader',
+  title: 'At/AtCascader',
   component: AtCascader,
   args: {
     options: [

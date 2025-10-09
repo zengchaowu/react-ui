@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtSwitch } from './index'
 
 const meta: Meta<typeof AtSwitch> = {
-  title: 'Ant Design/AtSwitch',
+  title: 'At/AtSwitch',
   component: AtSwitch,
   args: {
     defaultChecked: true,

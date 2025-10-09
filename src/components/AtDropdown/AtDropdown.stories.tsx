@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtDropdown } from './index'
 
 const meta: Meta<typeof AtDropdown> = {
-  title: 'Ant Design/AtDropdown',
+  title: 'At/AtDropdown',
   component: AtDropdown,
   args: {
     menu: {

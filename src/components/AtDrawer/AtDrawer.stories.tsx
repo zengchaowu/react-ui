@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtDrawer } from './index'
 
 const meta: Meta<typeof AtDrawer> = {
-  title: 'Ant Design/AtDrawer',
+  title: 'At/AtDrawer',
   component: AtDrawer,
   args: {
     open: true,
-    title: '标题',
+    title: 'At/AtDrawer',
     children: '内容',
   },
 }

@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtResult } from './index'
 
 const meta: Meta<typeof AtResult> = {
-  title: 'Ant Design/AtResult',
+  title: 'At/AtResult',
   component: AtResult,
   args: {
     status: 'success',
-    title: 'Successfully Purchased',
+    title: 'At/AtResult',
     subTitle: 'Order number: 2017182818828182881',
   },
 }

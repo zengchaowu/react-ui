@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtPagination } from './index'
 
 const meta: Meta<typeof AtPagination> = {
-  title: 'Ant Design/AtPagination',
+  title: 'At/AtPagination',
   component: AtPagination,
   args: {
     defaultCurrent: 1,

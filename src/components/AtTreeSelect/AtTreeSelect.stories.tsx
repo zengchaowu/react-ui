@@ -16,11 +16,11 @@ export const Basic: Story = {
     style: { width: 240 },
     treeData: [
       {
-        title: 'Node1',
+        title: 'At/AtTreeSelect',
         value: '0-0',
         children: [
-          { title: 'Child Node1', value: '0-0-1' },
-          { title: 'Child Node2', value: '0-0-2' },
+          { title: 'At/AtTreeSelect', value: '0-0-1' },
+          { title: 'At/AtTreeSelect', value: '0-0-2' },
         ],
       },
     ],

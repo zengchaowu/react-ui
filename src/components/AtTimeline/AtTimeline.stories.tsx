@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtTimeline } from './index'
 
 const meta: Meta<typeof AtTimeline> = {
-  title: 'Ant Design/AtTimeline',
+  title: 'At/AtTimeline',
   component: AtTimeline,
   args: {
     items: [

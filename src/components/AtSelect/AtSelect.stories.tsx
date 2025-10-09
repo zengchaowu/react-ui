@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtSelect } from './index'
 
 const meta: Meta<typeof AtSelect> = {
-  title: 'Ant Design/AtSelect',
+  title: 'At/AtSelect',
   component: AtSelect,
   args: {
     options: [

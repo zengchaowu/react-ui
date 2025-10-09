@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtTabs } from './index'
 
 const meta: Meta<typeof AtTabs> = {
-  title: 'Ant Design/AtTabs',
+  title: 'At/AtTabs',
   component: AtTabs,
   args: {
     defaultActiveKey: '1',

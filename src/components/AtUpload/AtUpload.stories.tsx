@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtUpload } from './index'
 
 const meta: Meta<typeof AtUpload> = {
-  title: 'Ant Design/AtUpload',
+  title: 'At/AtUpload',
   component: AtUpload,
   args: {
     beforeUpload: () => false,

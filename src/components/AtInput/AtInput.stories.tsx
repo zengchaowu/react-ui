@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtInput } from './index'
 
 const meta: Meta<typeof AtInput> = {
-  title: 'Ant Design/AtInput',
+  title: 'At/AtInput',
   component: AtInput,
   args: {
     placeholder: '请输入',

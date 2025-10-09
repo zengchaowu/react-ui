@@ -14,9 +14,9 @@ type Story = StoryObj<TransferProps<any>>
 export const Basic: Story = {
   args: {
     dataSource: [
-      { key: '1', title: 'Item 1', description: 'Description 1' },
-      { key: '2', title: 'Item 2', description: 'Description 2' },
-      { key: '3', title: 'Item 3', description: 'Description 3' },
+      { key: '1', title: 'At/AtTransfer', description: 'Description 1' },
+      { key: '2', title: 'At/AtTransfer', description: 'Description 2' },
+      { key: '3', title: 'At/AtTransfer', description: 'Description 3' },
     ],
     titles: ['Source', 'Target'],
     targetKeys: ['2'],

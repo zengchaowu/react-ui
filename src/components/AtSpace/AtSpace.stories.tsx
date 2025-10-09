@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtSpace } from './index'
 
 const meta: Meta<typeof AtSpace> = {
-  title: 'Ant Design/AtSpace',
+  title: 'At/AtSpace',
   component: AtSpace,
   args: {
     children: ['Item 1', 'Item 2', 'Item 3'],

@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtPopconfirm } from './index'
 
 const meta: Meta<typeof AtPopconfirm> = {
-  title: 'Ant Design/AtPopconfirm',
+  title: 'At/AtPopconfirm',
   component: AtPopconfirm,
   args: {
-    title: 'Are you sure to delete this task?',
+    title: 'At/AtPopconfirm',
     okText: 'Yes',
     cancelText: 'No',
     children: 'Click me',

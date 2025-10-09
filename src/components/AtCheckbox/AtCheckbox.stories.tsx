@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtCheckbox } from './index'
 
 const meta: Meta<typeof AtCheckbox> = {
-  title: 'Ant Design/AtCheckbox',
+  title: 'At/AtCheckbox',
   component: AtCheckbox,
   args: {
     children: '勾选项',

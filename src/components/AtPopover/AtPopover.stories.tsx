@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtPopover } from './index'
 
 const meta: Meta<typeof AtPopover> = {
-  title: 'Ant Design/AtPopover',
+  title: 'At/AtPopover',
   component: AtPopover,
   args: {
     content: '这是 Popover 内容',
-    title: '标题',
+    title: 'At/AtPopover',
     children: '点击或悬停显示 Popover',
   },
 }

@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtStatistic } from './index'
 
 const meta: Meta<typeof AtStatistic> = {
-  title: 'Ant Design/AtStatistic',
+  title: 'At/AtStatistic',
   component: AtStatistic,
   args: {
-    title: 'Active Users',
+    title: 'At/AtStatistic',
     value: 112893,
   },
 }

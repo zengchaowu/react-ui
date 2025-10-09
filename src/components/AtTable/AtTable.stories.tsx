@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtTable } from './index'
 
 const meta: Meta<typeof AtTable> = {
-  title: 'Ant Design/AtTable',
+  title: 'At/AtTable',
   component: AtTable,
   args: {
     rowKey: 'key',
     columns: [
-      { title: '名称', dataIndex: 'name', key: 'name' },
-      { title: '年龄', dataIndex: 'age', key: 'age' },
+      { title: 'At/AtTable', dataIndex: 'name', key: 'name' },
+      { title: 'At/AtTable', dataIndex: 'age', key: 'age' },
     ],
     dataSource: [
       { key: '1', name: '张三', age: 28 },

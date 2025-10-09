@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtTooltip } from './index'
 
 const meta: Meta<typeof AtTooltip> = {
-  title: 'Ant Design/AtTooltip',
+  title: 'At/AtTooltip',
   component: AtTooltip,
   args: {
-    title: '提示文字',
+    title: 'At/AtTooltip',
     children: '悬停显示 Tooltip',
   },
 }

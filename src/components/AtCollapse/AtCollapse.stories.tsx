@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtCollapse } from './index'
 
 const meta: Meta<typeof AtCollapse> = {
-  title: 'Ant Design/AtCollapse',
+  title: 'At/AtCollapse',
   component: AtCollapse,
   args: {
     items: [

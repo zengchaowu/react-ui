@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtInputNumber } from './index'
 
 const meta: Meta<typeof AtInputNumber> = {
-  title: 'Ant Design/AtInputNumber',
+  title: 'At/AtInputNumber',
   component: AtInputNumber,
   args: {
     min: 0,

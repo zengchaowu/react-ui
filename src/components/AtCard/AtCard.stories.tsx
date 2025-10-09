@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtCard } from './index'
 
 const meta: Meta<typeof AtCard> = {
-  title: 'Ant Design/AtCard',
+  title: 'At/AtCard',
   component: AtCard,
   args: {
-    title: '卡片标题',
+    title: 'At/AtCard',
     children: '这里是卡片内容',
   },
 }

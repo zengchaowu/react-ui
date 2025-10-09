@@ -16,12 +16,12 @@ export const Basic: Story = {
     open: true,
     steps: [
       {
-        title: 'Upload File',
+        title: 'At/AtTour',
         description: 'Put your files here.',
         target: () => document.querySelector('.upload-btn') as HTMLElement,
       },
       {
-        title: 'Save',
+        title: 'At/AtTour',
         description: 'Save your changes.',
         target: () => document.querySelector('.save-btn') as HTMLElement,
       },

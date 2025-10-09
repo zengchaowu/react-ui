@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtButton } from './index'
 
 const meta: Meta<typeof AtButton> = {
-  title: 'Ant Design/AtButton',
+  title: 'At/AtButton',
   component: AtButton,
   args: {
     children: '按钮',

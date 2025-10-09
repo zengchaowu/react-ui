@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtDescriptions } from './index'
 
 const meta: Meta<typeof AtDescriptions> = {
-  title: 'Ant Design/AtDescriptions',
+  title: 'At/AtDescriptions',
   component: AtDescriptions,
   args: {
-    title: 'User Info',
+    title: 'At/AtDescriptions',
     items: [
       { key: 'name', label: 'Name', children: 'John Doe' },
       { key: 'age', label: 'Age', children: '30' },

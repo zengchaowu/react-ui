@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtSkeleton } from './index'
 
 const meta: Meta<typeof AtSkeleton> = {
-  title: 'Ant Design/AtSkeleton',
+  title: 'At/AtSkeleton',
   component: AtSkeleton,
   args: {
     active: true,

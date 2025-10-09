@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtSlider } from './index'
 
 const meta: Meta<typeof AtSlider> = {
-  title: 'Ant Design/AtSlider',
+  title: 'At/AtSlider',
   component: AtSlider,
   args: {
     defaultValue: 30,

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtAlert } from './index'
 
 const meta: Meta<typeof AtAlert> = {
-  title: 'Ant Design/AtAlert',
+  title: 'At/AtAlert',
   component: AtAlert,
   args: {
     message: '信息提示',

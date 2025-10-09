@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtSpin } from './index'
 
 const meta: Meta<typeof AtSpin> = {
-  title: 'Ant Design/AtSpin',
+  title: 'At/AtSpin',
   component: AtSpin,
   args: {
     tip: 'Loading...',

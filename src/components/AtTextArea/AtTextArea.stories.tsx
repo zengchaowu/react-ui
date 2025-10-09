@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtTextArea } from './index'
 
 const meta: Meta<typeof AtTextArea> = {
-  title: 'Ant Design/AtTextArea',
+  title: 'At/AtTextArea',
   component: AtTextArea,
   args: {
     rows: 4,

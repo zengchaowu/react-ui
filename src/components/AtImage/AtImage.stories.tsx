@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AtImage } from './index'
 
 const meta: Meta<typeof AtImage> = {
-  title: 'Ant Design/AtImage',
+  title: 'At/AtImage',
   component: AtImage,
   args: {
     width: 200,
