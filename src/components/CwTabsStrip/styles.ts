@@ -1,0 +1,41 @@
+import type { CwTabsStripStyles } from './types'
+import { INTERACTIVE_FOCUS_CLASS } from '../../utils/focusStyles'
+
+export const defaultStyles: CwTabsStripStyles = {
+  root: 'cw-tabs-strip relative flex-shrink-0 min-w-0 outline-none gap-0',
+  rootHorizontal: 'flex flex-row',
+  rootVertical: 'inline-flex flex-col items-stretch',
+  rootEqualWidth: 'flex-nowrap',
+  rootScroll:
+    'overflow-x-auto overflow-y-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]',
+  rootScrollVertical:
+    'max-h-[min(24rem,70vh)] overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-1.5',
+  rootDisabled: 'opacity-60',
+  rootReadonly: '',
+  tab: 'border-none bg-transparent flex items-center justify-center box-border outline-none focus:outline-none transition-colors duration-200 select-none',
+  tabHorizontal: 'h-11 px-4',
+  tabVertical: 'w-full min-h-[2.5rem] px-3 py-2 justify-start text-left',
+  tabEqualWidth: 'flex-1 min-w-0 flex-[1_0_0]',
+  tabAdaptive: 'flex-[0_0_auto]',
+  tabActive: '',
+  tabDisabled: 'cursor-not-allowed opacity-60',
+  tabReadonly: 'cursor-default',
+  tabFocused: INTERACTIVE_FOCUS_CLASS,
+  tabContent: 'relative inline-flex items-center pr-2.5',
+  tabText: 'font-[inherit] text-sm leading-none tracking-normal whitespace-nowrap transition-colors duration-200',
+  tabTextInactive: 'font-normal text-[var(--text-color-secondary)]',
+  tabTextActive: 'font-semibold text-[var(--brand-color-6)]',
+  indicator: 'absolute rounded-full pointer-events-none bg-[var(--brand-color-6)]',
+  indicatorHorizontalEnd: 'bottom-0 left-0 h-[0.1875rem]',
+  indicatorHorizontalStart: 'top-0 left-0 h-[0.1875rem]',
+  indicatorVerticalEnd: 'right-0 top-0 w-[0.1875rem]',
+  indicatorVerticalStart: 'left-0 top-0 w-[0.1875rem]',
+  indicatorDisabled: '!bg-[var(--component-border)]',
+  indicatorReadonly: '!bg-[var(--text-color-secondary)]',
+  indicatorReady: '',
+  indicatorMotion: 'transition-[left,width,transform,height] duration-200 ease-out',
+  indicatorNoMotion: 'transition-none',
+  sizeSmall: '!text-xs !px-1.5 !py-0.5 !h-auto min-h-[1.75rem]',
+  sizeMedium: '',
+  sizeLarge: '!text-base !px-3 !py-1.5 !h-auto min-h-[2.75rem]',
+}

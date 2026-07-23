@@ -1,0 +1,63 @@
+/*
+ * Safe area：业务只读 --app-safe-area-* / --app-chrome-safe-* / --app-page-chrome-safe-*
+ * 启动时由宿主 bootstrapAppSafeArea() 写入 --app-safe-area-*；禁止组件内直接 env(safe-area-inset-*)
+ */
+
+:root {
+  --safe-area-inset-top-raw: env(safe-area-inset-top, 0px);
+  --safe-area-inset-bottom-raw: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left-raw: env(safe-area-inset-left, 0px);
+  --safe-area-inset-right-raw: env(safe-area-inset-right, 0px);
+
+  --app-safe-area-top: 0px;
+  --app-safe-area-bottom: 0px;
+  --app-safe-area-left: 0px;
+  --app-safe-area-right: 0px;
+
+  --app-chrome-safe-top: var(--app-safe-area-top);
+  --app-chrome-safe-bottom: var(--app-safe-area-bottom);
+  --app-chrome-safe-left: var(--app-safe-area-left);
+  --app-chrome-safe-right: var(--app-safe-area-right);
+
+  --app-page-chrome-safe-top: var(--app-safe-area-top);
+  --app-page-chrome-safe-bottom: var(--app-safe-area-bottom);
+  /** 页内底栏实际 pb（含 0.25rem 下限）；键盘弹出时归零 */
+  --app-page-chrome-safe-bottom-effective: max(
+    0.25rem,
+    var(--app-page-chrome-safe-bottom)
+  );
+}
+
+html[data-app-chrome='tabbar'] {
+  --app-chrome-safe-bottom: 0px;
+}
+
+/** 底栏 Tab 可见，但顶栏由页内 NavBar 延伸覆盖状态栏（IM 会话列表等） */
+html[data-app-chrome='tabbar-page-top'] {
+  --app-chrome-safe-top: 0px;
+  --app-chrome-safe-bottom: 0px;
+}
+
+html[data-app-chrome='immersive-top'] {
+  --app-chrome-safe-top: 0px;
+}
+
+html[data-app-chrome='immersive-full'] {
+  --app-chrome-safe-top: 0px;
+  --app-chrome-safe-bottom: 0px;
+}
+
+/**
+ * 虚拟键盘弹出：WebView 已把可视区顶到键盘上方，不应再叠 home 指示条 inset，
+ * 否则输入框与键盘之间会出现一条「安全距离」留白。
+ */
+html[data-virtual-keyboard-open] {
+  --app-page-chrome-safe-bottom: 0px;
+  --app-page-chrome-safe-bottom-effective: 0px;
+}
+
+/** 兜底：键盘弹出时清零 composer / 消息输入底 padding（含旧版 tailwind pb class） */
+html[data-virtual-keyboard-open] .cw-chat-message-composer-mobile,
+html[data-virtual-keyboard-open] .cw-chat-message-composer-mobile .cw-message-input {
+  padding-bottom: 0 !important;
+}

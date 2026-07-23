@@ -1,1 +1,0 @@
-export type { TextAreaProps } from 'antd/es/input'

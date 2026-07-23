@@ -1,1 +1,0 @@
-export type { TourProps } from 'antd/es/tour/interface'

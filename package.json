@@ -1,18 +1,1965 @@
 {
-  "name": "react-ui",
-  "version": "1.0.0",
-  "description": "## 组件库概述",
+  "name": "@zengchaowu/react-ui",
+  "version": "0.1.0",
+  "description": "React 一比一复刻 @zengchaowu/vue-ui 的设计系统组件库",
   "type": "module",
-  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": [
+    "**/*.css",
+    "dist/style.js"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "node": "./dist/index.js",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./style": {
+      "types": "./dist/style.d.ts",
+      "node": "./dist/style.js",
+      "import": "./dist/style.js",
+      "default": "./dist/style.js"
+    },
+    "./dist/tailwind.css": "./dist/tailwind.css",
+    "./dist/hairline.css": "./dist/hairline.css",
+    "./dist/tokens.css": "./dist/tokens.css",
+    "./dist/iconfont.css": "./dist/iconfont.css",
+    "./dist/iconfont.js": "./dist/iconfont.js",
+    "./CwAiChatComposer": {
+      "types": "./dist/components/CwAiChatComposer/index.d.ts",
+      "node": "./dist/components/CwAiChatComposer/index.js",
+      "import": "./dist/components/CwAiChatComposer/index.js",
+      "default": "./dist/components/CwAiChatComposer/index.js"
+    },
+    "./components/CwAiChatComposer": {
+      "types": "./dist/components/CwAiChatComposer/index.d.ts",
+      "node": "./dist/components/CwAiChatComposer/index.js",
+      "import": "./dist/components/CwAiChatComposer/index.js",
+      "default": "./dist/components/CwAiChatComposer/index.js"
+    },
+    "./CwAttachContextMenu": {
+      "types": "./dist/components/CwAttachContextMenu/index.d.ts",
+      "node": "./dist/components/CwAttachContextMenu/index.js",
+      "import": "./dist/components/CwAttachContextMenu/index.js",
+      "default": "./dist/components/CwAttachContextMenu/index.js"
+    },
+    "./components/CwAttachContextMenu": {
+      "types": "./dist/components/CwAttachContextMenu/index.d.ts",
+      "node": "./dist/components/CwAttachContextMenu/index.js",
+      "import": "./dist/components/CwAttachContextMenu/index.js",
+      "default": "./dist/components/CwAttachContextMenu/index.js"
+    },
+    "./CwAttachmentGallery": {
+      "types": "./dist/components/CwAttachmentGallery/index.d.ts",
+      "node": "./dist/components/CwAttachmentGallery/index.js",
+      "import": "./dist/components/CwAttachmentGallery/index.js",
+      "default": "./dist/components/CwAttachmentGallery/index.js"
+    },
+    "./components/CwAttachmentGallery": {
+      "types": "./dist/components/CwAttachmentGallery/index.d.ts",
+      "node": "./dist/components/CwAttachmentGallery/index.js",
+      "import": "./dist/components/CwAttachmentGallery/index.js",
+      "default": "./dist/components/CwAttachmentGallery/index.js"
+    },
+    "./CwAttachmentPreview": {
+      "types": "./dist/components/CwAttachmentPreview/index.d.ts",
+      "node": "./dist/components/CwAttachmentPreview/index.js",
+      "import": "./dist/components/CwAttachmentPreview/index.js",
+      "default": "./dist/components/CwAttachmentPreview/index.js"
+    },
+    "./components/CwAttachmentPreview": {
+      "types": "./dist/components/CwAttachmentPreview/index.d.ts",
+      "node": "./dist/components/CwAttachmentPreview/index.js",
+      "import": "./dist/components/CwAttachmentPreview/index.js",
+      "default": "./dist/components/CwAttachmentPreview/index.js"
+    },
+    "./CwAutoComplete": {
+      "types": "./dist/components/CwAutoComplete/index.d.ts",
+      "node": "./dist/components/CwAutoComplete/index.js",
+      "import": "./dist/components/CwAutoComplete/index.js",
+      "default": "./dist/components/CwAutoComplete/index.js"
+    },
+    "./components/CwAutoComplete": {
+      "types": "./dist/components/CwAutoComplete/index.d.ts",
+      "node": "./dist/components/CwAutoComplete/index.js",
+      "import": "./dist/components/CwAutoComplete/index.js",
+      "default": "./dist/components/CwAutoComplete/index.js"
+    },
+    "./CwAutoCompleteEmail": {
+      "types": "./dist/components/CwAutoCompleteEmail/index.d.ts",
+      "node": "./dist/components/CwAutoCompleteEmail/index.js",
+      "import": "./dist/components/CwAutoCompleteEmail/index.js",
+      "default": "./dist/components/CwAutoCompleteEmail/index.js"
+    },
+    "./components/CwAutoCompleteEmail": {
+      "types": "./dist/components/CwAutoCompleteEmail/index.d.ts",
+      "node": "./dist/components/CwAutoCompleteEmail/index.js",
+      "import": "./dist/components/CwAutoCompleteEmail/index.js",
+      "default": "./dist/components/CwAutoCompleteEmail/index.js"
+    },
+    "./CwAvatar": {
+      "types": "./dist/components/CwAvatar/index.d.ts",
+      "node": "./dist/components/CwAvatar/index.js",
+      "import": "./dist/components/CwAvatar/index.js",
+      "default": "./dist/components/CwAvatar/index.js"
+    },
+    "./components/CwAvatar": {
+      "types": "./dist/components/CwAvatar/index.d.ts",
+      "node": "./dist/components/CwAvatar/index.js",
+      "import": "./dist/components/CwAvatar/index.js",
+      "default": "./dist/components/CwAvatar/index.js"
+    },
+    "./CwBadge": {
+      "types": "./dist/components/CwBadge/index.d.ts",
+      "node": "./dist/components/CwBadge/index.js",
+      "import": "./dist/components/CwBadge/index.js",
+      "default": "./dist/components/CwBadge/index.js"
+    },
+    "./components/CwBadge": {
+      "types": "./dist/components/CwBadge/index.d.ts",
+      "node": "./dist/components/CwBadge/index.js",
+      "import": "./dist/components/CwBadge/index.js",
+      "default": "./dist/components/CwBadge/index.js"
+    },
+    "./CwBreadcrumb": {
+      "types": "./dist/components/CwBreadcrumb/index.d.ts",
+      "node": "./dist/components/CwBreadcrumb/index.js",
+      "import": "./dist/components/CwBreadcrumb/index.js",
+      "default": "./dist/components/CwBreadcrumb/index.js"
+    },
+    "./components/CwBreadcrumb": {
+      "types": "./dist/components/CwBreadcrumb/index.d.ts",
+      "node": "./dist/components/CwBreadcrumb/index.js",
+      "import": "./dist/components/CwBreadcrumb/index.js",
+      "default": "./dist/components/CwBreadcrumb/index.js"
+    },
+    "./CwButton": {
+      "types": "./dist/components/CwButton/index.d.ts",
+      "node": "./dist/components/CwButton/index.js",
+      "import": "./dist/components/CwButton/index.js",
+      "default": "./dist/components/CwButton/index.js"
+    },
+    "./components/CwButton": {
+      "types": "./dist/components/CwButton/index.d.ts",
+      "node": "./dist/components/CwButton/index.js",
+      "import": "./dist/components/CwButton/index.js",
+      "default": "./dist/components/CwButton/index.js"
+    },
+    "./CwButtonGroup": {
+      "types": "./dist/components/CwButtonGroup/index.d.ts",
+      "node": "./dist/components/CwButtonGroup/index.js",
+      "import": "./dist/components/CwButtonGroup/index.js",
+      "default": "./dist/components/CwButtonGroup/index.js"
+    },
+    "./components/CwButtonGroup": {
+      "types": "./dist/components/CwButtonGroup/index.d.ts",
+      "node": "./dist/components/CwButtonGroup/index.js",
+      "import": "./dist/components/CwButtonGroup/index.js",
+      "default": "./dist/components/CwButtonGroup/index.js"
+    },
+    "./CwCalculateGrid": {
+      "types": "./dist/components/CwCalculateGrid/index.d.ts",
+      "node": "./dist/components/CwCalculateGrid/index.js",
+      "import": "./dist/components/CwCalculateGrid/index.js",
+      "default": "./dist/components/CwCalculateGrid/index.js"
+    },
+    "./components/CwCalculateGrid": {
+      "types": "./dist/components/CwCalculateGrid/index.d.ts",
+      "node": "./dist/components/CwCalculateGrid/index.js",
+      "import": "./dist/components/CwCalculateGrid/index.js",
+      "default": "./dist/components/CwCalculateGrid/index.js"
+    },
+    "./CwCard": {
+      "types": "./dist/components/CwCard/index.d.ts",
+      "node": "./dist/components/CwCard/index.js",
+      "import": "./dist/components/CwCard/index.js",
+      "default": "./dist/components/CwCard/index.js"
+    },
+    "./components/CwCard": {
+      "types": "./dist/components/CwCard/index.d.ts",
+      "node": "./dist/components/CwCard/index.js",
+      "import": "./dist/components/CwCard/index.js",
+      "default": "./dist/components/CwCard/index.js"
+    },
+    "./CwCascader": {
+      "types": "./dist/components/CwCascader/index.d.ts",
+      "node": "./dist/components/CwCascader/index.js",
+      "import": "./dist/components/CwCascader/index.js",
+      "default": "./dist/components/CwCascader/index.js"
+    },
+    "./components/CwCascader": {
+      "types": "./dist/components/CwCascader/index.d.ts",
+      "node": "./dist/components/CwCascader/index.js",
+      "import": "./dist/components/CwCascader/index.js",
+      "default": "./dist/components/CwCascader/index.js"
+    },
+    "./CwCascaderSheet": {
+      "types": "./dist/components/CwCascaderSheet/index.d.ts",
+      "node": "./dist/components/CwCascaderSheet/index.js",
+      "import": "./dist/components/CwCascaderSheet/index.js",
+      "default": "./dist/components/CwCascaderSheet/index.js"
+    },
+    "./components/CwCascaderSheet": {
+      "types": "./dist/components/CwCascaderSheet/index.d.ts",
+      "node": "./dist/components/CwCascaderSheet/index.js",
+      "import": "./dist/components/CwCascaderSheet/index.js",
+      "default": "./dist/components/CwCascaderSheet/index.js"
+    },
+    "./CwCell": {
+      "types": "./dist/components/CwCell/index.d.ts",
+      "node": "./dist/components/CwCell/index.js",
+      "import": "./dist/components/CwCell/index.js",
+      "default": "./dist/components/CwCell/index.js"
+    },
+    "./components/CwCell": {
+      "types": "./dist/components/CwCell/index.d.ts",
+      "node": "./dist/components/CwCell/index.js",
+      "import": "./dist/components/CwCell/index.js",
+      "default": "./dist/components/CwCell/index.js"
+    },
+    "./CwCenterRulerPicker": {
+      "types": "./dist/components/CwCenterRulerPicker/index.d.ts",
+      "node": "./dist/components/CwCenterRulerPicker/index.js",
+      "import": "./dist/components/CwCenterRulerPicker/index.js",
+      "default": "./dist/components/CwCenterRulerPicker/index.js"
+    },
+    "./components/CwCenterRulerPicker": {
+      "types": "./dist/components/CwCenterRulerPicker/index.d.ts",
+      "node": "./dist/components/CwCenterRulerPicker/index.js",
+      "import": "./dist/components/CwCenterRulerPicker/index.js",
+      "default": "./dist/components/CwCenterRulerPicker/index.js"
+    },
+    "./CwChatAgentToolStep": {
+      "types": "./dist/components/CwChatAgentToolStep/index.d.ts",
+      "node": "./dist/components/CwChatAgentToolStep/index.js",
+      "import": "./dist/components/CwChatAgentToolStep/index.js",
+      "default": "./dist/components/CwChatAgentToolStep/index.js"
+    },
+    "./components/CwChatAgentToolStep": {
+      "types": "./dist/components/CwChatAgentToolStep/index.d.ts",
+      "node": "./dist/components/CwChatAgentToolStep/index.js",
+      "import": "./dist/components/CwChatAgentToolStep/index.js",
+      "default": "./dist/components/CwChatAgentToolStep/index.js"
+    },
+    "./CwChatAgentToolTimeline": {
+      "types": "./dist/components/CwChatAgentToolTimeline/index.d.ts",
+      "node": "./dist/components/CwChatAgentToolTimeline/index.js",
+      "import": "./dist/components/CwChatAgentToolTimeline/index.js",
+      "default": "./dist/components/CwChatAgentToolTimeline/index.js"
+    },
+    "./components/CwChatAgentToolTimeline": {
+      "types": "./dist/components/CwChatAgentToolTimeline/index.d.ts",
+      "node": "./dist/components/CwChatAgentToolTimeline/index.js",
+      "import": "./dist/components/CwChatAgentToolTimeline/index.js",
+      "default": "./dist/components/CwChatAgentToolTimeline/index.js"
+    },
+    "./CwChatConversationCell": {
+      "types": "./dist/components/CwChatConversationCell/index.d.ts",
+      "node": "./dist/components/CwChatConversationCell/index.js",
+      "import": "./dist/components/CwChatConversationCell/index.js",
+      "default": "./dist/components/CwChatConversationCell/index.js"
+    },
+    "./components/CwChatConversationCell": {
+      "types": "./dist/components/CwChatConversationCell/index.d.ts",
+      "node": "./dist/components/CwChatConversationCell/index.js",
+      "import": "./dist/components/CwChatConversationCell/index.js",
+      "default": "./dist/components/CwChatConversationCell/index.js"
+    },
+    "./CwChatMessageAssistantActions": {
+      "types": "./dist/components/CwChatMessageAssistantActions/index.d.ts",
+      "node": "./dist/components/CwChatMessageAssistantActions/index.js",
+      "import": "./dist/components/CwChatMessageAssistantActions/index.js",
+      "default": "./dist/components/CwChatMessageAssistantActions/index.js"
+    },
+    "./components/CwChatMessageAssistantActions": {
+      "types": "./dist/components/CwChatMessageAssistantActions/index.d.ts",
+      "node": "./dist/components/CwChatMessageAssistantActions/index.js",
+      "import": "./dist/components/CwChatMessageAssistantActions/index.js",
+      "default": "./dist/components/CwChatMessageAssistantActions/index.js"
+    },
+    "./CwChatMessageCell": {
+      "types": "./dist/components/CwChatMessageCell/index.d.ts",
+      "node": "./dist/components/CwChatMessageCell/index.js",
+      "import": "./dist/components/CwChatMessageCell/index.js",
+      "default": "./dist/components/CwChatMessageCell/index.js"
+    },
+    "./components/CwChatMessageCell": {
+      "types": "./dist/components/CwChatMessageCell/index.d.ts",
+      "node": "./dist/components/CwChatMessageCell/index.js",
+      "import": "./dist/components/CwChatMessageCell/index.js",
+      "default": "./dist/components/CwChatMessageCell/index.js"
+    },
+    "./CwChatMessageComposer": {
+      "types": "./dist/components/CwChatMessageComposer/index.d.ts",
+      "node": "./dist/components/CwChatMessageComposer/index.js",
+      "import": "./dist/components/CwChatMessageComposer/index.js",
+      "default": "./dist/components/CwChatMessageComposer/index.js"
+    },
+    "./components/CwChatMessageComposer": {
+      "types": "./dist/components/CwChatMessageComposer/index.d.ts",
+      "node": "./dist/components/CwChatMessageComposer/index.js",
+      "import": "./dist/components/CwChatMessageComposer/index.js",
+      "default": "./dist/components/CwChatMessageComposer/index.js"
+    },
+    "./CwChatMessageForwardBundle": {
+      "types": "./dist/components/CwChatMessageForwardBundle/index.d.ts",
+      "node": "./dist/components/CwChatMessageForwardBundle/index.js",
+      "import": "./dist/components/CwChatMessageForwardBundle/index.js",
+      "default": "./dist/components/CwChatMessageForwardBundle/index.js"
+    },
+    "./components/CwChatMessageForwardBundle": {
+      "types": "./dist/components/CwChatMessageForwardBundle/index.d.ts",
+      "node": "./dist/components/CwChatMessageForwardBundle/index.js",
+      "import": "./dist/components/CwChatMessageForwardBundle/index.js",
+      "default": "./dist/components/CwChatMessageForwardBundle/index.js"
+    },
+    "./CwChatMessageList": {
+      "types": "./dist/components/CwChatMessageList/index.d.ts",
+      "node": "./dist/components/CwChatMessageList/index.js",
+      "import": "./dist/components/CwChatMessageList/index.js",
+      "default": "./dist/components/CwChatMessageList/index.js"
+    },
+    "./components/CwChatMessageList": {
+      "types": "./dist/components/CwChatMessageList/index.d.ts",
+      "node": "./dist/components/CwChatMessageList/index.js",
+      "import": "./dist/components/CwChatMessageList/index.js",
+      "default": "./dist/components/CwChatMessageList/index.js"
+    },
+    "./CwChatMessageQuote": {
+      "types": "./dist/components/CwChatMessageQuote/index.d.ts",
+      "node": "./dist/components/CwChatMessageQuote/index.js",
+      "import": "./dist/components/CwChatMessageQuote/index.js",
+      "default": "./dist/components/CwChatMessageQuote/index.js"
+    },
+    "./components/CwChatMessageQuote": {
+      "types": "./dist/components/CwChatMessageQuote/index.d.ts",
+      "node": "./dist/components/CwChatMessageQuote/index.js",
+      "import": "./dist/components/CwChatMessageQuote/index.js",
+      "default": "./dist/components/CwChatMessageQuote/index.js"
+    },
+    "./CwChatShell": {
+      "types": "./dist/components/CwChatShell/index.d.ts",
+      "node": "./dist/components/CwChatShell/index.js",
+      "import": "./dist/components/CwChatShell/index.js",
+      "default": "./dist/components/CwChatShell/index.js"
+    },
+    "./components/CwChatShell": {
+      "types": "./dist/components/CwChatShell/index.d.ts",
+      "node": "./dist/components/CwChatShell/index.js",
+      "import": "./dist/components/CwChatShell/index.js",
+      "default": "./dist/components/CwChatShell/index.js"
+    },
+    "./CwChatToolbar": {
+      "types": "./dist/components/CwChatToolbar/index.d.ts",
+      "node": "./dist/components/CwChatToolbar/index.js",
+      "import": "./dist/components/CwChatToolbar/index.js",
+      "default": "./dist/components/CwChatToolbar/index.js"
+    },
+    "./components/CwChatToolbar": {
+      "types": "./dist/components/CwChatToolbar/index.d.ts",
+      "node": "./dist/components/CwChatToolbar/index.js",
+      "import": "./dist/components/CwChatToolbar/index.js",
+      "default": "./dist/components/CwChatToolbar/index.js"
+    },
+    "./CwCheckbox": {
+      "types": "./dist/components/CwCheckbox/index.d.ts",
+      "node": "./dist/components/CwCheckbox/index.js",
+      "import": "./dist/components/CwCheckbox/index.js",
+      "default": "./dist/components/CwCheckbox/index.js"
+    },
+    "./components/CwCheckbox": {
+      "types": "./dist/components/CwCheckbox/index.d.ts",
+      "node": "./dist/components/CwCheckbox/index.js",
+      "import": "./dist/components/CwCheckbox/index.js",
+      "default": "./dist/components/CwCheckbox/index.js"
+    },
+    "./CwChromeTab": {
+      "types": "./dist/components/CwChromeTab/index.d.ts",
+      "node": "./dist/components/CwChromeTab/index.js",
+      "import": "./dist/components/CwChromeTab/index.js",
+      "default": "./dist/components/CwChromeTab/index.js"
+    },
+    "./components/CwChromeTab": {
+      "types": "./dist/components/CwChromeTab/index.d.ts",
+      "node": "./dist/components/CwChromeTab/index.js",
+      "import": "./dist/components/CwChromeTab/index.js",
+      "default": "./dist/components/CwChromeTab/index.js"
+    },
+    "./CwConfigCard": {
+      "types": "./dist/components/CwConfigCard/index.d.ts",
+      "node": "./dist/components/CwConfigCard/index.js",
+      "import": "./dist/components/CwConfigCard/index.js",
+      "default": "./dist/components/CwConfigCard/index.js"
+    },
+    "./components/CwConfigCard": {
+      "types": "./dist/components/CwConfigCard/index.d.ts",
+      "node": "./dist/components/CwConfigCard/index.js",
+      "import": "./dist/components/CwConfigCard/index.js",
+      "default": "./dist/components/CwConfigCard/index.js"
+    },
+    "./CwConfirmDialog": {
+      "types": "./dist/components/CwConfirmDialog/index.d.ts",
+      "node": "./dist/components/CwConfirmDialog/index.js",
+      "import": "./dist/components/CwConfirmDialog/index.js",
+      "default": "./dist/components/CwConfirmDialog/index.js"
+    },
+    "./components/CwConfirmDialog": {
+      "types": "./dist/components/CwConfirmDialog/index.d.ts",
+      "node": "./dist/components/CwConfirmDialog/index.js",
+      "import": "./dist/components/CwConfirmDialog/index.js",
+      "default": "./dist/components/CwConfirmDialog/index.js"
+    },
+    "./CwContextMenu": {
+      "types": "./dist/components/CwContextMenu/index.d.ts",
+      "node": "./dist/components/CwContextMenu/index.js",
+      "import": "./dist/components/CwContextMenu/index.js",
+      "default": "./dist/components/CwContextMenu/index.js"
+    },
+    "./components/CwContextMenu": {
+      "types": "./dist/components/CwContextMenu/index.d.ts",
+      "node": "./dist/components/CwContextMenu/index.js",
+      "import": "./dist/components/CwContextMenu/index.js",
+      "default": "./dist/components/CwContextMenu/index.js"
+    },
+    "./CwCornerClosableWrap": {
+      "types": "./dist/components/CwCornerClosableWrap/index.d.ts",
+      "node": "./dist/components/CwCornerClosableWrap/index.js",
+      "import": "./dist/components/CwCornerClosableWrap/index.js",
+      "default": "./dist/components/CwCornerClosableWrap/index.js"
+    },
+    "./components/CwCornerClosableWrap": {
+      "types": "./dist/components/CwCornerClosableWrap/index.d.ts",
+      "node": "./dist/components/CwCornerClosableWrap/index.js",
+      "import": "./dist/components/CwCornerClosableWrap/index.js",
+      "default": "./dist/components/CwCornerClosableWrap/index.js"
+    },
+    "./CwCountDownButton": {
+      "types": "./dist/components/CwCountDownButton/index.d.ts",
+      "node": "./dist/components/CwCountDownButton/index.js",
+      "import": "./dist/components/CwCountDownButton/index.js",
+      "default": "./dist/components/CwCountDownButton/index.js"
+    },
+    "./components/CwCountDownButton": {
+      "types": "./dist/components/CwCountDownButton/index.d.ts",
+      "node": "./dist/components/CwCountDownButton/index.js",
+      "import": "./dist/components/CwCountDownButton/index.js",
+      "default": "./dist/components/CwCountDownButton/index.js"
+    },
+    "./CwDataTable": {
+      "types": "./dist/components/CwDataTable/index.d.ts",
+      "node": "./dist/components/CwDataTable/index.js",
+      "import": "./dist/components/CwDataTable/index.js",
+      "default": "./dist/components/CwDataTable/index.js"
+    },
+    "./components/CwDataTable": {
+      "types": "./dist/components/CwDataTable/index.d.ts",
+      "node": "./dist/components/CwDataTable/index.js",
+      "import": "./dist/components/CwDataTable/index.js",
+      "default": "./dist/components/CwDataTable/index.js"
+    },
+    "./CwDataTree": {
+      "types": "./dist/components/CwDataTree/index.d.ts",
+      "node": "./dist/components/CwDataTree/index.js",
+      "import": "./dist/components/CwDataTree/index.js",
+      "default": "./dist/components/CwDataTree/index.js"
+    },
+    "./components/CwDataTree": {
+      "types": "./dist/components/CwDataTree/index.d.ts",
+      "node": "./dist/components/CwDataTree/index.js",
+      "import": "./dist/components/CwDataTree/index.js",
+      "default": "./dist/components/CwDataTree/index.js"
+    },
+    "./CwDatePicker": {
+      "types": "./dist/components/CwDatePicker/index.d.ts",
+      "node": "./dist/components/CwDatePicker/index.js",
+      "import": "./dist/components/CwDatePicker/index.js",
+      "default": "./dist/components/CwDatePicker/index.js"
+    },
+    "./components/CwDatePicker": {
+      "types": "./dist/components/CwDatePicker/index.d.ts",
+      "node": "./dist/components/CwDatePicker/index.js",
+      "import": "./dist/components/CwDatePicker/index.js",
+      "default": "./dist/components/CwDatePicker/index.js"
+    },
+    "./CwDesignEditorShell": {
+      "types": "./dist/components/CwDesignEditorShell/index.d.ts",
+      "node": "./dist/components/CwDesignEditorShell/index.js",
+      "import": "./dist/components/CwDesignEditorShell/index.js",
+      "default": "./dist/components/CwDesignEditorShell/index.js"
+    },
+    "./components/CwDesignEditorShell": {
+      "types": "./dist/components/CwDesignEditorShell/index.d.ts",
+      "node": "./dist/components/CwDesignEditorShell/index.js",
+      "import": "./dist/components/CwDesignEditorShell/index.js",
+      "default": "./dist/components/CwDesignEditorShell/index.js"
+    },
+    "./CwDesignInspector": {
+      "types": "./dist/components/CwDesignInspector/index.d.ts",
+      "node": "./dist/components/CwDesignInspector/index.js",
+      "import": "./dist/components/CwDesignInspector/index.js",
+      "default": "./dist/components/CwDesignInspector/index.js"
+    },
+    "./components/CwDesignInspector": {
+      "types": "./dist/components/CwDesignInspector/index.d.ts",
+      "node": "./dist/components/CwDesignInspector/index.js",
+      "import": "./dist/components/CwDesignInspector/index.js",
+      "default": "./dist/components/CwDesignInspector/index.js"
+    },
+    "./CwDesignLayersPanel": {
+      "types": "./dist/components/CwDesignLayersPanel/index.d.ts",
+      "node": "./dist/components/CwDesignLayersPanel/index.js",
+      "import": "./dist/components/CwDesignLayersPanel/index.js",
+      "default": "./dist/components/CwDesignLayersPanel/index.js"
+    },
+    "./components/CwDesignLayersPanel": {
+      "types": "./dist/components/CwDesignLayersPanel/index.d.ts",
+      "node": "./dist/components/CwDesignLayersPanel/index.js",
+      "import": "./dist/components/CwDesignLayersPanel/index.js",
+      "default": "./dist/components/CwDesignLayersPanel/index.js"
+    },
+    "./CwDesignToolRail": {
+      "types": "./dist/components/CwDesignToolRail/index.d.ts",
+      "node": "./dist/components/CwDesignToolRail/index.js",
+      "import": "./dist/components/CwDesignToolRail/index.js",
+      "default": "./dist/components/CwDesignToolRail/index.js"
+    },
+    "./components/CwDesignToolRail": {
+      "types": "./dist/components/CwDesignToolRail/index.d.ts",
+      "node": "./dist/components/CwDesignToolRail/index.js",
+      "import": "./dist/components/CwDesignToolRail/index.js",
+      "default": "./dist/components/CwDesignToolRail/index.js"
+    },
+    "./CwDiv": {
+      "types": "./dist/components/CwDiv/index.d.ts",
+      "node": "./dist/components/CwDiv/index.js",
+      "import": "./dist/components/CwDiv/index.js",
+      "default": "./dist/components/CwDiv/index.js"
+    },
+    "./components/CwDiv": {
+      "types": "./dist/components/CwDiv/index.d.ts",
+      "node": "./dist/components/CwDiv/index.js",
+      "import": "./dist/components/CwDiv/index.js",
+      "default": "./dist/components/CwDiv/index.js"
+    },
+    "./CwDivider": {
+      "types": "./dist/components/CwDivider/index.d.ts",
+      "node": "./dist/components/CwDivider/index.js",
+      "import": "./dist/components/CwDivider/index.js",
+      "default": "./dist/components/CwDivider/index.js"
+    },
+    "./components/CwDivider": {
+      "types": "./dist/components/CwDivider/index.d.ts",
+      "node": "./dist/components/CwDivider/index.js",
+      "import": "./dist/components/CwDivider/index.js",
+      "default": "./dist/components/CwDivider/index.js"
+    },
+    "./CwDropdown": {
+      "types": "./dist/components/CwDropdown/index.d.ts",
+      "node": "./dist/components/CwDropdown/index.js",
+      "import": "./dist/components/CwDropdown/index.js",
+      "default": "./dist/components/CwDropdown/index.js"
+    },
+    "./components/CwDropdown": {
+      "types": "./dist/components/CwDropdown/index.d.ts",
+      "node": "./dist/components/CwDropdown/index.js",
+      "import": "./dist/components/CwDropdown/index.js",
+      "default": "./dist/components/CwDropdown/index.js"
+    },
+    "./CwDynamicDialog": {
+      "types": "./dist/components/CwDynamicDialog/index.d.ts",
+      "node": "./dist/components/CwDynamicDialog/index.js",
+      "import": "./dist/components/CwDynamicDialog/index.js",
+      "default": "./dist/components/CwDynamicDialog/index.js"
+    },
+    "./components/CwDynamicDialog": {
+      "types": "./dist/components/CwDynamicDialog/index.d.ts",
+      "node": "./dist/components/CwDynamicDialog/index.js",
+      "import": "./dist/components/CwDynamicDialog/index.js",
+      "default": "./dist/components/CwDynamicDialog/index.js"
+    },
+    "./CwDynamicSheet": {
+      "types": "./dist/components/CwDynamicSheet/index.d.ts",
+      "node": "./dist/components/CwDynamicSheet/index.js",
+      "import": "./dist/components/CwDynamicSheet/index.js",
+      "default": "./dist/components/CwDynamicSheet/index.js"
+    },
+    "./components/CwDynamicSheet": {
+      "types": "./dist/components/CwDynamicSheet/index.d.ts",
+      "node": "./dist/components/CwDynamicSheet/index.js",
+      "import": "./dist/components/CwDynamicSheet/index.js",
+      "default": "./dist/components/CwDynamicSheet/index.js"
+    },
+    "./CwEditableEmail": {
+      "types": "./dist/components/CwEditableEmail/index.d.ts",
+      "node": "./dist/components/CwEditableEmail/index.js",
+      "import": "./dist/components/CwEditableEmail/index.js",
+      "default": "./dist/components/CwEditableEmail/index.js"
+    },
+    "./components/CwEditableEmail": {
+      "types": "./dist/components/CwEditableEmail/index.d.ts",
+      "node": "./dist/components/CwEditableEmail/index.js",
+      "import": "./dist/components/CwEditableEmail/index.js",
+      "default": "./dist/components/CwEditableEmail/index.js"
+    },
+    "./CwEditableText": {
+      "types": "./dist/components/CwEditableText/index.d.ts",
+      "node": "./dist/components/CwEditableText/index.js",
+      "import": "./dist/components/CwEditableText/index.js",
+      "default": "./dist/components/CwEditableText/index.js"
+    },
+    "./components/CwEditableText": {
+      "types": "./dist/components/CwEditableText/index.d.ts",
+      "node": "./dist/components/CwEditableText/index.js",
+      "import": "./dist/components/CwEditableText/index.js",
+      "default": "./dist/components/CwEditableText/index.js"
+    },
+    "./CwEmptyState": {
+      "types": "./dist/components/CwEmptyState/index.d.ts",
+      "node": "./dist/components/CwEmptyState/index.js",
+      "import": "./dist/components/CwEmptyState/index.js",
+      "default": "./dist/components/CwEmptyState/index.js"
+    },
+    "./components/CwEmptyState": {
+      "types": "./dist/components/CwEmptyState/index.d.ts",
+      "node": "./dist/components/CwEmptyState/index.js",
+      "import": "./dist/components/CwEmptyState/index.js",
+      "default": "./dist/components/CwEmptyState/index.js"
+    },
+    "./CwFeatureCardGrid": {
+      "types": "./dist/components/CwFeatureCardGrid/index.d.ts",
+      "node": "./dist/components/CwFeatureCardGrid/index.js",
+      "import": "./dist/components/CwFeatureCardGrid/index.js",
+      "default": "./dist/components/CwFeatureCardGrid/index.js"
+    },
+    "./components/CwFeatureCardGrid": {
+      "types": "./dist/components/CwFeatureCardGrid/index.d.ts",
+      "node": "./dist/components/CwFeatureCardGrid/index.js",
+      "import": "./dist/components/CwFeatureCardGrid/index.js",
+      "default": "./dist/components/CwFeatureCardGrid/index.js"
+    },
+    "./CwFileDownloadCell": {
+      "types": "./dist/components/CwFileDownloadCell/index.d.ts",
+      "node": "./dist/components/CwFileDownloadCell/index.js",
+      "import": "./dist/components/CwFileDownloadCell/index.js",
+      "default": "./dist/components/CwFileDownloadCell/index.js"
+    },
+    "./components/CwFileDownloadCell": {
+      "types": "./dist/components/CwFileDownloadCell/index.d.ts",
+      "node": "./dist/components/CwFileDownloadCell/index.js",
+      "import": "./dist/components/CwFileDownloadCell/index.js",
+      "default": "./dist/components/CwFileDownloadCell/index.js"
+    },
+    "./CwFileDropTarget": {
+      "types": "./dist/components/CwFileDropTarget/index.d.ts",
+      "node": "./dist/components/CwFileDropTarget/index.js",
+      "import": "./dist/components/CwFileDropTarget/index.js",
+      "default": "./dist/components/CwFileDropTarget/index.js"
+    },
+    "./components/CwFileDropTarget": {
+      "types": "./dist/components/CwFileDropTarget/index.d.ts",
+      "node": "./dist/components/CwFileDropTarget/index.js",
+      "import": "./dist/components/CwFileDropTarget/index.js",
+      "default": "./dist/components/CwFileDropTarget/index.js"
+    },
+    "./CwFileIcon": {
+      "types": "./dist/components/CwFileIcon/index.d.ts",
+      "node": "./dist/components/CwFileIcon/index.js",
+      "import": "./dist/components/CwFileIcon/index.js",
+      "default": "./dist/components/CwFileIcon/index.js"
+    },
+    "./components/CwFileIcon": {
+      "types": "./dist/components/CwFileIcon/index.d.ts",
+      "node": "./dist/components/CwFileIcon/index.js",
+      "import": "./dist/components/CwFileIcon/index.js",
+      "default": "./dist/components/CwFileIcon/index.js"
+    },
+    "./CwFileUpload": {
+      "types": "./dist/components/CwFileUpload/index.d.ts",
+      "node": "./dist/components/CwFileUpload/index.js",
+      "import": "./dist/components/CwFileUpload/index.js",
+      "default": "./dist/components/CwFileUpload/index.js"
+    },
+    "./components/CwFileUpload": {
+      "types": "./dist/components/CwFileUpload/index.d.ts",
+      "node": "./dist/components/CwFileUpload/index.js",
+      "import": "./dist/components/CwFileUpload/index.js",
+      "default": "./dist/components/CwFileUpload/index.js"
+    },
+    "./CwFilterSheet": {
+      "types": "./dist/components/CwFilterSheet/index.d.ts",
+      "node": "./dist/components/CwFilterSheet/index.js",
+      "import": "./dist/components/CwFilterSheet/index.js",
+      "default": "./dist/components/CwFilterSheet/index.js"
+    },
+    "./components/CwFilterSheet": {
+      "types": "./dist/components/CwFilterSheet/index.d.ts",
+      "node": "./dist/components/CwFilterSheet/index.js",
+      "import": "./dist/components/CwFilterSheet/index.js",
+      "default": "./dist/components/CwFilterSheet/index.js"
+    },
+    "./CwFlex": {
+      "types": "./dist/components/CwFlex/index.d.ts",
+      "node": "./dist/components/CwFlex/index.js",
+      "import": "./dist/components/CwFlex/index.js",
+      "default": "./dist/components/CwFlex/index.js"
+    },
+    "./components/CwFlex": {
+      "types": "./dist/components/CwFlex/index.d.ts",
+      "node": "./dist/components/CwFlex/index.js",
+      "import": "./dist/components/CwFlex/index.js",
+      "default": "./dist/components/CwFlex/index.js"
+    },
+    "./CwForm": {
+      "types": "./dist/components/CwForm/index.d.ts",
+      "node": "./dist/components/CwForm/index.js",
+      "import": "./dist/components/CwForm/index.js",
+      "default": "./dist/components/CwForm/index.js"
+    },
+    "./components/CwForm": {
+      "types": "./dist/components/CwForm/index.d.ts",
+      "node": "./dist/components/CwForm/index.js",
+      "import": "./dist/components/CwForm/index.js",
+      "default": "./dist/components/CwForm/index.js"
+    },
+    "./CwFormCard": {
+      "types": "./dist/components/CwFormCard/index.d.ts",
+      "node": "./dist/components/CwFormCard/index.js",
+      "import": "./dist/components/CwFormCard/index.js",
+      "default": "./dist/components/CwFormCard/index.js"
+    },
+    "./components/CwFormCard": {
+      "types": "./dist/components/CwFormCard/index.d.ts",
+      "node": "./dist/components/CwFormCard/index.js",
+      "import": "./dist/components/CwFormCard/index.js",
+      "default": "./dist/components/CwFormCard/index.js"
+    },
+    "./CwFormItem": {
+      "types": "./dist/components/CwFormItem/index.d.ts",
+      "node": "./dist/components/CwFormItem/index.js",
+      "import": "./dist/components/CwFormItem/index.js",
+      "default": "./dist/components/CwFormItem/index.js"
+    },
+    "./components/CwFormItem": {
+      "types": "./dist/components/CwFormItem/index.d.ts",
+      "node": "./dist/components/CwFormItem/index.js",
+      "import": "./dist/components/CwFormItem/index.js",
+      "default": "./dist/components/CwFormItem/index.js"
+    },
+    "./CwFunctionGrid": {
+      "types": "./dist/components/CwFunctionGrid/index.d.ts",
+      "node": "./dist/components/CwFunctionGrid/index.js",
+      "import": "./dist/components/CwFunctionGrid/index.js",
+      "default": "./dist/components/CwFunctionGrid/index.js"
+    },
+    "./components/CwFunctionGrid": {
+      "types": "./dist/components/CwFunctionGrid/index.d.ts",
+      "node": "./dist/components/CwFunctionGrid/index.js",
+      "import": "./dist/components/CwFunctionGrid/index.js",
+      "default": "./dist/components/CwFunctionGrid/index.js"
+    },
+    "./CwGlsl": {
+      "types": "./dist/components/CwGlsl/index.d.ts",
+      "node": "./dist/components/CwGlsl/index.js",
+      "import": "./dist/components/CwGlsl/index.js",
+      "default": "./dist/components/CwGlsl/index.js"
+    },
+    "./components/CwGlsl": {
+      "types": "./dist/components/CwGlsl/index.d.ts",
+      "node": "./dist/components/CwGlsl/index.js",
+      "import": "./dist/components/CwGlsl/index.js",
+      "default": "./dist/components/CwGlsl/index.js"
+    },
+    "./CwGraph": {
+      "types": "./dist/components/CwGraph/index.d.ts",
+      "node": "./dist/components/CwGraph/index.js",
+      "import": "./dist/components/CwGraph/index.js",
+      "default": "./dist/components/CwGraph/index.js"
+    },
+    "./components/CwGraph": {
+      "types": "./dist/components/CwGraph/index.d.ts",
+      "node": "./dist/components/CwGraph/index.js",
+      "import": "./dist/components/CwGraph/index.js",
+      "default": "./dist/components/CwGraph/index.js"
+    },
+    "./CwGrid": {
+      "types": "./dist/components/CwGrid/index.d.ts",
+      "node": "./dist/components/CwGrid/index.js",
+      "import": "./dist/components/CwGrid/index.js",
+      "default": "./dist/components/CwGrid/index.js"
+    },
+    "./components/CwGrid": {
+      "types": "./dist/components/CwGrid/index.d.ts",
+      "node": "./dist/components/CwGrid/index.js",
+      "import": "./dist/components/CwGrid/index.js",
+      "default": "./dist/components/CwGrid/index.js"
+    },
+    "./CwHashMap": {
+      "types": "./dist/components/CwHashMap/index.d.ts",
+      "node": "./dist/components/CwHashMap/index.js",
+      "import": "./dist/components/CwHashMap/index.js",
+      "default": "./dist/components/CwHashMap/index.js"
+    },
+    "./components/CwHashMap": {
+      "types": "./dist/components/CwHashMap/index.d.ts",
+      "node": "./dist/components/CwHashMap/index.js",
+      "import": "./dist/components/CwHashMap/index.js",
+      "default": "./dist/components/CwHashMap/index.js"
+    },
+    "./CwHud": {
+      "types": "./dist/components/CwHud/index.d.ts",
+      "node": "./dist/components/CwHud/index.js",
+      "import": "./dist/components/CwHud/index.js",
+      "default": "./dist/components/CwHud/index.js"
+    },
+    "./components/CwHud": {
+      "types": "./dist/components/CwHud/index.d.ts",
+      "node": "./dist/components/CwHud/index.js",
+      "import": "./dist/components/CwHud/index.js",
+      "default": "./dist/components/CwHud/index.js"
+    },
+    "./CwIcon": {
+      "types": "./dist/components/CwIcon/index.d.ts",
+      "node": "./dist/components/CwIcon/index.js",
+      "import": "./dist/components/CwIcon/index.js",
+      "default": "./dist/components/CwIcon/index.js"
+    },
+    "./components/CwIcon": {
+      "types": "./dist/components/CwIcon/index.d.ts",
+      "node": "./dist/components/CwIcon/index.js",
+      "import": "./dist/components/CwIcon/index.js",
+      "default": "./dist/components/CwIcon/index.js"
+    },
+    "./CwIconPicker": {
+      "types": "./dist/components/CwIconPicker/index.d.ts",
+      "node": "./dist/components/CwIconPicker/index.js",
+      "import": "./dist/components/CwIconPicker/index.js",
+      "default": "./dist/components/CwIconPicker/index.js"
+    },
+    "./components/CwIconPicker": {
+      "types": "./dist/components/CwIconPicker/index.d.ts",
+      "node": "./dist/components/CwIconPicker/index.js",
+      "import": "./dist/components/CwIconPicker/index.js",
+      "default": "./dist/components/CwIconPicker/index.js"
+    },
+    "./CwImageCropper": {
+      "types": "./dist/components/CwImageCropper/index.d.ts",
+      "node": "./dist/components/CwImageCropper/index.js",
+      "import": "./dist/components/CwImageCropper/index.js",
+      "default": "./dist/components/CwImageCropper/index.js"
+    },
+    "./components/CwImageCropper": {
+      "types": "./dist/components/CwImageCropper/index.d.ts",
+      "node": "./dist/components/CwImageCropper/index.js",
+      "import": "./dist/components/CwImageCropper/index.js",
+      "default": "./dist/components/CwImageCropper/index.js"
+    },
+    "./CwImageCropperSheet": {
+      "types": "./dist/components/CwImageCropperSheet/index.d.ts",
+      "node": "./dist/components/CwImageCropperSheet/index.js",
+      "import": "./dist/components/CwImageCropperSheet/index.js",
+      "default": "./dist/components/CwImageCropperSheet/index.js"
+    },
+    "./components/CwImageCropperSheet": {
+      "types": "./dist/components/CwImageCropperSheet/index.d.ts",
+      "node": "./dist/components/CwImageCropperSheet/index.js",
+      "import": "./dist/components/CwImageCropperSheet/index.js",
+      "default": "./dist/components/CwImageCropperSheet/index.js"
+    },
+    "./CwImageFit": {
+      "types": "./dist/components/CwImageFit/index.d.ts",
+      "node": "./dist/components/CwImageFit/index.js",
+      "import": "./dist/components/CwImageFit/index.js",
+      "default": "./dist/components/CwImageFit/index.js"
+    },
+    "./components/CwImageFit": {
+      "types": "./dist/components/CwImageFit/index.d.ts",
+      "node": "./dist/components/CwImageFit/index.js",
+      "import": "./dist/components/CwImageFit/index.js",
+      "default": "./dist/components/CwImageFit/index.js"
+    },
+    "./CwImageGallery": {
+      "types": "./dist/components/CwImageGallery/index.d.ts",
+      "node": "./dist/components/CwImageGallery/index.js",
+      "import": "./dist/components/CwImageGallery/index.js",
+      "default": "./dist/components/CwImageGallery/index.js"
+    },
+    "./components/CwImageGallery": {
+      "types": "./dist/components/CwImageGallery/index.d.ts",
+      "node": "./dist/components/CwImageGallery/index.js",
+      "import": "./dist/components/CwImageGallery/index.js",
+      "default": "./dist/components/CwImageGallery/index.js"
+    },
+    "./CwImageGalleryPreview": {
+      "types": "./dist/components/CwImageGalleryPreview/index.d.ts",
+      "node": "./dist/components/CwImageGalleryPreview/index.js",
+      "import": "./dist/components/CwImageGalleryPreview/index.js",
+      "default": "./dist/components/CwImageGalleryPreview/index.js"
+    },
+    "./components/CwImageGalleryPreview": {
+      "types": "./dist/components/CwImageGalleryPreview/index.d.ts",
+      "node": "./dist/components/CwImageGalleryPreview/index.js",
+      "import": "./dist/components/CwImageGalleryPreview/index.js",
+      "default": "./dist/components/CwImageGalleryPreview/index.js"
+    },
+    "./CwImagePreview": {
+      "types": "./dist/components/CwImagePreview/index.d.ts",
+      "node": "./dist/components/CwImagePreview/index.js",
+      "import": "./dist/components/CwImagePreview/index.js",
+      "default": "./dist/components/CwImagePreview/index.js"
+    },
+    "./components/CwImagePreview": {
+      "types": "./dist/components/CwImagePreview/index.d.ts",
+      "node": "./dist/components/CwImagePreview/index.js",
+      "import": "./dist/components/CwImagePreview/index.js",
+      "default": "./dist/components/CwImagePreview/index.js"
+    },
+    "./CwImg": {
+      "types": "./dist/components/CwImg/index.d.ts",
+      "node": "./dist/components/CwImg/index.js",
+      "import": "./dist/components/CwImg/index.js",
+      "default": "./dist/components/CwImg/index.js"
+    },
+    "./components/CwImg": {
+      "types": "./dist/components/CwImg/index.d.ts",
+      "node": "./dist/components/CwImg/index.js",
+      "import": "./dist/components/CwImg/index.js",
+      "default": "./dist/components/CwImg/index.js"
+    },
+    "./CwIndicator": {
+      "types": "./dist/components/CwIndicator/index.d.ts",
+      "node": "./dist/components/CwIndicator/index.js",
+      "import": "./dist/components/CwIndicator/index.js",
+      "default": "./dist/components/CwIndicator/index.js"
+    },
+    "./components/CwIndicator": {
+      "types": "./dist/components/CwIndicator/index.d.ts",
+      "node": "./dist/components/CwIndicator/index.js",
+      "import": "./dist/components/CwIndicator/index.js",
+      "default": "./dist/components/CwIndicator/index.js"
+    },
+    "./CwInfiniteLoopScroll": {
+      "types": "./dist/components/CwInfiniteLoopScroll/index.d.ts",
+      "node": "./dist/components/CwInfiniteLoopScroll/index.js",
+      "import": "./dist/components/CwInfiniteLoopScroll/index.js",
+      "default": "./dist/components/CwInfiniteLoopScroll/index.js"
+    },
+    "./components/CwInfiniteLoopScroll": {
+      "types": "./dist/components/CwInfiniteLoopScroll/index.d.ts",
+      "node": "./dist/components/CwInfiniteLoopScroll/index.js",
+      "import": "./dist/components/CwInfiniteLoopScroll/index.js",
+      "default": "./dist/components/CwInfiniteLoopScroll/index.js"
+    },
+    "./CwInfiniteScroll": {
+      "types": "./dist/components/CwInfiniteScroll/index.d.ts",
+      "node": "./dist/components/CwInfiniteScroll/index.js",
+      "import": "./dist/components/CwInfiniteScroll/index.js",
+      "default": "./dist/components/CwInfiniteScroll/index.js"
+    },
+    "./components/CwInfiniteScroll": {
+      "types": "./dist/components/CwInfiniteScroll/index.d.ts",
+      "node": "./dist/components/CwInfiniteScroll/index.js",
+      "import": "./dist/components/CwInfiniteScroll/index.js",
+      "default": "./dist/components/CwInfiniteScroll/index.js"
+    },
+    "./CwInput": {
+      "types": "./dist/components/CwInput/index.d.ts",
+      "node": "./dist/components/CwInput/index.js",
+      "import": "./dist/components/CwInput/index.js",
+      "default": "./dist/components/CwInput/index.js"
+    },
+    "./components/CwInput": {
+      "types": "./dist/components/CwInput/index.d.ts",
+      "node": "./dist/components/CwInput/index.js",
+      "import": "./dist/components/CwInput/index.js",
+      "default": "./dist/components/CwInput/index.js"
+    },
+    "./CwLoading": {
+      "types": "./dist/components/CwLoading/index.d.ts",
+      "node": "./dist/components/CwLoading/index.js",
+      "import": "./dist/components/CwLoading/index.js",
+      "default": "./dist/components/CwLoading/index.js"
+    },
+    "./components/CwLoading": {
+      "types": "./dist/components/CwLoading/index.d.ts",
+      "node": "./dist/components/CwLoading/index.js",
+      "import": "./dist/components/CwLoading/index.js",
+      "default": "./dist/components/CwLoading/index.js"
+    },
+    "./CwLoginMethodSwitch": {
+      "types": "./dist/components/CwLoginMethodSwitch/index.d.ts",
+      "node": "./dist/components/CwLoginMethodSwitch/index.js",
+      "import": "./dist/components/CwLoginMethodSwitch/index.js",
+      "default": "./dist/components/CwLoginMethodSwitch/index.js"
+    },
+    "./components/CwLoginMethodSwitch": {
+      "types": "./dist/components/CwLoginMethodSwitch/index.d.ts",
+      "node": "./dist/components/CwLoginMethodSwitch/index.js",
+      "import": "./dist/components/CwLoginMethodSwitch/index.js",
+      "default": "./dist/components/CwLoginMethodSwitch/index.js"
+    },
+    "./CwMarkdown": {
+      "types": "./dist/components/CwMarkdown/index.d.ts",
+      "node": "./dist/components/CwMarkdown/index.js",
+      "import": "./dist/components/CwMarkdown/index.js",
+      "default": "./dist/components/CwMarkdown/index.js"
+    },
+    "./components/CwMarkdown": {
+      "types": "./dist/components/CwMarkdown/index.d.ts",
+      "node": "./dist/components/CwMarkdown/index.js",
+      "import": "./dist/components/CwMarkdown/index.js",
+      "default": "./dist/components/CwMarkdown/index.js"
+    },
+    "./CwMessageInput": {
+      "types": "./dist/components/CwMessageInput/index.d.ts",
+      "node": "./dist/components/CwMessageInput/index.js",
+      "import": "./dist/components/CwMessageInput/index.js",
+      "default": "./dist/components/CwMessageInput/index.js"
+    },
+    "./components/CwMessageInput": {
+      "types": "./dist/components/CwMessageInput/index.d.ts",
+      "node": "./dist/components/CwMessageInput/index.js",
+      "import": "./dist/components/CwMessageInput/index.js",
+      "default": "./dist/components/CwMessageInput/index.js"
+    },
+    "./CwMessageInputMentionPanel": {
+      "types": "./dist/components/CwMessageInputMentionPanel/index.d.ts",
+      "node": "./dist/components/CwMessageInputMentionPanel/index.js",
+      "import": "./dist/components/CwMessageInputMentionPanel/index.js",
+      "default": "./dist/components/CwMessageInputMentionPanel/index.js"
+    },
+    "./components/CwMessageInputMentionPanel": {
+      "types": "./dist/components/CwMessageInputMentionPanel/index.d.ts",
+      "node": "./dist/components/CwMessageInputMentionPanel/index.js",
+      "import": "./dist/components/CwMessageInputMentionPanel/index.js",
+      "default": "./dist/components/CwMessageInputMentionPanel/index.js"
+    },
+    "./CwMessageInputMentionSheet": {
+      "types": "./dist/components/CwMessageInputMentionSheet/index.d.ts",
+      "node": "./dist/components/CwMessageInputMentionSheet/index.js",
+      "import": "./dist/components/CwMessageInputMentionSheet/index.js",
+      "default": "./dist/components/CwMessageInputMentionSheet/index.js"
+    },
+    "./components/CwMessageInputMentionSheet": {
+      "types": "./dist/components/CwMessageInputMentionSheet/index.d.ts",
+      "node": "./dist/components/CwMessageInputMentionSheet/index.js",
+      "import": "./dist/components/CwMessageInputMentionSheet/index.js",
+      "default": "./dist/components/CwMessageInputMentionSheet/index.js"
+    },
+    "./CwMobileStackShell": {
+      "types": "./dist/components/CwMobileStackShell/index.d.ts",
+      "node": "./dist/components/CwMobileStackShell/index.js",
+      "import": "./dist/components/CwMobileStackShell/index.js",
+      "default": "./dist/components/CwMobileStackShell/index.js"
+    },
+    "./components/CwMobileStackShell": {
+      "types": "./dist/components/CwMobileStackShell/index.d.ts",
+      "node": "./dist/components/CwMobileStackShell/index.js",
+      "import": "./dist/components/CwMobileStackShell/index.js",
+      "default": "./dist/components/CwMobileStackShell/index.js"
+    },
+    "./CwMoney": {
+      "types": "./dist/components/CwMoney/index.d.ts",
+      "node": "./dist/components/CwMoney/index.js",
+      "import": "./dist/components/CwMoney/index.js",
+      "default": "./dist/components/CwMoney/index.js"
+    },
+    "./components/CwMoney": {
+      "types": "./dist/components/CwMoney/index.d.ts",
+      "node": "./dist/components/CwMoney/index.js",
+      "import": "./dist/components/CwMoney/index.js",
+      "default": "./dist/components/CwMoney/index.js"
+    },
+    "./CwMusicPlayer": {
+      "types": "./dist/components/CwMusicPlayer/index.d.ts",
+      "node": "./dist/components/CwMusicPlayer/index.js",
+      "import": "./dist/components/CwMusicPlayer/index.js",
+      "default": "./dist/components/CwMusicPlayer/index.js"
+    },
+    "./components/CwMusicPlayer": {
+      "types": "./dist/components/CwMusicPlayer/index.d.ts",
+      "node": "./dist/components/CwMusicPlayer/index.js",
+      "import": "./dist/components/CwMusicPlayer/index.js",
+      "default": "./dist/components/CwMusicPlayer/index.js"
+    },
+    "./CwNavBar": {
+      "types": "./dist/components/CwNavBar/index.d.ts",
+      "node": "./dist/components/CwNavBar/index.js",
+      "import": "./dist/components/CwNavBar/index.js",
+      "default": "./dist/components/CwNavBar/index.js"
+    },
+    "./components/CwNavBar": {
+      "types": "./dist/components/CwNavBar/index.d.ts",
+      "node": "./dist/components/CwNavBar/index.js",
+      "import": "./dist/components/CwNavBar/index.js",
+      "default": "./dist/components/CwNavBar/index.js"
+    },
+    "./CwNavigationTree": {
+      "types": "./dist/components/CwNavigationTree/index.d.ts",
+      "node": "./dist/components/CwNavigationTree/index.js",
+      "import": "./dist/components/CwNavigationTree/index.js",
+      "default": "./dist/components/CwNavigationTree/index.js"
+    },
+    "./components/CwNavigationTree": {
+      "types": "./dist/components/CwNavigationTree/index.d.ts",
+      "node": "./dist/components/CwNavigationTree/index.js",
+      "import": "./dist/components/CwNavigationTree/index.js",
+      "default": "./dist/components/CwNavigationTree/index.js"
+    },
+    "./CwNumberInput": {
+      "types": "./dist/components/CwNumberInput/index.d.ts",
+      "node": "./dist/components/CwNumberInput/index.js",
+      "import": "./dist/components/CwNumberInput/index.js",
+      "default": "./dist/components/CwNumberInput/index.js"
+    },
+    "./components/CwNumberInput": {
+      "types": "./dist/components/CwNumberInput/index.d.ts",
+      "node": "./dist/components/CwNumberInput/index.js",
+      "import": "./dist/components/CwNumberInput/index.js",
+      "default": "./dist/components/CwNumberInput/index.js"
+    },
+    "./CwPagination": {
+      "types": "./dist/components/CwPagination/index.d.ts",
+      "node": "./dist/components/CwPagination/index.js",
+      "import": "./dist/components/CwPagination/index.js",
+      "default": "./dist/components/CwPagination/index.js"
+    },
+    "./components/CwPagination": {
+      "types": "./dist/components/CwPagination/index.d.ts",
+      "node": "./dist/components/CwPagination/index.js",
+      "import": "./dist/components/CwPagination/index.js",
+      "default": "./dist/components/CwPagination/index.js"
+    },
+    "./CwParticleBackground": {
+      "types": "./dist/components/CwParticleBackground/index.d.ts",
+      "node": "./dist/components/CwParticleBackground/index.js",
+      "import": "./dist/components/CwParticleBackground/index.js",
+      "default": "./dist/components/CwParticleBackground/index.js"
+    },
+    "./components/CwParticleBackground": {
+      "types": "./dist/components/CwParticleBackground/index.d.ts",
+      "node": "./dist/components/CwParticleBackground/index.js",
+      "import": "./dist/components/CwParticleBackground/index.js",
+      "default": "./dist/components/CwParticleBackground/index.js"
+    },
+    "./CwPhoneLoginDialog": {
+      "types": "./dist/components/CwPhoneLoginDialog/index.d.ts",
+      "node": "./dist/components/CwPhoneLoginDialog/index.js",
+      "import": "./dist/components/CwPhoneLoginDialog/index.js",
+      "default": "./dist/components/CwPhoneLoginDialog/index.js"
+    },
+    "./components/CwPhoneLoginDialog": {
+      "types": "./dist/components/CwPhoneLoginDialog/index.d.ts",
+      "node": "./dist/components/CwPhoneLoginDialog/index.js",
+      "import": "./dist/components/CwPhoneLoginDialog/index.js",
+      "default": "./dist/components/CwPhoneLoginDialog/index.js"
+    },
+    "./CwPhoneLoginSheet": {
+      "types": "./dist/components/CwPhoneLoginSheet/index.d.ts",
+      "node": "./dist/components/CwPhoneLoginSheet/index.js",
+      "import": "./dist/components/CwPhoneLoginSheet/index.js",
+      "default": "./dist/components/CwPhoneLoginSheet/index.js"
+    },
+    "./components/CwPhoneLoginSheet": {
+      "types": "./dist/components/CwPhoneLoginSheet/index.d.ts",
+      "node": "./dist/components/CwPhoneLoginSheet/index.js",
+      "import": "./dist/components/CwPhoneLoginSheet/index.js",
+      "default": "./dist/components/CwPhoneLoginSheet/index.js"
+    },
+    "./CwPopup": {
+      "types": "./dist/components/CwPopup/index.d.ts",
+      "node": "./dist/components/CwPopup/index.js",
+      "import": "./dist/components/CwPopup/index.js",
+      "default": "./dist/components/CwPopup/index.js"
+    },
+    "./components/CwPopup": {
+      "types": "./dist/components/CwPopup/index.d.ts",
+      "node": "./dist/components/CwPopup/index.js",
+      "import": "./dist/components/CwPopup/index.js",
+      "default": "./dist/components/CwPopup/index.js"
+    },
+    "./CwProfileUploader": {
+      "types": "./dist/components/CwProfileUploader/index.d.ts",
+      "node": "./dist/components/CwProfileUploader/index.js",
+      "import": "./dist/components/CwProfileUploader/index.js",
+      "default": "./dist/components/CwProfileUploader/index.js"
+    },
+    "./components/CwProfileUploader": {
+      "types": "./dist/components/CwProfileUploader/index.d.ts",
+      "node": "./dist/components/CwProfileUploader/index.js",
+      "import": "./dist/components/CwProfileUploader/index.js",
+      "default": "./dist/components/CwProfileUploader/index.js"
+    },
+    "./CwProgress": {
+      "types": "./dist/components/CwProgress/index.d.ts",
+      "node": "./dist/components/CwProgress/index.js",
+      "import": "./dist/components/CwProgress/index.js",
+      "default": "./dist/components/CwProgress/index.js"
+    },
+    "./components/CwProgress": {
+      "types": "./dist/components/CwProgress/index.d.ts",
+      "node": "./dist/components/CwProgress/index.js",
+      "import": "./dist/components/CwProgress/index.js",
+      "default": "./dist/components/CwProgress/index.js"
+    },
+    "./CwPullRefreshScroll": {
+      "types": "./dist/components/CwPullRefreshScroll/index.d.ts",
+      "node": "./dist/components/CwPullRefreshScroll/index.js",
+      "import": "./dist/components/CwPullRefreshScroll/index.js",
+      "default": "./dist/components/CwPullRefreshScroll/index.js"
+    },
+    "./components/CwPullRefreshScroll": {
+      "types": "./dist/components/CwPullRefreshScroll/index.d.ts",
+      "node": "./dist/components/CwPullRefreshScroll/index.js",
+      "import": "./dist/components/CwPullRefreshScroll/index.js",
+      "default": "./dist/components/CwPullRefreshScroll/index.js"
+    },
+    "./CwQuickAnswer": {
+      "types": "./dist/components/CwQuickAnswer/index.d.ts",
+      "node": "./dist/components/CwQuickAnswer/index.js",
+      "import": "./dist/components/CwQuickAnswer/index.js",
+      "default": "./dist/components/CwQuickAnswer/index.js"
+    },
+    "./components/CwQuickAnswer": {
+      "types": "./dist/components/CwQuickAnswer/index.d.ts",
+      "node": "./dist/components/CwQuickAnswer/index.js",
+      "import": "./dist/components/CwQuickAnswer/index.js",
+      "default": "./dist/components/CwQuickAnswer/index.js"
+    },
+    "./CwRadio": {
+      "types": "./dist/components/CwRadio/index.d.ts",
+      "node": "./dist/components/CwRadio/index.js",
+      "import": "./dist/components/CwRadio/index.js",
+      "default": "./dist/components/CwRadio/index.js"
+    },
+    "./components/CwRadio": {
+      "types": "./dist/components/CwRadio/index.d.ts",
+      "node": "./dist/components/CwRadio/index.js",
+      "import": "./dist/components/CwRadio/index.js",
+      "default": "./dist/components/CwRadio/index.js"
+    },
+    "./CwResize": {
+      "types": "./dist/components/CwResize/index.d.ts",
+      "node": "./dist/components/CwResize/index.js",
+      "import": "./dist/components/CwResize/index.js",
+      "default": "./dist/components/CwResize/index.js"
+    },
+    "./components/CwResize": {
+      "types": "./dist/components/CwResize/index.d.ts",
+      "node": "./dist/components/CwResize/index.js",
+      "import": "./dist/components/CwResize/index.js",
+      "default": "./dist/components/CwResize/index.js"
+    },
+    "./CwResizeFrame": {
+      "types": "./dist/components/CwResizeFrame/index.d.ts",
+      "node": "./dist/components/CwResizeFrame/index.js",
+      "import": "./dist/components/CwResizeFrame/index.js",
+      "default": "./dist/components/CwResizeFrame/index.js"
+    },
+    "./components/CwResizeFrame": {
+      "types": "./dist/components/CwResizeFrame/index.d.ts",
+      "node": "./dist/components/CwResizeFrame/index.js",
+      "import": "./dist/components/CwResizeFrame/index.js",
+      "default": "./dist/components/CwResizeFrame/index.js"
+    },
+    "./CwRichText": {
+      "types": "./dist/components/CwRichText/index.d.ts",
+      "node": "./dist/components/CwRichText/index.js",
+      "import": "./dist/components/CwRichText/index.js",
+      "default": "./dist/components/CwRichText/index.js"
+    },
+    "./components/CwRichText": {
+      "types": "./dist/components/CwRichText/index.d.ts",
+      "node": "./dist/components/CwRichText/index.js",
+      "import": "./dist/components/CwRichText/index.js",
+      "default": "./dist/components/CwRichText/index.js"
+    },
+    "./CwRow": {
+      "types": "./dist/components/CwRow/index.d.ts",
+      "node": "./dist/components/CwRow/index.js",
+      "import": "./dist/components/CwRow/index.js",
+      "default": "./dist/components/CwRow/index.js"
+    },
+    "./components/CwRow": {
+      "types": "./dist/components/CwRow/index.d.ts",
+      "node": "./dist/components/CwRow/index.js",
+      "import": "./dist/components/CwRow/index.js",
+      "default": "./dist/components/CwRow/index.js"
+    },
+    "./CwSearchBar": {
+      "types": "./dist/components/CwSearchBar/index.d.ts",
+      "node": "./dist/components/CwSearchBar/index.js",
+      "import": "./dist/components/CwSearchBar/index.js",
+      "default": "./dist/components/CwSearchBar/index.js"
+    },
+    "./components/CwSearchBar": {
+      "types": "./dist/components/CwSearchBar/index.d.ts",
+      "node": "./dist/components/CwSearchBar/index.js",
+      "import": "./dist/components/CwSearchBar/index.js",
+      "default": "./dist/components/CwSearchBar/index.js"
+    },
+    "./CwSecondaryTabs": {
+      "types": "./dist/components/CwSecondaryTabs/index.d.ts",
+      "node": "./dist/components/CwSecondaryTabs/index.js",
+      "import": "./dist/components/CwSecondaryTabs/index.js",
+      "default": "./dist/components/CwSecondaryTabs/index.js"
+    },
+    "./components/CwSecondaryTabs": {
+      "types": "./dist/components/CwSecondaryTabs/index.d.ts",
+      "node": "./dist/components/CwSecondaryTabs/index.js",
+      "import": "./dist/components/CwSecondaryTabs/index.js",
+      "default": "./dist/components/CwSecondaryTabs/index.js"
+    },
+    "./CwSegment": {
+      "types": "./dist/components/CwSegment/index.d.ts",
+      "node": "./dist/components/CwSegment/index.js",
+      "import": "./dist/components/CwSegment/index.js",
+      "default": "./dist/components/CwSegment/index.js"
+    },
+    "./components/CwSegment": {
+      "types": "./dist/components/CwSegment/index.d.ts",
+      "node": "./dist/components/CwSegment/index.js",
+      "import": "./dist/components/CwSegment/index.js",
+      "default": "./dist/components/CwSegment/index.js"
+    },
+    "./CwSelect": {
+      "types": "./dist/components/CwSelect/index.d.ts",
+      "node": "./dist/components/CwSelect/index.js",
+      "import": "./dist/components/CwSelect/index.js",
+      "default": "./dist/components/CwSelect/index.js"
+    },
+    "./components/CwSelect": {
+      "types": "./dist/components/CwSelect/index.d.ts",
+      "node": "./dist/components/CwSelect/index.js",
+      "import": "./dist/components/CwSelect/index.js",
+      "default": "./dist/components/CwSelect/index.js"
+    },
+    "./CwSelectSheet": {
+      "types": "./dist/components/CwSelectSheet/index.d.ts",
+      "node": "./dist/components/CwSelectSheet/index.js",
+      "import": "./dist/components/CwSelectSheet/index.js",
+      "default": "./dist/components/CwSelectSheet/index.js"
+    },
+    "./components/CwSelectSheet": {
+      "types": "./dist/components/CwSelectSheet/index.d.ts",
+      "node": "./dist/components/CwSelectSheet/index.js",
+      "import": "./dist/components/CwSelectSheet/index.js",
+      "default": "./dist/components/CwSelectSheet/index.js"
+    },
+    "./CwSelectTags": {
+      "types": "./dist/components/CwSelectTags/index.d.ts",
+      "node": "./dist/components/CwSelectTags/index.js",
+      "import": "./dist/components/CwSelectTags/index.js",
+      "default": "./dist/components/CwSelectTags/index.js"
+    },
+    "./components/CwSelectTags": {
+      "types": "./dist/components/CwSelectTags/index.d.ts",
+      "node": "./dist/components/CwSelectTags/index.js",
+      "import": "./dist/components/CwSelectTags/index.js",
+      "default": "./dist/components/CwSelectTags/index.js"
+    },
+    "./CwShareSheet": {
+      "types": "./dist/components/CwShareSheet/index.d.ts",
+      "node": "./dist/components/CwShareSheet/index.js",
+      "import": "./dist/components/CwShareSheet/index.js",
+      "default": "./dist/components/CwShareSheet/index.js"
+    },
+    "./components/CwShareSheet": {
+      "types": "./dist/components/CwShareSheet/index.d.ts",
+      "node": "./dist/components/CwShareSheet/index.js",
+      "import": "./dist/components/CwShareSheet/index.js",
+      "default": "./dist/components/CwShareSheet/index.js"
+    },
+    "./CwSingleDiv": {
+      "types": "./dist/components/CwSingleDiv/index.d.ts",
+      "node": "./dist/components/CwSingleDiv/index.js",
+      "import": "./dist/components/CwSingleDiv/index.js",
+      "default": "./dist/components/CwSingleDiv/index.js"
+    },
+    "./components/CwSingleDiv": {
+      "types": "./dist/components/CwSingleDiv/index.d.ts",
+      "node": "./dist/components/CwSingleDiv/index.js",
+      "import": "./dist/components/CwSingleDiv/index.js",
+      "default": "./dist/components/CwSingleDiv/index.js"
+    },
+    "./CwSkeleton": {
+      "types": "./dist/components/CwSkeleton/index.d.ts",
+      "node": "./dist/components/CwSkeleton/index.js",
+      "import": "./dist/components/CwSkeleton/index.js",
+      "default": "./dist/components/CwSkeleton/index.js"
+    },
+    "./components/CwSkeleton": {
+      "types": "./dist/components/CwSkeleton/index.d.ts",
+      "node": "./dist/components/CwSkeleton/index.js",
+      "import": "./dist/components/CwSkeleton/index.js",
+      "default": "./dist/components/CwSkeleton/index.js"
+    },
+    "./CwSlider": {
+      "types": "./dist/components/CwSlider/index.d.ts",
+      "node": "./dist/components/CwSlider/index.js",
+      "import": "./dist/components/CwSlider/index.js",
+      "default": "./dist/components/CwSlider/index.js"
+    },
+    "./components/CwSlider": {
+      "types": "./dist/components/CwSlider/index.d.ts",
+      "node": "./dist/components/CwSlider/index.js",
+      "import": "./dist/components/CwSlider/index.js",
+      "default": "./dist/components/CwSlider/index.js"
+    },
+    "./CwSliderCaptchaDialog": {
+      "types": "./dist/components/CwSliderCaptchaDialog/index.d.ts",
+      "node": "./dist/components/CwSliderCaptchaDialog/index.js",
+      "import": "./dist/components/CwSliderCaptchaDialog/index.js",
+      "default": "./dist/components/CwSliderCaptchaDialog/index.js"
+    },
+    "./components/CwSliderCaptchaDialog": {
+      "types": "./dist/components/CwSliderCaptchaDialog/index.d.ts",
+      "node": "./dist/components/CwSliderCaptchaDialog/index.js",
+      "import": "./dist/components/CwSliderCaptchaDialog/index.js",
+      "default": "./dist/components/CwSliderCaptchaDialog/index.js"
+    },
+    "./CwSlot": {
+      "types": "./dist/components/CwSlot/index.d.ts",
+      "node": "./dist/components/CwSlot/index.js",
+      "import": "./dist/components/CwSlot/index.js",
+      "default": "./dist/components/CwSlot/index.js"
+    },
+    "./components/CwSlot": {
+      "types": "./dist/components/CwSlot/index.d.ts",
+      "node": "./dist/components/CwSlot/index.js",
+      "import": "./dist/components/CwSlot/index.js",
+      "default": "./dist/components/CwSlot/index.js"
+    },
+    "./CwSplit": {
+      "types": "./dist/components/CwSplit/index.d.ts",
+      "node": "./dist/components/CwSplit/index.js",
+      "import": "./dist/components/CwSplit/index.js",
+      "default": "./dist/components/CwSplit/index.js"
+    },
+    "./components/CwSplit": {
+      "types": "./dist/components/CwSplit/index.d.ts",
+      "node": "./dist/components/CwSplit/index.js",
+      "import": "./dist/components/CwSplit/index.js",
+      "default": "./dist/components/CwSplit/index.js"
+    },
+    "./CwStack": {
+      "types": "./dist/components/CwStack/index.d.ts",
+      "node": "./dist/components/CwStack/index.js",
+      "import": "./dist/components/CwStack/index.js",
+      "default": "./dist/components/CwStack/index.js"
+    },
+    "./components/CwStack": {
+      "types": "./dist/components/CwStack/index.d.ts",
+      "node": "./dist/components/CwStack/index.js",
+      "import": "./dist/components/CwStack/index.js",
+      "default": "./dist/components/CwStack/index.js"
+    },
+    "./CwStackPop": {
+      "types": "./dist/components/CwStackPop/index.d.ts",
+      "node": "./dist/components/CwStackPop/index.js",
+      "import": "./dist/components/CwStackPop/index.js",
+      "default": "./dist/components/CwStackPop/index.js"
+    },
+    "./components/CwStackPop": {
+      "types": "./dist/components/CwStackPop/index.d.ts",
+      "node": "./dist/components/CwStackPop/index.js",
+      "import": "./dist/components/CwStackPop/index.js",
+      "default": "./dist/components/CwStackPop/index.js"
+    },
+    "./CwStickyTabs": {
+      "types": "./dist/components/CwStickyTabs/index.d.ts",
+      "node": "./dist/components/CwStickyTabs/index.js",
+      "import": "./dist/components/CwStickyTabs/index.js",
+      "default": "./dist/components/CwStickyTabs/index.js"
+    },
+    "./components/CwStickyTabs": {
+      "types": "./dist/components/CwStickyTabs/index.d.ts",
+      "node": "./dist/components/CwStickyTabs/index.js",
+      "import": "./dist/components/CwStickyTabs/index.js",
+      "default": "./dist/components/CwStickyTabs/index.js"
+    },
+    "./CwSwipeRow": {
+      "types": "./dist/components/CwSwipeRow/index.d.ts",
+      "node": "./dist/components/CwSwipeRow/index.js",
+      "import": "./dist/components/CwSwipeRow/index.js",
+      "default": "./dist/components/CwSwipeRow/index.js"
+    },
+    "./components/CwSwipeRow": {
+      "types": "./dist/components/CwSwipeRow/index.d.ts",
+      "node": "./dist/components/CwSwipeRow/index.js",
+      "import": "./dist/components/CwSwipeRow/index.js",
+      "default": "./dist/components/CwSwipeRow/index.js"
+    },
+    "./CwSwiper": {
+      "types": "./dist/components/CwSwiper/index.d.ts",
+      "node": "./dist/components/CwSwiper/index.js",
+      "import": "./dist/components/CwSwiper/index.js",
+      "default": "./dist/components/CwSwiper/index.js"
+    },
+    "./components/CwSwiper": {
+      "types": "./dist/components/CwSwiper/index.d.ts",
+      "node": "./dist/components/CwSwiper/index.js",
+      "import": "./dist/components/CwSwiper/index.js",
+      "default": "./dist/components/CwSwiper/index.js"
+    },
+    "./CwSwitch": {
+      "types": "./dist/components/CwSwitch/index.d.ts",
+      "node": "./dist/components/CwSwitch/index.js",
+      "import": "./dist/components/CwSwitch/index.js",
+      "default": "./dist/components/CwSwitch/index.js"
+    },
+    "./components/CwSwitch": {
+      "types": "./dist/components/CwSwitch/index.d.ts",
+      "node": "./dist/components/CwSwitch/index.js",
+      "import": "./dist/components/CwSwitch/index.js",
+      "default": "./dist/components/CwSwitch/index.js"
+    },
+    "./CwTabbar": {
+      "types": "./dist/components/CwTabbar/index.d.ts",
+      "node": "./dist/components/CwTabbar/index.js",
+      "import": "./dist/components/CwTabbar/index.js",
+      "default": "./dist/components/CwTabbar/index.js"
+    },
+    "./components/CwTabbar": {
+      "types": "./dist/components/CwTabbar/index.d.ts",
+      "node": "./dist/components/CwTabbar/index.js",
+      "import": "./dist/components/CwTabbar/index.js",
+      "default": "./dist/components/CwTabbar/index.js"
+    },
+    "./CwTabsStrip": {
+      "types": "./dist/components/CwTabsStrip/index.d.ts",
+      "node": "./dist/components/CwTabsStrip/index.js",
+      "import": "./dist/components/CwTabsStrip/index.js",
+      "default": "./dist/components/CwTabsStrip/index.js"
+    },
+    "./components/CwTabsStrip": {
+      "types": "./dist/components/CwTabsStrip/index.d.ts",
+      "node": "./dist/components/CwTabsStrip/index.js",
+      "import": "./dist/components/CwTabsStrip/index.js",
+      "default": "./dist/components/CwTabsStrip/index.js"
+    },
+    "./CwTag": {
+      "types": "./dist/components/CwTag/index.d.ts",
+      "node": "./dist/components/CwTag/index.js",
+      "import": "./dist/components/CwTag/index.js",
+      "default": "./dist/components/CwTag/index.js"
+    },
+    "./components/CwTag": {
+      "types": "./dist/components/CwTag/index.d.ts",
+      "node": "./dist/components/CwTag/index.js",
+      "import": "./dist/components/CwTag/index.js",
+      "default": "./dist/components/CwTag/index.js"
+    },
+    "./CwTextarea": {
+      "types": "./dist/components/CwTextarea/index.d.ts",
+      "node": "./dist/components/CwTextarea/index.js",
+      "import": "./dist/components/CwTextarea/index.js",
+      "default": "./dist/components/CwTextarea/index.js"
+    },
+    "./components/CwTextarea": {
+      "types": "./dist/components/CwTextarea/index.d.ts",
+      "node": "./dist/components/CwTextarea/index.js",
+      "import": "./dist/components/CwTextarea/index.js",
+      "default": "./dist/components/CwTextarea/index.js"
+    },
+    "./CwTikTokFeed": {
+      "types": "./dist/components/CwTikTokFeed/index.d.ts",
+      "node": "./dist/components/CwTikTokFeed/index.js",
+      "import": "./dist/components/CwTikTokFeed/index.js",
+      "default": "./dist/components/CwTikTokFeed/index.js"
+    },
+    "./components/CwTikTokFeed": {
+      "types": "./dist/components/CwTikTokFeed/index.d.ts",
+      "node": "./dist/components/CwTikTokFeed/index.js",
+      "import": "./dist/components/CwTikTokFeed/index.js",
+      "default": "./dist/components/CwTikTokFeed/index.js"
+    },
+    "./CwToast": {
+      "types": "./dist/components/CwToast/index.d.ts",
+      "node": "./dist/components/CwToast/index.js",
+      "import": "./dist/components/CwToast/index.js",
+      "default": "./dist/components/CwToast/index.js"
+    },
+    "./components/CwToast": {
+      "types": "./dist/components/CwToast/index.d.ts",
+      "node": "./dist/components/CwToast/index.js",
+      "import": "./dist/components/CwToast/index.js",
+      "default": "./dist/components/CwToast/index.js"
+    },
+    "./CwTooltip": {
+      "types": "./dist/components/CwTooltip/index.d.ts",
+      "node": "./dist/components/CwTooltip/index.js",
+      "import": "./dist/components/CwTooltip/index.js",
+      "default": "./dist/components/CwTooltip/index.js"
+    },
+    "./components/CwTooltip": {
+      "types": "./dist/components/CwTooltip/index.d.ts",
+      "node": "./dist/components/CwTooltip/index.js",
+      "import": "./dist/components/CwTooltip/index.js",
+      "default": "./dist/components/CwTooltip/index.js"
+    },
+    "./CwTree": {
+      "types": "./dist/components/CwTree/index.d.ts",
+      "node": "./dist/components/CwTree/index.js",
+      "import": "./dist/components/CwTree/index.js",
+      "default": "./dist/components/CwTree/index.js"
+    },
+    "./components/CwTree": {
+      "types": "./dist/components/CwTree/index.d.ts",
+      "node": "./dist/components/CwTree/index.js",
+      "import": "./dist/components/CwTree/index.js",
+      "default": "./dist/components/CwTree/index.js"
+    },
+    "./CwTruncateText": {
+      "types": "./dist/components/CwTruncateText/index.d.ts",
+      "node": "./dist/components/CwTruncateText/index.js",
+      "import": "./dist/components/CwTruncateText/index.js",
+      "default": "./dist/components/CwTruncateText/index.js"
+    },
+    "./components/CwTruncateText": {
+      "types": "./dist/components/CwTruncateText/index.d.ts",
+      "node": "./dist/components/CwTruncateText/index.js",
+      "import": "./dist/components/CwTruncateText/index.js",
+      "default": "./dist/components/CwTruncateText/index.js"
+    },
+    "./CwTurnstileCaptchaDialog": {
+      "types": "./dist/components/CwTurnstileCaptchaDialog/index.d.ts",
+      "node": "./dist/components/CwTurnstileCaptchaDialog/index.js",
+      "import": "./dist/components/CwTurnstileCaptchaDialog/index.js",
+      "default": "./dist/components/CwTurnstileCaptchaDialog/index.js"
+    },
+    "./components/CwTurnstileCaptchaDialog": {
+      "types": "./dist/components/CwTurnstileCaptchaDialog/index.d.ts",
+      "node": "./dist/components/CwTurnstileCaptchaDialog/index.js",
+      "import": "./dist/components/CwTurnstileCaptchaDialog/index.js",
+      "default": "./dist/components/CwTurnstileCaptchaDialog/index.js"
+    },
+    "./CwTwoToneIcon": {
+      "types": "./dist/components/CwTwoToneIcon/index.d.ts",
+      "node": "./dist/components/CwTwoToneIcon/index.js",
+      "import": "./dist/components/CwTwoToneIcon/index.js",
+      "default": "./dist/components/CwTwoToneIcon/index.js"
+    },
+    "./components/CwTwoToneIcon": {
+      "types": "./dist/components/CwTwoToneIcon/index.d.ts",
+      "node": "./dist/components/CwTwoToneIcon/index.js",
+      "import": "./dist/components/CwTwoToneIcon/index.js",
+      "default": "./dist/components/CwTwoToneIcon/index.js"
+    },
+    "./CwUnionFind": {
+      "types": "./dist/components/CwUnionFind/index.d.ts",
+      "node": "./dist/components/CwUnionFind/index.js",
+      "import": "./dist/components/CwUnionFind/index.js",
+      "default": "./dist/components/CwUnionFind/index.js"
+    },
+    "./components/CwUnionFind": {
+      "types": "./dist/components/CwUnionFind/index.d.ts",
+      "node": "./dist/components/CwUnionFind/index.js",
+      "import": "./dist/components/CwUnionFind/index.js",
+      "default": "./dist/components/CwUnionFind/index.js"
+    },
+    "./CwUnlockLoginDialog": {
+      "types": "./dist/components/CwUnlockLoginDialog/index.d.ts",
+      "node": "./dist/components/CwUnlockLoginDialog/index.js",
+      "import": "./dist/components/CwUnlockLoginDialog/index.js",
+      "default": "./dist/components/CwUnlockLoginDialog/index.js"
+    },
+    "./components/CwUnlockLoginDialog": {
+      "types": "./dist/components/CwUnlockLoginDialog/index.d.ts",
+      "node": "./dist/components/CwUnlockLoginDialog/index.js",
+      "import": "./dist/components/CwUnlockLoginDialog/index.js",
+      "default": "./dist/components/CwUnlockLoginDialog/index.js"
+    },
+    "./CwVideoPlayer": {
+      "types": "./dist/components/CwVideoPlayer/index.d.ts",
+      "node": "./dist/components/CwVideoPlayer/index.js",
+      "import": "./dist/components/CwVideoPlayer/index.js",
+      "default": "./dist/components/CwVideoPlayer/index.js"
+    },
+    "./components/CwVideoPlayer": {
+      "types": "./dist/components/CwVideoPlayer/index.d.ts",
+      "node": "./dist/components/CwVideoPlayer/index.js",
+      "import": "./dist/components/CwVideoPlayer/index.js",
+      "default": "./dist/components/CwVideoPlayer/index.js"
+    },
+    "./CwViewportImg": {
+      "types": "./dist/components/CwViewportImg/index.d.ts",
+      "node": "./dist/components/CwViewportImg/index.js",
+      "import": "./dist/components/CwViewportImg/index.js",
+      "default": "./dist/components/CwViewportImg/index.js"
+    },
+    "./components/CwViewportImg": {
+      "types": "./dist/components/CwViewportImg/index.d.ts",
+      "node": "./dist/components/CwViewportImg/index.js",
+      "import": "./dist/components/CwViewportImg/index.js",
+      "default": "./dist/components/CwViewportImg/index.js"
+    },
+    "./CwVirtualScroll": {
+      "types": "./dist/components/CwVirtualScroll/index.d.ts",
+      "node": "./dist/components/CwVirtualScroll/index.js",
+      "import": "./dist/components/CwVirtualScroll/index.js",
+      "default": "./dist/components/CwVirtualScroll/index.js"
+    },
+    "./components/CwVirtualScroll": {
+      "types": "./dist/components/CwVirtualScroll/index.d.ts",
+      "node": "./dist/components/CwVirtualScroll/index.js",
+      "import": "./dist/components/CwVirtualScroll/index.js",
+      "default": "./dist/components/CwVirtualScroll/index.js"
+    },
+    "./CwVoiceWaveform": {
+      "types": "./dist/components/CwVoiceWaveform/index.d.ts",
+      "node": "./dist/components/CwVoiceWaveform/index.js",
+      "import": "./dist/components/CwVoiceWaveform/index.js",
+      "default": "./dist/components/CwVoiceWaveform/index.js"
+    },
+    "./components/CwVoiceWaveform": {
+      "types": "./dist/components/CwVoiceWaveform/index.d.ts",
+      "node": "./dist/components/CwVoiceWaveform/index.js",
+      "import": "./dist/components/CwVoiceWaveform/index.js",
+      "default": "./dist/components/CwVoiceWaveform/index.js"
+    },
+    "./CwWalletPayPasswordPanel": {
+      "types": "./dist/components/CwWalletPayPasswordPanel/index.d.ts",
+      "node": "./dist/components/CwWalletPayPasswordPanel/index.js",
+      "import": "./dist/components/CwWalletPayPasswordPanel/index.js",
+      "default": "./dist/components/CwWalletPayPasswordPanel/index.js"
+    },
+    "./components/CwWalletPayPasswordPanel": {
+      "types": "./dist/components/CwWalletPayPasswordPanel/index.d.ts",
+      "node": "./dist/components/CwWalletPayPasswordPanel/index.js",
+      "import": "./dist/components/CwWalletPayPasswordPanel/index.js",
+      "default": "./dist/components/CwWalletPayPasswordPanel/index.js"
+    },
+    "./CwWaterfall": {
+      "types": "./dist/components/CwWaterfall/index.d.ts",
+      "node": "./dist/components/CwWaterfall/index.js",
+      "import": "./dist/components/CwWaterfall/index.js",
+      "default": "./dist/components/CwWaterfall/index.js"
+    },
+    "./components/CwWaterfall": {
+      "types": "./dist/components/CwWaterfall/index.d.ts",
+      "node": "./dist/components/CwWaterfall/index.js",
+      "import": "./dist/components/CwWaterfall/index.js",
+      "default": "./dist/components/CwWaterfall/index.js"
+    },
+    "./CwWindowTitleBar": {
+      "types": "./dist/components/CwWindowTitleBar/index.d.ts",
+      "node": "./dist/components/CwWindowTitleBar/index.js",
+      "import": "./dist/components/CwWindowTitleBar/index.js",
+      "default": "./dist/components/CwWindowTitleBar/index.js"
+    },
+    "./components/CwWindowTitleBar": {
+      "types": "./dist/components/CwWindowTitleBar/index.d.ts",
+      "node": "./dist/components/CwWindowTitleBar/index.js",
+      "import": "./dist/components/CwWindowTitleBar/index.js",
+      "default": "./dist/components/CwWindowTitleBar/index.js"
+    },
+    "./PageLogin": {
+      "types": "./dist/components/PageLogin/index.d.ts",
+      "node": "./dist/components/PageLogin/index.js",
+      "import": "./dist/components/PageLogin/index.js",
+      "default": "./dist/components/PageLogin/index.js"
+    },
+    "./components/PageLogin": {
+      "types": "./dist/components/PageLogin/index.d.ts",
+      "node": "./dist/components/PageLogin/index.js",
+      "import": "./dist/components/PageLogin/index.js",
+      "default": "./dist/components/PageLogin/index.js"
+    },
+    "./PageLoginMobile": {
+      "types": "./dist/components/PageLoginMobile/index.d.ts",
+      "node": "./dist/components/PageLoginMobile/index.js",
+      "import": "./dist/components/PageLoginMobile/index.js",
+      "default": "./dist/components/PageLoginMobile/index.js"
+    },
+    "./components/PageLoginMobile": {
+      "types": "./dist/components/PageLoginMobile/index.d.ts",
+      "node": "./dist/components/PageLoginMobile/index.js",
+      "import": "./dist/components/PageLoginMobile/index.js",
+      "default": "./dist/components/PageLoginMobile/index.js"
+    },
+    "./TpCherryMarkdown": {
+      "types": "./dist/components/TpCherryMarkdown/index.d.ts",
+      "node": "./dist/components/TpCherryMarkdown/index.js",
+      "import": "./dist/components/TpCherryMarkdown/index.js",
+      "default": "./dist/components/TpCherryMarkdown/index.js"
+    },
+    "./components/TpCherryMarkdown": {
+      "types": "./dist/components/TpCherryMarkdown/index.d.ts",
+      "node": "./dist/components/TpCherryMarkdown/index.js",
+      "import": "./dist/components/TpCherryMarkdown/index.js",
+      "default": "./dist/components/TpCherryMarkdown/index.js"
+    },
+    "./TpCodeEditor": {
+      "types": "./dist/components/TpCodeEditor/index.d.ts",
+      "node": "./dist/components/TpCodeEditor/index.js",
+      "import": "./dist/components/TpCodeEditor/index.js",
+      "default": "./dist/components/TpCodeEditor/index.js"
+    },
+    "./components/TpCodeEditor": {
+      "types": "./dist/components/TpCodeEditor/index.d.ts",
+      "node": "./dist/components/TpCodeEditor/index.js",
+      "import": "./dist/components/TpCodeEditor/index.js",
+      "default": "./dist/components/TpCodeEditor/index.js"
+    },
+    "./TpCodePreview": {
+      "types": "./dist/components/TpCodePreview/index.d.ts",
+      "node": "./dist/components/TpCodePreview/index.js",
+      "import": "./dist/components/TpCodePreview/index.js",
+      "default": "./dist/components/TpCodePreview/index.js"
+    },
+    "./components/TpCodePreview": {
+      "types": "./dist/components/TpCodePreview/index.d.ts",
+      "node": "./dist/components/TpCodePreview/index.js",
+      "import": "./dist/components/TpCodePreview/index.js",
+      "default": "./dist/components/TpCodePreview/index.js"
+    },
+    "./TpFabricDesignEditor": {
+      "types": "./dist/components/TpFabricDesignEditor/index.d.ts",
+      "node": "./dist/components/TpFabricDesignEditor/index.js",
+      "import": "./dist/components/TpFabricDesignEditor/index.js",
+      "default": "./dist/components/TpFabricDesignEditor/index.js"
+    },
+    "./components/TpFabricDesignEditor": {
+      "types": "./dist/components/TpFabricDesignEditor/index.d.ts",
+      "node": "./dist/components/TpFabricDesignEditor/index.js",
+      "import": "./dist/components/TpFabricDesignEditor/index.js",
+      "default": "./dist/components/TpFabricDesignEditor/index.js"
+    },
+    "./TpGsap": {
+      "types": "./dist/components/TpGsap/index.d.ts",
+      "node": "./dist/components/TpGsap/index.js",
+      "import": "./dist/components/TpGsap/index.js",
+      "default": "./dist/components/TpGsap/index.js"
+    },
+    "./components/TpGsap": {
+      "types": "./dist/components/TpGsap/index.d.ts",
+      "node": "./dist/components/TpGsap/index.js",
+      "import": "./dist/components/TpGsap/index.js",
+      "default": "./dist/components/TpGsap/index.js"
+    },
+    "./TpHeroScene": {
+      "types": "./dist/components/TpHeroScene/index.d.ts",
+      "node": "./dist/components/TpHeroScene/index.js",
+      "import": "./dist/components/TpHeroScene/index.js",
+      "default": "./dist/components/TpHeroScene/index.js"
+    },
+    "./components/TpHeroScene": {
+      "types": "./dist/components/TpHeroScene/index.d.ts",
+      "node": "./dist/components/TpHeroScene/index.js",
+      "import": "./dist/components/TpHeroScene/index.js",
+      "default": "./dist/components/TpHeroScene/index.js"
+    },
+    "./TpLeaflet": {
+      "types": "./dist/components/TpLeaflet/index.d.ts",
+      "node": "./dist/components/TpLeaflet/index.js",
+      "import": "./dist/components/TpLeaflet/index.js",
+      "default": "./dist/components/TpLeaflet/index.js"
+    },
+    "./components/TpLeaflet": {
+      "types": "./dist/components/TpLeaflet/index.d.ts",
+      "node": "./dist/components/TpLeaflet/index.js",
+      "import": "./dist/components/TpLeaflet/index.js",
+      "default": "./dist/components/TpLeaflet/index.js"
+    },
+    "./TpMonacoEditor": {
+      "types": "./dist/components/TpMonacoEditor/index.d.ts",
+      "node": "./dist/components/TpMonacoEditor/index.js",
+      "import": "./dist/components/TpMonacoEditor/index.js",
+      "default": "./dist/components/TpMonacoEditor/index.js"
+    },
+    "./components/TpMonacoEditor": {
+      "types": "./dist/components/TpMonacoEditor/index.d.ts",
+      "node": "./dist/components/TpMonacoEditor/index.js",
+      "import": "./dist/components/TpMonacoEditor/index.js",
+      "default": "./dist/components/TpMonacoEditor/index.js"
+    },
+    "./TpOfficePreview": {
+      "types": "./dist/components/TpOfficePreview/index.d.ts",
+      "node": "./dist/components/TpOfficePreview/index.js",
+      "import": "./dist/components/TpOfficePreview/index.js",
+      "default": "./dist/components/TpOfficePreview/index.js"
+    },
+    "./components/TpOfficePreview": {
+      "types": "./dist/components/TpOfficePreview/index.d.ts",
+      "node": "./dist/components/TpOfficePreview/index.js",
+      "import": "./dist/components/TpOfficePreview/index.js",
+      "default": "./dist/components/TpOfficePreview/index.js"
+    },
+    "./TpSkiaCanvas": {
+      "types": "./dist/components/TpSkiaCanvas/index.d.ts",
+      "node": "./dist/components/TpSkiaCanvas/index.js",
+      "import": "./dist/components/TpSkiaCanvas/index.js",
+      "default": "./dist/components/TpSkiaCanvas/index.js"
+    },
+    "./components/TpSkiaCanvas": {
+      "types": "./dist/components/TpSkiaCanvas/index.d.ts",
+      "node": "./dist/components/TpSkiaCanvas/index.js",
+      "import": "./dist/components/TpSkiaCanvas/index.js",
+      "default": "./dist/components/TpSkiaCanvas/index.js"
+    },
+    "./TpThreeJs": {
+      "types": "./dist/components/TpThreeJs/index.d.ts",
+      "node": "./dist/components/TpThreeJs/index.js",
+      "import": "./dist/components/TpThreeJs/index.js",
+      "default": "./dist/components/TpThreeJs/index.js"
+    },
+    "./components/TpThreeJs": {
+      "types": "./dist/components/TpThreeJs/index.d.ts",
+      "node": "./dist/components/TpThreeJs/index.js",
+      "import": "./dist/components/TpThreeJs/index.js",
+      "default": "./dist/components/TpThreeJs/index.js"
+    },
+    "./TpTipTapEditor": {
+      "types": "./dist/components/TpTipTapEditor/index.d.ts",
+      "node": "./dist/components/TpTipTapEditor/index.js",
+      "import": "./dist/components/TpTipTapEditor/index.js",
+      "default": "./dist/components/TpTipTapEditor/index.js"
+    },
+    "./components/TpTipTapEditor": {
+      "types": "./dist/components/TpTipTapEditor/index.d.ts",
+      "node": "./dist/components/TpTipTapEditor/index.js",
+      "import": "./dist/components/TpTipTapEditor/index.js",
+      "default": "./dist/components/TpTipTapEditor/index.js"
+    },
+    "./TpVueFlow": {
+      "types": "./dist/components/TpVueFlow/index.d.ts",
+      "node": "./dist/components/TpVueFlow/index.js",
+      "import": "./dist/components/TpVueFlow/index.js",
+      "default": "./dist/components/TpVueFlow/index.js"
+    },
+    "./components/TpVueFlow": {
+      "types": "./dist/components/TpVueFlow/index.d.ts",
+      "node": "./dist/components/TpVueFlow/index.js",
+      "import": "./dist/components/TpVueFlow/index.js",
+      "default": "./dist/components/TpVueFlow/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src/assets/materialFileIconMaps.json"
+  ],
   "scripts": {
-    "storybook": "storybook dev -p 6006",
+    "scaffold": "node scripts/scaffold-from-vue-ui.mjs && node scripts/adapt-vue-types.mjs",
+    "sync:package-exports": "node scripts/sync-package-exports.mjs",
+    "check:component-parity": "node scripts/check-component-parity.mjs",
+    "build": "vite build --mode lib && node scripts/sync-package-exports.mjs",
+    "build:fast": "vite build --mode lib-fast && node scripts/sync-package-exports.mjs",
+    "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
   },
   "dependencies": {
-    "antd": "^5.13.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@zengchaowu/shared": "workspace:*"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.1.0",
@@ -20,13 +1967,23 @@
     "@storybook/react-vite": "^8.1.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "storybook": "^8.1.0",
     "tailwindcss": "^3.4.2",
     "typescript": "^5.4.5",
     "vite": "^5.2.0",
     "vite-plugin-dts": "^3.9.0"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "zengchaowu"
+  ],
   "author": "",
   "license": "ISC"
 }

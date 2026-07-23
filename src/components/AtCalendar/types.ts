@@ -1,1 +1,0 @@
-export type { CalendarProps } from 'antd/es/calendar'

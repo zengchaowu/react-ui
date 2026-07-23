@@ -1,1 +1,0 @@
-export type { MenuProps } from 'antd/es/menu'

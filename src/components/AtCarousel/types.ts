@@ -1,1 +1,0 @@
-export type { CarouselProps } from 'antd/es/carousel'

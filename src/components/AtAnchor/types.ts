@@ -1,1 +1,0 @@
-export type { AnchorProps } from 'antd'

@@ -1,1 +1,0 @@
-export type { StepsProps } from 'antd'

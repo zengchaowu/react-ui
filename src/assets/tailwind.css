@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --el-color-primary: #0077ff;
+  --el-color-primary-light-95: rgba(0, 119, 255, 5%);
+  --el-color-primary-light-9: rgba(0, 119, 255, 10%);
+  --el-color-primary-light-8: rgba(0, 119, 255, 20%);
+  --el-color-primary-light-7: rgba(0, 119, 255, 30%);
+  --el-color-primary-light-6: rgba(0, 119, 255, 40%);
+  --el-color-primary-light-5: rgba(0, 119, 255, 50%);
+  --el-color-primary-light-4: rgba(0, 119, 255, 60%);
+  --el-color-primary-light-3: rgba(0, 119, 255, 70%);
+  --el-color-primary-light-2: rgba(0, 119, 255, 80%);
+  --el-color-primary-light-1: rgba(0, 119, 255, 90%);
+}

@@ -1,1 +1,0 @@
-export type { RateProps } from 'antd'

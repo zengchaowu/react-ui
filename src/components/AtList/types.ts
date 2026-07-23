@@ -1,1 +1,0 @@
-export type { ListProps } from 'antd/es/list'

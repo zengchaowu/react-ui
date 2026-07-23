@@ -1,1 +1,0 @@
-export type { EmptyProps } from 'antd'

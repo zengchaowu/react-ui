@@ -1,0 +1,48 @@
+/* ============================================
+ * Hairline 超细分割线工具类
+ *
+ * 将 border-width 设为 0.5px（须与 border 方向及颜色类联用）。
+ * 不支持 0.5px 的浏览器通常会渲染为 1px。
+ *
+ * 规范（Dialog / Sheet / 列表行分割等）：
+ *   ✅ hairline-border-t border-[var(--component-border)]
+ *   ❌ border-t border-[var(--component-border)]  （1px，偏粗）
+ * 示例：CwDynamicSheet footer（hairline-border-t）。CwDynamicDialog 底栏按钮区不使用顶部分割线。
+ * ============================================ */
+
+.hairline-border {
+  border-width: 0.5px !important;
+}
+.hairline-border-t {
+  border-top-width: 0.5px !important;
+}
+.hairline-border-b {
+  border-bottom-width: 0.5px !important;
+}
+.hairline-border-l {
+  border-left-width: 0.5px !important;
+}
+.hairline-border-r {
+  border-right-width: 0.5px !important;
+}
+.hairline-border-x {
+  border-left-width: 0.5px !important;
+  border-right-width: 0.5px !important;
+}
+.hairline-border-y {
+  border-top-width: 0.5px !important;
+  border-bottom-width: 0.5px !important;
+}
+/* 取消 hairline（用于 last: 等覆盖场景） */
+.hairline-border-b-0 {
+  border-bottom-width: 0 !important;
+}
+.hairline-border-r-0 {
+  border-right-width: 0 !important;
+}
+.hairline-border-t-0 {
+  border-top-width: 0 !important;
+}
+.hairline-border-l-0 {
+  border-left-width: 0 !important;
+}
