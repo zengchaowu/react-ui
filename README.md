@@ -1,6 +1,6 @@
 # @zengchaowu/react-ui
 
-React 一比一复刻 [`@zengchaowu/vue-ui`](../vue-ui) 的设计系统。组件集合、tokens、`appearance` / `texts` / `styles` 约定与 vue-ui **不多不少**对齐；运行时为 React。
+React 一比一复刻 [`@zengchaowu/vue-ui`](../vue-ui) 的设计系统。组件集合、tokens、`appearance` / `texts` / `*Base` 约定与 vue-ui **不多不少**对齐；运行时为 React。
 
 ## 组件分组（与 vue-ui 同构）
 
@@ -12,6 +12,10 @@ React 一比一复刻 [`@zengchaowu/vue-ui`](../vue-ui) 的设计系统。组件
 | **Bs\*** | 业务专用（当前与 vue-ui 一样暂无） |
 
 **不再提供 At\***（antd 封装已移除）。
+
+## 当前状态
+
+**所有组件已清空**，仅保留样式资产、工具函数与 overlay / safe-area 常量。后续通过 `pnpm scaffold` 从 vue-ui 重新同步目录骨架，再分批实现 React 组件。
 
 ## Vue → React 固定映射
 
@@ -26,19 +30,6 @@ React 一比一复刻 [`@zengchaowu/vue-ui`](../vue-ui) 的设计系统。组件
 | `styles.ts` class map | **verbatim 复用**同一套 Tailwind class |
 | `materialMeta.ts` | 同结构保留 |
 
-## 目录约定
-
-```
-src/components/CwButton/
-  CwButton.tsx
-  index.ts
-  types.ts
-  styles.ts
-  texts.ts
-  materialMeta.ts
-  CwButton.stories.tsx
-```
-
 ## 样式
 
 ```ts
@@ -50,9 +41,10 @@ import '@zengchaowu/react-ui/style'
 ## 导入
 
 ```ts
-import { CwButton, CwIcon } from '@zengchaowu/react-ui'
-// Tp 必须子路径：
-import { TpCodeEditor } from '@zengchaowu/react-ui/TpCodeEditor'
+import { useAppThemeTick } from '@zengchaowu/react-ui'
+// 组件恢复后：
+// import { CwButton, CwIcon } from '@zengchaowu/react-ui'
+// import { TpCodeEditor } from '@zengchaowu/react-ui/TpCodeEditor'
 ```
 
 ## 开发脚本
@@ -63,8 +55,3 @@ pnpm check:component-parity   # 目录差集必须为零
 pnpm build                    # Vite lib + sync exports
 pnpm storybook                # 端口 6007
 ```
-
-## 移植状态
-
-- **已实现样板**：`CwButton`、`CwIcon`（视觉 class 与 vue-ui 对齐）
-- **其余组件**：目录 / types / styles / texts / materialMeta 已对齐，TSX 为可编译 scaffold stub，按 vue-ui `src/index.ts` 分组分批替换为完整实现

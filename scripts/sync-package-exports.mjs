@@ -33,6 +33,7 @@ const STATIC_EXPORTS = {
 }
 
 function listComponentNames() {
+  if (!existsSync(componentsRoot)) return []
   return readdirSync(componentsRoot, { withFileTypes: true })
     .filter((d) => d.isDirectory())
     .map((d) => d.name)

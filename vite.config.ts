@@ -118,7 +118,6 @@ export default defineConfig(({ mode }) => {
                       'src/style.ts',
                       'src/tp-entries.ts',
                       'src/component-material/**/*',
-                      'src/components/**/*',
                       'src/hooks/**/*',
                       'src/constants/**/*',
                       'src/lib/**/*',
