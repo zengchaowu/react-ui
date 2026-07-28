@@ -2,9 +2,9 @@
 
 @font-face {
     font-family: "iconfont";
-    src: url('iconfont.woff2?v=2026-07-28T04%3A06%3A31.778Z') format("woff2"),
-url('iconfont.woff?v=2026-07-28T04%3A06%3A31.778Z') format("woff"),
-url('iconfont.ttf?v=2026-07-28T04%3A06%3A31.778Z') format("truetype");
+    src: url('iconfont.woff2?v=2026-07-28T06%3A02%3A21.688Z') format("woff2"),
+url('iconfont.woff?v=2026-07-28T06%3A02%3A21.688Z') format("woff"),
+url('iconfont.ttf?v=2026-07-28T06%3A02%3A21.688Z') format("truetype");
 }
 
 .iconfont {
@@ -28,6 +28,9 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 
 .icon-common--status--empty-state:before {
     content: "\ee3d";
+}
+.icon-app--AppStore:before {
+    content: "\ee63";
 }
 .icon-common--status--eye:before {
     content: "\ee3e";

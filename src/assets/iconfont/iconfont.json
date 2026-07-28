@@ -13,6 +13,13 @@
       "unicode_decimal": 60989
     },
     {
+      "icon_id": "238cef266a6845d700666591444ea2be",
+      "name": "AppStore",
+      "font_class": "app--AppStore",
+      "unicode": "ee63",
+      "unicode_decimal": 61027
+    },
+    {
       "icon_id": "238cef266a682aa3006507693176136c",
       "name": "common--status--eye",
       "font_class": "common--status--eye",
