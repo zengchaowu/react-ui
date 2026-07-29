@@ -161,7 +161,6 @@ function writeMainIndex(names) {
     `} from './utils/focusStyles'`,
     `export {`,
     `  CwPublicAssetBaseUrlContext,`,
-    `  CwPublicAssetBaseUrlKey,`,
     `  resolveDefaultPublicAssetBaseUrl,`,
     `  usePublicAssetBaseUrl,`,
     `} from './utils/publicAssetBaseUrl'`,
