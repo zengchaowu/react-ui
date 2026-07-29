@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 
-/** 宿主公共资源 origin（用于 emojione / material-icons 等静态资源 URL 拼接） */
+/** 宿主公共资源 origin（用于 emojione / file-icons 等静态资源 URL 拼接） */
 export const CwPublicAssetBaseUrlContext = createContext<string | null>(null)
 
 /** @deprecated 兼容 vue-ui 导出名；React 侧请用 CwPublicAssetBaseUrlContext */

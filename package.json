@@ -34,7 +34,7 @@
   },
   "files": [
     "dist",
-    "src/assets/materialFileIconMaps.json"
+    "src/assets/fileIconMaps.json"
   ],
   "scripts": {
     "scaffold": "node scripts/scaffold-from-vue-ui.mjs && node scripts/adapt-vue-types.mjs",
