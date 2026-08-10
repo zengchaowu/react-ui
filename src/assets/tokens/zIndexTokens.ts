@@ -3,6 +3,7 @@
  * 组件样式禁止内联 number：一律 `z-[var(--z-index-*)]`；动态叠放优先 DOM 顺序。
  */
 export const Z_INDEX_TOKEN = {
+  below: -1,
   base: 0,
   above: 1,
   aboveHigh: 2,

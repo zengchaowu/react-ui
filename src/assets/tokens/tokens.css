@@ -172,6 +172,8 @@
    * Toast / Hud 用 --z-index-toast，始终高于 modal 档。
    * 嵌套 Popup 挂入 Dialog/Sheet 的 data-cw-overlay-scope；dismiss 由 cwOverlayStack 按 DOM 序处理。
    */
+  /** 同 stacking context 内压到内容下方（如 Popup 菱形 arrow） */
+  --z-index-below: -1;
   --z-index-base: 0;
   --z-index-above: 1;
   --z-index-above-high: 2;
@@ -224,7 +226,8 @@
 
   /* CwButton 交互底/描边（组件内勿用 gray-color-1/2、brand-color-0~2 作 hover/active 底） */
   --button-neutral-solid-bg: var(--bg-color-secondarycomponent);
-  --button-neutral-solid-bg-hover: var(--bg-color-component-hover);
+  /* 勿用 component-hover：浅色下与 secondarycomponent 同为 #eee，default solid 会无 hover */
+  --button-neutral-solid-bg-hover: var(--bg-color-secondarycomponent-hover);
   --button-neutral-solid-bg-active: var(--bg-color-secondarycomponent-hover);
   --button-neutral-overlay-hover-bg: var(--bg-color-component-hover);
   --button-neutral-overlay-active-bg: var(--bg-color-component);

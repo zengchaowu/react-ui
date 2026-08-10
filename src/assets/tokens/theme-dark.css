@@ -150,7 +150,8 @@
   --button-neutral-overlay-hover-bg: var(--bg-color-component-hover);
   --button-neutral-solid-bg: var(--bg-color-secondarycomponent);
   --button-neutral-solid-bg-active: var(--bg-color-secondarycomponent-hover);
-  --button-neutral-solid-bg-hover: var(--bg-color-component-hover);
+  /* solid 用实色抬亮；component-hover 是透明叠色，会把灰底“洗没” */
+  --button-neutral-solid-bg-hover: var(--bg-color-secondarycomponent-hover);
   --button-outline-default-border: var(--component-border);
   --button-overlay-bg: var(--overlay-scrim-subtle);
   --button-overlay-bg-active: var(--overlay-scrim-strong);
@@ -294,6 +295,7 @@
   --z-index-above: 1;
   --z-index-above-high: 2;
   --z-index-base: 0;
+  --z-index-below: -1;
   --z-index-fixed-column-header: 30;
   --z-index-fixed-column-shadow: 40;
   --z-index-float: 20;
