@@ -1,37 +1,57 @@
 /* ============================================
  * Hairline 超细分割线工具类
  *
- * 将 border-width 设为 0.5px（须与 border 方向及颜色类联用）。
+ * 0.5px 实线，颜色默认 --border-color（描边唯一 token）。
  * 不支持 0.5px 的浏览器通常会渲染为 1px。
+ * 需要其它颜色时再叠加 border-[var(--…)] / border-*-color 覆盖。
  *
- * 规范（Dialog / Sheet / 列表行分割等）：
- *   ✅ hairline-border-t border-[var(--border-color)]
+ * 规范（Dialog / Sheet / 列表行 / 页面壳交界）：
+ *   ✅ hairline-border-t
  *   ❌ border-t border-[var(--border-color)]  （1px，偏粗）
+ *   ❌ 用相邻面的底色差冒充分割线
  * 示例：CwDynamicSheet footer（hairline-border-t）。CwDynamicDialog 底栏按钮区不使用顶部分割线。
  * ============================================ */
 
 .hairline-border {
   border-width: 0.5px !important;
+  border-style: solid;
+  border-color: var(--border-color);
 }
 .hairline-border-t {
   border-top-width: 0.5px !important;
+  border-top-style: solid;
+  border-top-color: var(--border-color);
 }
 .hairline-border-b {
   border-bottom-width: 0.5px !important;
+  border-bottom-style: solid;
+  border-bottom-color: var(--border-color);
 }
 .hairline-border-l {
   border-left-width: 0.5px !important;
+  border-left-style: solid;
+  border-left-color: var(--border-color);
 }
 .hairline-border-r {
   border-right-width: 0.5px !important;
+  border-right-style: solid;
+  border-right-color: var(--border-color);
 }
 .hairline-border-x {
   border-left-width: 0.5px !important;
   border-right-width: 0.5px !important;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-left-color: var(--border-color);
+  border-right-color: var(--border-color);
 }
 .hairline-border-y {
   border-top-width: 0.5px !important;
   border-bottom-width: 0.5px !important;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-top-color: var(--border-color);
+  border-bottom-color: var(--border-color);
 }
 /* 取消 hairline（用于 last: 等覆盖场景） */
 .hairline-border-b-0 {
