@@ -133,7 +133,7 @@
   --size-overlay-panel: 23.4375rem; /* 375 */
   --size-chip-label-max: 11.25rem; /* 180 */
   --size-chip-inline-max: 17.5rem; /* 280 */
-  --size-context-menu-min: 9.25rem; /* 148 */
+  --size-context-menu-min: 12.5rem; /* 200 */
   --size-pending-file-card: 6.75rem; /* 108 */
   --size-progress-hairline: 0.1875rem; /* 3 */
   --size-toast-min-h: 2rem; /* 32 */
@@ -305,7 +305,7 @@
   --chat-ding-sidebar-bg: var(--bg-color-container);
   --chat-ding-row-selected-bg: color-mix(
     in srgb,
-    var(--brand-color-6) 15%,
+    var(--brand-color-6) 8%,
     var(--chat-ding-sidebar-bg)
   );
   --chat-ding-row-hover-bg: var(--bg-color-component-hover);

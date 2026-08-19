@@ -170,7 +170,7 @@
   --chat-conversation-list-secondary-font-size: var(--font-size-caption);
   --chat-conversation-title-font-size: var(--font-size-body-md);
   --chat-ding-row-hover-bg: color-mix(in srgb, var(--text-color-anti) 6%, var(--bg-color-container));
-  --chat-ding-row-selected-bg: color-mix(in srgb, var(--brand-color-6) 15%, var(--chat-ding-sidebar-bg));
+  --chat-ding-row-selected-bg: color-mix(in srgb, var(--brand-color-6) 8%, var(--chat-ding-sidebar-bg));
   --chat-ding-sidebar-bg: var(--bg-color-container);
   --chat-message-area-bg: var(--bg-color-page);
   --chat-message-bubble-media-muted-bg: var(--bg-color-secondarycomponent);
@@ -250,7 +250,7 @@
   --size-chat-media-bubble-max: 18.75rem;
   --size-chip-inline-max: 17.5rem;
   --size-chip-label-max: 11.25rem;
-  --size-context-menu-min: 9.25rem;
+  --size-context-menu-min: 12.5rem;
   --size-conversation-cell-min: 3.5rem;
   --size-hud-min-w: 7.5rem;
   --size-mention-panel-min: 12.5rem;
