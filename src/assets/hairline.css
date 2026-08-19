@@ -5,8 +5,8 @@
  * 不支持 0.5px 的浏览器通常会渲染为 1px。
  *
  * 规范（Dialog / Sheet / 列表行分割等）：
- *   ✅ hairline-border-t border-[var(--component-border)]
- *   ❌ border-t border-[var(--component-border)]  （1px，偏粗）
+ *   ✅ hairline-border-t border-[var(--border-color)]
+ *   ❌ border-t border-[var(--border-color)]  （1px，偏粗）
  * 示例：CwDynamicSheet footer（hairline-border-t）。CwDynamicDialog 底栏按钮区不使用顶部分割线。
  * ============================================ */
 

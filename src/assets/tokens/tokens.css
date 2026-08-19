@@ -50,10 +50,6 @@
 
   --mask-active: rgba(0, 0, 0, 60%);
   --mask-disabled: rgba(255, 255, 255, 60%);
-  --brand-color: var(--brand-color-6);
-  --warning-color: var(--warning-color-6);
-  --error-color: var(--error-color-6);
-  --success-color: var(--success-color-6);
   --brand-color-active: var(--brand-color-7);
   --brand-color-hover: var(--brand-color-5);
   --brand-color-special: var(--brand-color-4);
@@ -103,25 +99,18 @@
   --text-color-placeholder: rgba(0, 0, 0, 40%);
   --text-color-disabled: rgba(0, 0, 0, 26%);
   --text-color-anti: #ffffff;
-  --text-color-brand: var(--brand-color-6);
-  --text-color-link: var(--brand-color-6);
-  --border-color: #dcdcdc;
-  --border-color-light: #e7e7e7;
-  --border-color-lighter: #eeeeee;
-  --border-color-extra-light: #f3f3f3;
-  /** 列表/卡片内缩进发丝线（较 extra-light 语义更明确） */
-  --border-color-hairline: var(--border-color-extra-light);
-  --component-stroke: #e7e7e7;
-  --component-border: #dcdcdc;
+  /** 唯一描边色；控件、卡片、分割线、页面壳都用这个 */
+  --border-color: #e7e7e7;
   /** 键盘聚焦外圈：细线 + 品牌主色（替代旧 ring-2 + brand-color-focus） */
   --focus-ring: var(--brand-color-6);
-  --form-control-focus-border: var(--brand-color-6);
-  --form-control-focus-ring: var(--focus-ring);
+  /** 圆角：控件 4、中等面 6、卡片/面板 8；大卡片不用 12+，避免过圆 */
   --radius-small: 2px;
   --radius-default: 4px;
   --radius-medium: 6px;
-  --radius-large: 8px;
-  --radius-extraLarge: 12px;
+  --radius-large: 6px;
+  --radius-extraLarge: 8px;
+  --radius-2xLarge: 12px;
+  --radius-3xLarge: 16px;
   --radius-round: 999px;
   --radius-circle: 50%;
 
@@ -130,15 +119,10 @@
    */
   --font-size-xs: 0.625rem; /* 10 */
   --font-size-caption: 0.75rem; /* 12 */
-  /** 比 caption 小一级（钱包卡片底栏等） */
-  --font-size-caption-sm: var(--font-size-xs);
   --font-size-body: 0.875rem; /* 14 */
   --font-size-body-md: 0.9375rem; /* 15 */
   --font-size-body-lg: 1rem; /* 16 */
   --font-size-body-xl: 1.125rem; /* 18 */
-  /** 卡片内金额等短强调标题（与 body-xl 同档） */
-  --font-size-title-sm: var(--font-size-body-xl);
-  --font-size-icon-md: var(--font-size-body-xl);
   --line-height-composer: 1.5rem; /* 24 */
   --line-height-compact: 1.125rem; /* 18 */
   --size-touch-target: 2.75rem; /* 44 */
@@ -201,11 +185,7 @@
   --scrollbar-hover-color: rgba(0, 0, 0, 30%);
   --scroll-track-color: var(--bg-color-container);
 
-  /* 浮层顶栏（CwDynamicDialog 等；勿用 brand-color-1，深色下仍为浅品牌 tint） */
-  --dialog-header-bg: var(--bg-color-secondarycontainer);
-  --dialog-header-border: var(--border-color-extra-light);
-
-  /* 遮罩/压暗（组件内用此替代 color-mix(..., gray-color-15, ...)） */
+  /* 遮罩/压暗 */
   --overlay-scrim-table-edge: color-mix(in srgb, var(--scrim-base) 12%, transparent);
   --overlay-scrim-video: color-mix(in srgb, var(--scrim-base) 20%, transparent);
   --overlay-scrim-half: color-mix(in srgb, var(--scrim-base) 50%, transparent);
@@ -224,7 +204,7 @@
   /** 全屏图片/附件预览底：浅色跟随页面底，深色在 theme-dark.css 覆盖为沉浸式压暗 */
   --overlay-scrim-gallery: var(--bg-color-page);
 
-  /* CwButton 交互底/描边（组件内勿用 gray-color-1/2、brand-color-0~2 作 hover/active 底） */
+  /* CwButton 交互底/描边（组件内勿用 brand-color-0~2 作 hover/active 底） */
   --button-neutral-solid-bg: var(--bg-color-secondarycomponent);
   /* 勿用 component-hover：浅色下与 secondarycomponent 同为 #eee，default solid 会无 hover */
   --button-neutral-solid-bg-hover: var(--bg-color-secondarycomponent-hover);
@@ -236,8 +216,6 @@
   --button-danger-tint-hover-bg: var(--error-color-0);
   --button-danger-tint-active-bg: var(--error-color-1);
   --button-primary-onbrand-fg: var(--text-color-anti);
-  --button-outline-default-border: var(--component-border);
-  --button-dashed-default-border: var(--component-border);
   --button-disabled-neutral-bg: var(--bg-color-component-disabled);
   --button-disabled-neutral-fg: var(--text-color-disabled);
   --button-disabled-neutral-border: var(--border-color);
@@ -275,7 +253,6 @@
   --chat-message-bubble-peer-ring: var(--overlay-scrim-subtle);
   /** 合并转发等卡片气泡：与消息区/弹窗底区分 */
   --chat-message-card-bg: var(--bg-color-container);
-  --chat-message-card-border: var(--border-color-extra-light);
   --chat-message-bubble-own-bg: var(--success-color-3);
   --chat-message-bubble-media-muted-bg: var(--bg-color-secondarycontainer);
   --chat-message-bubble-progress-track: var(--overlay-scrim-table-edge);
@@ -315,13 +292,10 @@
   --chat-conversation-list-secondary-font-size: var(--font-size-caption);
   /** 会话名 / NavBar 标题（列表行、消息顶栏一致） */
   --chat-conversation-title-font-size: var(--font-size-body-md);
-  /** 会话行内缩进分割线（相对侧栏底，浅/深主题均保持可辨） */
-  --chat-conversation-list-row-divider: var(--border-color-hairline);
   --chat-avatar-placeholder-from: var(--bg-color-component);
   --chat-avatar-placeholder-via: var(--bg-color-secondarycomponent);
   --chat-avatar-placeholder-to: var(--bg-color-secondarycomponent-hover);
   --chat-avatar-placeholder-text: var(--text-color-placeholder);
-  --chat-avatar-border: var(--border-color-lighter);
   /* 占位头像顶部内高光（与渐变底搭配） */
   --chat-avatar-inner-highlight: inset 0 1px 0
     color-mix(in srgb, var(--text-color-anti) 65%, transparent);
@@ -403,16 +377,6 @@
   --gp-card-back-inset-bg-casino: #122d5c;
   --gp-card-back-inset-border-casino: color-mix(in srgb, white 18%, #122d5c);
   --gp-action-primary-bg-casino: var(--warning-color-6);
-
-  /* Chat 游戏页沿用的 --cw-* 别名（映射设计 token，避免未定义变量） */
-  --cw-bg-page: var(--bg-color-page);
-  --cw-bg-elevated: var(--bg-color-container);
-  --cw-bg-secondary: var(--bg-color-secondarycontainer);
-  --cw-border-soft: var(--border-color-light);
-  --cw-text-primary: var(--text-color-primary);
-  --cw-text-secondary: var(--text-color-secondary);
-  --cw-brand: var(--brand-color-6);
-  --cw-color-primary: var(--brand-color-6);
 
   /* 富文本编辑器行内芯片（文件引用 / @人）默认底 */
   --rich-editor-inline-chip-bg: var(--brand-color-light-bg-1);

@@ -1,3 +1,5 @@
+import { tailwindBorderRadius } from '../vue-ui/tailwind.radius.js'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,7 +9,9 @@ export default {
     hoverOnlyWhenSupported: true,
   },
   theme: {
-    extend: {},
+    extend: {
+      borderRadius: tailwindBorderRadius,
+    },
   },
   plugins: [],
 }

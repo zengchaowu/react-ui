@@ -1,5 +1,5 @@
 /**
- * 深色主题：覆盖 :root 全部语义 token（311 项）。
+ * 深色主题：覆盖 :root 全部语义 token（294 项）。
  * 与浅色相同者显式继承 :root 字面量；差异项见 scripts/sync-theme-dark.mjs → DARK_OVERRIDES。
  * 生成：pnpm --filter @zengchaowu/vue-ui run sync:theme-dark
  */
@@ -48,21 +48,10 @@
   --text-color-placeholder: rgba(255, 255, 255, 35%);
   --text-color-disabled: rgba(255, 255, 255, 22%);
   --text-color-anti: #ffffff;
-  --text-color-brand: var(--brand-color-6);
-  --text-color-link: var(--brand-color-6);
   --border-color: #4b4b4b;
-  --border-color-light: #4b4b4b;
-  --border-color-lighter: #383838;
-  --border-color-extra-light: #2e2e2e;
-  --border-color-hairline: var(--border-color-extra-light);
-  --component-stroke: #4b4b4b;
-  --component-border: #4b4b4b;
   --focus-ring: var(--brand-color-6);
-  --form-control-focus-border: var(--brand-color-6);
-  --form-control-focus-ring: var(--focus-ring);
 
   /* 品牌 / 状态色板 */
-  --brand-color: var(--brand-color-6);
   --brand-color-0: var(--el-color-primary-light-95);
   --brand-color-1: var(--el-color-primary-light-9);
   --brand-color-2: var(--el-color-primary-light-8);
@@ -72,15 +61,14 @@
   --brand-color-6: var(--el-color-primary);
   --brand-color-7: #005FCC;
   --brand-color-active: var(--brand-color-7);
-  --brand-color-disabled: var(--brand-color-3);
+  --brand-color-disabled: color-mix(in srgb, var(--brand-color-6) 40%, transparent);
   --brand-color-focus: var(--brand-color-2);
   --brand-color-hover: var(--brand-color-5);
   --brand-color-light: var(--brand-color-3);
   --brand-color-light-bg-1: var(--brand-color-1);
   --brand-color-light-bg-2: var(--brand-color-0);
   --brand-color-light-hover: var(--brand-color-2);
-  --brand-color-special: var(--brand-color-4);
-  --error-color: var(--error-color-6);
+  --brand-color-special: var(--brand-color-6);
   --error-color-0: #FDF6F5;
   --error-color-1: #FFF0ED;
   --error-color-2: #FFD8D2;
@@ -90,13 +78,12 @@
   --error-color-6: #E1453A;
   --error-color-7: #B4372E;
   --error-color-active: var(--error-color-7);
-  --error-color-disabled: var(--error-color-3);
+  --error-color-disabled: color-mix(in srgb, var(--error-color-6) 40%, transparent);
   --error-color-focus: var(--error-color-2);
   --error-color-hover: var(--error-color-5);
   --error-color-light: var(--error-color-1);
   --error-color-light-hover: var(--error-color-2);
-  --error-color-special: var(--error-color-4);
-  --success-color: var(--success-color-6);
+  --error-color-special: var(--error-color-6);
   --success-color-0: #F5FBF8;
   --success-color-1: #EBF9EF;
   --success-color-2: #CEF3D8;
@@ -106,13 +93,12 @@
   --success-color-6: #2EA975;
   --success-color-7: #25875E;
   --success-color-active: var(--success-color-7);
-  --success-color-disabled: var(--success-color-3);
+  --success-color-disabled: color-mix(in srgb, var(--success-color-6) 40%, transparent);
   --success-color-focus: var(--success-color-2);
   --success-color-hover: var(--success-color-5);
   --success-color-light: var(--success-color-1);
   --success-color-light-hover: var(--success-color-2);
-  --success-color-special: var(--success-color-4);
-  --warning-color: var(--warning-color-6);
+  --success-color-special: var(--success-color-6);
   --warning-color-0: #FFF8F3;
   --warning-color-1: #FEF1E7;
   --warning-color-2: #FFE1C8;
@@ -122,19 +108,18 @@
   --warning-color-6: #F8760C;
   --warning-color-7: #C65E0A;
   --warning-color-active: var(--warning-color-7);
-  --warning-color-disabled: var(--warning-color-3);
+  --warning-color-disabled: color-mix(in srgb, var(--warning-color-6) 40%, transparent);
   --warning-color-focus: var(--warning-color-2);
   --warning-color-hover: var(--warning-color-5);
   --warning-color-light: var(--warning-color-1);
   --warning-color-light-hover: var(--warning-color-2);
-  --warning-color-special: var(--warning-color-4);
+  --warning-color-special: var(--warning-color-6);
 
   /* Dialog / Toast / Button / Inverse */
   --button-brand-tint-active-bg: color-mix(in srgb, var(--brand-color-6) 20%, transparent);
   --button-brand-tint-hover-bg: color-mix(in srgb, var(--brand-color-6) 12%, transparent);
   --button-danger-tint-active-bg: color-mix(in srgb, var(--error-color-6) 20%, transparent);
   --button-danger-tint-hover-bg: color-mix(in srgb, var(--error-color-6) 12%, transparent);
-  --button-dashed-default-border: var(--component-border);
   --button-disabled-brand-border: var(--brand-color-disabled);
   --button-disabled-brand-fg: var(--brand-color-disabled);
   --button-disabled-danger-border: var(--error-color-disabled);
@@ -150,9 +135,7 @@
   --button-neutral-overlay-hover-bg: var(--bg-color-component-hover);
   --button-neutral-solid-bg: var(--bg-color-secondarycomponent);
   --button-neutral-solid-bg-active: var(--bg-color-secondarycomponent-hover);
-  /* solid 用实色抬亮；component-hover 是透明叠色，会把灰底“洗没” */
   --button-neutral-solid-bg-hover: var(--bg-color-secondarycomponent-hover);
-  --button-outline-default-border: var(--component-border);
   --button-overlay-bg: var(--overlay-scrim-subtle);
   --button-overlay-bg-active: var(--overlay-scrim-strong);
   --button-overlay-bg-disabled: transparent;
@@ -162,8 +145,6 @@
   --button-overlay-fg: var(--text-color-primary);
   --button-overlay-fg-disabled: var(--text-color-disabled);
   --button-primary-onbrand-fg: var(--text-color-anti);
-  --dialog-header-bg: var(--bg-color-secondarycontainer);
-  --dialog-header-border: var(--border-color-extra-light);
   --inverse-surface-bg: var(--bg-color-secondarycomponent);
   --inverse-surface-fg: var(--text-color-anti);
   --toast-inset-bottom: max(16px, var(--app-safe-area-bottom));
@@ -172,7 +153,6 @@
   --toast-surface-fg: var(--inverse-surface-fg);
 
   /* Chat / IM */
-  --chat-avatar-border: var(--border-color-lighter);
   --chat-avatar-inner-highlight: inset 0 1px 0 color-mix(in srgb, var(--text-color-anti) 65%, transparent);
   --chat-avatar-placeholder-from: var(--bg-color-component);
   --chat-avatar-placeholder-text: var(--text-color-placeholder);
@@ -187,7 +167,6 @@
   --chat-conversation-list-navbar-bg: var(--cw-chat-shell-chrome-bg);
   --chat-conversation-list-pref-icon-fg: var(--text-color-placeholder);
   --chat-conversation-list-pref-icon-size: var(--font-size-body);
-  --chat-conversation-list-row-divider: var(--border-color-hairline);
   --chat-conversation-list-secondary-font-size: var(--font-size-caption);
   --chat-conversation-title-font-size: var(--font-size-body-md);
   --chat-ding-row-hover-bg: color-mix(in srgb, var(--text-color-anti) 6%, var(--bg-color-container));
@@ -200,7 +179,6 @@
   --chat-message-bubble-peer-ring: color-mix(in srgb, var(--text-color-anti) 6%, transparent);
   --chat-message-bubble-progress-track: color-mix(in srgb, var(--text-color-anti) 12%, transparent);
   --chat-message-card-bg: var(--bg-color-secondarycontainer);
-  --chat-message-card-border: var(--border-color-extra-light);
   --chat-message-row-selected-bg: color-mix(in srgb, var(--text-color-anti) 8%, transparent);
   --chat-navbar-bg: var(--chat-message-area-bg);
   --chat-voice-recording-cancel-bg: #FA5151;
@@ -246,9 +224,6 @@
   --font-size-body-md: 0.9375rem;
   --font-size-body-xl: 1.125rem;
   --font-size-caption: 0.75rem;
-  --font-size-caption-sm: var(--font-size-xs);
-  --font-size-icon-md: var(--font-size-body-xl);
-  --font-size-title-sm: var(--font-size-body-xl);
   --font-size-xs: 0.625rem;
   --line-height-compact: 1.125rem;
   --line-height-composer: 1.5rem;
@@ -260,10 +235,12 @@
   --mac-traffic-inset-ring: rgba(255, 255, 255, 0.14);
   --mac-traffic-maximize: #27c93f;
   --mac-traffic-minimize: #ffbd2e;
+  --radius-2xLarge: 12px;
+  --radius-3xLarge: 16px;
   --radius-circle: 50%;
   --radius-default: 4px;
-  --radius-extraLarge: 12px;
-  --radius-large: 8px;
+  --radius-extraLarge: 8px;
+  --radius-large: 6px;
   --radius-medium: 6px;
   --radius-round: 999px;
   --radius-small: 2px;
@@ -305,14 +282,18 @@
   --z-index-sticky: 10;
   --z-index-toast: 200;
 
-  --cw-bg-elevated: var(--bg-color-container);
-  --cw-bg-page: var(--bg-color-page);
-  --cw-bg-secondary: var(--bg-color-secondarycontainer);
-  --cw-border-soft: var(--border-color-light);
-  --cw-brand: var(--brand-color-6);
-  --cw-color-primary: var(--brand-color-6);
-  --cw-text-primary: var(--text-color-primary);
-  --cw-text-secondary: var(--text-color-secondary);
+  --cw-button-dock-height: 2.5rem;
+  --cw-button-dock-width: 2.5rem;
+  --cw-button-icon-size: 2rem;
+  --cw-button-inline-fixed-height: var(--cw-button-icon-size);
+  --cw-button-inline-gap: 0.375rem;
+  --cw-button-inline-padded-min-height: 0;
+  --cw-button-inline-padded-padding-x: 0.25rem;
+  --cw-button-inline-padded-padding-y: 0.375rem;
+  --cw-loading-inverse-fg: var(--text-color-anti);
+  --data-table-devtools-network-header-bg: #f1f3f4;
+  --data-table-devtools-network-row-even-bg: #f5f7fa;
+  --data-table-devtools-network-row-hover-bg: #e8eef5;
   --gp-action-primary-bg-casino: var(--warning-color-6);
   --gp-card-back-bg-casino: #1a4080;
   --gp-card-back-bg-plain: color-mix( in srgb, var(--bg-color-secondarycontainer) 72%, var(--brand-color-6) 10% );
