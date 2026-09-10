@@ -94,10 +94,11 @@
   /** TpFabric 透明画布棋盘格底色与格块色 */
   --tp-fabric-editor-stage-bg: var(--bg-color-container);
   --tp-fabric-editor-stage-checker: var(--bg-color-component-hover);
-  --text-color-primary: rgba(0, 0, 0, 90%);
-  --text-color-secondary: rgba(0, 0, 0, 60%);
-  --text-color-placeholder: rgba(0, 0, 0, 40%);
-  --text-color-disabled: rgba(0, 0, 0, 26%);
+  /** 正文主色：对齐 VS Code editor.foreground（约 #141414） */
+  --text-color-primary: #000000;
+  --text-color-secondary: rgba(20, 20, 20, 0.74);
+  --text-color-placeholder: rgba(20, 20, 20, 0.36);
+  --text-color-disabled: rgba(20, 20, 20, 0.26);
   --text-color-anti: #ffffff;
   /** 唯一描边色；控件、卡片、分割线、页面壳都用这个 */
   --border-color: #e7e7e7;
