@@ -1,13 +1,16 @@
 /*
- * Safe area：业务只读 --app-safe-area-* / --app-chrome-safe-* / --app-page-chrome-safe-*
- * 启动时由宿主 bootstrapAppSafeArea() 写入 --app-safe-area-*；禁止组件内直接 env(safe-area-inset-*)
+ * Safe area：--app-safe-area-* 映射 Capacitor --safe-area-inset-*（Android env() 常为 0）。
+ * 组件 padding 只用本文件的 .cw-safe-* class（见 appSafeAreaClasses.ts）。
  */
 
 :root {
-  --safe-area-inset-top-raw: env(safe-area-inset-top, 0px);
-  --safe-area-inset-bottom-raw: env(safe-area-inset-bottom, 0px);
-  --safe-area-inset-left-raw: env(safe-area-inset-left, 0px);
-  --safe-area-inset-right-raw: env(safe-area-inset-right, 0px);
+  --safe-area-inset-top-raw: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+  --safe-area-inset-bottom-raw: var(
+    --safe-area-inset-bottom,
+    env(safe-area-inset-bottom, 0px)
+  );
+  --safe-area-inset-left-raw: var(--safe-area-inset-left, env(safe-area-inset-left, 0px));
+  --safe-area-inset-right-raw: var(--safe-area-inset-right, env(safe-area-inset-right, 0px));
 
   --app-safe-area-top: 0px;
   --app-safe-area-bottom: 0px;
@@ -26,6 +29,14 @@
     0.25rem,
     var(--app-page-chrome-safe-bottom)
   );
+}
+
+html[data-app-safe-area-profile='capacitor-native'],
+html[data-app-safe-area-profile='mobile-browser'] {
+  --app-safe-area-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+  --app-safe-area-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+  --app-safe-area-left: var(--safe-area-inset-left, env(safe-area-inset-left, 0px));
+  --app-safe-area-right: var(--safe-area-inset-right, env(safe-area-inset-right, 0px));
 }
 
 html[data-app-chrome='tabbar'] {
@@ -56,8 +67,94 @@ html[data-virtual-keyboard-open] {
   --app-page-chrome-safe-bottom-effective: 0px;
 }
 
-/** 兜底：键盘弹出时清零 composer / 消息输入底 padding（含旧版 tailwind pb class） */
+/** 兜底：键盘弹出时清零 composer / 消息输入底 padding */
 html[data-virtual-keyboard-open] .cw-chat-message-composer-mobile,
 html[data-virtual-keyboard-open] .cw-chat-message-composer-mobile .cw-message-input {
   padding-bottom: 0 !important;
+}
+
+.cw-safe-pt-chrome {
+  padding-top: var(--app-chrome-safe-top);
+}
+
+.cw-safe-pb-chrome {
+  padding-bottom: var(--app-chrome-safe-bottom);
+}
+
+.cw-safe-pt-page,
+.cw-safe-pt-overlay {
+  padding-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+}
+
+.cw-safe-pb-page,
+.cw-safe-pb-overlay,
+.cw-safe-pb-tabbar {
+  padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+}
+
+.cw-safe-pl-overlay {
+  padding-left: var(--safe-area-inset-left, env(safe-area-inset-left, 0px));
+}
+
+.cw-safe-pr-overlay {
+  padding-right: var(--safe-area-inset-right, env(safe-area-inset-right, 0px));
+}
+
+.cw-safe-pb-page-scroll {
+  padding-bottom: max(8px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)));
+}
+
+.cw-safe-pb-page-footer {
+  padding-bottom: max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)));
+}
+
+.cw-safe-pb-overlay-footer {
+  padding-bottom: max(1rem, var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)));
+}
+
+html[data-virtual-keyboard-open] .cw-safe-pb-page,
+html[data-virtual-keyboard-open] .cw-safe-pb-page-scroll,
+html[data-virtual-keyboard-open] .cw-safe-pb-page-footer,
+html[data-virtual-keyboard-open] .cw-safe-pb-chrome {
+  padding-bottom: 0;
+}
+
+/** 旧 Tailwind 任意值 class 别名（已打进 DOM 的历史包） */
+.pt-\[var\(--app-page-chrome-safe-top\)\],
+.pt-\[var\(--app-chrome-safe-top\)\],
+.pt-\[var\(--app-safe-area-top\)\] {
+  padding-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+}
+
+.pb-\[var\(--app-page-chrome-safe-bottom-effective\)\],
+.pb-\[var\(--app-chrome-safe-bottom\)\],
+.pb-\[var\(--app-safe-area-bottom\)\] {
+  padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+}
+
+.pl-\[var\(--app-safe-area-left\)\] {
+  padding-left: var(--safe-area-inset-left, env(safe-area-inset-left, 0px));
+}
+
+.pr-\[var\(--app-safe-area-right\)\] {
+  padding-right: var(--safe-area-inset-right, env(safe-area-inset-right, 0px));
+}
+
+.pb-\[max\(8px\,var\(--app-page-chrome-safe-bottom\)\)\] {
+  padding-bottom: max(8px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)));
+}
+
+.pb-\[max\(12px\,var\(--app-page-chrome-safe-bottom\)\)\] {
+  padding-bottom: max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)));
+}
+
+.pb-\[max\(1rem\,var\(--app-safe-area-bottom\)\)\] {
+  padding-bottom: max(1rem, var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)));
+}
+
+html[data-virtual-keyboard-open] .pb-\[var\(--app-page-chrome-safe-bottom-effective\)\],
+html[data-virtual-keyboard-open] .pb-\[var\(--app-chrome-safe-bottom\)\],
+html[data-virtual-keyboard-open] .pb-\[max\(8px\,var\(--app-page-chrome-safe-bottom\)\)\],
+html[data-virtual-keyboard-open] .pb-\[max\(12px\,var\(--app-page-chrome-safe-bottom\)\)\] {
+  padding-bottom: 0;
 }
