@@ -28,8 +28,8 @@ const STATIC_EXPORTS = {
   './dist/tailwind.css': './dist/tailwind.css',
   './dist/hairline.css': './dist/hairline.css',
   './dist/tokens.css': './dist/tokens.css',
-  './dist/iconfont.css': './dist/iconfont.css',
-  './dist/iconfont.js': './dist/iconfont.js',
+  './dist/asset.css': './dist/asset.css',
+  './dist/asset.js': './dist/asset.js',
 }
 
 function listComponentNames() {

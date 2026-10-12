@@ -17,13 +17,13 @@ const packageDeps = new Set([
 const LIB_BUILD_MODES = new Set(['lib', 'lib-fast'])
 const LIB_ENTRIES = ['index', 'style', 'tp-entries'] as const
 
-const LIB_ICONFONT_ROOT_ASSETS = [
-  'assets/iconfont/iconfont.js',
-  'assets/iconfont/iconfont.symbol.svg',
-  'assets/iconfont/iconfont.css',
-  'assets/iconfont/iconfont.woff2',
-  'assets/iconfont/iconfont.woff',
-  'assets/iconfont/iconfont.ttf',
+const LIB_ASSET_ROOT_ASSETS = [
+  'assets/asset/asset.js',
+  'assets/asset/asset.symbol.svg',
+  'assets/asset/asset.css',
+  'assets/asset/asset.woff2',
+  'assets/asset/asset.woff',
+  'assets/asset/asset.ttf',
 ] as const
 
 function removeFilesBySuffix(dir: string, suffix: string): void {
@@ -46,7 +46,7 @@ function libAssetPostProcess() {
       order: 'post' as const,
       handler() {
         mkdirSync(resolve(pkgRoot, 'dist'), { recursive: true })
-        for (const rel of LIB_ICONFONT_ROOT_ASSETS) {
+        for (const rel of LIB_ASSET_ROOT_ASSETS) {
           const src = resolve(srcRoot, rel)
           if (!existsSync(src)) {
             console.warn(`[lib-asset-post-process] skip missing ${rel}`)
@@ -64,7 +64,7 @@ function libAssetPostProcess() {
           'assets/tailwind.css': 'tailwind.css',
           'assets/hairline.css': 'hairline.css',
           'assets/tokens/tokens.css': 'tokens.css',
-          'assets/iconfont/iconfont.css': 'iconfont.css',
+          'assets/asset/asset.css': 'asset.css',
         }
         for (const [rel, out] of Object.entries(cssMap)) {
           const src = resolve(srcRoot, rel)
@@ -166,7 +166,7 @@ export default defineConfig(({ mode }) => {
               if (name.includes('tailwind')) return 'tailwind.css'
               if (name.includes('tokens')) return 'tokens.css'
               if (name.includes('hairline')) return 'hairline.css'
-              if (name.includes('iconfont')) return 'iconfont.css'
+              if (name.includes('/asset/asset') || name.endsWith('asset.css')) return 'asset.css'
               return `${name.replace(/^assets\//, '').replace(/\.css$/, '')}.css`
             }
             return 'assets/[name][extname]'

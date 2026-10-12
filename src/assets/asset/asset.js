@@ -14,14 +14,14 @@
     if (typeof document === 'undefined' || !document.body && !document.documentElement) {
       return;
     }
-    if (document.getElementById('cw_iconfont_symbol_sprite')) {
+    if (document.getElementById('cw_asset_symbol_sprite')) {
       return;
     }
     var div = document.createElement('div');
     div.innerHTML = _iconfont_svg_string_1785218541692;
     var svg = div.getElementsByTagName('svg')[0];
     if (!svg) return;
-    svg.id = 'cw_iconfont_symbol_sprite';
+    svg.id = 'cw_asset_symbol_sprite';
     svg.setAttribute('aria-hidden', 'true');
     svg.style.position = 'absolute';
     svg.style.width = '0';

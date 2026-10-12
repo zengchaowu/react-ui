@@ -2,4 +2,4 @@
 import './assets/hairline.css'
 import './assets/tailwind.css'
 import './assets/tokens/tokens.css'
-import './assets/iconfont/iconfont.css'
+import './assets/asset/asset.css'

@@ -1,18 +1,18 @@
 /**
- * 平台 iconfont.css 的 ::before 基础规则仅匹配 i 标签；
+ * 平台 asset.css 的 ::before 基础规则仅匹配 i 标签；
  * CwIcon 等组件用 span/i 渲染时需显式继承 font-family，并在 flex 内保持可见。
  */
-.iconfont {
+.asset {
   display: inline-block;
   line-height: 1;
 }
 
-.iconfont::before,
+.asset::before,
 [class^='icon-']::before,
 [class*=' icon-']::before {
   display: inline-block;
   color: currentColor;
-  font-family: 'iconfont' !important;
+  font-family: 'asset' !important;
   font-style: normal;
   font-weight: normal !important;
   font-variant: normal;

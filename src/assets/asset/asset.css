@@ -1,14 +1,14 @@
-/* 由 scripts/sync-iconfont.mjs 根据 iconfont.source.css 生成，请勿手改。 */
+/* 由 scripts/sync-iconfont.mjs 根据 asset.source.css 生成，请勿手改。 */
 
 @font-face {
-    font-family: "iconfont";
-    src: url('iconfont.woff2?v=2026-07-28T06%3A02%3A21.688Z') format("woff2"),
-url('iconfont.woff?v=2026-07-28T06%3A02%3A21.688Z') format("woff"),
-url('iconfont.ttf?v=2026-07-28T06%3A02%3A21.688Z') format("truetype");
+    font-family: "asset";
+    src: url('asset.woff2?v=2026-07-28T06%3A02%3A21.688Z') format("woff2"),
+url('asset.woff?v=2026-07-28T06%3A02%3A21.688Z') format("woff"),
+url('asset.ttf?v=2026-07-28T06%3A02%3A21.688Z') format("truetype");
 }
 
-.iconfont {
-  font-family: "iconfont" !important;
+.asset {
+  font-family: "asset" !important;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -16,7 +16,7 @@ url('iconfont.ttf?v=2026-07-28T06%3A02%3A21.688Z') format("truetype");
 
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
-    font-family: "iconfont" !important;
+    font-family: "asset" !important;
     font-style: normal;
     font-weight: normal !important;
     font-variant: normal;
