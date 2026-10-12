@@ -6,4 +6,4 @@
  *
  * 构建前 prebuild 会执行 sync-iconfont（未配置 ICON_FONT_* 时仅用本文件已有 @import）。
  */
-@import url('https://api.zengchaowu.com/icon-font/p/zengchaowu/iconfont.css');
+@import url('https://api.zengchaowu.com/asset/p/zengchaowu/iconfont.css');
