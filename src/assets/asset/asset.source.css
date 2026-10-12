@@ -1,9 +1,9 @@
 /**
  * @import 可由两种方式维护：
- * 1) 自动：在 packages/vue-ui 下配置 .env.dev / .env.prod（ICON_FONT_API_PUBLIC_BASE_URL、
- *    ICON_FONT_PROJECT_KEY 或 ICON_FONT_CSS_URL），执行 pnpm run sync-iconfont 会拉取平台 CSS 并下载字体。
+ * 1) 自动：在 packages/vue-ui 下配置 .env.dev / .env.prod（ASSET_API_PUBLIC_BASE_URL、
+ *    ASSET_PROJECT_KEY 或 ASSET_CSS_URL），执行 pnpm run sync-asset 会拉取平台 CSS 并下载字体。
  * 2) 手动：复制在线 asset.css 链接，整段替换下方 @import。
  *
- * 构建前 prebuild 会执行 sync-iconfont（未配置 ICON_FONT_* 时仅用本文件已有 @import）。
+ * 构建前 prebuild 会执行 sync-asset（未配置 ASSET_* 时仅用本文件已有 @import）。
  */
 @import url('https://api.zengchaowu.com/asset/p/zengchaowu/asset.css');
