@@ -901,22 +901,3 @@ function CheckableDemo(args: ComponentProps<typeof CwTree>) {
   )
 }
 
-export const Checkable: Story = {
-  args: {
-    data: basicTreeData,
-    defaultExpandAll: true,
-    checkable: true,
-    className: 'w-64',
-  },
-  render: (args) => <CheckableDemo {...args} />,
-}
-
-export const WithIconAndLine: Story = {
-  args: {
-    data: basicTreeData,
-    defaultExpandAll: true,
-    showLine: true,
-    showIcon: true,
-    className: 'w-64',
-  },
-}

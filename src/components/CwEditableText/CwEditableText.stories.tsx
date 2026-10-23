@@ -89,6 +89,7 @@ function ControlledEditableText({
   initialValue,
   frameClassName = 'w-[25rem] p-4',
   note,
+  footer,
   showValue = true,
   placeholder,
   texts,
@@ -98,6 +99,7 @@ function ControlledEditableText({
   initialValue?: string
   frameClassName?: string
   note?: ReactNode
+  footer?: ReactNode
   showValue?: boolean
 }) {
   const [value, setValue] = useState<string | undefined>(initialValue)
@@ -113,6 +115,7 @@ function ControlledEditableText({
           onChange?.(next)
         }}
       />
+      {footer}
       {showValue ? (
         <div className="mt-4 text-sm text-[var(--text-color-secondary)]">
           当前值：{value === undefined || value === null ? '(未设置)' : value || '(空字符串)'}
@@ -237,7 +240,7 @@ export const Readonly: Story = {
     <ControlledEditableText
       {...args}
       initialValue={args.value}
-      note={
+      footer={
         <div className="mt-4 text-sm text-[var(--text-color-secondary)]">
           只读模式下不显示编辑图标，无法进入编辑模式，但可以聚焦并显示聚焦环
         </div>
@@ -258,7 +261,7 @@ export const Disabled: Story = {
     <ControlledEditableText
       {...args}
       initialValue={args.value}
-      note={
+      footer={
         <div className="mt-4 text-sm text-[var(--text-color-secondary)]">
           禁用模式下不显示编辑图标，无法进入编辑模式，不可聚焦
         </div>
@@ -306,7 +309,7 @@ export const EditIconOnHover: Story = {
       {...args}
       initialValue={args.value}
       asyncModify={shortAsyncModify}
-      note={
+      footer={
         <div className="mt-4 text-sm text-[var(--text-color-secondary)]">
           鼠标悬停或键盘聚焦预览区时才会显示编辑图标
         </div>
@@ -406,10 +409,3 @@ export const Multiple: Story = {
   render: () => <MultipleDemo />,
 }
 
-export const AsyncModify: Story = {
-  args: {
-    value: '异步保存',
-    asyncModify: (next: string) =>
-      new Promise<boolean>((resolve) => setTimeout(() => resolve(Boolean(next)), 600)),
-  },
-}

@@ -433,10 +433,3 @@ export const Sizes: Story = {
   render: () => <CascaderSizesDemo />,
 }
 
-export const Default: Story = {
-  args: {
-    options: regionOptions,
-    placeholder: '请选择地区',
-    clearable: true,
-  },
-}

@@ -66,10 +66,6 @@ function DatePickerDemo({ args }: { args: CwDatePickerProps }) {
   )
 }
 
-export const Default: Story = {
-  render: (args) => <DatePickerDemo args={args} />,
-}
-
 export const States: Story = {
   args: {
     format: 'YYYY-MM-DD',

@@ -452,25 +452,28 @@ export function useCwDivScrollbar(
     }
   }, [scheduleUpdate])
 
-  const scrollTo = (scrollOptions?: ScrollToOptions | number, y?: number) => {
-    const viewport = getViewport()
+  // scrollTo / scrollBy 只读 ref，保持稳定引用：它们会进入 CwDiv 的
+  // useImperativeHandle 依赖，若每次渲染新建会导致 handle 每帧重建，
+  // 回调 ref 反复 setState → Maximum update depth exceeded。
+  const scrollTo = useCallback((scrollOptions?: ScrollToOptions | number, y?: number) => {
+    const viewport = viewportRef.current
     if (!viewport) return
     if (typeof scrollOptions === 'number') {
       viewport.scrollTo(scrollOptions, y ?? 0)
     } else {
       viewport.scrollTo(scrollOptions)
     }
-  }
+  }, [])
 
-  const scrollBy = (scrollOptions?: ScrollToOptions | number, y?: number) => {
-    const viewport = getViewport()
+  const scrollBy = useCallback((scrollOptions?: ScrollToOptions | number, y?: number) => {
+    const viewport = viewportRef.current
     if (!viewport) return
     if (typeof scrollOptions === 'number') {
       viewport.scrollBy(scrollOptions, y ?? 0)
     } else {
       viewport.scrollBy(scrollOptions)
     }
-  }
+  }, [])
 
   return {
     rootRef,

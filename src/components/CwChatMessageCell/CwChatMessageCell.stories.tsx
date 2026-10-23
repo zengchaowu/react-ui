@@ -35,18 +35,6 @@ const base: Pick<ChatMessage, 'id' | 'timestamp' | 'sender'> = {
   sender: { id: 'u1', name: 'A' },
 }
 
-export const Default: Story = {
-  args: {
-    message: {
-      ...base,
-      type: 'text',
-      content: 'CwChatMessageCell',
-      isOwn: false,
-      status: 'sent',
-    },
-  },
-}
-
 export const TextPeer: Story = {
   args: {
     message: {

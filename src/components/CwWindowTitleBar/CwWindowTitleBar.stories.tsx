@@ -155,19 +155,3 @@ export const SecondaryBackgroundSmallTitle: Story = {
   },
 }
 
-export const Default: Story = {
-  args: {
-    mode: 'mac',
-    showTitle: true,
-    title: '窗口标题',
-  },
-}
-
-export const Windows: Story = {
-  args: {
-    mode: 'windows',
-    showTitle: true,
-    title: '窗口标题',
-    maximizable: true,
-  },
-}

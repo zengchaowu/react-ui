@@ -312,15 +312,3 @@ export const DeclarativeWithToggle: Story = {
   render: () => <DeclarativeToastDemo />,
 }
 
-export const Imperative: Story = {
-  render: () => (
-    <button
-      type="button"
-      onClick={() => {
-        showCwToast({ message: '命令式提示', type: 'success', duration: 2000 })
-      }}
-    >
-      showCwToast
-    </button>
-  ),
-}

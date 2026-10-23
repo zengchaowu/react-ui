@@ -45,12 +45,6 @@ const meta: Meta<typeof CwRadio> = {
 export default meta
 type Story = StoryObj<typeof CwRadio>
 
-export const Default: Story = {
-  args: {
-    value: true,
-  },
-}
-
 function RadioPair({
   args,
   uncheckedLabel,

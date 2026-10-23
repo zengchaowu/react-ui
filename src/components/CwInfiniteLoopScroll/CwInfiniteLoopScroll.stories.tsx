@@ -125,7 +125,7 @@ function renderHorizontal(args: CwInfiniteLoopScrollComponentProps) {
 
 function WithSlotsDemo() {
   const defaultItems = generateItems(5)
-  const loopArgs: CwInfiniteLoopScrollComponentProps = {
+  const loopArgs: Omit<CwInfiniteLoopScrollComponentProps, 'items'> = {
     itemHeight: 80,
     direction: 'vertical',
     disabled: false,

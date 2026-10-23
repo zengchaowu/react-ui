@@ -132,12 +132,6 @@ const shapes = [
   { value: 'circle', label: '圆形图标按钮' },
 ] as const
 
-export const Default: Story = {
-  args: {
-    children: '按钮',
-  },
-}
-
 export const Variants: Story = {
   args: {
     type: 'primary',

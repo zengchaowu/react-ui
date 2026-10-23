@@ -390,21 +390,3 @@ void main() {
   },
 }
 
-export const Default: Story = {
-  args: {
-    code: `
-precision mediump float;
-uniform vec2 u_resolution;
-uniform float u_time;
-
-void main() {
-  vec2 st = gl_FragCoord.xy / u_resolution.xy;
-  vec3 color = vec3(st.x, st.y, abs(sin(u_time)));
-  gl_FragColor = vec4(color, 1.0);
-}`,
-    width: 400,
-    height: 400,
-    autoPlay: true,
-    showControls: true,
-  },
-}

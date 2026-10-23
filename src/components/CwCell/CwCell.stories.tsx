@@ -54,10 +54,6 @@ const meta: Meta<typeof CwCell> = {
 export default meta
 type Story = StoryObj<typeof CwCell>
 
-export const Default: Story = {
-  args: {},
-}
-
 export const WithArrow: Story = {
   args: {
     title: '标题',

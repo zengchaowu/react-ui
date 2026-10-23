@@ -55,21 +55,6 @@ const longList = Array.from({ length: 40 }, (_, i) => `行 ${i + 1}`)
 const scrollBoxClass =
   'w-[22.5rem] h-[12.5rem] border border-dashed border-[var(--border-color)] rounded-lg overflow-hidden bg-[var(--bg-color-container)] shadow-sm'
 
-export const Default: Story = {
-  args: {
-    className: 'h-60 w-80 border border-[var(--border-color)]',
-    children: (
-      <div className="space-y-2 p-3">
-        {Array.from({ length: 40 }, (_, index) => (
-          <div key={index} className="rounded bg-[var(--button-brand-tint-active-bg)] p-2 text-sm">
-            Row {index + 1}
-          </div>
-        ))}
-      </div>
-    ),
-  },
-}
-
 /** 可在右侧 Controls 切换 hideScrollbar / persistScrollbar 等 props */
 export const Basic: Story = {
   args: {

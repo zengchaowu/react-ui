@@ -380,18 +380,3 @@ function LegacyControlledSelect(args: Partial<ComponentProps<typeof CwSelect>>) 
   )
 }
 
-export const Default: Story = {
-  args: {
-    options: sampleOptions,
-    placeholder: '请选择',
-  },
-  render: (args) => <LegacyControlledSelect {...args} />,
-}
-
-export const EmptyOptions: Story = {
-  args: {
-    options: [],
-    placeholder: '请选择',
-  },
-  render: (args) => <LegacyControlledSelect {...args} />,
-}

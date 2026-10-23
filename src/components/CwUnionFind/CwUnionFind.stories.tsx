@@ -150,12 +150,6 @@ function UnionFindDemo({
   )
 }
 
-export const Default: Story = {
-  args: {
-    elements: initialElements,
-  },
-}
-
 export const InitialState: Story = {
   args: {
     texts: defaultTexts,

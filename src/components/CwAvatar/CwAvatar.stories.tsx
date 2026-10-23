@@ -58,12 +58,6 @@ const meta: Meta<typeof CwAvatar> = {
 export default meta
 type Story = StoryObj<typeof CwAvatar>
 
-export const Default: Story = {
-  args: {
-    fallbackSrc: 'https://picsum.photos/80',
-  },
-}
-
 export const WithImage: Story = {
   args: {
     src: chatDefaultAvatar,

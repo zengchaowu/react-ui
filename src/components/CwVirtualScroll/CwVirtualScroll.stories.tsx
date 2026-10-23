@@ -84,26 +84,6 @@ const generateLabeledItems = (count: number): CwVirtualScrollItem[] => {
 
 type DemoData = { title: string; description: string }
 
-export const Default: Story = {
-  render: () => (
-    <div className="h-[100dvh] w-full">
-      <CwVirtualScroll items={generateLabeledItems(1000)} itemHeight={60} bufferSize={8} showScrollbar>
-        {({ item, index }) => {
-          const data = item as DemoData
-          return (
-            <div className="box-border flex h-full flex-col justify-center border-b border-[var(--border-color)] bg-[var(--bg-color-container)] px-4">
-              <div className="font-medium text-[var(--text-color-primary)]">{data.title}</div>
-              <div className="mt-1 text-xs text-[var(--text-color-secondary)]">
-                索引: {index} / 1000
-              </div>
-            </div>
-          )
-        }}
-      </CwVirtualScroll>
-    </div>
-  ),
-}
-
 export const LargeDataset: Story = {
   args: {
     itemHeight: 60,

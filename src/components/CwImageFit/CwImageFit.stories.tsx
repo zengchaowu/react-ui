@@ -21,15 +21,3 @@ export const Default: Story = {
   ),
 }
 
-export const BoundedInlineChip: Story = {
-  args: {
-    src: 'https://picsum.photos/640/480',
-    alt: '行内图片',
-    appearance: 'inline-chip',
-    boundsMaxWidth: 80,
-    boundsMaxHeight: 40,
-    boundsMinHeight: 20,
-    intrinsicWidth: 640,
-    intrinsicHeight: 480,
-  },
-}

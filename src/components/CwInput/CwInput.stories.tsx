@@ -276,17 +276,6 @@ function appearanceInputStory(appearance: Exclude<CwInputAppearance, 'default'>)
   }
 }
 
-export const Default: Story = {
-  args: {
-    value: '',
-    placeholder: '请输入内容',
-    label: '用户名',
-    showLabel: true,
-    clearable: true,
-  },
-  render: (args) => <DefaultDemo {...args} />,
-}
-
 export const States: Story = {
   args: {
     placeholder: '请输入搜索关键词',

@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwStackPop } from './CwStackPop'
 import { useCwStackPopContext } from './context'
-import type { CwStackPopStepConfig } from './types'
+import type { CwStackPopHandle, CwStackPopStepConfig } from './types'
 import { CwButton } from '../CwButton'
 
 const stepShellClass = 'flex min-h-[50vh] flex-col p-5 box-border'
@@ -44,8 +44,17 @@ function Step2() {
 function Step3() {
   return <StepPlaceholder title="第三步（最后一步）" isLast />
 }
+function OnlyStep() {
+  return <StepPlaceholder title="仅一步" isLast />
+}
 
-const steps: CwStackPopStepConfig[] = [
+const linearSteps: CwStackPopStepConfig[] = [
+  { id: 's1', component: Step1 },
+  { id: 's2', component: Step2 },
+  { id: 's3', component: Step3, props: { isLast: true } },
+]
+
+const chainedSteps: CwStackPopStepConfig[] = [
   { id: 'step1', component: Step1 },
   { id: 'step2', component: Step2 },
   { id: 'step3', component: Step3 },
@@ -75,42 +84,110 @@ type Story = StoryObj<typeof meta>
 
 export const MultiStep: Story = {
   args: { height: '80%', transition: true },
-  render: (args) => {
-    const [show, setShow] = useState(false)
-    return (
-      <div className="p-5">
-        <p className="mb-3 text-sm text-[var(--text-color-secondary)]">
-          首步通过 steps 自动推入；后续步骤由步骤内 api.goNext() 驱动。
-        </p>
-        <CwButton onClick={() => setShow(true)}>打开多步弹窗</CwButton>
-        <CwStackPop
-          show={show}
-          steps={steps}
-          height={args.height}
-          transition={args.transition}
-          onShowChange={setShow}
-          onClose={() => setShow(false)}
-          onComplete={() => setShow(false)}
-        />
-      </div>
-    )
-  },
+  render: (args) => <MultiStepDemo args={args} />,
+}
+
+function MultiStepDemo({ args }: { args: Story['args'] }) {
+  const [show, setShow] = useState(false)
+  return (
+    <div className="p-5">
+      <p className="mb-3 text-sm text-[var(--text-color-secondary)]">
+        首步通过 <code>:steps=&quot;[step1]&quot;</code> 自动推入；后续步骤由步骤内 <code>api.goNext()</code> 驱动。
+      </p>
+      <CwButton onClick={() => setShow(true)}>打开多步弹窗</CwButton>
+      <CwStackPop
+        show={show}
+        steps={chainedSteps}
+        height={args?.height}
+        transition={args?.transition}
+        onShowChange={setShow}
+        onComplete={() => setShow(false)}
+        onClose={() => setShow(false)}
+      />
+    </div>
+  )
+}
+
+function ImperativePushDemo({ args }: { args: Story['args'] }) {
+  const [show, setShow] = useState(false)
+  const popRef = useRef<CwStackPopHandle | null>(null)
+
+  useEffect(() => {
+    if (!show) return
+    let innerTimer: ReturnType<typeof setTimeout> | undefined
+    const outerTimer = setTimeout(() => {
+      innerTimer = setTimeout(() => {
+        popRef.current?.push(Step1)
+      }, 0)
+    }, 0)
+    return () => {
+      clearTimeout(outerTimer)
+      if (innerTimer) clearTimeout(innerTimer)
+    }
+  }, [show])
+
+  return (
+    <div className="p-5">
+      <p className="mb-3 text-sm text-[var(--text-color-secondary)]">
+        命令式 <code>ref.push</code>：需在 sheet mount 后再推入（示例使用双 <code>setTimeout</code>）。
+      </p>
+      <CwButton onClick={() => setShow(true)}>打开并 push 第一步</CwButton>
+      <CwStackPop
+        ref={popRef}
+        show={show}
+        height={args?.height}
+        transition={args?.transition}
+        onShowChange={setShow}
+        onComplete={() => setShow(false)}
+        onClose={() => setShow(false)}
+      />
+    </div>
+  )
+}
+
+export const ImperativePush: Story = {
+  args: { height: '80%', transition: true },
+  render: (args) => <ImperativePushDemo args={args} />,
+}
+
+function LinearStepsDemo({ args }: { args: Story['args'] }) {
+  const [show, setShow] = useState(false)
+  return (
+    <div className="p-5">
+      <CwButton onClick={() => setShow(true)}>打开线性 steps</CwButton>
+      <CwStackPop
+        show={show}
+        steps={linearSteps}
+        height={args?.height}
+        transition={args?.transition}
+        onShowChange={setShow}
+        onComplete={() => setShow(false)}
+        onClose={() => setShow(false)}
+      />
+    </div>
+  )
+}
+
+export const LinearSteps: Story = {
+  args: { height: '80%', transition: true },
+  render: (args) => <LinearStepsDemo args={args} />,
+}
+
+function SingleStepDemo() {
+  const [show, setShow] = useState(false)
+  return (
+    <div className="p-5">
+      <CwButton onClick={() => setShow(true)}>打开单步</CwButton>
+      <CwStackPop
+        show={show}
+        steps={[{ id: 'only', component: OnlyStep }]}
+        onShowChange={setShow}
+        onComplete={() => setShow(false)}
+      />
+    </div>
+  )
 }
 
 export const SingleStep: Story = {
-  render: () => {
-    const [show, setShow] = useState(false)
-    return (
-      <div className="p-5">
-        <CwButton onClick={() => setShow(true)}>打开单步</CwButton>
-        <CwStackPop
-          show={show}
-          steps={[{ id: 'only', component: Step3 }]}
-          onShowChange={setShow}
-          onComplete={() => setShow(false)}
-          onClose={() => setShow(false)}
-        />
-      </div>
-    )
-  },
+  render: () => <SingleStepDemo />,
 }

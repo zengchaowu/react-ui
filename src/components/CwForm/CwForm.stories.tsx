@@ -526,10 +526,3 @@ export const ComprehensiveExample: Story = {
   render: () => <ComprehensiveExampleDemo />,
 }
 
-export const Disabled: Story = {
-  render: () => <CwForm config={twoFieldConfig} value={{ name: '禁用', email: '' }} disabled />,
-}
-
-export const Readonly: Story = {
-  render: () => <CwForm config={twoFieldConfig} value={{ name: '只读', email: '' }} readonly />,
-}

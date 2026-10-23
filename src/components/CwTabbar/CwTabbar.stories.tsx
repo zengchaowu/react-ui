@@ -47,7 +47,6 @@ const meta: Meta<typeof CwTabbar> = {
       description: '是否只读（不可切换，但可聚焦）',
     },
   },
-  tags: ['autodocs'],
 }
 
 export default meta
