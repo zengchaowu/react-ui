@@ -2,6 +2,7 @@ import { useContext, useMemo } from 'react'
 import type { MouseEvent as ReactMouseEvent } from 'react'
 import type {
   CwMarkdownCodeBlockCopyPayload,
+  CwMarkdownCodeBlockPreviewPayload,
   CwMarkdownImageContextMenuPayload,
   CwMarkdownProps,
   CwMarkdownStyles,
@@ -29,10 +30,12 @@ export function CwMarkdown({
   codeBlockExtensions: codeBlockExtensionsProp = [],
   inlineImageExtensions: inlineImageExtensionsProp = [],
   codeBlockDefaultExpanded = true,
+  codeBlockPreviewLanguages = [],
   onLinkClick,
   onImageClick,
   onImageContextMenu,
   onCodeBlockCopy,
+  onCodeBlockPreview,
   className,
   ...rest
 }: CwMarkdownProps) {
@@ -90,6 +93,14 @@ export function CwMarkdown({
     [injectedInlineImageExtensions, inlineImageExtensionsProp],
   )
 
+  const previewLanguages = useMemo(
+    () =>
+      codeBlockPreviewLanguages
+        .map((language) => language.trim().toLowerCase())
+        .filter(Boolean),
+    [codeBlockPreviewLanguages],
+  )
+
   const ctx = useMemo(
     () => ({
       styles,
@@ -111,6 +122,9 @@ export function CwMarkdown({
         onImageContextMenu?.(payload),
       onCodeBlockCopy: (payload: CwMarkdownCodeBlockCopyPayload) =>
         onCodeBlockCopy?.(payload),
+      onCodeBlockPreview: (payload: CwMarkdownCodeBlockPreviewPayload) =>
+        onCodeBlockPreview?.(payload),
+      codeBlockPreviewLanguages: previewLanguages,
       codeBlockExtensions,
       inlineImageExtensions,
       codeBlockDefaultExpanded: codeBlockDefaultExpanded !== false,
@@ -126,6 +140,8 @@ export function CwMarkdown({
       onImageClick,
       onImageContextMenu,
       onCodeBlockCopy,
+      onCodeBlockPreview,
+      previewLanguages,
       codeBlockExtensions,
       inlineImageExtensions,
       codeBlockDefaultExpanded,

@@ -20,6 +20,7 @@ import type {
   CwChatAttachmentPreviewOpenPayload,
   CwChatMessageCellProps,
   CwChatMessageMarkdownCodeBlockCopyPayload,
+  CwChatMessageMarkdownCodeBlockPreviewPayload,
   CwChatMessageMarkdownImageContextMenuPayload,
 } from './types'
 import { messageCellBase } from './styles'
@@ -127,6 +128,7 @@ export function CwChatMessageCell({
   peerSenderHeaderClickMode = 'profile',
   collapsed = false,
   bubblesFullWidth = false,
+  markdownCodeBlockPreviewLanguages,
   interactionsDisabled = false,
   downloadByUrl,
   fileDownloadProgressResolver,
@@ -160,6 +162,7 @@ export function CwChatMessageCell({
   onForwardBundleOpen,
   onKnowledgeSourceClick: _onKnowledgeSourceClick,
   onMarkdownCodeBlockCopy,
+  onMarkdownCodeBlockPreview,
   onMarkdownImageContextMenu,
   onAssistantActionSpeech,
   onAssistantActionCopy,
@@ -497,6 +500,12 @@ export function CwChatMessageCell({
     onMarkdownCodeBlockCopy?.(payload)
   }
 
+  function emitMarkdownCodeBlockPreview(
+    payload: CwChatMessageMarkdownCodeBlockPreviewPayload,
+  ) {
+    onMarkdownCodeBlockPreview?.(payload)
+  }
+
   function emitMarkdownImageContextMenu(
     payload: CwChatMessageMarkdownImageContextMenuPayload,
   ) {
@@ -530,6 +539,7 @@ export function CwChatMessageCell({
     onAttachmentPreviewOpen: emitAttachmentPreviewOpen,
     onOpenPath,
     onMarkdownCodeBlockCopy: emitMarkdownCodeBlockCopy,
+    onMarkdownCodeBlockPreview: emitMarkdownCodeBlockPreview,
     onMarkdownImageContextMenu: emitMarkdownImageContextMenu,
     onMentionProfileClick,
   } as const
@@ -541,6 +551,7 @@ export function CwChatMessageCell({
     revealLocalFile,
     mediaBubbleMaxSide,
     bubblesFullWidth,
+    markdownCodeBlockPreviewLanguages,
     peerBubbleAppearance,
     layoutVariant,
     mentionLabelResolver,

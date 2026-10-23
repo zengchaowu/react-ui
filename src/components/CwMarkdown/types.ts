@@ -93,6 +93,8 @@ export interface CwMarkdownTexts {
   imageAriaLabelPrefix: string
   /** 代码块复制按钮 */
   codeBlockCopyAriaLabel: string
+  /** 代码块执行/预览按钮 */
+  codeBlockPreviewAriaLabel: string
   /** 代码块展开（当前为收起态） */
   codeBlockExpandAriaLabel: string
   /** 代码块收起（当前为展开态） */
@@ -161,6 +163,11 @@ export interface CwMarkdownProps
   inlineImageExtensions?: CwMarkdownInlineImageExtension[]
   /** 围栏代码块初始是否展开（默认 true） */
   codeBlockDefaultExpanded?: boolean
+  /**
+   * 可执行/预览的围栏语言列表（不区分大小写，如 ['html']）。
+   * 命中时在代码块顶栏展示操作按钮并抛出 `code-block-preview`；默认空，保持通用。
+   */
+  codeBlockPreviewLanguages?: string[]
   /** 链接点击（等价 Vue `@link-click`） */
   onLinkClick?: (href: string, event: ReactMouseEvent<HTMLElement>) => void
   /**
@@ -176,12 +183,23 @@ export interface CwMarkdownProps
   onImageContextMenu?: (payload: CwMarkdownImageContextMenuPayload) => void
   /** 用户点击代码块复制（等价 Vue `@code-block-copy`）；剪贴板写入由外部处理 */
   onCodeBlockCopy?: (payload: CwMarkdownCodeBlockCopyPayload) => void
+  /** 用户点击代码块执行/预览（等价 Vue `@code-block-preview`）；iframe 渲染等由外部处理 */
+  onCodeBlockPreview?: (payload: CwMarkdownCodeBlockPreviewPayload) => void
 }
 
 export interface CwMarkdownCodeBlockCopyPayload {
   /** 代码块原始文本 */
   code: string
   /** 点击事件，便于写剪贴板或阻止冒泡 */
+  event: ReactMouseEvent<HTMLElement>
+}
+
+export interface CwMarkdownCodeBlockPreviewPayload {
+  /** 代码块原始文本 */
+  code: string
+  /** 围栏语言标签（已归一化为小写） */
+  language?: string
+  /** 点击事件，便于阻止冒泡 */
   event: ReactMouseEvent<HTMLElement>
 }
 
@@ -206,6 +224,7 @@ export interface CwMarkdownEmits {
   ): void
   (e: 'image-contextmenu', payload: CwMarkdownImageContextMenuPayload): void
   (e: 'code-block-copy', payload: CwMarkdownCodeBlockCopyPayload): void
+  (e: 'code-block-preview', payload: CwMarkdownCodeBlockPreviewPayload): void
 }
 
 /** 供子组件消费的上下文 */
@@ -225,6 +244,8 @@ export interface CwMarkdownContextValue {
   ) => void
   onImageContextMenu: (payload: CwMarkdownImageContextMenuPayload) => void
   onCodeBlockCopy: (payload: CwMarkdownCodeBlockCopyPayload) => void
+  onCodeBlockPreview: (payload: CwMarkdownCodeBlockPreviewPayload) => void
+  codeBlockPreviewLanguages: string[]
   codeBlockExtensions: CwMarkdownCodeBlockExtension[]
   inlineImageExtensions: CwMarkdownInlineImageExtension[]
   /** 围栏代码块初始是否展开 */

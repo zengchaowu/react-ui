@@ -11,6 +11,7 @@ import { useMarkdownPreprocessedContent } from '../CwMarkdown/hooks'
 import { markdownBase } from '../CwMarkdown/styles'
 import type {
   CwMarkdownCodeBlockCopyPayload,
+  CwMarkdownCodeBlockPreviewPayload,
   CwMarkdownImageContextMenuPayload,
 } from '../CwMarkdown/types'
 import type { CwChatMessageMarkdownProps } from './messageParts.types'
@@ -38,6 +39,8 @@ export function CwChatMessageMarkdown({
   onClick,
   onAttachmentPreviewOpen,
   onMarkdownCodeBlockCopy,
+  markdownCodeBlockPreviewLanguages = [],
+  onMarkdownCodeBlockPreview,
   onMarkdownImageContextMenu,
 }: CwChatMessageMarkdownProps) {
   const displayContent = useMarkdownPreprocessedContent(content ?? '')
@@ -121,6 +124,10 @@ export function CwChatMessageMarkdown({
     onMarkdownCodeBlockCopy?.(payload)
   }
 
+  function handleCodeBlockPreview(payload: CwMarkdownCodeBlockPreviewPayload) {
+    onMarkdownCodeBlockPreview?.(payload)
+  }
+
   function handleImageContextMenu(payload: CwMarkdownImageContextMenuPayload) {
     payload.event.stopPropagation()
     onMarkdownImageContextMenu?.(payload)
@@ -166,6 +173,8 @@ export function CwChatMessageMarkdown({
               onImageClick={onMarkdownImageClick}
               onImageContextMenu={handleImageContextMenu}
               onCodeBlockCopy={handleCodeBlockCopy}
+              codeBlockPreviewLanguages={markdownCodeBlockPreviewLanguages}
+              onCodeBlockPreview={handleCodeBlockPreview}
             />
           ) : null}
           {tailLoading ? (

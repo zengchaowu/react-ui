@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import type {
   CwMarkdownCodeBlockCopyPayload,
+  CwMarkdownCodeBlockPreviewPayload,
   CwMarkdownImageContextMenuPayload,
 } from '../CwMarkdown/types'
 import type {
@@ -71,6 +72,12 @@ export interface CwChatMessageMarkdownProps {
   onAttachmentPreviewOpen?: (payload: CwChatMessageAttachmentPreviewPayload) => void
   /** 等价 Vue `@markdown-code-block-copy` */
   onMarkdownCodeBlockCopy?: (payload: CwMarkdownCodeBlockCopyPayload) => void
+  /** 可执行/预览的围栏语言列表（如 ['html']）；命中时代码块展示执行按钮 */
+  markdownCodeBlockPreviewLanguages?: string[]
+  /** 等价 Vue `@markdown-code-block-preview` */
+  onMarkdownCodeBlockPreview?: (
+    payload: CwMarkdownCodeBlockPreviewPayload,
+  ) => void
   /** 等价 Vue `@markdown-image-context-menu` */
   onMarkdownImageContextMenu?: (payload: CwMarkdownImageContextMenuPayload) => void
 }

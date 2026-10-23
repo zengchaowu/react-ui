@@ -170,6 +170,8 @@ export interface CwChatMessageListProps
   walletTransferTexts?: Partial<CwChatMessageTransferTexts>
   /** 合并转发卡片文案 */
   forwardBundleTexts?: Partial<CwChatMessageForwardBundleTexts>
+  /** 可执行/预览的围栏语言列表（如 ['html']）；命中时代码块展示执行按钮 */
+  markdownCodeBlockPreviewLanguages?: string[]
   /** 宿主公共资源 origin（emojione / file-icons 等静态资源 URL 拼接） */
   publicAssetBaseUrl?: string
   /** 当前查看者 userId */
@@ -215,6 +217,10 @@ export interface CwChatMessageListProps
   onStopAiReply?: (message?: ChatMessage) => void
   /** 等价 Vue `@markdown-code-block-copy` */
   onMarkdownCodeBlockCopy?: (payload: CwChatMessageMarkdownCodeBlockCopyPayload) => void
+  /** 等价 Vue `@markdown-code-block-preview` */
+  onMarkdownCodeBlockPreview?: (
+    payload: import('../CwChatMessageCell/types').CwChatMessageMarkdownCodeBlockPreviewPayload,
+  ) => void
   /** 等价 Vue `@markdown-image-context-menu` */
   onMarkdownImageContextMenu?: (payload: CwChatMessageMarkdownImageContextMenuPayload) => void
   /** 等价 Vue `@assistant-action-speech` */

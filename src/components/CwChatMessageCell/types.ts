@@ -147,6 +147,8 @@ export interface CwChatMessageCellProps
    * 气泡最大宽度改为占满消息列（去掉约 2/3 上限）。己方仍按内容收缩；对方可拉满整列。
    */
   bubblesFullWidth?: boolean
+  /** 可执行/预览的围栏语言列表（如 ['html']）；命中时代码块展示执行按钮 */
+  markdownCodeBlockPreviewLanguages?: string[]
   /**
    * 为 true 时禁止气泡内点击/悬停/头像等指针交互（根节点与子节点均 `pointer-events: none`）；
    * 多选模式下列表会传入，避免误触图库、链接 hover 等。
@@ -226,6 +228,10 @@ export interface CwChatMessageCellProps
   onKnowledgeSourceClick?: (source: ChatMessageKnowledgeSource) => void
   /** Markdown fenced 代码块工具栏复制 */
   onMarkdownCodeBlockCopy?: (payload: CwChatMessageMarkdownCodeBlockCopyPayload) => void
+  /** Markdown fenced 代码块工具栏执行/预览 */
+  onMarkdownCodeBlockPreview?: (
+    payload: CwChatMessageMarkdownCodeBlockPreviewPayload,
+  ) => void
   /** Markdown 内联图右键（未 preventDefault 时保留浏览器默认菜单） */
   onMarkdownImageContextMenu?: (payload: CwChatMessageMarkdownImageContextMenuPayload) => void
   /** 助手消息：语音播放 */
@@ -259,6 +265,14 @@ export interface CwChatMessageMarkdownCodeBlockCopyPayload {
   event: ReactMouseEvent<HTMLElement>
 }
 
+/** Markdown 代码块点击「执行/预览」：预览渲染由业务在 `markdownCodeBlockPreview` 中处理 */
+export interface CwChatMessageMarkdownCodeBlockPreviewPayload {
+  message: ChatMessage
+  code: string
+  language?: string
+  event: ReactMouseEvent<HTMLElement>
+}
+
 /** Markdown 内联图右键：复制链接等由业务在 `markdownImageContextMenu` 中处理 */
 export interface CwChatMessageMarkdownImageContextMenuPayload {
   message: ChatMessage
@@ -289,6 +303,7 @@ export interface CwChatMessageCellEmits {
   (e: 'forwardBundleOpen', message: ChatMessage): void
   (e: 'knowledgeSourceClick', source: ChatMessageKnowledgeSource): void
   (e: 'markdownCodeBlockCopy', payload: CwChatMessageMarkdownCodeBlockCopyPayload): void
+  (e: 'markdownCodeBlockPreview', payload: CwChatMessageMarkdownCodeBlockPreviewPayload): void
   (e: 'markdownImageContextMenu', payload: CwChatMessageMarkdownImageContextMenuPayload): void
   (e: 'assistant-action-speech', message: ChatMessage): void
   (e: 'assistant-action-copy', message: ChatMessage): void

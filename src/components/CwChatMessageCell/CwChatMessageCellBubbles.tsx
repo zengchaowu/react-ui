@@ -9,6 +9,7 @@ import {
 import { findFileChangeForToolCall } from '@zengchaowu/shared/functions/im/imFileChanges'
 import type {
   CwMarkdownCodeBlockCopyPayload,
+  CwMarkdownCodeBlockPreviewPayload,
   CwMarkdownImageContextMenuPayload,
 } from '../CwMarkdown/types'
 import CwChatMessageQuote from '../CwChatMessageQuote/CwChatMessageQuote'
@@ -66,6 +67,8 @@ export interface CwChatMessageCellBubblesProps {
   mentionProfileClickable?: boolean
   /** 为 true 时文本/Markdown 气泡（含对方消息）不再使用 max-w 80%/66% */
   bubblesFullWidth?: boolean
+  /** 可执行/预览的围栏语言列表（如 ['html']）；命中时代码块展示执行按钮 */
+  markdownCodeBlockPreviewLanguages?: string[]
   /**
    * 为 true 时多块栈按最宽气泡收缩宽度（`w-max`），不设 `w-full`。
    * 己方消息旁 absolute 发送态需相对真实气泡外沿定位时使用。
@@ -109,6 +112,10 @@ export interface CwChatMessageCellBubblesProps {
   /** 等价 Vue `@markdown-code-block-copy` */
   onMarkdownCodeBlockCopy?: (
     payload: CwMarkdownCodeBlockCopyPayload & { message: ChatMessage },
+  ) => void
+  /** 等价 Vue `@markdown-code-block-preview` */
+  onMarkdownCodeBlockPreview?: (
+    payload: CwMarkdownCodeBlockPreviewPayload & { message: ChatMessage },
   ) => void
   /** 等价 Vue `@markdown-image-context-menu` */
   onMarkdownImageContextMenu?: (
@@ -201,6 +208,8 @@ export function CwChatMessageCellBubbles({
   onAttachmentPreviewOpen,
   onOpenPath,
   onMarkdownCodeBlockCopy,
+  markdownCodeBlockPreviewLanguages,
+  onMarkdownCodeBlockPreview,
   onMarkdownImageContextMenu,
   onMentionProfileClick,
 }: CwChatMessageCellBubblesProps) {
@@ -366,6 +375,10 @@ export function CwChatMessageCellBubbles({
     onMarkdownCodeBlockCopy?.({ message, ...p })
   }
 
+  function handleMarkdownCodeBlockPreview(p: CwMarkdownCodeBlockPreviewPayload) {
+    onMarkdownCodeBlockPreview?.({ message, ...p })
+  }
+
   function handleMarkdownImageContextMenu(p: CwMarkdownImageContextMenuPayload) {
     onMarkdownImageContextMenu?.({ message, ...p })
   }
@@ -469,6 +482,7 @@ export function CwChatMessageCellBubbles({
                     content={String(segment.block.props.content ?? '')}
                     showOnRight={bubbleShowOnRight}
                     bubblesFullWidth={markdownBubblesFullWidth}
+                    markdownCodeBlockPreviewLanguages={markdownCodeBlockPreviewLanguages}
                     tailLoading={aiStreamTailLoadingForMarkdownSegment(
                       message,
                       renderSegments,
@@ -479,6 +493,7 @@ export function CwChatMessageCellBubbles({
                     onClick={emitClick}
                     onAttachmentPreviewOpen={emitAttachmentPreviewOpen}
                     onMarkdownCodeBlockCopy={handleMarkdownCodeBlockCopy}
+                    onMarkdownCodeBlockPreview={handleMarkdownCodeBlockPreview}
                     onMarkdownImageContextMenu={handleMarkdownImageContextMenu}
                   />
                 )
@@ -600,12 +615,14 @@ export function CwChatMessageCellBubbles({
           content={message.content}
           showOnRight={bubbleShowOnRight}
           bubblesFullWidth={markdownBubblesFullWidth}
+                    markdownCodeBlockPreviewLanguages={markdownCodeBlockPreviewLanguages}
           tailLoading={aiStreamTailLoading(message)}
           mentionLabelResolver={mentionLabelResolver}
           bubbleAppearance={markdownBubbleAppearance}
           onClick={emitClick}
           onAttachmentPreviewOpen={emitAttachmentPreviewOpen}
           onMarkdownCodeBlockCopy={handleMarkdownCodeBlockCopy}
+                    onMarkdownCodeBlockPreview={handleMarkdownCodeBlockPreview}
           onMarkdownImageContextMenu={handleMarkdownImageContextMenu}
         />
       ) : message.type === 'text' ? (

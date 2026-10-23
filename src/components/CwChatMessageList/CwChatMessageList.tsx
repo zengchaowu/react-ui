@@ -106,6 +106,7 @@ export const CwChatMessageList = forwardRef<
     walletRedEnvelopeTexts,
     walletTransferTexts,
     forwardBundleTexts,
+    markdownCodeBlockPreviewLanguages,
     publicAssetBaseUrl,
     viewerUserId,
     walletTransferProfileResolver,
@@ -128,6 +129,7 @@ export const CwChatMessageList = forwardRef<
     onOwnMessageEditSubmit,
     onStopAiReply,
     onMarkdownCodeBlockCopy,
+    onMarkdownCodeBlockPreview,
     onMarkdownImageContextMenu,
     onAssistantActionSpeech,
     onAssistantActionCopy,
@@ -672,6 +674,7 @@ export const CwChatMessageList = forwardRef<
                                 walletRedEnvelopeTexts={walletRedEnvelopeTexts}
                                 walletTransferTexts={walletTransferTexts}
                                 forwardBundleTexts={forwardBundleTexts}
+                                markdownCodeBlockPreviewLanguages={markdownCodeBlockPreviewLanguages}
                                 viewerUserId={viewerUserId}
                                 walletTransferProfileResolver={walletTransferProfileResolver}
                                 onPeerAvatarClick={onPeerAvatarClick}
@@ -689,6 +692,7 @@ export const CwChatMessageList = forwardRef<
                                 onOwnMessageEditCancel={onOwnMessageEditCancel}
                                 onStopAiReply={onStopAiReply}
                                 onMarkdownCodeBlockCopy={onMarkdownCodeBlockCopy}
+                                onMarkdownCodeBlockPreview={onMarkdownCodeBlockPreview}
                                 onMarkdownImageContextMenu={onMarkdownImageContextMenu}
                                 onMentionProfileClick={onMentionProfileClick}
                                 onAssistantActionSpeech={onAssistantActionSpeech}

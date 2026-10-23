@@ -10,6 +10,8 @@ export interface CwMarkdownCodeBlockFrameProps {
   copyText: string
   /** 初始是否展开正文（默认 true） */
   defaultExpanded?: boolean
+  /** 顶栏操作区（渲染在复制按钮左侧），如代码块执行按钮 */
+  actions?: ReactNode
   children?: ReactNode
 }
 
@@ -17,6 +19,7 @@ export function CwMarkdownCodeBlockFrame({
   languageLabel,
   copyText,
   defaultExpanded = true,
+  actions,
   children,
 }: CwMarkdownCodeBlockFrameProps) {
   const ctx = useCwMarkdownContext()
@@ -27,7 +30,12 @@ export function CwMarkdownCodeBlockFrame({
   }
 
   function onToolbarClick(event: MouseEvent<HTMLDivElement>) {
-    if ((event.target as HTMLElement).closest('[data-cw-md-code-copy]')) return
+    if (
+      (event.target as HTMLElement).closest(
+        '[data-cw-md-code-copy], [data-cw-md-code-action]',
+      )
+    )
+      return
     toggleExpand()
   }
 
@@ -76,6 +84,7 @@ export function CwMarkdownCodeBlockFrame({
           <span className={ctx.styles.codeBlockLang}>{languageLabel}</span>
         ) : null}
         <div className="min-w-0 flex-1 self-stretch" aria-hidden="true" />
+        {actions}
         <div
           role="button"
           tabIndex={0}
