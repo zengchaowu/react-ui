@@ -1,0 +1,47 @@
+.cw-inline-rename-label {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+  display: inline-block !important;
+  overflow: visible !important;
+  -webkit-box-orient: unset !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+}
+
+.cw-inline-rename-label .cw-editable-text {
+  display: inline-flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.cw-inline-rename-label .cw-editable-text > div {
+  width: 100%;
+  min-height: 0;
+}
+
+.cw-inline-rename-label .cw-input,
+.cw-inline-rename-label .cw-input > div {
+  min-height: 0;
+  height: auto;
+}
+
+.cw-inline-rename-label input {
+  box-sizing: border-box;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  line-height: inherit;
+  font: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  background: transparent;
+}
+
+.cw-inline-rename-label .cw-loading {
+  font-size: inherit;
+  line-height: 1;
+}

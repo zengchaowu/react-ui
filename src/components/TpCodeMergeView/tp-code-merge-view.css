@@ -1,0 +1,34 @@
+/* TpCodeMergeView：MergeView 默认不限高，需外层约束高度并允许滚动 */
+.tp-code-merge-view {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.tp-code-merge-view .cm-mergeView {
+  height: 100% !important;
+  max-height: 100%;
+  overflow: auto !important;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  background: var(--bg-color-container);
+}
+
+.tp-code-merge-view .cm-mergeViewEditors {
+  align-items: stretch;
+}
+
+.tp-code-merge-view .cm-mergeViewEditor {
+  overflow: hidden;
+}
+
+.tp-code-merge-view .cm-editor {
+  height: 100%;
+}
+
+.tp-code-merge-view .cm-scroller {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 0.75rem;
+  line-height: 1.45;
+}

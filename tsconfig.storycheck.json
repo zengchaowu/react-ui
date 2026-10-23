@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false
+  },
+  "include": [
+    "src/components/CwDatePicker/CwDatePicker.stories.tsx",
+    "src/components/CwGrid/CwGrid.stories.tsx",
+    "src/components/CwRadio/CwRadio.stories.tsx",
+    "src/components/CwTabbar/CwTabbar.stories.tsx",
+    "src/components/CwTag/CwTag.stories.tsx",
+    "src/components/CwUnionFind/CwUnionFind.stories.tsx",
+    "src/components/CwAttachmentGallery/CwAttachmentGallery.stories.tsx",
+    "src/components/CwCheckbox/CwCheckbox.stories.tsx",
+    "src/components/CwDiv/CwDiv.stories.tsx",
+    "src/components/CwDivider/CwDivider.stories.tsx",
+    "src/components/CwDynamicSheet/CwDynamicSheet.stories.tsx",
+    "src/components/CwHashMap/CwHashMap.stories.tsx"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

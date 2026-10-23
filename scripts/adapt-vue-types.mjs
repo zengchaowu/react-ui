@@ -24,6 +24,12 @@ function adaptFile(file) {
   if (!/\bvue\b|\.vue['"]/.test(code)) return false
   const before = code
 
+  // import('vue').Ref<...> 跨行泛型（含 `=>` 箭头，单行正则会在 `>` 处截断）
+  code = code.replace(
+    /import\(['"]vue['"]\)\.(?:Ref|ComputedRef)<\s*\n([\s\S]*?)\n\s*>/g,
+    '$1',
+  )
+
   // import('vue').ComputedRef<T> / Ref<T> / InjectionKey<T>
   code = code.replace(/import\(['"]vue['"]\)\.ComputedRef<([^>]+)>/g, '$1')
   code = code.replace(/import\(['"]vue['"]\)\.Ref<([^>]+)>/g, '$1')

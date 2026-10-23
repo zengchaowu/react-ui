@@ -1,0 +1,50 @@
+.cw-floating-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid color-mix(in srgb, var(--border-color) 80%, transparent);
+  border-radius: var(--cw-floating-window-radius, 0.75rem);
+  background: var(--bg-color-container);
+  box-shadow:
+    0 1.25rem 3rem color-mix(in srgb, var(--scrim-base) 18%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--text-color-anti) 6%, transparent);
+  overflow: hidden;
+  user-select: none;
+  outline: none;
+  transition:
+    left 260ms cubic-bezier(0.2, 0, 0, 1),
+    top 260ms cubic-bezier(0.2, 0, 0, 1),
+    width 260ms cubic-bezier(0.2, 0, 0, 1),
+    height 260ms cubic-bezier(0.2, 0, 0, 1),
+    opacity 240ms cubic-bezier(0.2, 0, 0, 1),
+    border-radius 220ms cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 220ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.cw-floating-window:focus,
+.cw-floating-window:focus-visible {
+  outline: none;
+}
+
+.cw-floating-window[data-maximized] {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  box-shadow: none;
+}
+
+.cw-floating-window[data-minimized] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cw-floating-window[data-no-transition] {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cw-floating-window {
+    transition: none;
+  }
+}

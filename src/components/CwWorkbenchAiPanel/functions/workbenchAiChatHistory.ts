@@ -1,0 +1,10 @@
+/** Stable-enough id for ephemeral chat rows (not a security token). */
+export function newWorkbenchAiMessageId(prefix: string): string {
+  return (
+    prefix +
+    '_' +
+    Date.now().toString(36) +
+    '_' +
+    Math.random().toString(36).slice(2, 8)
+  )
+}

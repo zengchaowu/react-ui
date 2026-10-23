@@ -8,15 +8,6 @@
  * - **边界**：panel DOM 子树 + traps（`setOverlayLayerTraps`）
  */
 
-/** Dialog / Sheet / Popup / 全屏预览等 modal 档 z-index */
-export const CW_OVERLAY_MODAL_Z_CLASS = 'z-[var(--z-index-modal)]'
-
-/** Toast / Hud 等全局反馈层 z-index（高于 modal 档） */
-export const CW_OVERLAY_TOAST_Z_CLASS = 'z-[var(--z-index-toast)]'
-
-/** 与 CwDynamicDialogInner 离场动画一致，用于 ephemeral mount 延迟 unmount */
-export const CW_OVERLAY_LEAVE_MS = 300
-
 /**
  * 入场前先绘制 hidden 态，再在下一帧触发展示（双 rAF）。
  * 单 rAF 时浏览器常把初始态与 visible 合并到同一帧，transition 不会播放。
@@ -32,9 +23,6 @@ export function scheduleOverlayEnterVisible(run: () => void): () => void {
     cancelAnimationFrame(innerId)
   }
 }
-
-/** 全屏图库/附件预览关闭动画（略短，点击关闭更跟手） */
-export const CW_FULLSCREEN_PREVIEW_LEAVE_MS = 200
 
 export const CW_OVERLAY_LAYER_ATTR = 'data-cw-overlay-layer'
 export const CW_OVERLAY_LAYER_ID_ATTR = 'data-cw-overlay-layer-id'

@@ -1,0 +1,110 @@
+/**
+ * 壳层用 clip 而不是可滚动的 overflow，避免编辑器 scrollIntoView
+ * 在 growFromBottom 时把绝对定位工具栏卷走（按钮上抬再下坠）。
+ * 录音时组件会以内联 style 覆盖为 visible。
+ */
+.cw-ai-chat-composer__shell {
+  overflow: clip;
+}
+
+/**
+ * 右侧 actions：壳右缘固定，发送槽自右向左展开，将附件按钮挤到左侧。
+ * 弹簧手感：cubic-bezier 曲线 y>1 时 width 会略 overshoot，附件随之回弹。
+ *
+ * 纵向对齐契约（易回归，勿改回）：
+ * 1) 槽本身必须 align-items:center（勿只靠 Tailwind，dist/扫描可能丢）
+ * 2) primary 槽用固定 height: var(--composer-btn-size)，禁止 height:100%
+ *    （绝对定位 + height:auto 父级时 100% 会算偏，发送钮会上漂/下坠）
+ * 3) 勿对槽内图标 transform:scale（overflow:hidden 会裁切，看起来「没对齐」）
+ */
+.cw-ai-chat-composer__actions-slot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cw-ai-chat-composer__primary-action-slot {
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  /* 与附件钮同高，避免 height:100% 在绝对定位槽里算偏 */
+  height: var(--composer-btn-size);
+  overflow: hidden;
+  width: 0;
+  margin-left: 0;
+  transition:
+    width var(--composer-action-close-duration)
+      var(--composer-action-close-ease),
+    margin-left var(--composer-action-close-duration)
+      var(--composer-action-close-ease);
+}
+
+.cw-ai-chat-composer__primary-action-slot--open {
+  width: var(--composer-btn-size);
+  margin-left: var(--composer-toolbar-gap);
+  transition:
+    width var(--composer-action-open-duration)
+      var(--composer-action-open-ease),
+    margin-left var(--composer-action-open-duration)
+      var(--composer-action-open-ease);
+}
+
+.cw-ai-chat-composer__primary-action-slot:not(
+    .cw-ai-chat-composer__primary-action-slot--open
+  ) {
+  pointer-events: none;
+}
+
+/* 发送/停止在槽内几何居中；勿对图标 transform:scale（会被 overflow:hidden 裁切） */
+.cw-ai-chat-composer__primary-action-slot .cw-ai-chat-composer__send,
+.cw-ai-chat-composer__primary-action-slot .cw-ai-chat-composer__stop {
+  box-sizing: border-box;
+  display: inline-flex;
+  width: var(--composer-btn-size);
+  height: var(--composer-btn-size);
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+/* 停止按钮固定错误色（不依赖 Tailwind 任意值是否打进产物） */
+.cw-ai-chat-composer__stop {
+  color: var(--error-color-6);
+}
+
+.cw-ai-chat-composer__stop:hover,
+.cw-ai-chat-composer__stop:active {
+  color: var(--error-color-6);
+  opacity: 0.8;
+}
+
+.cw-ai-chat-composer__primary-action-slot .cw-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+/**
+ * send-filled 为实心圆字形，em 盒上下留白不对称时会相对 + 号偏下。
+ * 用 flex 吃掉 inline-block/baseline，避免再靠 transform（会被 overflow 裁切）。
+ */
+.cw-ai-chat-composer__primary-action-slot .cw-ai-chat-composer__send .asset,
+.cw-ai-chat-composer__primary-action-slot .cw-ai-chat-composer__stop .asset {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  line-height: 0;
+}
+
+.cw-ai-chat-composer__primary-action-slot .cw-ai-chat-composer__send .asset::before,
+.cw-ai-chat-composer__primary-action-slot .cw-ai-chat-composer__stop .asset::before {
+  display: block;
+  line-height: 1;
+}

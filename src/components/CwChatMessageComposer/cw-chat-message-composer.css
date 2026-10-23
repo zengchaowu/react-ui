@@ -1,0 +1,38 @@
+/* 底栏展开/收起：max-height 顶起输入区（对齐微信） */
+.cw-composer-mobile-dock-enter-active,
+.cw-composer-mobile-dock-leave-active {
+  overflow: hidden;
+  transition: max-height 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cw-composer-mobile-dock-enter-from,
+.cw-composer-mobile-dock-leave-to {
+  max-height: 0;
+}
+
+.cw-composer-mobile-dock-enter-to,
+.cw-composer-mobile-dock-leave-from {
+  max-height: min(42dvh, 18.5rem);
+}
+
+/* 表情 ↔ 加号切换：轻淡入 */
+.cw-composer-mobile-dock-pane-enter-active,
+.cw-composer-mobile-dock-pane-leave-active {
+  transition: opacity 0.16s ease;
+}
+
+.cw-composer-mobile-dock-pane-enter-from,
+.cw-composer-mobile-dock-pane-leave-to {
+  opacity: 0;
+}
+
+/* 工作台停止按钮固定错误色（与 CwAiChatComposer 一致；不依赖 Tailwind 任意值是否打进产物） */
+.cw-chat-message-composer-workspace__stop {
+  color: var(--error-color-6);
+}
+
+.cw-chat-message-composer-workspace__stop:hover,
+.cw-chat-message-composer-workspace__stop:active {
+  color: var(--error-color-6);
+  opacity: 0.8;
+}

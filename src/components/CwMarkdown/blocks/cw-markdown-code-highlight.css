@@ -1,0 +1,76 @@
+/* Markdown fenced code: highlight.js tokens mapped to design tokens */
+.cw-markdown .hljs {
+  color: var(--text-color-primary);
+  background: transparent;
+}
+
+.cw-markdown .hljs-comment,
+.cw-markdown .hljs-quote {
+  color: var(--text-color-placeholder);
+  font-style: italic;
+}
+
+.cw-markdown .hljs-keyword,
+.cw-markdown .hljs-selector-tag,
+.cw-markdown .hljs-addition {
+  color: var(--brand-color-6);
+}
+
+.cw-markdown .hljs-string,
+.cw-markdown .hljs-meta .hljs-string,
+.cw-markdown .hljs-doctag {
+  color: var(--success-color-active);
+}
+
+.cw-markdown .hljs-number,
+.cw-markdown .hljs-literal,
+.cw-markdown .hljs-bullet,
+.cw-markdown .hljs-symbol {
+  color: var(--warning-color-active);
+}
+
+.cw-markdown .hljs-built_in,
+.cw-markdown .hljs-type,
+.cw-markdown .hljs-params {
+  color: var(--brand-color-active);
+}
+
+.cw-markdown .hljs-title,
+.cw-markdown .hljs-title.class_,
+.cw-markdown .hljs-title.function_,
+.cw-markdown .hljs-section,
+.cw-markdown .hljs-name {
+  color: var(--error-color-active);
+}
+
+.cw-markdown .hljs-attr,
+.cw-markdown .hljs-attribute,
+.cw-markdown .hljs-property {
+  color: var(--warning-color-6);
+}
+
+.cw-markdown .hljs-variable,
+.cw-markdown .hljs-template-variable,
+.cw-markdown .hljs-selector-attr,
+.cw-markdown .hljs-selector-pseudo,
+.cw-markdown .hljs-deletion {
+  color: var(--error-color-6);
+}
+
+.cw-markdown .hljs-regexp,
+.cw-markdown .hljs-link {
+  color: var(--brand-color-6);
+}
+
+.cw-markdown .hljs-meta,
+.cw-markdown .hljs-subst {
+  color: var(--text-color-secondary);
+}
+
+.cw-markdown .hljs-emphasis {
+  font-style: italic;
+}
+
+.cw-markdown .hljs-strong {
+  font-weight: 600;
+}

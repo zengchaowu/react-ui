@@ -1,0 +1,101 @@
+.cw-chat-message-composer-mobile__editor .cw-message-input,
+.cw-chat-message-composer-mobile__editor .cw-message-input form,
+.cw-chat-message-composer-mobile__editor .cw-message-input .fieldShell {
+  height: 100%;
+  min-height: 0;
+}
+
+.cw-chat-message-composer-mobile__editor .ProseMirror {
+  box-sizing: border-box;
+  min-height: 0;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.cw-chat-message-composer-mobile__editor--scrollable .ProseMirror {
+  overflow-y: auto;
+}
+
+.cw-chat-message-composer-mobile__editor--inline .cw-chat-message-composer-mobile__field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.cw-chat-message-composer-mobile__editor:not(.cw-chat-message-composer-mobile__editor--inline)
+  .cw-chat-message-composer-mobile__field {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.cw-chat-message-composer-mobile__editor--inline .ProseMirror {
+  margin-top: 0;
+  margin-bottom: 0;
+  max-height: var(--line-height-composer);
+  overflow: hidden;
+  line-height: var(--line-height-composer);
+}
+
+.cw-chat-message-composer-mobile__editor:not(.cw-chat-message-composer-mobile__editor--inline)
+  .ProseMirror {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: var(--line-height-composer);
+}
+
+.cw-chat-message-composer-mobile__editor--inline .ProseMirror p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.cw-composer-mobile-primary-action {
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition:
+    width 0.2s cubic-bezier(0.32, 0.72, 0, 1),
+    padding 0.2s cubic-bezier(0.32, 0.72, 0, 1),
+    background-color 0.15s ease-out,
+    color 0.15s ease-out,
+    transform 0.15s ease-out;
+}
+
+.cw-composer-mobile-primary-action--more {
+  width: var(--composer-mobile-btn-width);
+  padding: 0;
+  transition-delay: 0.14s, 0.14s, 0s, 0s, 0s;
+}
+
+.cw-composer-mobile-primary-action--send {
+  width: var(--composer-mobile-send-btn-width);
+  transition-delay: 0s;
+}
+
+.cw-composer-mobile-primary-action__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cw-composer-mobile-primary-action__label {
+  display: block;
+  flex-shrink: 0;
+}
+
+.cw-composer-mobile-primary-action-enter-active,
+.cw-composer-mobile-primary-action-leave-active {
+  transition: opacity 0.14s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cw-composer-mobile-primary-action-enter-from,
+.cw-composer-mobile-primary-action-leave-to {
+  opacity: 0;
+}

@@ -1,0 +1,211 @@
+.cherry-markdown-container {
+  width: 100%;
+  min-height: 0;
+}
+
+.cherry-markdown-disabled {
+  pointer-events: none;
+  opacity: 0.92;
+}
+
+.cherry-markdown-container .cherry {
+  height: 100%;
+  box-sizing: border-box;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+.cherry-markdown-container .cherry .CodeMirror,
+.cherry-markdown-container .cherry .cherry-editor,
+.cherry-markdown-container .cherry .cherry-previewer {
+  font-family: var(--font-family);
+}
+
+/**
+ * 工作主题（workDocs）：颜色全部映射到 vue-ui design token，
+ * 随 :root / [data-theme='dark'] 自动切换明暗。
+ */
+.cherry.theme__workDocs {
+  --primary-color: var(--brand-color-6);
+  --secondary-color: var(--brand-color-light-bg-1);
+
+  --base-font-color: var(--text-color-primary);
+  --base-sub-font-color: var(--text-color-secondary);
+  --base-border-color: var(--border-color);
+  --base-editor-bg: var(--bg-color-container);
+  --base-previewer-bg: var(--bg-color-container);
+
+  --toolbar-bg: var(--bg-color-container);
+  --toolbar-border: var(--border-color);
+  --toolbar-shadow: none;
+  --toolbar-split-color: var(--border-color);
+  --toolbar-btn-color: var(--text-color-secondary);
+  --toolbar-btn-bg: transparent;
+  --toolbar-btn-hover-color: var(--brand-color-6);
+  --toolbar-btn-hover-bg: var(--bg-color-component-hover);
+  --toolbar-btn-disabled: var(--text-color-disabled);
+  --toolbar-btn-radius: 0.375rem;
+  --toolbar-min-height: 2.75rem;
+
+  --dropdown-bg: var(--bg-color-container);
+  --dropdown-border: var(--border-color);
+  --dropdown-shadow: var(--shadow-2);
+  --dropdown-radius: 0.5rem;
+  --dropdown-item-color: var(--text-color-primary);
+  --dropdown-item-hover-bg: var(--bg-color-component-hover);
+  --dropdown-item-hover-color: var(--text-color-primary);
+  --dropdown-item-active-bg: var(--brand-color-light-bg-1);
+  --dropdown-item-active-color: var(--brand-color-6);
+
+  --bubble-bg: var(--bg-color-container);
+  --bubble-border: var(--border-color);
+  --bubble-shadow: var(--shadow-2);
+  --bubble-radius: 0.5rem;
+
+  --editor-header-color: var(--text-color-primary);
+  --editor-comment-color: var(--text-color-secondary);
+  --editor-quote-color: var(--text-color-secondary);
+  --editor-string-color: var(--text-color-primary);
+  --editor-link-color: var(--brand-color-6);
+  --editor-url-bg-color: var(--brand-color-light-bg-1);
+  --editor-v2-color: var(--brand-color-6);
+  --editor-v3-color: var(--brand-color-light-bg-1);
+  --editor-keyword-color: var(--text-color-primary);
+  --editor-cursor-color: var(--brand-color-6);
+  --editor-selection-bg: var(--button-brand-tint-hover-bg);
+  --editor-line-number-color: var(--text-color-placeholder);
+  --editor-active-line-bg: var(--bg-color-secondarycontainer);
+
+  --md-heading-color: var(--text-color-primary);
+  --md-paragraph-color: var(--text-color-primary);
+  --md-paragraph-highlight-line-bg: var(--bg-color-secondarycontainer);
+  --md-link-color: var(--brand-color-6);
+  --md-link-hover-color: var(--brand-color-hover);
+  --md-inline-code-color: var(--error-color-6);
+  --md-inline-code-bg: var(--bg-color-secondarycontainer);
+  --md-blockquote-bg: var(--bg-color-secondarycontainer);
+  --md-blockquote-border: var(--border-color);
+  --md-blockquote-color: var(--text-color-secondary);
+  --md-table-border: var(--border-color);
+  --md-table-operator-color: var(--brand-color-6);
+  --md-hr-border: var(--border-color);
+
+  --md-toc-bg: var(--bg-color-secondarycontainer);
+  --md-toc-border-color: var(--border-color);
+  --md-toc-title-color: var(--text-color-primary);
+  --md-toc-link-color: var(--text-color-secondary);
+  --md-toc-link-hover-bg: var(--bg-color-component-hover);
+  --md-toc-link-active-bg: var(--button-brand-tint-hover-bg);
+  --md-toc-link-hover-color: var(--brand-color-6);
+  --md-toc-indicator-color: var(--border-color);
+  --md-toc-indicator-hover-color: var(--brand-color-6);
+
+  --accordion-bg: var(--bg-color-container);
+  --accordion-border: var(--border-color);
+  --accordion-summary-bg: var(--brand-color-6);
+  --accordion-summary-color: var(--text-color-anti);
+  --accordion-summary-hover-bg: var(--brand-color-hover);
+  --accordion-body-bg: var(--bg-color-container);
+  --accordion-body-color: var(--text-color-primary);
+  --accordion-body-border: var(--border-color);
+
+  --drag-border-color: var(--border-color);
+}
+
+.cherry.theme__workDocs .cherry-toolbar {
+  border-bottom: 1px solid var(--border-color) !important;
+  background: var(--bg-color-container) !important;
+  box-shadow: none !important;
+}
+
+.cherry.theme__workDocs .cherry-editor,
+.cherry.theme__workDocs .cherry-previewer {
+  background: var(--bg-color-container) !important;
+}
+
+.cherry.theme__workDocs .CodeMirror {
+  background: transparent !important;
+  color: var(--text-color-primary) !important;
+}
+
+.cherry.theme__workDocs .CodeMirror-cursor {
+  border-left-color: var(--brand-color-6) !important;
+}
+
+.cherry.theme__workDocs .cherry-previewer {
+  border-left: 1px solid var(--border-color) !important;
+}
+
+.cherry-markdown.theme__workDocs {
+  color: var(--text-color-primary);
+  background: transparent;
+}
+
+.cherry-markdown.theme__workDocs h1,
+.cherry-markdown.theme__workDocs h2,
+.cherry-markdown.theme__workDocs h3,
+.cherry-markdown.theme__workDocs h4,
+.cherry-markdown.theme__workDocs h5,
+.cherry-markdown.theme__workDocs h6 {
+  color: var(--text-color-primary);
+  border-color: var(--border-color);
+  font-weight: 600;
+  line-height: 1.35;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.cherry-markdown.theme__workDocs h1,
+.cherry-markdown.theme__workDocs .h1 {
+  font-size: var(--font-size-body-xl);
+  margin-top: 0.25rem;
+}
+
+.cherry-markdown.theme__workDocs h2,
+.cherry-markdown.theme__workDocs .h2 {
+  font-size: var(--font-size-body-lg);
+}
+
+.cherry-markdown.theme__workDocs h3,
+.cherry-markdown.theme__workDocs .h3 {
+  font-size: var(--font-size-body-md);
+}
+
+.cherry-markdown.theme__workDocs h4,
+.cherry-markdown.theme__workDocs .h4,
+.cherry-markdown.theme__workDocs h5,
+.cherry-markdown.theme__workDocs .h5,
+.cherry-markdown.theme__workDocs h6,
+.cherry-markdown.theme__workDocs .h6 {
+  font-size: var(--font-size-body);
+}
+
+.cherry-markdown.theme__workDocs a {
+  color: var(--brand-color-6);
+}
+
+.cherry-markdown.theme__workDocs code {
+  color: var(--error-color-6);
+  background: var(--bg-color-secondarycontainer);
+}
+
+.cherry-markdown.theme__workDocs pre {
+  background: var(--bg-color-secondarycontainer);
+  border: 1px solid var(--border-color);
+}
+
+.cherry-markdown.theme__workDocs blockquote {
+  color: var(--text-color-secondary);
+  background: var(--bg-color-secondarycontainer);
+  border-left-color: var(--border-color);
+}
+
+.cherry-markdown.theme__workDocs table th,
+.cherry-markdown.theme__workDocs table td {
+  border-color: var(--border-color);
+}
+
+.cherry-markdown.theme__workDocs hr {
+  border-color: var(--border-color);
+}

@@ -21,15 +21,42 @@ const vueRoot = join(reactRoot, '..', 'vue-ui')
 const vueComponents = join(vueRoot, 'src/components')
 const reactComponents = join(reactRoot, 'src/components')
 
-/** 已手写实现的组件：跳过覆盖 tsx / stories */
-const IMPLEMENTATIONS = new Set(['CwButton', 'CwIcon'])
+/** 已手写实现的组件：跳过覆盖 tsx / stories（当前均为骨架，待逐批实现后再登记） */
+const IMPLEMENTATIONS = new Set([])
 
-const COPY_FILES = [
-  'types.ts',
-  'styles.ts',
-  'texts.ts',
-  'materialMeta.ts',
-]
+/**
+ * 生成骨架时只保留 Vue 侧的“公开契约”文件；框架无关辅助逻辑后续按批次
+ * 从 vue-ui 抽取到 @zengchaowu/shared，再由两端共享。
+ */
+const COPY_FILES = []
+
+const SKIP_FILE_RE = /\.(vue|spec|test)\.[^.]+$/
+
+function importsVue(file) {
+  if (!/\.(ts|tsx|js)$/.test(file)) return false
+  const code = readFileSync(file, 'utf8')
+  return /from\s+['"]vue['"]|@vue\//.test(code)
+}
+
+/** 递归复制组件目录内的辅助 ts/json/css（保留 types/、functions/、chips/ 等子目录） */
+function copyComponentFiles(srcDir, destDir) {
+  for (const entry of readdirSync(srcDir, { withFileTypes: true })) {
+    if (entry.name === 'index.ts') continue
+    if (SKIP_FILE_RE.test(entry.name)) continue
+    const src = join(srcDir, entry.name)
+    const dest = join(destDir, entry.name)
+    if (entry.isDirectory()) {
+      if (entry.name === 'composables') continue
+      ensureDir(dest)
+      copyComponentFiles(src, dest)
+      continue
+    }
+    if (!/\.(ts|tsx|js|json|css|d\.ts)$/.test(entry.name)) continue
+    // Vue 专属 composable / 注入逻辑不进 React 侧
+    if (importsVue(src)) continue
+    copyFileSync(src, dest)
+  }
+}
 
 function listVueComponents() {
   return readdirSync(vueComponents, { withFileTypes: true })
@@ -67,12 +94,24 @@ export default ${name}
 `
 }
 
+/** 读取 Vue 侧 story 的 meta title，保证 Storybook 分组一致 */
+function readVueStoryTitle(name) {
+  const dir = join(vueComponents, name)
+  if (!existsSync(dir)) return null
+  const file = readdirSync(dir).find((f) => f.endsWith('.stories.ts'))
+  if (!file) return null
+  const match = readFileSync(join(dir, file), 'utf8').match(/title:\s*['"]([^'"]+)['"]/)
+  return match ? match[1] : null
+}
+
 function stubStories(name) {
+  const fallback = `${name.startsWith('Tp') ? 'Tp' : name.startsWith('Page') ? 'Page' : 'Cw'}/${name}`
+  const title = readVueStoryTitle(name) ?? fallback
   return `import type { Meta, StoryObj } from '@storybook/react'
 import { ${name} } from './${name}'
 
 const meta: Meta<typeof ${name}> = {
-  title: '${name.startsWith('Tp') ? 'Tp' : name.startsWith('Page') ? 'Page' : 'Cw'}/${name}',
+  title: '${title}',
   component: ${name},
 }
 
@@ -80,9 +119,7 @@ export default meta
 type Story = StoryObj<typeof ${name}>
 
 export const Default: Story = {
-  args: {
-    children: '${name}',
-  },
+  args: {},
 }
 `
 }
@@ -143,7 +180,7 @@ function writeMainIndex(names) {
     '',
     '// ==================== Utils ====================',
     `export * from './utils/updateBrandColors'`,
-    `export * from './utils/cwRemSize'`,
+    `export * from '@zengchaowu/ui-shared/functions/ui/cwRemSize'`,
     `export {`,
     `  dispatchAppThemeChanged,`,
     `  isFinePointerPrimaryInput,`,
@@ -158,7 +195,7 @@ function writeMainIndex(names) {
     `  INTERACTIVE_FOCUS_CLASS,`,
     `  NATIVE_FOCUS_CLASS,`,
     `  withInteractiveFocus,`,
-    `} from './utils/focusStyles'`,
+    `} from '@zengchaowu/ui-shared/functions/ui/focusStyles'`,
     `export {`,
     `  CwPublicAssetBaseUrlContext,`,
     `  resolveDefaultPublicAssetBaseUrl,`,
@@ -177,10 +214,12 @@ function writeMainIndex(names) {
     `  APP_PAGE_FOOTER_SAFE_BOTTOM_CLASS,`,
     `  APP_PAGE_SCROLL_SAFE_BOTTOM_CLASS,`,
     `  APP_TABBAR_SAFE_BOTTOM_CLASS,`,
-    `} from './constants/appSafeAreaClasses'`,
+    `} from '@zengchaowu/ui-shared/constants/appSafeAreaClasses'`,
     `export {`,
     `  CW_OVERLAY_MODAL_Z_CLASS,`,
     `  CW_OVERLAY_TOAST_Z_CLASS,`,
+    `} from '@zengchaowu/ui-shared/constants/cwOverlayZIndex'`,
+    `export {`,
     `  bringOverlayHostToFront,`,
     `  scheduleBringOverlayHostToFront,`,
     `  CW_OVERLAY_LAYER_ATTR,`,

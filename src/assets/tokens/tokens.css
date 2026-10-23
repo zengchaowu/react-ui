@@ -94,14 +94,35 @@
   /** TpFabric 透明画布棋盘格底色与格块色 */
   --tp-fabric-editor-stage-bg: var(--bg-color-container);
   --tp-fabric-editor-stage-checker: var(--bg-color-component-hover);
-  /** 正文主色：对齐 VS Code editor.foreground（约 #141414） */
+  /** CwExcelEditor，对齐 WPS 表格 */
+  --cw-excel-bg-chrome: #E7F2E4;
+  --cw-excel-bg-header: #F4F7F2;
+  --cw-excel-bg-cell: #ffffff;
+  /** 单元格网格线（白底上需比页面 --border-color 略深，否则行间线几乎看不见） */
+  --cw-excel-border: #BFBFBF;
+  --cw-excel-text: #222222;
+  --cw-excel-text-muted: #808080;
+  --cw-excel-selection: #2B9A4B;
+  --cw-excel-selection-bg: #D9EED4;
+  --cw-excel-selection-text: #1B7A38;
+  --cw-excel-font-cell: SimSun, "宋体", "Songti SC", serif;
+  --cw-excel-font-ui: "Microsoft YaHei", "微软雅黑", sans-serif;
+  /** 正文主色：纯黑 */
   --text-color-primary: #000000;
+  /** 次级文案：对齐 Cursor `--cursor-text-secondary`（editor-foreground @ 74%） */
   --text-color-secondary: rgba(20, 20, 20, 0.74);
+  /** 代码工作区资源管理器 / 文档树默认字色（对齐 VS Code sideBar ≈ 74%） */
+  --text-color-explorer: rgba(20, 20, 20, 0.74);
+  /** 占位符：对齐 `--vscode-input-placeholderForeground` */
   --text-color-placeholder: rgba(20, 20, 20, 0.36);
   --text-color-disabled: rgba(20, 20, 20, 0.26);
   --text-color-anti: #ffffff;
-  /** 唯一描边色；控件、卡片、分割线、页面壳都用这个 */
+  /** 唯一描边色；控件、卡片、页面壳都用这个 */
   --border-color: #e7e7e7;
+  /** 列表行间分割线：浅于 --border-color，避免白底上像硬杠 */
+  --cell-underline-color: color-mix(in srgb, var(--text-color-primary) 6%, transparent);
+  /** 输入卡片等白底上需更易辨认的描边（仍基于 border-color，深浅主题自适应） */
+  --border-color-emphasis: color-mix(in srgb, var(--text-color-primary) 16%, var(--border-color));
   /** 键盘聚焦外圈：细线 + 品牌主色（替代旧 ring-2 + brand-color-focus） */
   --focus-ring: var(--brand-color-6);
   /** 圆角：控件 4、中等面 6、卡片/面板 8；大卡片不用 12+，避免过圆 */
@@ -124,7 +145,12 @@
   --font-size-body-md: 0.9375rem; /* 15 */
   --font-size-body-lg: 1rem; /* 16 */
   --font-size-body-xl: 1.125rem; /* 18 */
-  --line-height-composer: 1.5rem; /* 24 */
+  /** 默认正文字体：对齐 VS Code / Cursor（Windows 优先 Segoe WPC） */
+  --font-family: "Segoe WPC", "Segoe UI", sans-serif;
+  /** Composer / AI 对话行高：对齐 Cursor `--cursor-line-height-lg` */
+  --line-height-composer: 1.375rem; /* 22 */
+  /** 14px 正文字距：对齐 Cursor `--cursor-letter-spacing-lg` */
+  --letter-spacing-body: -0.15px;
   --line-height-compact: 1.125rem; /* 18 */
   --size-touch-target: 2.75rem; /* 44 */
   --size-tabbar-item: 3.25rem; /* 52 */
@@ -132,9 +158,10 @@
   --size-conversation-cell-min: 3.5rem; /* 56 */
   --size-overlay-icon: 1.125rem; /* 18 */
   --size-overlay-panel: 23.4375rem; /* 375 */
+  --size-overlay-chat-panel: 32rem; /* 512，左侧会话列 */
   --size-chip-label-max: 11.25rem; /* 180 */
   --size-chip-inline-max: 17.5rem; /* 280 */
-  --size-context-menu-min: 12.5rem; /* 200 */
+  --size-context-menu-min: 7.5rem; /* 120 */
   --size-pending-file-card: 6.75rem; /* 108 */
   --size-progress-hairline: 0.1875rem; /* 3 */
   --size-toast-min-h: 2rem; /* 32 */
@@ -149,6 +176,25 @@
   --size-hud-min-w: 7.5rem; /* 120 */
   --size-mention-panel-min: 12.5rem; /* 200 */
 
+  /** CwButton appearance 尺寸（icon / inline-* / dock / avatar） */
+  --cw-button-icon-size: 2rem;
+  --cw-button-inline-fixed-height: var(--cw-button-icon-size);
+  --cw-button-inline-gap: 0.375rem;
+  --cw-button-inline-padded-padding-y: 0.375rem;
+  --cw-button-inline-padded-padding-x: 0.25rem;
+  --cw-button-inline-padded-min-height: 0;
+  --cw-button-dock-height: 2.5rem;
+  --cw-button-dock-width: 2.5rem;
+
+  /** CwLoading inverse appearance */
+  --cw-loading-inverse-fg: var(--text-color-anti);
+
+  /** CwDataTable devtoolsNetwork appearance（Chrome Network 面板配色；深色见 DARK_OVERRIDES） */
+  --data-table-devtools-network-row-odd-bg: var(--bg-color-container);
+  --data-table-devtools-network-row-even-bg: #f5f7fa;
+  --data-table-devtools-network-header-bg: #f1f3f4;
+  --data-table-devtools-network-row-hover-bg: #e8eef5;
+
   /*
    * 层叠（z-index）：组件内禁止裸写数字 / z-10 / z-[100]；
    * 组件内仅用 var(--z-index-*)（Tailwind z-[var(--z-index-*)]）；禁止内联 number。
@@ -162,6 +208,8 @@
   --z-index-base: 0;
   --z-index-above: 1;
   --z-index-above-high: 2;
+  /** 组件内部再抬一级（同一 stacking context 内的线/文字/描边等局部叠放） */
+  --z-index-above-top: 3;
   --z-index-sticky: 10;
   --z-index-float: 20;
   --z-index-fixed-column-header: 30;
@@ -202,8 +250,8 @@
   --overlay-scrim-heavy: color-mix(in srgb, var(--scrim-base) 25%, transparent);
   --overlay-scrim-panel: color-mix(in srgb, var(--scrim-base) 45%, transparent);
   --overlay-scrim-dim: color-mix(in srgb, var(--scrim-base) 80%, transparent);
-  /** 全屏图片/附件预览底：浅色跟随页面底，深色在 theme-dark.css 覆盖为沉浸式压暗 */
-  --overlay-scrim-gallery: var(--bg-color-page);
+  /** 全屏图片/附件预览底：浅/深色均为沉浸式压暗（文件名等用 anti 字色） */
+  --overlay-scrim-gallery: color-mix(in srgb, var(--scrim-base) 88%, black);
 
   /* CwButton 交互底/描边（组件内勿用 brand-color-0~2 作 hover/active 底） */
   --button-neutral-solid-bg: var(--bg-color-secondarycomponent);
@@ -239,22 +287,24 @@
   --button-overlay-bg-disabled: transparent;
 
   /*
-   * IM / 聊天：会话侧栏、会话行、占位头像（CwChatConversationCell / 管理端 cwChatStyles）
+   * IM / 聊天：会话侧栏、会话行、占位头像（CwChatConversationCell 等）
    * 语义色均回指既有灰阶与品牌 token，便于主题一致
    *
-   * 浅色：会话列表白底；列表顶栏/底栏 Tab 为 secondarycontainer；消息区灰底、消息顶栏/输入白
+   * 浅色：PC 侧栏 / 会话列表 / 列表顶栏 / 消息区 / 消息顶栏与输入均为白底
    */
   --chat-conversation-list-bg: var(--chat-ding-sidebar-bg);
-  /** 会话列表顶栏 NavBar（非白，与底栏 Tabbar 同 chrome 色阶） */
-  --chat-conversation-list-navbar-bg: var(--bg-color-secondarycontainer);
-  --chat-message-area-bg: var(--bg-color-secondarycontainer);
-  /** IM 消息区顶栏 NavBar：白底，与下方灰底消息列表分层 */
+  /** 会话列表顶栏 NavBar（白底，与侧栏 / 会话头一致） */
+  --chat-conversation-list-navbar-bg: var(--bg-color-container);
+  --chat-message-area-bg: var(--bg-color-container);
+  /** IM 消息区顶栏 NavBar：白底 */
   --chat-navbar-bg: var(--bg-color-container);
   --chat-message-bubble-peer-bg: var(--bg-color-container);
   --chat-message-bubble-peer-ring: var(--overlay-scrim-subtle);
   /** 合并转发等卡片气泡：与消息区/弹窗底区分 */
   --chat-message-card-bg: var(--bg-color-container);
   --chat-message-bubble-own-bg: var(--success-color-3);
+  /** 工作区己方透明描边：介于 --border-color 与 --border-color-emphasis 之间 */
+  --chat-message-bubble-own-border: color-mix(in srgb, var(--text-color-primary) 6%, var(--border-color));
   --chat-message-bubble-media-muted-bg: var(--bg-color-secondarycontainer);
   --chat-message-bubble-progress-track: var(--overlay-scrim-table-edge);
   --chat-message-row-selected-bg: var(--overlay-scrim-faint);
@@ -322,8 +372,11 @@
   --composer-mobile-btn-width: 2.125rem;
   --composer-mobile-send-btn-width: 3rem;
 
-  /* Chat 壳层 chrome（PC 侧栏 + 移动底栏；浅色略灰于会话列表白底） */
-  --cw-chat-shell-chrome-bg: var(--bg-color-secondarycontainer);
+  /* 无边框窗口标题栏高度（CwWindowTitleBar fixed-height / flex-fill） */
+  --launcher-window-titlebar-height: 2.125rem;
+
+  /* Chat 壳层 chrome（PC 侧栏 + 移动底栏；浅色白底，与会话列表 / 会话头一致） */
+  --cw-chat-shell-chrome-bg: var(--bg-color-container);
   --cw-chat-shell-chrome-fg: var(--text-color-secondary);
   --cw-chat-shell-chrome-fg-hover: var(--text-color-primary);
   --cw-chat-shell-chrome-focus-ring: color-mix(in srgb, var(--brand-color-6) 45%, transparent);
@@ -379,6 +432,9 @@
   --gp-card-back-inset-border-casino: color-mix(in srgb, white 18%, #122d5c);
   --gp-action-primary-bg-casino: var(--warning-color-6);
 
+  /* Markdown 行内 `code` 背景：相对正文叠一层，随主题变深浅，勿写死浅色 hex */
+  --markdown-inline-code-bg: color-mix(in srgb, var(--text-color-primary) 6%, transparent);
+
   /* 富文本编辑器行内芯片（文件引用 / @人）默认底 */
   --rich-editor-inline-chip-bg: var(--brand-color-light-bg-1);
   /* 富文本编辑器选中芯片高亮 */
@@ -399,16 +455,23 @@
 
 @keyframes cw-voice-waveform-decorative {
   from {
-    height: 22%;
+    height: var(--cw-voice-waveform-min-height, 22%);
   }
   to {
-    height: 100%;
+    height: var(--cw-voice-waveform-max-height, 100%);
   }
 }
 
 .cw-voice-waveform-bar--decorative {
-  height: 55%;
+  height: calc(
+    (var(--cw-voice-waveform-min-height, 22%) + var(--cw-voice-waveform-max-height, 100%)) / 2
+  );
   animation: cw-voice-waveform-decorative 0.75s ease-in-out infinite alternate;
+}
+
+/** 列表型右键菜单最小宽度（不依赖 Tailwind JIT） */
+.cw-context-menu-panel {
+  min-width: var(--size-context-menu-min);
 }
 
 @keyframes cw-chat-inline-upload-indeterminate-slide {
@@ -417,6 +480,62 @@
   }
   to {
     transform: translateX(350%);
+  }
+}
+
+/** Agent 工具标题进行中：文字本身高光扫过（比 ::after 叠层更易辨认） */
+@keyframes cw-agent-tool-label-shimmer-text {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes cw-agent-tool-label-beam {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(380%);
+  }
+}
+
+.cw-agent-tool-shimmer-label {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.cw-agent-tool-shimmer-label--active {
+  background-image: linear-gradient(
+    90deg,
+    var(--text-color-disabled) 0%,
+    var(--text-color-disabled) 38%,
+    var(--text-color-placeholder) 50%,
+    var(--text-color-disabled) 62%,
+    var(--text-color-disabled) 100%
+  );
+  background-size: 220% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+  animation: cw-agent-tool-label-shimmer-text 1.55s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cw-agent-tool-shimmer-label--active {
+    animation: none;
+    background-image: none;
+    background-clip: border-box;
+    -webkit-background-clip: border-box;
+    color: var(--text-color-placeholder) !important;
+    -webkit-text-fill-color: var(--text-color-placeholder);
   }
 }
 
@@ -527,4 +646,22 @@
 .cw-inline-image-clip:has(::selection)::selection,
 .cw-inline-image-clip:has(*::selection) *::selection {
   background-color: transparent;
+}
+
+/**
+ * 左侧会话 Sheet 宽度（项目房间聊天列）。
+ * 不用 Tailwind 任意值：预编译 dist/tailwind.css 未含该类时会缩成内容宽。
+ */
+.cw-overlay-left-chat-sheet {
+  width: min(var(--size-overlay-chat-panel, 32rem), 92vw);
+  max-width: min(var(--size-overlay-chat-panel, 32rem), 92vw);
+  flex-shrink: 0;
+}
+
+html {
+  font-family: var(--font-family);
+  color: var(--text-color-primary);
+  /* 对齐 Cursor：`--cursor-font-smoothing-webkit: subpixel-antialiased` */
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
 }

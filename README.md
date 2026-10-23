@@ -15,7 +15,12 @@ React 一比一复刻 [`@zengchaowu/vue-ui`](../vue-ui) 的设计系统。组件
 
 ## 当前状态
 
-**所有组件已清空**，仅保留样式资产、工具函数与 overlay / safe-area 常量。后续通过 `pnpm scaffold` 从 vue-ui 重新同步目录骨架，再分批实现 React 组件。
+- **结构已对齐**：`pnpm scaffold` 已从 vue-ui 生成 **177 个**同名组件目录（`check:component-parity` 通过），每个目录当前为可编译的 React 桩。
+- **共享底座已就位**：框架无关的 UI 函数 / 常量抽到 `@zengchaowu/shared`，vue-ui 与 react-ui 均通过 re-export 引用同一份实现，避免双份维护：
+  - `functions/ui/cwRemSize`、`focusStyles`、`cwClearIconSize`、`mergeOverlayTailwindClass`、`fullscreenAttachmentPreview*Styles`
+  - `constants/appSafeAreaClasses`、`cwOverlayHeaderTitle`、`cwOverlayDialogSizePresets`、`cwOverlayZIndex`
+- **组件行为按批次移植**：每批需同步 `types / styles / texts / materialMeta` 与组件内的框架无关辅助函数；Vue composable 与 React hook 各自实现，底层纯逻辑继续下沉 shared。
+
 
 ## Vue → React 固定映射
 

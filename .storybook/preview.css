@@ -1,0 +1,24 @@
+/**
+ * Story 画布与 Storybook 主区域跟随语义 token（由 preview.ts 切换 data-theme）。
+ */
+html,
+body,
+#storybook-root,
+.sb-show-main,
+.sb-main-fullscreen,
+.sb-main-padded,
+.sb-main-centered {
+  background-color: var(--bg-color-page) !important;
+  color: var(--text-color-primary);
+}
+
+.sb-preview-root {
+  box-sizing: border-box;
+  min-height: 100%;
+  color: var(--text-color-primary);
+}
+
+.sb-main-padded .sb-preview-root {
+  margin: -1rem;
+  padding: 1rem;
+}

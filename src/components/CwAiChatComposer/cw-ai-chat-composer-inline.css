@@ -1,0 +1,51 @@
+/**
+ * narrow 未聚焦 inline：编辑区与图标同为 1.75rem 行高，文字/placeholder 在行内 flex 居中
+ *（避免 1.5rem 编辑盒几何居中 + baseline 导致视觉偏下）
+ */
+.cw-ai-chat-composer__editor--collapsed-inline {
+  display: flex;
+  align-items: center;
+}
+
+.cw-ai-chat-composer__editor--collapsed-inline > div {
+  width: 100%;
+  min-height: 0;
+  height: auto !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cw-ai-chat-composer__editor--collapsed-inline .ProseMirror {
+  flex: none !important;
+  max-height: var(--line-height-composer);
+  overflow: hidden;
+  line-height: var(--line-height-composer);
+  transform: translateY(calc(-1 * var(--composer-inline-text-nudge)));
+  /* 折叠空态先挡住系统选区；聚焦后此类会去掉，避免 Android 空选区手柄 */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.cw-ai-chat-composer__editor--collapsed-inline .ProseMirror p {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: inherit;
+}
+
+.cw-ai-chat-composer__editor--collapsed-inline
+  .ProseMirror
+  p.is-editor-empty:first-child {
+  display: flex;
+  align-items: center;
+  min-height: var(--line-height-composer);
+  width: 100%;
+}
+
+.cw-ai-chat-composer__editor--collapsed-inline
+  .ProseMirror
+  p.is-editor-empty:first-child::before {
+  float: none !important;
+  height: auto !important;
+  line-height: inherit;
+}

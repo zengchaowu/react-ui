@@ -1,0 +1,90 @@
+.cw-row {
+  container-type: inline-size;
+  container-name: cw-row;
+  width: 100%;
+  min-width: 0;
+}
+
+/*
+ * margin/left/right/position 默认值写在自定义属性上（禁止 var(..., fallback)）。
+ * 未由 buildColInlineStyle 注入时保持初始布局，避免未定义 var 使整条声明失效。
+ */
+.cw-col {
+  --xs-margin-left: 0;
+  --xs-left: auto;
+  --xs-right: auto;
+  --xs-position: static;
+  --sm-margin-left: 0;
+  --sm-left: auto;
+  --sm-right: auto;
+  --sm-position: static;
+  --md-margin-left: 0;
+  --md-left: auto;
+  --md-right: auto;
+  --md-position: static;
+  --lg-margin-left: 0;
+  --lg-left: auto;
+  --lg-right: auto;
+  --lg-position: static;
+  --xl-margin-left: 0;
+  --xl-left: auto;
+  --xl-right: auto;
+  --xl-position: static;
+
+  flex: 0 0 var(--xs-width);
+  max-width: var(--xs-width);
+  width: var(--xs-width);
+  margin-left: var(--xs-margin-left);
+  left: var(--xs-left);
+  right: var(--xs-right);
+  position: var(--xs-position);
+}
+
+/* 阈值与 CwGrid CW_GRID_CONTAINER_MIN_WIDTH 一致；仅直接 Row+Col 时生效 */
+@container cw-row (min-width: 400px) {
+  .cw-row .cw-col {
+    flex: 0 0 var(--sm-width);
+    max-width: var(--sm-width);
+    width: var(--sm-width);
+    margin-left: var(--sm-margin-left);
+    left: var(--sm-left);
+    right: var(--sm-right);
+    position: var(--sm-position);
+  }
+}
+
+@container cw-row (min-width: 480px) {
+  .cw-row .cw-col {
+    flex: 0 0 var(--md-width);
+    max-width: var(--md-width);
+    width: var(--md-width);
+    margin-left: var(--md-margin-left);
+    left: var(--md-left);
+    right: var(--md-right);
+    position: var(--md-position);
+  }
+}
+
+@container cw-row (min-width: 1024px) {
+  .cw-row .cw-col {
+    flex: 0 0 var(--lg-width);
+    max-width: var(--lg-width);
+    width: var(--lg-width);
+    margin-left: var(--lg-margin-left);
+    left: var(--lg-left);
+    right: var(--lg-right);
+    position: var(--lg-position);
+  }
+}
+
+@container cw-row (min-width: 1280px) {
+  .cw-row .cw-col {
+    flex: 0 0 var(--xl-width);
+    max-width: var(--xl-width);
+    width: var(--xl-width);
+    margin-left: var(--xl-margin-left);
+    left: var(--xl-left);
+    right: var(--xl-right);
+    position: var(--xl-position);
+  }
+}

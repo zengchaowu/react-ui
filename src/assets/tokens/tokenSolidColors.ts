@@ -15,6 +15,9 @@ export const tokenSolidColors = {
   textColorAnti: '#FFFFFF',
   /** 取色器无法解析时的占位灰 */
   textColorMuted: '#888888',
+  /** 文档（PDF / PPTX）默认墨色与线条色：会写回文件，必须保持固定 hex */
+  docInk: '#222222',
+  docLine: '#666666',
   brandColor6: '#0077FF',
   /** 画布框选区域填充（Fabric 无法用 CSS var） */
   brandColor6SelectionFill: '#0077FF24',

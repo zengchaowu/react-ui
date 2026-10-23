@@ -1,5 +1,5 @@
 /**
- * 深色主题：覆盖 :root 全部语义 token（294 项）。
+ * 深色主题：覆盖 :root 全部语义 token（316 项）。
  * 与浅色相同者显式继承 :root 字面量；差异项见 scripts/sync-theme-dark.mjs → DARK_OVERRIDES。
  * 生成：pnpm --filter @zengchaowu/vue-ui run sync:theme-dark
  */
@@ -69,9 +69,9 @@
   --brand-color-light-bg-2: var(--brand-color-0);
   --brand-color-light-hover: var(--brand-color-2);
   --brand-color-special: var(--brand-color-6);
-  --error-color-0: #FDF6F5;
-  --error-color-1: #FFF0ED;
-  --error-color-2: #FFD8D2;
+  --error-color-0: color-mix(in srgb, var(--error-color-6) 8%, transparent);
+  --error-color-1: color-mix(in srgb, var(--error-color-6) 14%, transparent);
+  --error-color-2: color-mix(in srgb, var(--error-color-6) 22%, transparent);
   --error-color-3: #FFB9B0;
   --error-color-4: #FF9487;
   --error-color-5: #F6675C;
@@ -84,9 +84,9 @@
   --error-color-light: var(--error-color-1);
   --error-color-light-hover: var(--error-color-2);
   --error-color-special: var(--error-color-6);
-  --success-color-0: #F5FBF8;
-  --success-color-1: #EBF9EF;
-  --success-color-2: #CEF3D8;
+  --success-color-0: color-mix(in srgb, var(--success-color-6) 8%, transparent);
+  --success-color-1: color-mix(in srgb, var(--success-color-6) 14%, transparent);
+  --success-color-2: color-mix(in srgb, var(--success-color-6) 22%, transparent);
   --success-color-3: #A4E4BC;
   --success-color-4: #85D3A8;
   --success-color-5: #52C08B;
@@ -99,9 +99,9 @@
   --success-color-light: var(--success-color-1);
   --success-color-light-hover: var(--success-color-2);
   --success-color-special: var(--success-color-6);
-  --warning-color-0: #FFF8F3;
-  --warning-color-1: #FEF1E7;
-  --warning-color-2: #FFE1C8;
+  --warning-color-0: color-mix(in srgb, var(--warning-color-6) 8%, transparent);
+  --warning-color-1: color-mix(in srgb, var(--warning-color-6) 14%, transparent);
+  --warning-color-2: color-mix(in srgb, var(--warning-color-6) 22%, transparent);
   --warning-color-3: #FCC89E;
   --warning-color-4: #FBAD6E;
   --warning-color-5: #F9913D;
@@ -175,6 +175,7 @@
   --chat-message-area-bg: var(--bg-color-page);
   --chat-message-bubble-media-muted-bg: var(--bg-color-secondarycomponent);
   --chat-message-bubble-own-bg: color-mix(in srgb, var(--success-color-6) 28%, var(--bg-color-component));
+  --chat-message-bubble-own-border: color-mix(in srgb, var(--text-color-primary) 6%, var(--border-color));
   --chat-message-bubble-peer-bg: var(--bg-color-container);
   --chat-message-bubble-peer-ring: color-mix(in srgb, var(--text-color-anti) 6%, transparent);
   --chat-message-bubble-progress-track: color-mix(in srgb, var(--text-color-anti) 12%, transparent);
@@ -226,7 +227,7 @@
   --font-size-caption: 0.75rem;
   --font-size-xs: 0.625rem;
   --line-height-compact: 1.125rem;
-  --line-height-composer: 1.5rem;
+  --line-height-composer: 1.375rem;
   --mac-traffic-close: #ff5f56;
   --mac-traffic-icon-close: rgba(0, 0, 0, 0.55);
   --mac-traffic-icon-maximize: rgba(0, 0, 0, 0.55);
@@ -250,7 +251,7 @@
   --size-chat-media-bubble-max: 18.75rem;
   --size-chip-inline-max: 17.5rem;
   --size-chip-label-max: 11.25rem;
-  --size-context-menu-min: 12.5rem;
+  --size-context-menu-min: 7.5rem;
   --size-conversation-cell-min: 3.5rem;
   --size-hud-min-w: 7.5rem;
   --size-mention-panel-min: 12.5rem;
@@ -260,6 +261,7 @@
   --size-message-wallet-card-height: 5.25rem;
   --size-message-wallet-card-icon: 2.25rem;
   --size-message-wallet-card-width: 15rem;
+  --size-overlay-chat-panel: 32rem;
   --size-overlay-icon: 1.125rem;
   --size-overlay-panel: 23.4375rem;
   --size-pending-file-card: 6.75rem;
@@ -271,6 +273,7 @@
   --size-touch-target: 2.75rem;
   --z-index-above: 1;
   --z-index-above-high: 2;
+  --z-index-above-top: 3;
   --z-index-base: 0;
   --z-index-below: -1;
   --z-index-fixed-column-header: 30;
@@ -282,6 +285,8 @@
   --z-index-sticky: 10;
   --z-index-toast: 200;
 
+  --border-color-emphasis: color-mix(in srgb, var(--text-color-primary) 16%, var(--border-color));
+  --cell-underline-color: color-mix(in srgb, var(--text-color-primary) 12%, transparent);
   --cw-button-dock-height: 2.5rem;
   --cw-button-dock-width: 2.5rem;
   --cw-button-icon-size: 2rem;
@@ -290,10 +295,23 @@
   --cw-button-inline-padded-min-height: 0;
   --cw-button-inline-padded-padding-x: 0.25rem;
   --cw-button-inline-padded-padding-y: 0.375rem;
+  --cw-excel-bg-cell: #1A1F1C;
+  --cw-excel-bg-chrome: #1C2820;
+  --cw-excel-bg-header: #243028;
+  --cw-excel-border: #3A463E;
+  --cw-excel-font-cell: SimSun, "宋体", "Songti SC", serif;
+  --cw-excel-font-ui: "Microsoft YaHei", "微软雅黑", sans-serif;
+  --cw-excel-selection: #3CB371;
+  --cw-excel-selection-bg: #1E3A28;
+  --cw-excel-selection-text: #8FD9A8;
+  --cw-excel-text: rgba(255, 255, 255, 90%);
+  --cw-excel-text-muted: rgba(255, 255, 255, 55%);
   --cw-loading-inverse-fg: var(--text-color-anti);
-  --data-table-devtools-network-header-bg: #f1f3f4;
-  --data-table-devtools-network-row-even-bg: #f5f7fa;
-  --data-table-devtools-network-row-hover-bg: #e8eef5;
+  --data-table-devtools-network-header-bg: var(--bg-color-secondarycontainer);
+  --data-table-devtools-network-row-even-bg: var(--bg-color-component);
+  --data-table-devtools-network-row-hover-bg: color-mix(in srgb, var(--brand-color-6) 14%, var(--bg-color-container));
+  --data-table-devtools-network-row-odd-bg: var(--bg-color-container);
+  --font-family: "Segoe WPC", "Segoe UI", sans-serif;
   --gp-action-primary-bg-casino: var(--warning-color-6);
   --gp-card-back-bg-casino: #1a4080;
   --gp-card-back-bg-plain: color-mix( in srgb, var(--bg-color-secondarycontainer) 72%, var(--brand-color-6) 10% );
@@ -311,6 +329,10 @@
   --gp-card-ink-plain: var(--text-color-primary);
   --gp-table-bg-casino: var(--success-color-7);
   --gp-table-bg-plain: color-mix(in srgb, var(--bg-color-page) 82%, var(--success-color-3));
+  --launcher-window-titlebar-height: 2.125rem;
+  --letter-spacing-body: -0.15px;
+  --markdown-inline-code-bg: color-mix(in srgb, var(--text-color-anti) 12%, transparent);
+  --text-color-explorer: rgba(255, 255, 255, 72%);
   --tp-fabric-editor-stage-bg: #2a2a2a;
   --tp-fabric-editor-stage-checker: #333333;
 }

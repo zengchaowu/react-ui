@@ -1,0 +1,143 @@
+/**
+ * CwExcelEditor 网格：底层格只服务布局与命中，线统一在此绘制。
+ * 单元格角色见 [data-excel-grid]（plain | covered | axis）。
+ */
+
+/* 只画格子。滚动条滑块也是 .group > div，不能被刷成白底。 */
+.cw-excel-editor .cw-data-table .group > div:has([data-excel-grid]) {
+  position: relative;
+  border-bottom: 0;
+  background: var(--cw-excel-bg-cell);
+}
+
+/* 普通格：右线 + 行底线（::after 画在 host 上；内容层不铺默认白底以免挡住底线） */
+.cw-excel-editor .cw-data-table .group > div:has([data-excel-grid='plain']) {
+  border-right: 1px solid var(--cw-excel-border);
+}
+
+/* 格子自带边框时，这条默认细线让开，黑线画在格子内侧。 */
+.cw-excel-editor .cw-data-table .group > div:has([data-excel-br]) {
+  border-right-color: transparent;
+}
+
+.cw-excel-editor .cw-data-table .cw-div__viewport .group:not(.border-b-0) > div:has([data-excel-grid='plain'])::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--cw-excel-border);
+  pointer-events: none;
+  z-index: var(--z-index-above);
+}
+
+.cw-excel-editor .cw-data-table .cw-div__viewport .group:not(.border-b-0) > div:has([data-excel-bb])::after {
+  background: transparent;
+}
+
+/* 合并占位 /  padding 列：不画线，避免与 merge overlay 叠线 */
+.cw-excel-editor .cw-data-table .group > div:has([data-excel-grid='covered']) {
+  border-right-color: transparent;
+}
+
+.cw-excel-editor .cw-data-table .group > div:has([data-excel-grid='covered'])::after {
+  content: none;
+  display: none;
+}
+
+/* 行列头 */
+.cw-excel-editor .cw-data-table .group > div:has([data-excel-grid='axis']) {
+  border-right: 1px solid var(--cw-excel-border);
+  background: var(--cw-excel-bg-header);
+}
+
+.cw-excel-editor .cw-data-table .cw-div__viewport .group:not(.border-b-0) > div:has([data-excel-grid='axis'])::after {
+  content: '';
+  position: absolute;
+  /* 横向滚动后冻结列的阴影也画在 ::after 上，会把这条底线收成几像素。 */
+  top: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: 1px;
+  background: var(--cw-excel-border);
+  pointer-events: none;
+  z-index: var(--z-index-above);
+}
+
+.cw-excel-editor .cw-data-table > div:first-child .group > div::after {
+  content: none;
+  display: none;
+}
+
+/*
+ * 合并块外廓：与 plain 格相同，只画东、南两边（border-right + ::after 底线）。
+ * 北、西由上一行底线 / 左列 border-right 负责，避免相邻合并块叠出粗线。
+ */
+.cw-excel-editor .cw-excel-merge-cell {
+  z-index: var(--z-index-above-high);
+  border: 0;
+  border-right: 1px solid var(--cw-excel-border);
+}
+
+/* 单元格自定义右边线：inline 样式只在有自定义边框时覆盖这两个默认值 */
+.cw-excel-editor {
+  --cw-excel-br: var(--text-color-primary);
+  --cw-excel-br-width: 1px;
+}
+
+.cw-excel-editor .cw-excel-merge-cell[data-excel-br] {
+  border-right-color: var(--cw-excel-br);
+  border-right-width: var(--cw-excel-br-width);
+}
+
+.cw-excel-editor .cw-excel-merge-cell[data-excel-bb]:not(.cw-excel-merge-selected)::after {
+  box-shadow: none;
+}
+
+/* 遮住合并区内底层网格，避免亚像素错位漏线。必须低于文字和输入框。 */
+.cw-excel-editor .cw-excel-merge-cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  pointer-events: none;
+  z-index: var(--z-index-base);
+}
+
+.cw-excel-editor .cw-excel-merge-cell > * {
+  position: relative;
+  z-index: var(--z-index-above);
+}
+
+/* 子元素的 position 会盖掉 absolute，白底也会盖住内阴影。边框层要铺满合并块，并压在白底上。 */
+.cw-excel-editor .cw-excel-merge-cell > .cw-excel-merge-border {
+  position: absolute;
+  z-index: var(--z-index-above-top);
+}
+
+/* 底边线和选中框都画在文字上面。outline 会被合并块的 overflow:hidden 裁掉。 */
+.cw-excel-editor .cw-excel-merge-cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-index-above-high);
+  box-shadow: inset 0 -1px 0 var(--cw-excel-border);
+}
+
+.cw-excel-editor .cw-excel-merge-cell.cw-excel-merge-selected::after {
+  z-index: var(--z-index-above-top);
+  box-shadow: inset 0 0 0 2px var(--cw-excel-selection);
+}
+
+.cw-excel-editor [data-excel-grid='plain'][data-excel-on='1']:is([data-excel-br], [data-excel-bb])::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 2px var(--cw-excel-selection);
+  pointer-events: none;
+  z-index: var(--z-index-above-top);
+}

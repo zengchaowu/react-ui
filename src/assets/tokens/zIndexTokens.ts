@@ -7,6 +7,7 @@ export const Z_INDEX_TOKEN = {
   base: 0,
   above: 1,
   aboveHigh: 2,
+  aboveTop: 3,
   sticky: 10,
   float: 20,
   fixedColumnHeader: 30,

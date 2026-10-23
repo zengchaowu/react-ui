@@ -1,0 +1,21 @@
+/* TpFabric 透明画布棋盘格（浅色对比度低于旧版灰格） */
+.tp-fabric-editor-stage {
+  background-color: var(--tp-fabric-editor-stage-bg);
+  background-image:
+    linear-gradient(45deg, var(--tp-fabric-editor-stage-checker) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--tp-fabric-editor-stage-checker) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--tp-fabric-editor-stage-checker) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--tp-fabric-editor-stage-checker) 75%);
+  background-size: 16px 16px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0;
+}
+
+/* Fabric 容器与 canvas 元素不得遮挡宿主棋盘格 */
+.tp-fabric-editor-stage .canvas-container,
+.tp-fabric-editor-stage .canvas-container canvas {
+  background-color: transparent;
+}

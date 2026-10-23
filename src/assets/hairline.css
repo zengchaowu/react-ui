@@ -9,6 +9,7 @@
  *   ✅ hairline-border-t
  *   ❌ border-t border-[var(--border-color)]  （1px，偏粗）
  *   ❌ 用相邻面的底色差冒充分割线
+ * 例外：CwDataTable 等密集网格仍用 1px border（0.5px 在白底上常看不见）
  * 示例：CwDynamicSheet footer（hairline-border-t）。CwDynamicDialog 底栏按钮区不使用顶部分割线。
  * ============================================ */
 
@@ -65,4 +66,9 @@
 }
 .hairline-border-l-0 {
   border-left-width: 0 !important;
+}
+
+/* CwCell 行间线：比控件描边更淡 */
+.cw-cell-underline.hairline-border-b {
+  border-bottom-color: var(--cell-underline-color);
 }

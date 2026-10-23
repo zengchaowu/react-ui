@@ -1,0 +1,29 @@
+.cw-input--plain > div {
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  min-height: 0;
+  height: auto;
+  overflow: visible;
+  align-items: center;
+}
+
+.cw-input--plain input {
+  box-sizing: border-box;
+  height: 1lh;
+  min-height: 0;
+  max-height: 1lh;
+  padding: 0;
+  margin: 0;
+  border: 0 !important;
+  outline: none;
+  box-shadow: none !important;
+  background: transparent;
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  vertical-align: top;
+  -webkit-appearance: none;
+  appearance: none;
+}

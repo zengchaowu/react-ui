@@ -1,9 +1,9 @@
 /**
- * @import 可由两种方式维护：
- * 1) 自动：在 packages/vue-ui 下配置 .env.dev / .env.prod（ASSET_API_PUBLIC_BASE_URL、
- *    ASSET_PROJECT_KEY 或 ASSET_CSS_URL），执行 pnpm run sync-asset 会拉取平台 CSS 并下载字体。
- * 2) 手动：复制在线 asset.css 链接，整段替换下方 @import。
+ * @import can be maintained in two ways:
+ * 1) Auto: set ASSET_API_PUBLIC_BASE_URL + ASSET_PROJECT_KEY in .env.
+ *    Put project-specific SVGs in local/ and ASSET_TOKEN to upload them.
+ * 2) Manual: paste asset.css URL into the @import below.
  *
- * 构建前 prebuild 会执行 sync-asset（未配置 ASSET_* 时仅用本文件已有 @import）。
+ * @zengchaowu/vite-plugin-asset (and pnpm sync-asset) pull published CSS/fonts.
  */
-@import url('https://api.zengchaowu.com/asset/p/zengchaowu/asset.css');
+@import url('https://api.zengchaowu.com/asset/p/aa1cc3f63d6248b98c5f0ce9be547a91/asset.css');
