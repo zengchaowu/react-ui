@@ -64,3 +64,12 @@ export interface CwSwiperTexts {
 }
 
 export type { CwInfiniteLoopScrollStyles }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwSwiperEmits {
+  /** 滚动事件 */
+  scroll: [scrollLeft: number]
+  /** 可见范围变化事件 */
+  'visible-change': [startIndex: number, endIndex: number]
+}

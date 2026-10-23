@@ -20,3 +20,8 @@ export function useCwRowGutter(): number | undefined {
 export function useCwGridMeasuredLayout(): CwGridMeasuredLayout | undefined {
   return useContext(CwGridMeasuredLayoutContext)
 }
+
+/** Vue InjectionKey 兼容别名（React 侧直接当 Context 使用） */
+export const cwRowGutterKey = CwRowGutterContext
+/** Vue InjectionKey 兼容别名（React 侧直接当 Context 使用） */
+export const cwGridMeasuredLayoutKey = CwGridMeasuredLayoutContext

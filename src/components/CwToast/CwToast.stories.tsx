@@ -130,6 +130,7 @@ export const Default: Story = {
     type: 'text',
     position: 'top',
   },
+  render: (args) => <CwToast {...args} />,
 }
 
 export const Success: Story = {
@@ -139,6 +140,7 @@ export const Success: Story = {
     type: 'success',
     position: 'middle',
   },
+  render: (args) => <CwToast {...args} />,
 }
 
 /** 长无空格串应在 max-width 内自动换行，盒子随内容增高，不应横向溢出或截断文案 */
@@ -150,6 +152,7 @@ export const LongMessage: Story = {
     type: 'success',
     position: 'top',
   },
+  render: (args) => <CwToast {...args} />,
 }
 
 export const Fail: Story = {
@@ -159,6 +162,7 @@ export const Fail: Story = {
     type: 'fail',
     position: 'middle',
   },
+  render: (args) => <CwToast {...args} />,
 }
 
 export const Loading: Story = {
@@ -168,6 +172,7 @@ export const Loading: Story = {
     type: 'loading',
     position: 'middle',
   },
+  render: (args) => <CwToast {...args} />,
 }
 
 export const ImperativeAPI: Story = {

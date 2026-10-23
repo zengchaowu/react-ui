@@ -49,3 +49,12 @@ export interface CwMessageInputMentionSheetProps {
 
 export type CwMessageInputMentionSheetComponentProps = CwMessageInputMentionSheetProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange' | 'onSelect' | 'onDismiss'>
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwMessageInputMentionSheetEmits {
+  (e: 'update:modelValue', value: boolean): void
+  (e: 'update:searchQuery', value: string): void
+  (e: 'select', item: CwMessageInputMentionItem): void
+  (e: 'dismiss'): void
+}

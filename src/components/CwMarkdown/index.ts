@@ -8,6 +8,10 @@ export {
   CwMarkdownCodeBlockExtensionsContext,
   CwMarkdownInlineImageExtensionsContext,
   CwMarkdownContentPreprocessorsContext,
+  CwMarkdownContextKey,
+  CwMarkdownCodeBlockExtensionsKey,
+  CwMarkdownInlineImageExtensionsKey,
+  CwMarkdownContentPreprocessorsKey,
 } from './context'
 export type * from './types'
 export { applyCwMarkdownContentPreprocessors } from './functions'

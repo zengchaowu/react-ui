@@ -5,7 +5,7 @@ import CwExcelEditor from './CwExcelEditor'
 import type { CwExcelEditorHandle } from './types'
 import { defaultTexts } from './texts'
 import type { CwExcelCellValue, CwExcelSource, CwExcelWorkbook } from './types'
-import sampleDataCsv from '../../storybook/assets/tp-office-preview/sample-data.csv?url'
+import sampleDataCsv from '../../storybook/assets/cw-excel-editor/sample-data.csv?url'
 
 const meta: Meta<typeof CwExcelEditor> = {
   title: '1. Components/Display/CwExcelEditor',

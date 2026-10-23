@@ -20,6 +20,30 @@ const explorerSections: CwSidebarNavSection[] = [
 const meta: Meta<typeof CwSidebarNav> = {
   title: '1. Components/Navigation/CwSidebarNav',
   component: CwSidebarNav,
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Explorer-style sidebar navigation: labeled sections + flat icon rows on CwButton list-item. Pair with CwNavigationTree for hierarchical menus.',
+      },
+    },
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    value: { control: { type: 'text' }, description: '当前选中项 key' },
+    appearance: {
+      control: { type: 'select' },
+      options: ['default', 'explorer'],
+      description: '外观',
+    },
+    iconSize: { control: { type: 'number' }, description: '图标尺寸 (rem)' },
+    iconPrefix: { control: { type: 'text' }, description: '图标前缀' },
+    ariaLabel: { control: { type: 'text' }, description: '无障碍标签' },
+    sections: { control: { type: 'object' }, description: '分组导航数据' },
+    items: { control: false },
+    texts: { control: false },
+  },
 }
 
 export default meta

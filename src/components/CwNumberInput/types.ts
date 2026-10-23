@@ -102,3 +102,20 @@ export interface CwNumberInputStyles {
 }
 
 export interface CwNumberInputTexts extends CwInputTexts {}
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwNumberInputEmits {
+  /** 值更新事件 */
+  'update:modelValue': [value: number | string]
+  /** 输入事件 */
+  'input': [value: number | string]
+  /** 变化事件 */
+  'change': [value: number | string]
+  /** 聚焦事件 */
+  'focus': [event: FocusEvent]
+  /** 失焦事件 */
+  'blur': [event: FocusEvent]
+  /** 清除事件 */
+  'clear': []
+}

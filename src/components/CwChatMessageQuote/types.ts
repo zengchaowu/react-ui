@@ -11,3 +11,10 @@ export interface CwChatMessageQuoteProps
   onDismiss?: () => void
   onNavigate?: () => void
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwChatMessageQuoteEmits {
+  dismiss: []
+  navigate: []
+}

@@ -241,6 +241,15 @@ function handleDocumentKeyDown(event: KeyboardEvent): void {
   top.onDismiss()
 }
 
+/** 关闭栈顶浮层（Esc / Android 返回键共用）。toast/hud 不在 dismiss 栈内。 */
+export function tryDismissTopOverlayLayer(): boolean {
+  const top = findTopActiveOverlayLayer()
+  if (!top) return false
+  if (top.dismissOnEscape?.() === false) return false
+  top.onDismiss()
+  return true
+}
+
 function ensureDocumentListeners(): void {
   if (documentListenerAttached || typeof document === 'undefined') return
   // capture：Dialog/Sheet 内容区有 @click.stop，bubble 到不了 document；须在捕获阶段 dismiss 上层 Popup/Tooltip

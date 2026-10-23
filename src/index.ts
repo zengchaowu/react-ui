@@ -193,17 +193,100 @@ export * from './components/CwWaterfall'
 export * from './components/CwWindowTitleBar'
 export * from './components/CwWorkbenchAiPanel'
 
+// ==================== Hooks ====================
+export * from './hooks'
+
 // ==================== Utils ====================
 export * from './utils/updateBrandColors'
 export * from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
 export {
+  applyEffectiveAppTheme,
+  bootstrapAppearanceTheme,
   dispatchAppThemeChanged,
   isFinePointerPrimaryInput,
   readAppTheme,
   useAppThemeTick,
   useDelayedTrue,
   ZCW_APP_THEME_CHANGED_EVENT,
+  type ApplyEffectiveAppThemeOptions,
+  type BootstrapAppearanceThemeOptions,
 } from './utils/appThemeDom'
+export {
+  showApiError,
+  showConfirm,
+  showMessage,
+  type AppMessageToastType,
+} from './utils/appMessage'
+export {
+  CW_OVERLAY_HEADER_BAR_CLASS,
+  CW_OVERLAY_HEADER_TITLE_CLASS,
+  CW_OVERLAY_HEADER_TITLE_IN_BAR_CLASS,
+  CW_OVERLAY_DIALOG_FOOTER_ROW_CLASS,
+  CW_OVERLAY_CONTENT_BODY_NO_PADDING_CLASS,
+  CW_OVERLAY_RIGHT_PANEL_SHEET_CONTENT_RIGHT_CLASS,
+  CW_OVERLAY_RIGHT_PANEL_SHEET_BODY_CLASS,
+  CW_OVERLAY_FULLSCREEN_SHEET_CONTENT_BOTTOM_CLASS,
+  CW_OVERLAY_FULLSCREEN_SHEET_BODY_CLASS,
+  CW_OVERLAY_SHEET_BOTTOM_ROUNDED_CONTENT_CLASS,
+} from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
+export {
+  CW_OVERLAY_DIALOG_HOST_CLASS,
+  CW_OVERLAY_DIALOG_SURFACE_CLASS,
+  CW_OVERLAY_DIALOG_CONTENT_SURFACE_CLASS,
+  CW_OVERLAY_DIALOG_DEFAULT_CHROME_CLASS,
+  buildOverlayDialogContentClass,
+  resolveResponsiveOverlayDialogConfig,
+  type OverlayDialogChrome,
+} from './constants/cwOverlayDialogShell'
+export {
+  CW_ADMIN_OVERLAY_DIALOG_CONTENT_BY_PRESET,
+  type CwAdminOverlayDialogSizePreset,
+} from '@zengchaowu/ui-shared/constants/cwOverlayDialogSizePresets'
+export { openResponsiveOverlayDialog } from './lib/openResponsiveOverlayDialog'
+export type { OpenResponsiveOverlayDialogOptions } from './lib/openResponsiveOverlayDialog'
+export {
+  overlayDialogCloseButtonClass,
+  overlayPreviewCloseButtonClass,
+  overlayPreviewDownloadButtonClass,
+  CW_OVERLAY_ICON_BUTTON_APPEARANCE,
+  CW_OVERLAY_ICON_CLOSE_ICON_CLASS,
+  CW_OVERLAY_ICON_CLOSE_SIZE,
+} from './utils/overlayIconCloseButton'
+export {
+  CW_INLINE_EMOJI_IMG_CLASS,
+  splitTextToEmojiParts,
+  emojiToEmojioneUnifiedKey,
+  emojionePngUrlForUnifiedKey,
+  getEmojionePngUrl,
+  resolveEmojiPickerItems,
+  hasEmojioneAsset,
+  type EmojiTextPart,
+} from './utils/emojioneEmoji'
+export {
+  bindDeferredEmojiImages,
+  CW_CONVERSATION_LIST_EMOJI_ROOT_MARGIN,
+  CW_DEFERRED_EMOJI_IMG_SELECTOR,
+} from './utils/bindDeferredEmojiImages'
+export type { BindDeferredEmojiImagesOptions } from './utils/bindDeferredEmojiImages'
+export {
+  copyImageToClipboard,
+  fetchImageBlob,
+  resolveAttachmentPreviewActionSource,
+  resolveAttachmentPreviewDownloadUrl,
+  suggestImageDownloadFilename,
+  type AttachmentPreviewActionSource,
+} from './utils/attachmentPreviewActions'
+export {
+  resolveAttachmentGalleryDownloadSource,
+  resolveAttachmentGallerySourceIndex,
+  triggerAttachmentGalleryDownload,
+  type AttachmentGalleryDownloadSource,
+} from './utils/attachmentGalleryActions'
+export { clearDocumentSelection } from '@zengchaowu/shared/functions/dom/domDocumentSelection'
+export {
+  bootstrapVirtualKeyboardInsets,
+  syncVirtualKeyboardOpenState,
+} from './lib/virtualKeyboard'
 export {
   FORM_CONTROL_FOCUS_CLASS,
   FOCUS_VISIBLE_INTERACTIVE_CLASS,
@@ -213,12 +296,16 @@ export {
 } from '@zengchaowu/ui-shared/functions/ui/focusStyles'
 export {
   CwPublicAssetBaseUrlContext,
+  CwPublicAssetBaseUrlKey,
   resolveDefaultPublicAssetBaseUrl,
   usePublicAssetBaseUrl,
 } from './utils/publicAssetBaseUrl'
 export {
   APP_CHROME_SAFE_BOTTOM_CLASS,
   APP_CHROME_SAFE_TOP_CLASS,
+  APP_OVERLAY_PREVIEW_CLOSE_POS_CLASS,
+  APP_OVERLAY_PREVIEW_DOWNLOAD_POS_CLASS,
+  APP_OVERLAY_PREVIEW_INDEX_POS_CLASS,
   APP_OVERLAY_SAFE_BOTTOM_CLASS,
   APP_OVERLAY_SAFE_FOOTER_BOTTOM_CLASS,
   APP_OVERLAY_SAFE_LEFT_CLASS,
@@ -231,7 +318,11 @@ export {
   APP_TABBAR_SAFE_BOTTOM_CLASS,
 } from '@zengchaowu/ui-shared/constants/appSafeAreaClasses'
 export { CW_OVERLAY_MODAL_Z_CLASS, CW_OVERLAY_TOAST_Z_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayZIndex'
-export { bringOverlayHostToFront, scheduleBringOverlayHostToFront, CW_OVERLAY_LAYER_ATTR, CW_OVERLAY_LAYER_ID_ATTR, CW_OVERLAY_ACTIVE_ATTR } from './constants/cwOverlayStack'
+export { bringOverlayHostToFront, scheduleBringOverlayHostToFront, CW_OVERLAY_LAYER_ATTR, CW_OVERLAY_LAYER_ID_ATTR, CW_OVERLAY_ACTIVE_ATTR, tryDismissTopOverlayLayer } from './constants/cwOverlayStack'
+export {
+  registerCwBackHandler,
+  handleCwNativeBackPress,
+} from './constants/cwBackHandlerStack'
 export {
   acquireOverlayBodyScrollLock,
   releaseOverlayBodyScrollLock,

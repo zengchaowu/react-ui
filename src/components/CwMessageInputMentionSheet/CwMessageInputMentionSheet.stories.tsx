@@ -15,6 +15,28 @@ const items: CwMessageInputMentionItem[] = [
 const meta: Meta<typeof CwMessageInputMentionSheet> = {
   title: '1. Components/Chat/CwMessageInputMentionSheet',
   component: CwMessageInputMentionSheet,
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component: '@ 提及成员选择 Sheet，配合 CwMessageInput 使用。',
+      },
+    },
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    value: { control: { type: 'boolean' }, description: '是否打开 Sheet' },
+    searchQuery: { control: { type: 'text' }, description: '搜索关键词' },
+    highlightIndex: { control: { type: 'number', min: 0, step: 1 }, description: '高亮选项索引' },
+    mentionAvatarFallbackSrc: { control: false },
+    items: { control: false },
+    texts: { control: false },
+  },
+  args: {
+    value: false,
+    searchQuery: '',
+    highlightIndex: 0,
+  },
 }
 
 export default meta

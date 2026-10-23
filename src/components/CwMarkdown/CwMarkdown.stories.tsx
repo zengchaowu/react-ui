@@ -175,8 +175,12 @@ export const Default: Story = {
     disabled: false,
     readonly: false,
     size: 'medium',
-    className: 'w-full max-w-2xl p-6',
   },
+  render: (args) => (
+    <div className="w-full max-w-2xl p-6">
+      <CwMarkdown {...args} />
+    </div>
+  ),
 }
 
 export const AllSyntax: Story = {
@@ -185,7 +189,6 @@ export const AllSyntax: Story = {
     disabled: false,
     readonly: false,
     size: 'medium',
-    className: 'w-full max-w-2xl p-6',
   },
   parameters: {
     docs: {
@@ -195,6 +198,11 @@ export const AllSyntax: Story = {
       },
     },
   },
+  render: (args) => (
+    <div className="w-full max-w-2xl p-6">
+      <CwMarkdown {...args} />
+    </div>
+  ),
 }
 
 function DiagramExtension({ block }: CwMarkdownCodeBlockExtensionProps) {
@@ -223,7 +231,6 @@ console.log('hello')
 \`\`\`
 `,
     size: 'medium',
-    className: 'w-full max-w-2xl p-6',
     codeBlockExtensions: [
       {
         match: (lang) => lang?.trim().toLowerCase() === 'diagram',
@@ -239,6 +246,11 @@ console.log('hello')
       },
     },
   },
+  render: (args) => (
+    <div className="w-full max-w-2xl p-6">
+      <CwMarkdown {...args} />
+    </div>
+  ),
 }
 
 export const StreamingPartial: Story = {
@@ -247,7 +259,6 @@ export const StreamingPartial: Story = {
 
 前半段已到达的 **Markdown** 文本，后续内容仍在`,
     size: 'medium',
-    className: 'w-full max-w-2xl p-6',
   },
   parameters: {
     docs: {
@@ -256,6 +267,11 @@ export const StreamingPartial: Story = {
       },
     },
   },
+  render: (args) => (
+    <div className="w-full max-w-2xl p-6">
+      <CwMarkdown {...args} />
+    </div>
+  ),
 }
 
 export const LinkClick: Story = {

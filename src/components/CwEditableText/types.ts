@@ -103,3 +103,18 @@ export interface CwEditableTextTexts {
   /** CwInput 文本配置 */
   inputTexts?: Partial<CwInputTexts>
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwEditableTextEmits {
+
+  'update:modelValue': [value: string]
+
+  'success': [value: string]
+
+  /** 未修改就退出编辑，或按 Esc 取消 */
+  'cancel': []
+
+  'error': [error: any]
+
+}

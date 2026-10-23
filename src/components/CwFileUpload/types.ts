@@ -160,3 +160,17 @@ export interface CwFileUploadHandle {
   /** 重试上传 */
   retry: (file: UploadFile) => void
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwFileUploadEmits {
+  'update:modelValue': [files: UploadFile[]]
+  'change': [files: UploadFile[]]
+  'success': [file: UploadFile, response: string]
+  'error': [file: UploadFile, error: Error]
+  'remove': [file: UploadFile]
+  'itemClick': [file: UploadFile]
+  'retry': [file: UploadFile]
+  'preview': [file: UploadFile]
+  'select': [files: File[]]
+}

@@ -6,6 +6,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
 } from 'react'
 import type {
   ChangeEvent,
@@ -23,15 +24,18 @@ import CwNavBar from '../CwNavBar/CwNavBar'
 import { CW_NAV_BAR_ICON_BUTTON_CLASS } from '../CwNavBar/styles'
 import { isPhone } from '@zengchaowu/shared/functions/validation/isPhone'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
-import { useWechatQrcodeLogin } from '../CwLoginPhoneDialog/useWechatQrcodeLogin'
+import { useWechatQrcodeLogin } from '../../hooks/useWechatQrcodeLogin'
 import type {
   CwLoginDialogContentHandle,
   CwLoginDialogContentProps,
 } from './types'
+
 import { cwLoginDialogBase } from './styles'
 import { formatOtpSentHint, buildLoginAgreementDsl } from './functions'
 import type { CwIconEmbed } from '../CwIcon/types'
 import type { CwCountDownButtonExpose } from '../CwCountDownButton/types'
+
+const NOOP_SUBSCRIBE = () => () => {}
 
 const WECHAT_CONTAINER_ID = 'cw-login-dialog-wechat-wx-login'
 
@@ -110,7 +114,12 @@ export const CwLoginDialogContent = forwardRef<
     step === 'otp' ? texts.otpNavTitle : texts.navTitle?.trim() || '登录'
 
   const [carrierLoading, setCarrierLoading] = useState(false)
-  const carrierOneTapResolved = carrierOneTapRef?.current ?? carrierOneTap
+  const carrierFromRef = useSyncExternalStore(
+    carrierOneTapRef?.subscribe ?? NOOP_SUBSCRIBE,
+    () => carrierOneTapRef?.current,
+    () => undefined,
+  )
+  const carrierOneTapResolved = carrierFromRef ?? carrierOneTap
   const showCarrierOnSms =
     Boolean(carrierOneTapResolved) && !isWide && step === 'entry'
 

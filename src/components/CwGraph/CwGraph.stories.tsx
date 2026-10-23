@@ -157,6 +157,7 @@ export const Default: Story = {
     autoLayout: true,
     layoutIterations: 100,
   },
+  render: (args) => <CwGraph {...args} />,
 }
 
 export const DirectedGraph: Story = {
@@ -175,6 +176,7 @@ export const DirectedGraph: Story = {
     edgeClass: 'stroke-[var(--success-color-6)]',
     arrowClass: 'fill-[var(--success-color-6)]',
   },
+  render: (args) => <CwGraph {...args} />,
 }
 
 export const SocialNetwork: Story = {
@@ -194,6 +196,7 @@ export const SocialNetwork: Story = {
     edgeClass: 'stroke-[var(--brand-color-focus)]',
     edgeLabelClass: 'text-[var(--brand-color-6)]',
   },
+  render: (args) => <CwGraph {...args} />,
 }
 
 export const DataFlow: Story = {
@@ -213,6 +216,7 @@ export const DataFlow: Story = {
     edgeClass: 'stroke-[var(--brand-color-6)]',
     arrowClass: 'fill-[var(--brand-color-6)]',
   },
+  render: (args) => <CwGraph {...args} />,
 }
 
 export const CustomPositions: Story = {
@@ -240,4 +244,5 @@ export const CustomPositions: Story = {
       'rounded-lg border-2 border-[var(--warning-color-6)] bg-[color-mix(in_srgb,var(--warning-color-6)_10%,transparent)] shadow-sm hover:shadow-md transition-shadow',
     edgeClass: 'stroke-[var(--warning-color-6)]',
   },
+  render: (args) => <CwGraph {...args} />,
 }

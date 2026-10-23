@@ -13,7 +13,7 @@ import {
   phoneLoginSheetContentClass,
 } from './styles'
 import { defaultTexts } from './texts'
-import { useWechatQrcodeLogin } from './useWechatQrcodeLogin'
+import { useWechatQrcodeLogin } from '../../hooks/useWechatQrcodeLogin'
 
 const qrcodeContainerId = 'cw-login-phone-wechat-wx-login'
 

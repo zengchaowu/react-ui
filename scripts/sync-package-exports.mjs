@@ -27,9 +27,23 @@ const STATIC_EXPORTS = {
   },
   './dist/tailwind.css': './dist/tailwind.css',
   './dist/hairline.css': './dist/hairline.css',
+  './dist/native-scrollbar.css': './dist/native-scrollbar.css',
   './dist/tokens.css': './dist/tokens.css',
   './dist/asset.css': './dist/asset.css',
   './dist/asset.js': './dist/asset.js',
+  './dist/cw-floating-window-shell.css': './dist/cw-floating-window-shell.css',
+  './dist/cw-floating-window-resize-handles.css': './dist/cw-floating-window-resize-handles.css',
+  './dist/cw-inline-rename-label.css': './dist/cw-inline-rename-label.css',
+  './vite/emojioneStaticAssetsPlugin': {
+    types: './vite/emojioneStaticAssetsPlugin.d.ts',
+    import: './vite/emojioneStaticAssetsPlugin.js',
+    default: './vite/emojioneStaticAssetsPlugin.js',
+  },
+  './vite/fileIconStaticAssetsPlugin': {
+    types: './vite/fileIconStaticAssetsPlugin.d.ts',
+    import: './vite/fileIconStaticAssetsPlugin.js',
+    default: './vite/fileIconStaticAssetsPlugin.js',
+  },
 }
 
 function listComponentNames() {

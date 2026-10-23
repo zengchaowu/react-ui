@@ -10,7 +10,7 @@ import type { CwFileIconProps } from './types'
 import { fileIconBase } from './styles'
 import { defaultTexts } from './texts'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
-import iconMaps from '../../assets/materialFileIconMaps.json'
+import iconMaps from '../../assets/fileIconMaps.json'
 
 export function CwFileIcon({
   path,

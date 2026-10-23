@@ -163,6 +163,12 @@ export type CwLoginDialogCarrierOneTap = {
   }>
 }
 
+/** 打开后再补齐一键登录的只读 ref（Vue 为 shallowRef；React 用 subscribe 触发重渲染） */
+export type CwLoginDialogCarrierOneTapRef = {
+  readonly current?: CwLoginDialogCarrierOneTap
+  subscribe?: (listener: () => void) => () => void
+}
+
 export interface CwLoginDialogContentProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   loading?: boolean
@@ -197,7 +203,7 @@ export interface CwLoginDialogContentProps
    */
   carrierOneTap?: CwLoginDialogCarrierOneTap
   /** 打开后再写入时优先；与 carrierOneTap 同时存在时以 ref 当前值为准 */
-  carrierOneTapRef?: { readonly current?: CwLoginDialogCarrierOneTap }
+  carrierOneTapRef?: CwLoginDialogCarrierOneTapRef
   /**
    * `full`：入口与验证码同页切换（宽屏 / 无外层栈）。
    * `entry`：只渲染手机号入口，发送成功后抛 `request-otp` 供 CwStack push。
@@ -252,10 +258,18 @@ export interface ShowLoginDialogOptions {
    * 打开后再补齐一键登录（入口页会跟着刷新）。
    * 与 carrierOneTap 同时存在时以 Ref 当前值为准。
    */
-  carrierOneTapRef?: { readonly current?: CwLoginDialogCarrierOneTap }
+  carrierOneTapRef?: CwLoginDialogCarrierOneTapRef
 }
 
 export interface ShowLoginDialogResult {
   userInfo: unknown
   token: string
+}
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwLoginDialogContentEmits {
+  (e: 'success', data: { userInfo: any; token: string }): void
+  (e: 'cancel'): void
+  (e: 'request-otp', payload: { phone: string; dialCode: string }): void
 }

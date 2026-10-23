@@ -33,3 +33,14 @@ export const CwMarkdownInlineImageExtensionsContext = createContext<
 export const CwMarkdownContentPreprocessorsContext = createContext<
   CwMarkdownContentPreprocessor[]
 >([])
+
+/** Vue InjectionKey 兼容别名（React 侧直接当 Context 使用） */
+export const CwMarkdownContextKey = CwMarkdownContext
+/** Vue InjectionKey 兼容别名（React 侧直接当 Context 使用） */
+export const CwMarkdownCodeBlockExtensionsKey = CwMarkdownCodeBlockExtensionsContext
+/** Vue InjectionKey 兼容别名（React 侧直接当 Context 使用） */
+export const CwMarkdownInlineImageExtensionsKey =
+  CwMarkdownInlineImageExtensionsContext
+/** Vue InjectionKey 兼容别名（React 侧直接当 Context 使用） */
+export const CwMarkdownContentPreprocessorsKey =
+  CwMarkdownContentPreprocessorsContext

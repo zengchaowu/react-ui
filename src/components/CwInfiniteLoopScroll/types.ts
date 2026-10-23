@@ -109,3 +109,20 @@ export interface CwInfiniteLoopScrollExpose {
   /** 获取可见范围 */
   getVisibleRange: () => { startIndex: number; endIndex: number }
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwInfiniteLoopScrollEmits {
+  /**
+   * 滚动事件。
+   * isPreview=true：拖拽中页码预览（指示器可跟手）；媒体 active 等应等 commit 后再切。
+   */
+  scroll: [
+    scrollTop: number,
+    scrollLeft: number,
+    centerIndex: number | null,
+    isPreview?: boolean,
+  ]
+  /** 可见范围变化事件 */
+  'visible-change': [startIndex: number, endIndex: number, visibleItems: CwInfiniteLoopScrollItem[]]
+}

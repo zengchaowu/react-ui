@@ -31,6 +31,7 @@ export const Default: Story = {
     hasPrev: true,
     hasNext: true,
   },
+  render: (args) => <CwMusicPlayer {...args} />,
 }
 
 export const WithLyrics: Story = {
@@ -39,4 +40,5 @@ export const WithLyrics: Story = {
     showLyrics: true,
     lyrics: '第一句歌词\n第二句歌词\n第三句歌词',
   },
+  render: Default.render,
 }

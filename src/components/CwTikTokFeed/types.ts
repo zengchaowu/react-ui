@@ -283,3 +283,50 @@ export interface CwSocialSidebarProps {
   /** 动作点击事件 */
   onAction?: (data: CwSocialActionEvent) => void
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwSocialSidebarEmits {
+  /** 动作点击事件 */
+  action: [data: { key: string; action: SocialAction; newState?: any }]
+}
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwTikTokFeedExpose {
+  /** 跳转到指定视频 */
+  scrollToVideo: (index: number) => void
+  /** 获取当前视频索引 */
+  getCurrentIndex: () => number
+  /** 播放当前视频 */
+  playCurrentVideo: () => void
+  /** 暂停当前视频 */
+  pauseCurrentVideo: () => void
+  /** 播放下一个视频 */
+  nextVideo: () => void
+  /** 播放上一个视频 */
+  prevVideo: () => void
+  /** 获取当前视频 */
+  getCurrentVideo: () => VideoItem | null
+  /** 刷新虚拟滚动 */
+  refreshVirtualScroll: () => void
+}
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwTikTokPlayerExpose {
+  /** 播放视频 */
+  play: () => Promise<void> | undefined
+  /** 暂停视频 */
+  pause: () => void
+  /** 跳转到指定时间 */
+  seek: (time: number) => void
+  /** 设置音量 */
+  setVolume: (volume: number) => void
+  /** 获取当前播放时间 */
+  getCurrentTime: () => number
+  /** 获取视频总时长 */
+  getDuration: () => number
+  /** 获取视频DOM元素 */
+  getVideoElement: () => HTMLVideoElement | undefined
+}

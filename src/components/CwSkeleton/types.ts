@@ -30,3 +30,9 @@ export interface CwSkeletonTexts {
   /** 骨架屏 aria-label */
   label: string
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwSkeletonEmits {
+  // 骨架屏是展示组件，不需要事件
+}

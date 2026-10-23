@@ -78,3 +78,11 @@ export interface CwChatConversationCellProps
   /** 等价 Vue `@swipe-open-change` */
   onSwipeOpenChange?: (key: string | null) => void
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwChatConversationCellEmits {
+  (e: 'click', event: MouseEvent): void
+  (e: 'swipe-action', key: string): void
+  (e: 'swipe-open-change', key: string | null): void
+}

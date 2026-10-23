@@ -9,7 +9,7 @@ import {
   fileIconUrl,
   type FileIconMaps,
 } from '@zengchaowu/shared/functions/file/fileIcon'
-import iconMaps from '../../../assets/materialFileIconMaps.json'
+import iconMaps from '../../../assets/fileIconMaps.json'
 import { basenameFromFilePath } from '../../CwChatMessageCell/chatInlineContentClip'
 import {
   FILE_CHIP_INNER_CLASS,

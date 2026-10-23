@@ -1,6 +1,11 @@
+import { useEffect, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwLoginPanel } from './CwLoginPanel'
-import type { CwLoginPanelTexts } from './types'
+import type {
+  CwLoginMethod,
+  CwLoginPanelTexts,
+  CwLoginPanelView,
+} from './types'
 
 const demoTexts: CwLoginPanelTexts = {
   welcome: '欢迎使用 Boardmix',
@@ -39,6 +44,27 @@ const demoTexts: CwLoginPanelTexts = {
 const meta: Meta<typeof CwLoginPanel> = {
   title: '1. Components/Form/CwLoginPanel',
   component: CwLoginPanel,
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'PC 登录卡片：支持表单登录（短信/密码）与微信扫码切换。展示文案由调用方通过 texts 传入。',
+      },
+    },
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    view: {
+      control: { type: 'select' },
+      options: ['form', 'qrcode'],
+    },
+    loading: { control: { type: 'boolean' } },
+    qrcodeReady: { control: { type: 'boolean' }, description: '二维码是否已挂载（隐藏占位）' },
+    texts: { control: false },
+    onSendCode: { control: false },
+    onLogin: { control: false },
+  },
   args: {
     view: 'form',
     loading: false,
@@ -50,10 +76,48 @@ const meta: Meta<typeof CwLoginPanel> = {
 export default meta
 type Story = StoryObj<typeof CwLoginPanel>
 
+function useLoginPanelHandlers() {
+  return {
+    onSendCode: async (phone: string) => {
+      console.log('发送验证码:', phone)
+      await new Promise((r) => setTimeout(r, 500))
+      return { success: true }
+    },
+    onLogin: async (phone: string, payload: string, method: CwLoginMethod) => {
+      console.log('登录:', phone, payload, method)
+      await new Promise((r) => setTimeout(r, 1000))
+      return { success: true, token: 'xxx', userInfo: { phone } }
+    },
+    onPrivacyClick: () => console.log('隐私政策'),
+    onForgotPasswordClick: () => console.log('忘记密码'),
+    onSsoClick: () => console.log('SSO'),
+    onRegisterClick: () => console.log('注册'),
+    onAppleLoginClick: () => console.log('Apple 登录'),
+  }
+}
+
 export const Default: Story = {
   args: {
     onSendCode: async () => ({ success: true }),
     onLogin: async () => ({ success: true, token: 'xxx' }),
+  },
+  render: (args) => {
+    const [view, setView] = useState<CwLoginPanelView>(args.view ?? 'form')
+
+    useEffect(() => {
+      if (args.view) setView(args.view)
+    }, [args.view])
+
+    return (
+      <CwLoginPanel
+        view={view}
+        loading={args.loading}
+        qrcodeReady={args.qrcodeReady}
+        texts={args.texts}
+        onViewChange={setView}
+        {...useLoginPanelHandlers()}
+      />
+    )
   },
 }
 
@@ -61,5 +125,23 @@ export const QrcodeView: Story = {
   args: {
     view: 'qrcode',
     qrcodeContainerId: 'storybook-wechat-wx-login',
+  },
+  render: (args) => {
+    const [view, setView] = useState<CwLoginPanelView>(args.view ?? 'qrcode')
+
+    useEffect(() => {
+      if (args.view) setView(args.view)
+    }, [args.view])
+
+    return (
+      <CwLoginPanel
+        view={view}
+        loading={args.loading}
+        qrcodeReady={args.qrcodeReady}
+        texts={args.texts}
+        qrcodeContainerId="storybook-wechat-wx-login"
+        onViewChange={setView}
+      />
+    )
   },
 }

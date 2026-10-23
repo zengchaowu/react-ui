@@ -55,6 +55,13 @@ export const Default: Story = {
     triggerVariant: 'solid',
     size: 'medium',
   },
+  render: (args) => (
+    <CwDropdown
+      {...args}
+      onSelect={args.onSelect}
+      onVisibleChange={args.onVisibleChange}
+    />
+  ),
 }
 
 export const OutlineTrigger: Story = {
@@ -64,6 +71,13 @@ export const OutlineTrigger: Story = {
     triggerVariant: 'outline',
     size: 'small',
   },
+  render: (args) => (
+    <CwDropdown
+      {...args}
+      onSelect={args.onSelect}
+      onVisibleChange={args.onVisibleChange}
+    />
+  ),
 }
 
 /** 钉钉式侧栏：主色通栏 + 左侧加号 */
@@ -90,12 +104,14 @@ export const Disabled: Story = {
     items: sampleItems,
     disabled: true,
   },
+  render: (args) => <CwDropdown {...args} />,
 }
 
 export const EmptyItems: Story = {
   args: {
     items: [],
   },
+  render: (args) => <CwDropdown {...args} />,
 }
 
 function ControlledOpenDemo(args: Partial<CwDropdownProps>) {

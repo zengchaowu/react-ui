@@ -5,6 +5,7 @@ import { defaultCwChatMessageForwardBundleTexts } from './texts'
 const meta: Meta<typeof CwChatMessageForwardBundle> = {
   title: '1. Components/Chat/CwChatMessageForwardBundle',
   component: CwChatMessageForwardBundle,
+  tags: ['autodocs'],
 }
 
 export default meta

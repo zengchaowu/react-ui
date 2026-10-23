@@ -3,6 +3,9 @@ import { createContext, useContext } from 'react'
 /** 宿主公共资源 origin（用于 emojione / file-icons 等静态资源 URL 拼接） */
 export const CwPublicAssetBaseUrlContext = createContext<string | null>(null)
 
+/** Vue InjectionKey 兼容别名（React 侧直接当 Context 使用） */
+export const CwPublicAssetBaseUrlKey = CwPublicAssetBaseUrlContext
+
 export function resolveDefaultPublicAssetBaseUrl(): string {
   const base =
     (typeof import.meta !== 'undefined' &&

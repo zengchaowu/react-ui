@@ -74,3 +74,22 @@ export interface CwDesignLayersPanelProps {
     event: ReactMouseEvent<HTMLElement>,
   ) => void
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwDesignLayersPanelEmits {
+  'update:selectedKeys': [keys: (string | number)[]]
+  'update:search': [query: string]
+  rename: [key: string | number, name: string]
+  'toggle-visible': [key: string | number]
+  'toggle-locked': [key: string | number]
+  reorder: [
+    payload: {
+      dragKey: string | number
+      dropKey: string | number
+      position: 'before' | 'after' | 'inside'
+    },
+  ]
+  'node-contextmenu': [node: CwTreeNode, event: MouseEvent]
+}
+

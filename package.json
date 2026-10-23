@@ -28,9 +28,23 @@
     },
     "./dist/tailwind.css": "./dist/tailwind.css",
     "./dist/hairline.css": "./dist/hairline.css",
+    "./dist/native-scrollbar.css": "./dist/native-scrollbar.css",
     "./dist/tokens.css": "./dist/tokens.css",
     "./dist/asset.css": "./dist/asset.css",
     "./dist/asset.js": "./dist/asset.js",
+    "./dist/cw-floating-window-shell.css": "./dist/cw-floating-window-shell.css",
+    "./dist/cw-floating-window-resize-handles.css": "./dist/cw-floating-window-resize-handles.css",
+    "./dist/cw-inline-rename-label.css": "./dist/cw-inline-rename-label.css",
+    "./vite/emojioneStaticAssetsPlugin": {
+      "types": "./vite/emojioneStaticAssetsPlugin.d.ts",
+      "import": "./vite/emojioneStaticAssetsPlugin.js",
+      "default": "./vite/emojioneStaticAssetsPlugin.js"
+    },
+    "./vite/fileIconStaticAssetsPlugin": {
+      "types": "./vite/fileIconStaticAssetsPlugin.d.ts",
+      "import": "./vite/fileIconStaticAssetsPlugin.js",
+      "default": "./vite/fileIconStaticAssetsPlugin.js"
+    },
     "./CwAiChatComposer": {
       "types": "./dist/components/CwAiChatComposer/index.d.ts",
       "node": "./dist/components/CwAiChatComposer/index.js",
@@ -2095,18 +2109,6 @@
       "import": "./dist/components/TpMonacoEditor/index.js",
       "default": "./dist/components/TpMonacoEditor/index.js"
     },
-    "./TpOfficePreview": {
-      "types": "./dist/components/TpOfficePreview/index.d.ts",
-      "node": "./dist/components/TpOfficePreview/index.js",
-      "import": "./dist/components/TpOfficePreview/index.js",
-      "default": "./dist/components/TpOfficePreview/index.js"
-    },
-    "./components/TpOfficePreview": {
-      "types": "./dist/components/TpOfficePreview/index.d.ts",
-      "node": "./dist/components/TpOfficePreview/index.js",
-      "import": "./dist/components/TpOfficePreview/index.js",
-      "default": "./dist/components/TpOfficePreview/index.js"
-    },
     "./TpSkiaCanvas": {
       "types": "./dist/components/TpSkiaCanvas/index.d.ts",
       "node": "./dist/components/TpSkiaCanvas/index.js",
@@ -2164,6 +2166,7 @@
     "scaffold": "node scripts/scaffold-from-vue-ui.mjs && node scripts/adapt-vue-types.mjs",
     "sync:package-exports": "node scripts/sync-package-exports.mjs",
     "check:component-parity": "node scripts/check-component-parity.mjs",
+    "check:export-parity": "node scripts/check-export-parity.mjs",
     "build": "vite build --mode lib && node scripts/sync-package-exports.mjs",
     "build:fast": "vite build --mode lib-fast && node scripts/sync-package-exports.mjs",
     "storybook": "storybook dev -p 6007",

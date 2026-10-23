@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { CwSliderProps } from './types'
 import { CwSlider } from './CwSlider'
 
@@ -36,6 +36,11 @@ type Story = StoryObj<typeof meta>
 
 function ControlledSlider(props: CwSliderProps) {
   const [value, setValue] = useState(props.value ?? 30)
+
+  useEffect(() => {
+    if (props.value !== undefined) setValue(props.value)
+  }, [props.value])
+
   return <CwSlider {...props} value={value} onChange={setValue} />
 }
 
@@ -56,6 +61,7 @@ export const Readonly: Story = {
     readonly: true,
     value: 50,
   },
+  render: (args) => <ControlledSlider {...args} />,
 }
 
 export const Disabled: Story = {
@@ -66,6 +72,7 @@ export const Disabled: Story = {
     disabled: true,
     value: 70,
   },
+  render: (args) => <ControlledSlider {...args} />,
 }
 
 const sizeOptions = [

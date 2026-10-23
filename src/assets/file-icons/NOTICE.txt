@@ -1,0 +1,3 @@
+Catppuccin file/folder icons (latte)
+https://github.com/catppuccin/vscode-icons
+License: MIT

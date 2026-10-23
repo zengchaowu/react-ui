@@ -189,3 +189,29 @@ export interface CwDatePickerContentFooterSlotProps {
 export type CwDatePickerContentFooterSlot =
   | ReactNode
   | ((slotProps: CwDatePickerContentFooterSlotProps) => ReactNode)
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwDatePickerContentEmits {
+  'update:modelValue': [value: CwDatePickerModelValue]
+  'change': [value: CwDatePickerModelValue, date: Date | [Date, Date] | null]
+  'requestClose': []
+}
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwDatePickerContentFooterEmits {
+  today: []
+  shortcut: [date: Date]
+}
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwDatePickerEmits {
+  'update:modelValue': [value: CwDatePickerModelValue]
+  'change': [value: CwDatePickerModelValue, date: Date | [Date, Date] | null]
+  'clear': []
+  'visibleChange': [visible: boolean]
+  'focus': [event: FocusEvent]
+  'blur': [event: FocusEvent]
+}

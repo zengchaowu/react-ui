@@ -25,6 +25,7 @@ export const Default: Story = {
     volume: 0.8,
     showOverlay: true,
   },
+  render: (args) => <CwVideoPlayer {...args} />,
 }
 
 export const CustomSize: Story = {
@@ -32,4 +33,5 @@ export const CustomSize: Story = {
     ...Default.args,
     className: 'relative w-[40rem] h-[22.5rem] overflow-hidden rounded-lg',
   },
+  render: (args) => <CwVideoPlayer {...args} />,
 }

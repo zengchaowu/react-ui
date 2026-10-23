@@ -15,3 +15,11 @@ export interface CwWalletPayPasswordPanelProps {
   onComplete?: (password: string) => void
   className?: string
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export type CwWalletPayPasswordPanelEmits = {
+  cancel: []
+  complete: [password: string]
+}
+

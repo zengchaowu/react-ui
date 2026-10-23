@@ -56,3 +56,16 @@ export interface CwLoginPanelProps
   onAppleLoginClick?: () => void
   className?: string
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwLoginPanelEmits {
+  'update:view': [value: CwLoginPanelView]
+  sendCode: [phone: string]
+  login: [phone: string, codeOrPassword: string, method: CwLoginMethod]
+  privacyClick: []
+  forgotPasswordClick: []
+  ssoClick: []
+  registerClick: []
+  appleLoginClick: []
+}

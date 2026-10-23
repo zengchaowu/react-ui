@@ -50,3 +50,10 @@ export interface CwMessageInputMentionPanelHandle {
 
 export type CwMessageInputMentionPanelComponentProps = CwMessageInputMentionPanelProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange' | 'onSelect'>
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwMessageInputMentionPanelEmits {
+  (e: 'update:modelValue', value: boolean): void
+  (e: 'select', item: CwMessageInputMentionItem): void
+}

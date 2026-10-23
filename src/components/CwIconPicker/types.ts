@@ -86,3 +86,14 @@ export interface CwIconPickerTexts {
   /** 恢复默认按钮文本 */
   resetButtonText?: string
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwIconPickerEmits {
+  /** 更新 v-model */
+  'update:modelValue': [value: string]
+  /** 选择图标时触发 */
+  'select': [value: string, item: IconItem]
+  /** 恢复默认时触发 */
+  'reset': []
+}

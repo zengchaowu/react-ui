@@ -1,6 +1,6 @@
 # @zengchaowu/react-ui
 
-React 一比一复刻 [`@zengchaowu/vue-ui`](../vue-ui) 的设计系统。组件集合、tokens、`appearance` / `texts` / `*Base` 约定与 vue-ui **不多不少**对齐；运行时为 React。
+React 复刻 [`@zengchaowu/vue-ui`](../vue-ui) 的设计系统。**公共 API 实行“Vue ⊆ React”对齐**：vue-ui 的每个公共导出都必须在 react-ui 存在（`vueOnly = 0`），React 允许按框架习惯提供超集（如 `*Handle` / `*Context` / `*SlotScope`）。组件集合、tokens、`appearance` / `texts` / `*Base` 约定与 vue-ui 对齐；运行时为 React。
 
 ## 组件分组（与 vue-ui 同构）
 
@@ -57,6 +57,19 @@ import { useAppThemeTick } from '@zengchaowu/react-ui'
 ```bash
 pnpm scaffold                 # 从 vue-ui 同步目录骨架
 pnpm check:component-parity   # 目录差集必须为零
+pnpm check:export-parity      # 主入口导出：vueOnly 必须为零（加 --strict 则要求完全同名）
 pnpm build                    # Vite lib + sync exports
 pnpm storybook                # 端口 6007
 ```
+
+## 公共 API 对齐规范
+
+以 vue-ui 为基准，只校验一个方向：**Vue 有的 React 必须有**。
+
+| 规则 | 说明 |
+|---|---|
+| 禁止缺失 | `vueOnly` 必须为空；Vue 新增公共导出时同步补到 React |
+| 允许超集 | React 惯用等价物（`*Handle`、`*Context`、`*ComponentProps`、`*SlotScope`、`useXxx`）可以额外导出 |
+| 框架映射 | Vue `*Exposed` → React `*Handle`；Vue `*InjectionKey` → React `*Context`（并保留 `*Key` 兼容别名）；Vue `Emits` / `Slot` 类型原样导出以免破坏名字对齐 |
+| 强制校验 | `pnpm check:export-parity` 在 CI/发版前执行，缺失即失败 |
+| 严格模式 | `pnpm check:export-parity --strict` 额外要求 `reactOnly = 0`，仅用于审计，不作为默认门禁 |

@@ -6,7 +6,15 @@ const config: StorybookConfig = {
     options: {},
   },
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-essentials'],
+  staticDirs: [{ from: '../src/assets/file-icons', to: '/file-icons' }],
+  addons: [
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        docs: false,
+      },
+    },
+  ],
 }
 
 export default config

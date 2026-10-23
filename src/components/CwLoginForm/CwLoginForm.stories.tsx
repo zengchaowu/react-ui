@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwLoginForm } from './CwLoginForm'
 import type { CwLoginFormTexts } from './types'
@@ -25,9 +26,25 @@ const demoTexts: CwLoginFormTexts = {
 const meta: Meta<typeof CwLoginForm> = {
   title: '1. Components/Form/CwLoginForm',
   component: CwLoginForm,
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component:
+          '手机号登录表单：支持短信/密码切换。展示文案由调用方通过 texts 传入。',
+      },
+    },
+  },
   args: {
     loading: false,
     texts: demoTexts,
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    loading: { control: { type: 'boolean' }, description: '登录中状态' },
+    texts: { control: false },
+    onSendCode: { control: false },
+    onLogin: { control: false },
   },
 }
 
@@ -39,5 +56,35 @@ export const Default: Story = {
     onSendCode: async () => ({ success: true }),
     onLogin: async () => ({ success: true, token: 'xxx' }),
   },
-}
+  render: (args) => {
+    const [loading, setLoading] = useState(args.loading ?? false)
 
+    useEffect(() => {
+      setLoading(args.loading ?? false)
+    }, [args.loading])
+
+    async function handleSendCode(phone: string) {
+      console.log('发送验证码:', phone)
+      await new Promise((r) => setTimeout(r, 500))
+      return { success: true }
+    }
+
+    async function handleLogin(phone: string, code: string) {
+      console.log('登录:', phone, code)
+      setLoading(true)
+      await new Promise((r) => setTimeout(r, 1500))
+      setLoading(false)
+      return { success: true, token: 'xxx', userInfo: { phone } }
+    }
+
+    return (
+      <CwLoginForm
+        texts={args.texts}
+        loading={loading}
+        onSendCode={handleSendCode}
+        onLogin={handleLogin}
+        onPrivacyClick={() => console.log('隐私政策点击')}
+      />
+    )
+  },
+}

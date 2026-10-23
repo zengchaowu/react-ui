@@ -71,3 +71,9 @@ export interface CwGridStyles {
 export interface CwGridTexts {
   // CwGrid 组件本身没有硬编码文本
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwGridEmits {
+  // CwGrid 组件本身不需要事件
+}

@@ -65,6 +65,13 @@ function libAssetPostProcess() {
           'assets/hairline.css': 'hairline.css',
           'assets/tokens/tokens.css': 'tokens.css',
           'assets/asset/asset.css': 'asset.css',
+          'assets/native-scrollbar.css': 'native-scrollbar.css',
+          'components/CwFloatingWindowShell/cw-floating-window-shell.css':
+            'cw-floating-window-shell.css',
+          'components/CwFloatingWindowResizeHandles/cw-floating-window-resize-handles.css':
+            'cw-floating-window-resize-handles.css',
+          'components/CwInlineRenameLabel/cw-inline-rename-label.css':
+            'cw-inline-rename-label.css',
         }
         for (const [rel, out] of Object.entries(cssMap)) {
           const src = resolve(srcRoot, rel)

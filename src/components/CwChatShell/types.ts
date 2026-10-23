@@ -159,3 +159,24 @@ export interface CwChatShellMobileTabbarStyles {
 export interface CwChatShellMobileTabbarTexts {
   tabbarLabel: string
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwChatShellLayoutEmits {
+  (e: 'update:modelValue', key: string): void
+  (e: 'change', key: string, item: CwChatShellTabItem): void
+}
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwChatShellMobileTabbarEmits {
+  (e: 'update:modelValue', key: string): void
+  (e: 'change', key: string, item: CwChatShellTabItem): void
+}
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwChatShellNavEmits {
+  (e: 'update:modelValue', key: string): void
+  (e: 'change', key: string, item: CwChatShellTabItem): void
+}

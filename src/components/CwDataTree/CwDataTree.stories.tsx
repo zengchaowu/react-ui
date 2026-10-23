@@ -77,4 +77,5 @@ export const Default: Story = {
     showConnector: true,
     connectorStyle: 'straight',
   },
+  render: (args) => <CwDataTree {...args} />,
 }

@@ -82,13 +82,7 @@ export const Basic: Story = {
     trigger: 'hover',
     content: '在丰富的信息密度场景中使用 Tooltip 提醒用户关注细节。',
   },
-  render: (args) => (
-    <CwTooltip {...args}>
-      <span className="px-3 py-1 rounded-md bg-[var(--brand-color-6)] text-[var(--text-color-anti)] cursor-pointer select-none">
-        悬停查看提示
-      </span>
-    </CwTooltip>
-  ),
+  render: (args) => <CwTooltip {...args} triggerSlot={basicTrigger} />,
 }
 
 export const WithSlots: Story = {
@@ -163,11 +157,14 @@ export const AppearanceInline: Story = {
     content: 'inline：行内触发',
   },
   render: (args) => (
-    <CwTooltip {...args}>
-      <span className="rounded-md bg-[var(--brand-color-6)] px-2 py-1 text-xs text-[var(--text-color-anti)]">
-        inline
-      </span>
-    </CwTooltip>
+    <CwTooltip
+      {...args}
+      triggerSlot={
+        <span className="rounded-md bg-[var(--brand-color-6)] px-2 py-1 text-xs text-[var(--text-color-anti)]">
+          inline
+        </span>
+      }
+    />
   ),
 }
 
@@ -177,8 +174,9 @@ export const AppearanceMention: Story = {
     content: '@某人',
   },
   render: (args) => (
-    <CwTooltip {...args}>
-      <span className="text-sm text-[var(--brand-color-6)]">@mention</span>
-    </CwTooltip>
+    <CwTooltip
+      {...args}
+      triggerSlot={<span className="text-sm text-[var(--brand-color-6)]">@mention</span>}
+    />
   ),
 }

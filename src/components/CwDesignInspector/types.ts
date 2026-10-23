@@ -49,3 +49,10 @@ export interface CwDesignInspectorProps {
   /** 额外 class，合并到根节点（Vue 为透传 attrs.class） */
   className?: string
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwDesignInspectorEmits {
+  'section-toggle': [payload: { id: string; expanded: boolean }]
+}
+

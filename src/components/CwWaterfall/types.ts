@@ -86,3 +86,12 @@ export interface CwWaterfallTexts {
   empty: string
   finished: string
 }
+
+
+/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
+export interface CwWaterfallEmits {
+  /** 加载更多事件 */
+  'load-more': []
+  /** 点击项目事件 */
+  'item-click': [item: any, index: number]
+}

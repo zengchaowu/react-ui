@@ -1,0 +1,7 @@
+.cw-floating-window-story .cw-floating-window-resize-handle {
+  background: color-mix(in srgb, var(--brand-color-6) 22%, transparent);
+}
+
+.cw-floating-window-story .cw-floating-window-resize-handle:hover {
+  background: color-mix(in srgb, var(--brand-color-6) 45%, transparent);
+}
