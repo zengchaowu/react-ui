@@ -79,7 +79,7 @@ const fallbackArgs = {
   colPros: { xs: 12, sm: 8, md: 6 },
 }
 
-function CollapsedStateDemo(args: Story['args']) {
+function CollapsedStateDemo({ args }: { args: Story['args'] }) {
   const wrapRowRef = useRef<CwWrapRowInstance>(null)
   const [isCollapsed, setIsCollapsed] = useState(false)
 
