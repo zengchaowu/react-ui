@@ -18,7 +18,6 @@ import {
 } from 'react'
 import { isRasterImageFile } from '@zengchaowu/shared/functions/file/isRasterImageFile'
 import {
-  IM_RICH_FILE_ATTR,
   IM_RICH_INLINE_IMAGE_ATTR,
   IM_RICH_LABEL_ATTR,
   IM_RICH_MENTION_ATTR,
@@ -30,7 +29,6 @@ import {
 import {
   hasImRichClipboardPlainMarkers,
 } from '@zengchaowu/shared/functions/im/imRichClipboardPlain'
-import { getActiveMentionQuery } from '@zengchaowu/shared/functions/im/getActiveMentionQuery'
 import { clampIndex } from '@zengchaowu/shared/functions/number/clampIndex'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import { getEmojionePngUrl, splitTextToEmojiParts } from '../CwChatMessageQuote/emojioneEmoji'
@@ -41,6 +39,22 @@ import { createEmojiElement } from './extensions/EmojiNode'
 import { createFileRefElement } from './extensions/FileRefNode'
 import { createImageClipElement } from './extensions/ImageClipNode'
 import { createMentionElement } from './extensions/ImMentionNode'
+import {
+  buildEditorContent,
+  buildFragmentFromHtml,
+  caretRangeFromPoint,
+  collectClipboardImageFiles,
+  createCaretMarker,
+  createEmptyParagraph,
+  getSelectionRange,
+  insertNodesAtCaret,
+  insertNodesAtMarker,
+  isEditorEmpty,
+  restoreCaretFromMarker,
+  setSelectionRange,
+  syncEmptyPlaceholder,
+  textToNodes,
+} from './functions/editorDom'
 import { resolveDroppedFilePath } from './functions/resolveDroppedFilePath'
 import { readRasterFileDimensions } from './functions/readRasterFileDimensions'
 import { fileToDataUrl } from './functions/fileToDataUrl'
@@ -55,6 +69,7 @@ import {
   focusEditorWithKeyboardPolicy,
   syncEditorVirtualKeyboardPolicy,
 } from './functions/focusEditorWithKeyboardPolicy'
+import { useMentionPicker } from './hooks/useMentionPicker'
 import { resolveMessageInputLayoutClasses } from './styles'
 import { defaultCwMessageInputTexts } from './texts'
 import type {
@@ -62,7 +77,6 @@ import type {
   CwMessageInputEditorHandle,
   CwMessageInputEmits,
   CwMessageInputExpose,
-  CwMessageInputMentionItem,
   CwMessageInputProps,
   CwMessageInputTexts,
 } from './types'
@@ -70,390 +84,6 @@ import type {
 const COMPOSER_LINE_HEIGHT_REM = 1.5
 const EDITOR_CLASS =
   'ProseMirror prose prose-sm max-w-none outline-none min-h-[var(--size-touch-target)] [&>*]:my-0 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0'
-const CARET_MARKER_ATTR = 'data-cw-caret-marker'
-
-function createEmptyParagraph(placeholder: string): HTMLParagraphElement {
-  const p = document.createElement('p')
-  p.className = 'is-editor-empty'
-  p.setAttribute('data-placeholder', placeholder)
-  p.appendChild(document.createElement('br'))
-  return p
-}
-
-function isEditorEmpty(root: HTMLElement): boolean {
-  const text = (root.textContent ?? '').replace(/\u200b/g, '').trim()
-  if (text.length > 0) return false
-  return !root.querySelector(
-    `[data-emoji], [${IM_RICH_MENTION_ATTR}], [${IM_RICH_FILE_ATTR}], img[${IM_RICH_INLINE_IMAGE_ATTR}]`,
-  )
-}
-
-function syncEmptyPlaceholder(root: HTMLElement, placeholder: string): void {
-  let first = root.querySelector('p')
-  if (!first) {
-    first = createEmptyParagraph(placeholder)
-    root.appendChild(first)
-  }
-  const empty = isEditorEmpty(root)
-  root.querySelectorAll('p.is-editor-empty').forEach((p) => {
-    p.classList.remove('is-editor-empty')
-  })
-  if (empty) {
-    first.classList.add('is-editor-empty')
-    first.setAttribute('data-placeholder', placeholder)
-  }
-}
-
-function getSelectionRange(root: HTMLElement): Range | null {
-  const selection = window.getSelection()
-  if (!selection || selection.rangeCount === 0) return null
-  const range = selection.getRangeAt(0)
-  if (!root.contains(range.commonAncestorContainer)) return null
-  return range
-}
-
-function setSelectionRange(range: Range): void {
-  const selection = window.getSelection()
-  if (!selection) return
-  selection.removeAllRanges()
-  selection.addRange(range)
-}
-
-function ensureInsertionRange(root: HTMLElement): Range {
-  const current = getSelectionRange(root)
-  if (current) return current
-  const range = document.createRange()
-  range.selectNodeContents(root)
-  range.collapse(false)
-  return range
-}
-
-function insertNodesAtCaret(root: HTMLElement, nodes: Node[]): void {
-  if (nodes.length === 0) return
-  const range = ensureInsertionRange(root)
-  range.deleteContents()
-  for (const node of nodes) {
-    range.insertNode(node)
-    range.setStartAfter(node)
-    range.collapse(true)
-  }
-  setSelectionRange(range)
-}
-
-function createCaretMarker(root: HTMLElement): HTMLElement | null {
-  const range = getSelectionRange(root)
-  if (!range || !range.collapsed) return null
-  const marker = document.createElement('span')
-  marker.setAttribute(CARET_MARKER_ATTR, '')
-  const clone = range.cloneRange()
-  clone.collapse(false)
-  clone.insertNode(marker)
-  return marker
-}
-
-function insertNodesAtMarker(
-  root: HTMLElement,
-  marker: HTMLElement | null,
-  nodes: Node[],
-): void {
-  if (nodes.length === 0) {
-    marker?.remove()
-    return
-  }
-  if (!marker || !marker.parentNode) {
-    insertNodesAtCaret(root, nodes)
-    return
-  }
-  const parent = marker.parentNode
-  for (const node of nodes) {
-    parent.insertBefore(node, marker)
-  }
-  const range = document.createRange()
-  range.setStartAfter(nodes[nodes.length - 1]!)
-  range.collapse(true)
-  marker.remove()
-  setSelectionRange(range)
-}
-
-function restoreCaretFromMarker(root: HTMLElement, marker: HTMLElement | null): void {
-  if (!marker || !root.contains(marker)) return
-  const range = document.createRange()
-  range.setStartBefore(marker)
-  range.collapse(true)
-  marker.remove()
-  setSelectionRange(range)
-}
-
-function textToNodes(text: string): Node[] {
-  const nodes: Node[] = []
-  const parts = text.split('\n')
-  parts.forEach((part, index) => {
-    if (index > 0) nodes.push(document.createElement('br'))
-    if (part) nodes.push(document.createTextNode(part))
-  })
-  return nodes
-}
-
-function deleteCharsBeforeCaret(root: HTMLElement, count: number): void {
-  if (count <= 0) return
-  const range = getSelectionRange(root)
-  if (!range || !range.collapsed) return
-  const textNodes: Text[] = []
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
-  let current = walker.nextNode()
-  while (current) {
-    textNodes.push(current as Text)
-    current = walker.nextNode()
-  }
-  const endNode =
-    range.startContainer.nodeType === Node.TEXT_NODE
-      ? (range.startContainer as Text)
-      : null
-  const endOffset =
-    endNode && endNode === range.startContainer ? range.startOffset : 0
-  let index = endNode ? textNodes.indexOf(endNode) : -1
-  if (index < 0) {
-    index = textNodes.length - 1
-  }
-  let remaining = count
-  let startNode: Text | null = null
-  let startOffset = 0
-  for (let i = index; i >= 0; i -= 1) {
-    const node = textNodes[i]!
-    const available = i === index && node === endNode ? endOffset : node.data.length
-    if (remaining <= available) {
-      startNode = node
-      startOffset = available - remaining
-      remaining = 0
-      break
-    }
-    remaining -= available
-  }
-  if (!startNode) {
-    if (textNodes.length === 0) return
-    startNode = textNodes[0]!
-    startOffset = 0
-  }
-  const delRange = document.createRange()
-  delRange.setStart(startNode, startOffset)
-  if (endNode) {
-    delRange.setEnd(endNode, endOffset)
-  } else {
-    delRange.setEnd(range.startContainer, range.startOffset)
-  }
-  delRange.deleteContents()
-  delRange.collapse(true)
-  setSelectionRange(delRange)
-}
-
-function nodePlainText(node: Node): string {
-  if (node.nodeType === Node.TEXT_NODE) return (node as Text).data
-  if (node.nodeType !== Node.ELEMENT_NODE) return ''
-  const el = node as HTMLElement
-  const tag = el.tagName
-  if (tag === 'BR') return '\n'
-  if (el.hasAttribute('data-emoji')) {
-    return el.getAttribute('data-emoji') ?? ''
-  }
-  if (el.hasAttribute(IM_RICH_MENTION_ATTR)) {
-    const label =
-      el.getAttribute(IM_RICH_LABEL_ATTR)?.trim() ||
-      el.getAttribute(IM_RICH_USER_ID_ATTR)?.trim() ||
-      ''
-    return label ? `@${label}` : '@'
-  }
-  if (el.hasAttribute(IM_RICH_FILE_ATTR)) {
-    const label = el.getAttribute(IM_RICH_LABEL_ATTR) ?? ''
-    return `[文件] ${label}`
-  }
-  if (el.tagName === 'IMG') return '[图片]'
-  let out = ''
-  el.childNodes.forEach((child) => {
-    out += nodePlainText(child)
-  })
-  if (tag === 'P' || tag === 'DIV') out += '\n'
-  return out
-}
-
-function plainTextBeforeCaret(root: HTMLElement): string {
-  const range = getSelectionRange(root)
-  if (!range) return ''
-  const pre = document.createRange()
-  pre.selectNodeContents(root)
-  pre.setEnd(range.startContainer, range.startOffset)
-  const fragment = pre.cloneContents()
-  let out = ''
-  fragment.childNodes.forEach((child) => {
-    out += nodePlainText(child)
-  })
-  return out
-}
-
-function previousNodeWithin(node: Node, root: HTMLElement): Node | null {
-  if (node.previousSibling) return node.previousSibling
-  let parent = node.parentNode
-  while (parent && parent !== root) {
-    if (parent.previousSibling) return parent.previousSibling
-    parent = parent.parentNode
-  }
-  return null
-}
-
-function isCaretAfterMention(root: HTMLElement): boolean {
-  const range = getSelectionRange(root)
-  if (!range || !range.collapsed) return false
-  let node: Node | null = null
-  const container = range.startContainer
-  const offset = range.startOffset
-  if (container.nodeType === Node.TEXT_NODE) {
-    const text = (container as Text).data.slice(0, offset)
-    if (/\S/.test(text)) return false
-    node = text ? container : previousNodeWithin(container, root)
-  } else {
-    node = container.childNodes[offset - 1] ?? null
-    if (!node) node = previousNodeWithin(container, root)
-  }
-  let cursor = node
-  let guard = 0
-  while (cursor && guard < 200) {
-    guard += 1
-    if (cursor.nodeType === Node.TEXT_NODE) {
-      if (/\S/.test((cursor as Text).data)) return false
-    } else if (cursor.nodeType === Node.ELEMENT_NODE) {
-      const el = cursor as HTMLElement
-      if (el.hasAttribute(IM_RICH_MENTION_ATTR) || el.hasAttribute('data-cw-mention-wrap')) {
-        return true
-      }
-      if (
-        el.hasAttribute(IM_RICH_FILE_ATTR) ||
-        el.hasAttribute('data-emoji') ||
-        el.tagName === 'IMG' ||
-        el.tagName === 'BR'
-      ) {
-        return false
-      }
-    }
-    cursor = previousNodeWithin(cursor, root)
-  }
-  return false
-}
-
-function collectClipboardImageFiles(data: DataTransfer | null): File[] {
-  const files: File[] = []
-  if (!data) return files
-  for (const item of Array.from(data.items ?? [])) {
-    if (item.kind !== 'file') continue
-    const file = item.getAsFile()
-    if (!file) continue
-    if (!file.type || !file.type.startsWith('image/')) continue
-    files.push(file)
-  }
-  return files
-}
-
-function buildFragmentFromHtml(html: string, placeholder: string): DocumentFragment {
-  const fragment = document.createDocumentFragment()
-  const template = document.createElement('template')
-  template.innerHTML = html
-  template.content.childNodes.forEach((child) => {
-    appendWireNode(fragment, child, placeholder)
-  })
-  return fragment
-}
-
-/** 将 wire HTML 节点重建为编辑器内可交互的 chip / emoji DOM */
-function appendWireNode(
-  parent: Node,
-  node: Node,
-  placeholder: string,
-): void {
-  if (node.nodeType === Node.TEXT_NODE) {
-    const text = (node as Text).data
-    const parts = text.split('\n')
-    parts.forEach((part, index) => {
-      if (index > 0) parent.appendChild(document.createElement('br'))
-      if (part) parent.appendChild(document.createTextNode(part))
-    })
-    return
-  }
-  if (node.nodeType !== Node.ELEMENT_NODE) return
-  const el = node as HTMLElement
-  if (el.tagName === 'BR') {
-    parent.appendChild(document.createElement('br'))
-    return
-  }
-  if (el.hasAttribute('data-emoji')) {
-    parent.appendChild(
-      createEmojiElement({
-        src: el.querySelector('img')?.getAttribute('src') ?? el.getAttribute('data-src') ?? '',
-        alt: el.querySelector('img')?.getAttribute('alt') ?? el.getAttribute('data-alt') ?? '',
-        'data-emoji': el.getAttribute('data-emoji') ?? '',
-      }),
-    )
-    return
-  }
-  if (el.hasAttribute(IM_RICH_MENTION_ATTR)) {
-    parent.appendChild(
-      createMentionElement(
-        {
-          uid: el.getAttribute(IM_RICH_USER_ID_ATTR) ?? '',
-          label: el.getAttribute(IM_RICH_LABEL_ATTR) ?? '',
-        },
-        { inScope: true },
-      ),
-    )
-    return
-  }
-  if (el.hasAttribute(IM_RICH_FILE_ATTR)) {
-    parent.appendChild(
-      createFileRefElement(
-        {
-          path: el.getAttribute('data-path') ?? '',
-          label: el.getAttribute(IM_RICH_LABEL_ATTR) ?? '',
-          lines: el.getAttribute('data-lines') ?? '',
-        },
-        { removeAriaLabel: defaultCwMessageInputTexts.fileRefDeleteTitle },
-        '/',
-      ),
-    )
-    return
-  }
-  if (el.tagName === 'IMG' && el.hasAttribute(IM_RICH_INLINE_IMAGE_ATTR)) {
-    parent.appendChild(
-      createImageClipElement(
-        {
-          previewSrc: el.getAttribute('src') ?? '',
-          name: el.getAttribute('alt') ?? '',
-          naturalWidth: Number(el.getAttribute('width')) || 0,
-          naturalHeight: Number(el.getAttribute('height')) || 0,
-        },
-        {},
-      ),
-    )
-    return
-  }
-  el.childNodes.forEach((child) => {
-    appendWireNode(parent, child, placeholder)
-  })
-}
-
-function buildEditorContent(
-  root: HTMLElement,
-  html: string,
-  placeholder: string,
-): void {
-  root.innerHTML = ''
-  const wire = sanitizeImRichContentHtml(html).trim()
-  if (!wire) {
-    root.appendChild(createEmptyParagraph(placeholder))
-    return
-  }
-  const paragraph = document.createElement('p')
-  const fragment = buildFragmentFromHtml(wire, placeholder)
-  paragraph.appendChild(fragment)
-  root.appendChild(paragraph)
-  syncEmptyPlaceholder(root, placeholder)
-}
 
 export interface CwMessageInputComponentProps extends CwMessageInputProps, CwMessageInputEmits, Omit<
   FormHTMLAttributes<HTMLFormElement>,
@@ -507,7 +137,6 @@ export const CwMessageInput = forwardRef<
   const composingRef = useRef(false)
   const convertingEmojiRef = useRef(false)
   const lastRangeRef = useRef<Range | null>(null)
-  const pickerOpenRef = useRef(false)
   const mentionPopupRef = useRef<CwMessageInputMentionPanelHandle | null>(null)
 
   const styles = useMemo(
@@ -519,15 +148,6 @@ export const CwMessageInput = forwardRef<
     [textsProp],
   )
   const placeholderResolved = placeholder ?? texts.placeholder
-
-  const [mentionQuery, setMentionQuery] = useState<{
-    atIndex: number
-    filter: string
-  } | null>(null)
-  const [mentionHighlightIndex, setMentionHighlightIndex] = useState(0)
-  const [mentionPanelMounted, setMentionPanelMounted] = useState(false)
-  const [mentionSheetMounted, setMentionSheetMounted] = useState(false)
-  const [mentionSheetSearch, setMentionSheetSearch] = useState('')
 
   const fieldStyle = useMemo<CSSProperties>(() => {
     const minR = textareaMinRows
@@ -625,6 +245,39 @@ export const CwMessageInput = forwardRef<
     },
     [mentionItems],
   )
+
+  const {
+    mentionQuery,
+    setMentionQuery,
+    mentionHighlightIndex,
+    mentionPanelMounted,
+    mentionSheetMounted,
+    mentionSheetSearch,
+    setMentionSheetSearch,
+    filteredMentionItems,
+    mentionSheetItems,
+    mentionPopupVisible,
+    mentionSheetVisible,
+    mentionPickerOpen,
+    pickerOpenRef,
+    cancelMention,
+    pickMention,
+    refreshMentionState,
+    mentionVirtualRef,
+  } = useMentionPicker({
+    mentionItems,
+    mentionPanelVariant,
+    disabled,
+    fieldRef,
+    getRoot,
+    getPlainText,
+    emitContent,
+    resolveMentionProfile,
+    publicAssetBaseUrl,
+    suppressVirtualKeyboard,
+    fileRefDeleteTitle: texts.fileRefDeleteTitle,
+    mentionPopupRef,
+  })
 
   const demoteOutOfScopeMentions = useCallback((): void => {
     const root = getRoot()
@@ -1034,280 +687,6 @@ export const CwMessageInput = forwardRef<
     onSubmit,
   ])
 
-  // ---- @提及 ----
-  const mentionEnabled = Array.isArray(mentionItems)
-  const filteredMentionItems = useMemo<CwMessageInputMentionItem[]>(() => {
-    const items = mentionItems
-    if (!Array.isArray(items) || items.length === 0) return []
-    if (!mentionQuery) return []
-    const raw = mentionQuery.filter.trim().toLowerCase()
-    const isCodeRef = (item: CwMessageInputMentionItem): boolean =>
-      item.kind === 'file' || item.kind === 'folder'
-    if (!raw) {
-      const users: CwMessageInputMentionItem[] = []
-      const refs: CwMessageInputMentionItem[] = []
-      for (const item of items) {
-        if (isCodeRef(item)) refs.push(item)
-        else users.push(item)
-      }
-      return [...users, ...refs.slice(0, 24)]
-    }
-    return items.filter((item) => {
-      const label = item.label.toLowerCase()
-      const id = (item.id ?? '').toLowerCase()
-      const path = (item.path ?? '').toLowerCase()
-      return label.includes(raw) || id.includes(raw) || path.includes(raw)
-    })
-  }, [mentionItems, mentionQuery])
-
-  const mentionSheetItems = useMemo<CwMessageInputMentionItem[]>(
-    () => (Array.isArray(mentionItems) ? mentionItems : []),
-    [mentionItems],
-  )
-
-  const mentionUiActive =
-    mentionEnabled &&
-    !!mentionQuery &&
-    Array.isArray(mentionItems) &&
-    mentionItems.length > 0
-  const mentionPopupVisible =
-    mentionPanelVariant !== 'sheet' &&
-    mentionUiActive &&
-    filteredMentionItems.length > 0
-  const mentionSheetVisible =
-    mentionPanelVariant === 'sheet' && mentionUiActive
-  const mentionPickerOpen = mentionPopupVisible || mentionSheetVisible
-
-  const activeMentionCandidates = useMemo<CwMessageInputMentionItem[]>(() => {
-    if (mentionPanelVariant === 'sheet') {
-      const raw = mentionSheetSearch.trim().toLowerCase()
-      if (!raw) return mentionSheetItems.slice()
-      return mentionSheetItems.filter((item) => {
-        const label = item.label.toLowerCase()
-        const id = (item.id ?? '').toLowerCase()
-        return label.includes(raw) || id.includes(raw)
-      })
-    }
-    return filteredMentionItems
-  }, [
-    filteredMentionItems,
-    mentionPanelVariant,
-    mentionSheetItems,
-    mentionSheetSearch,
-  ])
-
-  pickerOpenRef.current = mentionPickerOpen
-
-  const cancelMention = useCallback((): void => {
-    const query = mentionQuery
-    const root = getRoot()
-    if (!query || !root) return
-    deleteCharsBeforeCaret(root, 1 + query.filter.length)
-    emitContent()
-    focusEditorWithKeyboardPolicy(root, suppressVirtualKeyboard)
-    setMentionSheetSearch('')
-  }, [emitContent, getRoot, mentionQuery, suppressVirtualKeyboard])
-
-  const pickMention = useCallback(
-    (item: CwMessageInputMentionItem): void => {
-      const query = mentionQuery
-      const root = getRoot()
-      if (!query || !root) return
-      const full = getPlainText()
-      const afterPlain = full.slice(query.atIndex + 1 + query.filter.length)
-      const spacer = /^\s/.test(afterPlain) ? '' : ' '
-      focusEditorWithKeyboardPolicy(root, suppressVirtualKeyboard)
-      deleteCharsBeforeCaret(root, 1 + query.filter.length)
-
-      const kind =
-        item.kind === 'file' || item.kind === 'folder' ? item.kind : 'user'
-      if (kind === 'file' || kind === 'folder') {
-        const path = String(item.path ?? '').trim()
-        if (!path) return
-        const display =
-          String(item.label ?? '').trim() ||
-          path.split(/[/\\]/).pop() ||
-          path
-        insertNodesAtCaret(root, [
-          createFileRefElement(
-            {
-              id: `ref_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
-              path,
-              label: display,
-            },
-            { removeAriaLabel: texts.fileRefDeleteTitle },
-            publicAssetBaseUrl,
-          ),
-        ])
-      } else {
-        const profile = resolveMentionProfile(item.id)
-        insertNodesAtCaret(root, [
-          createMentionElement(
-            { uid: item.id, label: item.label },
-            { inScope: true, displayLabel: profile.label },
-          ),
-        ])
-      }
-      if (spacer) insertNodesAtCaret(root, textToNodes(spacer))
-      emitContent()
-      root.focus({ preventScroll: true })
-      setMentionSheetSearch('')
-    },
-    [
-      emitContent,
-      getPlainText,
-      getRoot,
-      mentionQuery,
-      publicAssetBaseUrl,
-      resolveMentionProfile,
-      suppressVirtualKeyboard,
-      texts.fileRefDeleteTitle,
-    ],
-  )
-
-  const refreshMentionState = useCallback((): void => {
-    const root = getRoot()
-    if (!root || disabled || !Array.isArray(mentionItems)) {
-      setMentionQuery((prev) => (prev === null ? prev : null))
-      return
-    }
-    if (isCaretAfterMention(root)) {
-      setMentionQuery((prev) => (prev === null ? prev : null))
-      return
-    }
-    // 块级闭合标签会附带尾部换行；光标前文本不应包含末尾分隔符（对齐 Tiptap getTextBetween）
-    const textBefore = plainTextBeforeCaret(root).replace(/\n+$/, '')
-    const query = getActiveMentionQuery(textBefore, textBefore.length)
-    if (!query) {
-      setMentionQuery((prev) => (prev === null ? prev : null))
-      return
-    }
-    setMentionQuery((prev) =>
-      prev && prev.atIndex === query.atIndex && prev.filter === query.filter
-        ? prev
-        : { atIndex: query.atIndex, filter: query.filter },
-    )
-  }, [disabled, getRoot, mentionItems])
-
-  useEffect(() => {
-    if (mentionPopupVisible) {
-      setMentionPanelMounted(true)
-      setMentionHighlightIndex(0)
-    }
-  }, [mentionPopupVisible])
-
-  useEffect(() => {
-    if (mentionSheetVisible) {
-      setMentionSheetMounted(true)
-      setMentionHighlightIndex(0)
-      setMentionSheetSearch(mentionQuery?.filter ?? '')
-    }
-  }, [mentionQuery?.filter, mentionSheetVisible])
-
-  useEffect(() => {
-    if (mentionHighlightIndex < activeMentionCandidates.length) return
-    setMentionHighlightIndex(Math.max(0, activeMentionCandidates.length - 1))
-  }, [activeMentionCandidates.length, mentionHighlightIndex])
-
-  // 光标移动 / 输入时刷新浮层位置（等价 Vue `scheduleMentionReposition`）
-  useEffect(() => {
-    if (!mentionPickerOpen || mentionPanelVariant === 'sheet') return
-    requestAnimationFrame(() => mentionPopupRef.current?.updatePosition())
-  }, [mentionPickerOpen, mentionPanelVariant, mentionQuery])
-
-  useEffect(() => {
-    if (!mentionPickerOpen) return
-    const id = activeMentionCandidates[
-      Math.min(
-        mentionHighlightIndex,
-        Math.max(0, activeMentionCandidates.length - 1),
-      )
-    ]?.id
-    if (!id) return
-    requestAnimationFrame(() => {
-      document
-        .getElementById(`cw-message-input-mention-opt-${id}`)
-        ?.scrollIntoView({ block: 'nearest' })
-    })
-  }, [activeMentionCandidates, mentionHighlightIndex, mentionPickerOpen])
-
-  useEffect(() => {
-    if (!mentionPickerOpen || mentionQuery == null || disabled) return
-    function handler(event: KeyboardEvent): void {
-      if (!pickerOpenRef.current || disabled) return
-      const list = activeMentionCandidates
-      const listLen = list.length
-      const isNavKey =
-        event.key === 'ArrowDown' ||
-        event.key === 'ArrowUp' ||
-        event.key === 'Home' ||
-        event.key === 'End' ||
-        event.key === 'Tab'
-      if (listLen > 0 && isNavKey) {
-        if (event.ctrlKey || event.metaKey) return
-        event.preventDefault()
-        event.stopPropagation()
-        setMentionHighlightIndex((prev) => {
-          if (event.key === 'ArrowDown') return (prev + 1) % listLen
-          if (event.key === 'ArrowUp') return (prev - 1 + listLen) % listLen
-          if (event.key === 'Home') return 0
-          if (event.key === 'End') return listLen - 1
-          return event.shiftKey
-            ? (prev - 1 + listLen) % listLen
-            : (prev + 1) % listLen
-        })
-        return
-      }
-      if (event.key === 'Escape') {
-        event.preventDefault()
-        event.stopPropagation()
-        cancelMention()
-        return
-      }
-      if (event.key === 'Enter' && !event.shiftKey) {
-        if (event.isComposing || event.keyCode === 229) return
-        event.preventDefault()
-        event.stopPropagation()
-        if (listLen > 0) {
-          const index = Math.min(mentionHighlightIndex, listLen - 1)
-          const item = list[index]
-          if (item) pickMention(item)
-        }
-      }
-    }
-    window.addEventListener('keydown', handler, true)
-    return () => window.removeEventListener('keydown', handler, true)
-  }, [
-    activeMentionCandidates,
-    cancelMention,
-    disabled,
-    mentionHighlightIndex,
-    mentionPickerOpen,
-    mentionQuery,
-    pickMention,
-  ])
-
-  const mentionVirtualRef = useMemo(
-    () => ({
-      getBoundingClientRect: (): DOMRect => {
-        const root = getRoot()
-        if (root) {
-          const range = getSelectionRange(root)
-          if (range) {
-            const rect = range.getBoundingClientRect()
-            return new DOMRect(rect.left, rect.bottom, 0, 0)
-          }
-        }
-        const field = fieldRef.current
-        if (field) {
-          const rect = field.getBoundingClientRect()
-          return new DOMRect(rect.left, rect.bottom, 0, 0)
-        }
-        return new DOMRect(0, 0, 0, 0)
-      },
-    }),
-    [getRoot],
-  )
 
   // ---- 初始化 / 外部同步 ----
   useLayoutEffect(() => {
@@ -1512,27 +891,6 @@ export const CwMessageInput = forwardRef<
     emitContent()
   }
 
-  function caretRangeFromPoint(x: number, y: number): Range | null {
-    const doc = document as Document & {
-      caretRangeFromPoint?: (clientX: number, clientY: number) => Range | null
-      caretPositionFromPoint?: (
-        clientX: number,
-        clientY: number,
-      ) => { offsetNode: Node; offset: number } | null
-    }
-    if (typeof doc.caretRangeFromPoint === 'function') {
-      return doc.caretRangeFromPoint(x, y)
-    }
-    if (typeof doc.caretPositionFromPoint === 'function') {
-      const pos = doc.caretPositionFromPoint(x, y)
-      if (!pos) return null
-      const range = document.createRange()
-      range.setStart(pos.offsetNode, pos.offset)
-      range.collapse(true)
-      return range
-    }
-    return null
-  }
 
   // ---- 内联图片预览 ----
   const openInlineImagePreview = useCallback(

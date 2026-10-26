@@ -17,14 +17,13 @@ import { designPxToRem } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
 
 type SkiaCanvasCtor = new (width: number, height: number) => SkiaCanvasLike
 
-// 动态导入 skia-canvas（与 Vue 侧一致：模块级缓存，失败仅告警）
-const SKIA_CANVAS_SPECIFIER = 'skia-canvas'
+// 动态导入 skia-canvas（与 Vue 侧一致：字面量说明符，交给 Vite 解析依赖）
 let Canvas: SkiaCanvasCtor | null = null
 
 if (typeof window !== 'undefined') {
-  import(/* @vite-ignore */ SKIA_CANVAS_SPECIFIER)
-    .then((module: { Canvas: SkiaCanvasCtor }) => {
-      Canvas = module.Canvas
+  import('skia-canvas')
+    .then((module) => {
+      Canvas = module.Canvas as unknown as SkiaCanvasCtor
     })
     .catch((err: unknown) => {
       console.error('Failed to load skia-canvas:', err)

@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwVideoPlayer } from './CwVideoPlayer'
 import { defaultTexts } from './texts'
+// 本地示例视频（原 COS 外链已 404，改为随包内置）
+import demoVideoSrc from '../../storybook/assets/cw-video-player-demo.mp4'
+import demoVideoPoster from '../../storybook/assets/cw-video-player-demo-poster.png'
 
 const meta: Meta<typeof CwVideoPlayer> = {
   title: '1. Components/Media/CwVideoPlayer',
@@ -71,9 +74,8 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     texts: defaultTexts,
-    src: 'https://public-1307503455.cos.ap-guangzhou.myqcloud.com/%E6%8A%96%E9%9F%B32025926-373577.mp4',
-    poster:
-      'https://public-1307503455.cos.ap-guangzhou.myqcloud.com/upload/%E6%88%AA%E5%B1%8F2025-09-25%2010.00.03.png',
+    src: demoVideoSrc,
+    poster: demoVideoPoster,
     controls: true,
     autoplay: false,
     muted: false,

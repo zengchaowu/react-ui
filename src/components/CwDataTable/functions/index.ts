@@ -1,4 +1,5 @@
 export * from './columnUtils'
+export * from './visibleColumns'
 export * from './columnResizePolicy'
 export * from './scrollbarUtils'
 export * from './tableEdgeBorders'

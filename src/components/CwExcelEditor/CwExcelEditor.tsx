@@ -1,12 +1,4 @@
-import {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import type {
   ChangeEvent,
   FocusEvent as ReactFocusEvent,
@@ -18,9 +10,7 @@ import type {
 import { showCwContextMenu } from '../CwContextMenu'
 import type { CwContextMenuItem } from '../CwContextMenu'
 import { CwDataTable } from '../CwDataTable'
-import type { CwDataTableColumn } from '../CwDataTable'
 import ExcelMergeOverlay from './ExcelMergeOverlay'
-import type { ExcelMergePiece } from './ExcelMergeOverlay'
 import { excelEditorBase } from './styles'
 import { defaultTexts } from './texts'
 import type {
@@ -41,11 +31,9 @@ import {
 } from './functions/sheetEdits'
 import {
   COL_LOOKAHEAD,
-  COL_WIDTH,
   EDGE_GROW_INTERVAL,
   EDGE_SLACK,
   GUTTER_WIDTH,
-  MIN_ROW_HEIGHT,
   MIN_SHEET_COLS,
   MIN_SHEET_ROWS,
   ROW_LOOKAHEAD,
@@ -53,17 +41,16 @@ import {
   SHEET_ROW_CHUNK,
   SHEET_ROW_HEIGHT,
   anchorCell,
-  cellCss,
-  columnIndexFromKey,
-  fitRowHeight,
   guessColumnRenderCount,
   planColumnWindow,
   scrollSpanIntoView,
   selectionLabel as formatSelectionLabel,
   sumWidths,
-  visibleMergeBorders,
 } from './functions/sheetMetrics'
 import { isHistoryKey, useExcelHistory } from './hooks/useExcelHistory'
+import { useExcelGridLayout } from './hooks/useExcelGridLayout'
+import type { CellPosition } from './hooks/useExcelGridLayout'
+import { useMirroredState } from './hooks/useMirroredState'
 import {
   excelKeyboardOwner,
   cloneWorkbook,
@@ -95,28 +82,12 @@ export interface CwExcelEditorComponentProps
   className?: string
 }
 
-type CellPosition = { row: number; col: number }
 type EditFocus = 'cell' | 'formula'
 type CommitMove = 'stay' | 'down' | 'up' | 'left' | 'right'
 
 /** Vue nextTick 的等价：等本轮 state 落地、DOM 画完再执行。 */
 function afterRender(callback: () => void) {
   setTimeout(callback, 0)
-}
-
-/**
- * useState + 同步镜像 ref。Vue 的 ref 写入后立刻能读到新值；
- * React setState 之后同一事件里读 state 还是旧的，镜像 ref 用来复刻 `.value` 语义。
- */
-function useMirroredState<T>(initial: T | (() => T)) {
-  const [state, setState] = useState(initial)
-  const ref = useRef(state)
-  const set = useCallback((value: T | ((prev: T) => T)) => {
-    const next = typeof value === 'function' ? (value as (prev: T) => T)(ref.current) : value
-    ref.current = next
-    setState(next)
-  }, [])
-  return [state, set, ref] as const
 }
 
 const CELL_ON = excelEditorBase.cellSelected.split(/\s+/).filter(Boolean)
@@ -166,22 +137,6 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
     const [renameDraft, setRenameDraft, renameDraftRef] = useMirroredState('')
     const renameCancelledRef = useRef(false)
 
-    /** 拖过的列宽。没拖过的列用 COL_WIDTH。拖动中的那一列先记在 dragWidth，避免整表重画打断拖动。 */
-    const [committedWidths, setCommittedWidths, committedWidthsRef] = useMirroredState<number[]>(
-      [],
-    )
-    const [dragWidth, setDragWidth, dragWidthRef] = useMirroredState<{
-      col: number
-      width: number
-    } | null>(null)
-    /** 拖过的行高。没拖过的行用 SHEET_ROW_HEIGHT。 */
-    const [committedRowHeights, setCommittedRowHeights, committedRowHeightsRef] = useMirroredState<
-      number[]
-    >([])
-    const [dragRow, setDragRow, dragRowRef] = useMirroredState<{
-      row: number
-      height: number
-    } | null>(null)
 
     function getActiveSheet() {
       return workbookRef.current.sheets[sheetIndexRef.current] ?? workbookRef.current.sheets[0]
@@ -216,154 +171,6 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
     /** 导入/换 sheet 后重挂载表格，避免 CwDataTable 缓存列宽覆盖 xlsx 列宽 */
     const [tableLayoutKey, setTableLayoutKey, tableLayoutKeyRef] = useMirroredState(0)
 
-    function committedWidth(col: number) {
-      const width = committedWidthsRef.current[col]
-      return width && width > 0 ? width : COL_WIDTH
-    }
-
-    function layoutWidth(col: number) {
-      const drag = dragWidthRef.current
-      if (drag && drag.col === col) return drag.width
-      return committedWidth(col)
-    }
-
-    function layoutLeft(col: number) {
-      return GUTTER_WIDTH + sumWidths(0, col, layoutWidth)
-    }
-
-    function layoutHeight(row: number) {
-      const drag = dragRowRef.current
-      if (drag && drag.row === row) return drag.height
-      const heights = committedRowHeightsRef.current
-      const height = row < heights.length ? heights[row]! : 0
-      if (height && height > 0) return height
-      // 大表逐格量行高会在进入页面时卡死。没单独设过行高就用默认行高。
-      if (sheetTooLargeToMeasure()) return SHEET_ROW_HEIGHT
-      return fitRowHeight({
-        sheet: getActiveSheet(),
-        row,
-        editing: editingRef.current,
-        editAt: editAtRef.current,
-        draft: draftRef.current,
-        widthAt: layoutWidth,
-      })
-    }
-
-    function sheetTooLargeToMeasure() {
-      const sheet = getActiveSheet()
-      const rows = sheet?.cells.length ?? 0
-      const cols = sheet?.cells[0]?.length ?? 0
-      return rows * Math.max(cols, 1) > 40_000
-    }
-
-    function layoutRowTop(sheetRow: number, bodyStart: number) {
-      let top = 0
-      for (let row = bodyStart; row < sheetRow; row += 1) top += layoutHeight(row)
-      return top
-    }
-
-    function layoutRowSpanHeight(row: number, span: number) {
-      let height = 0
-      for (let index = 0; index < span; index += 1) height += layoutHeight(row + index)
-      return height
-    }
-
-    function resetColumnWidths() {
-      const sheet = workbookRef.current.sheets[sheetIndexRef.current]
-      setCommittedWidths((sheet?.colWidths ?? []).slice())
-      setCommittedRowHeights((sheet?.rowHeights ?? []).slice())
-      setDragWidth(null)
-      setDragRow(null)
-    }
-
-    function writeSheetMetric(kind: 'col' | 'row', index: number, value: number) {
-      const next = cloneWorkbook(workbookRef.current)
-      const sheet = next.sheets[sheetIndexRef.current]
-      if (!sheet) return
-      const source = (kind === 'col' ? sheet.colWidths : sheet.rowHeights) ?? []
-      const metrics = source.slice()
-      while (metrics.length <= index) metrics.push(0)
-      metrics[index] = value
-      if (kind === 'col') sheet.colWidths = metrics
-      else sheet.rowHeights = metrics
-      publish(next)
-    }
-
-    function shiftRowHeights(at: number, count: number, insert: boolean) {
-      const next = committedRowHeightsRef.current.slice()
-      if (insert) next.splice(at, 0, ...Array(count).fill(SHEET_ROW_HEIGHT))
-      else next.splice(at, count)
-      setCommittedRowHeights(next)
-      setDragRow(null)
-    }
-
-    const stopRowResizeRef = useRef<(() => void) | null>(null)
-
-    function startRowResize(row: number, event: PointerEvent) {
-      if (previewing || event.button !== 0) return
-      stopRowResizeRef.current?.()
-      const startY = event.clientY
-      const startHeight = layoutHeight(row)
-      const previousCursor = document.body.style.cursor
-      const previousSelect = document.body.style.userSelect
-      document.body.style.cursor = 'row-resize'
-      document.body.style.userSelect = 'none'
-      const move = (ev: PointerEvent) => {
-        setDragRow({
-          row,
-          height: Math.max(MIN_ROW_HEIGHT, Math.round(startHeight + ev.clientY - startY)),
-        })
-        scheduleMergeLayoutSync()
-      }
-      const end = (ev: PointerEvent) => {
-        const height = Math.max(MIN_ROW_HEIGHT, Math.round(startHeight + ev.clientY - startY))
-        setDragRow(null)
-        const next = committedRowHeightsRef.current.slice()
-        next[row] = height
-        setCommittedRowHeights(next)
-        writeSheetMetric('row', row, height)
-        scheduleMergeLayoutSync()
-        stop()
-      }
-      const stop = () => {
-        window.removeEventListener('pointermove', move)
-        window.removeEventListener('pointerup', end)
-        window.removeEventListener('pointercancel', end)
-        document.body.style.cursor = previousCursor
-        document.body.style.userSelect = previousSelect
-        if (stopRowResizeRef.current === stop) stopRowResizeRef.current = null
-      }
-      stopRowResizeRef.current = stop
-      window.addEventListener('pointermove', move)
-      window.addEventListener('pointerup', end)
-      window.addEventListener('pointercancel', end)
-    }
-
-    function onColumnResizing(column: CwDataTableColumn, width: number) {
-      const col = columnIndexFromKey(column.key)
-      if (col == null || !Number.isFinite(width) || width <= 0) return
-      setDragWidth({ col, width })
-      scheduleMergeLayoutSync()
-    }
-
-    function onColumnResize(column: CwDataTableColumn, width: number) {
-      const col = columnIndexFromKey(column.key)
-      setDragWidth(null)
-      if (col == null || !Number.isFinite(width) || width <= 0) return
-      const next = committedWidthsRef.current.slice()
-      next[col] = width
-      setCommittedWidths(next)
-      writeSheetMetric('col', col, width)
-      scheduleMergeLayoutSync()
-    }
-
-    function shiftColumnWidths(at: number, count: number, insert: boolean) {
-      const next = committedWidthsRef.current.slice()
-      if (insert) next.splice(at, 0, ...Array(count).fill(COL_WIDTH))
-      else next.splice(at, count)
-      setCommittedWidths(next)
-      setDragWidth(null)
-    }
 
     function focusGrid() {
       const root = rootRef.current
@@ -424,6 +231,8 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
       setGridEpoch(gridEpochRef.current + 1)
     }
 
+    const layoutApiRef = useRef<ReturnType<typeof useExcelGridLayout> | null>(null)
+
     const {
       modelEcho,
       canUndo,
@@ -456,11 +265,48 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
       anchor,
       cancelEdit,
       focusActiveEditor,
-      resetColumnWidths,
+      resetColumnWidths: () => layoutApiRef.current?.resetColumnWidths(),
       refreshGrid,
-      scheduleMergeLayoutSync,
+      scheduleMergeLayoutSync: () => layoutApiRef.current?.scheduleMergeLayoutSync(),
       focusGrid,
     })
+
+    const gridLayout = useExcelGridLayout({
+      headerRow,
+      previewing,
+      rootRef,
+      getWorkbook: () => workbookRef.current,
+      getSheetIndex: () => sheetIndexRef.current,
+      getActiveSheet,
+      getEditing: () => editingRef.current,
+      getDraft: () => draftRef.current,
+      getEditAt: () => editAtRef.current,
+      publish,
+    })
+    layoutApiRef.current = gridLayout
+
+    const {
+      committedWidths,
+      dragWidth,
+      committedRowHeights,
+      dragRow,
+      committedWidth,
+      layoutWidth,
+      layoutLeft,
+      layoutHeight,
+      layoutRowTop,
+      layoutRowSpanHeight,
+      resetColumnWidths,
+      shiftRowHeights,
+      shiftColumnWidths,
+      startRowResize,
+      onColumnResizing,
+      onColumnResize,
+      syncMergeLayoutFromDom,
+      scheduleMergeLayoutSync,
+      headerPieces,
+      bodyPieces,
+    } = gridLayout
 
     function onDocumentKeydown(event: KeyboardEvent) {
       const root = rootRef.current
@@ -492,7 +338,6 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
     const paintedScrollBucketRef = useRef(-1)
     const frameHandleRef = useRef(0)
     const pendingFrameRef = useRef<{ row: number; col: number; scroll: boolean } | null>(null)
-    const mergeLayoutFrameRef = useRef(0)
 
     /** 每次渲染都换成最新一批闭包，供 document 监听 / rAF / ResizeObserver 等稳定回调调用。 */
     const liveRef = useRef({
@@ -548,10 +393,8 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
       return () => {
         clearTimeout(timer)
         columnResizeObserverRef.current?.disconnect()
-        stopRowResizeRef.current?.()
         closeContextMenuRef.current?.()
         if (frameHandleRef.current) cancelAnimationFrame(frameHandleRef.current)
-        if (mergeLayoutFrameRef.current) cancelAnimationFrame(mergeLayoutFrameRef.current)
         document.removeEventListener('keydown', keydown)
         document.removeEventListener('copy', copy)
         document.removeEventListener('cut', cut)
@@ -638,179 +481,6 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
       return formatSelectionLabel(current.row, current.col, activeSheet?.merges ?? [])
     })()
 
-    function mergePieces(edge: 'body' | 'header'): ExcelMergePiece[] {
-      const sheet = activeSheet
-      if (!sheet) return []
-      const bodyStart = headerRow ? 1 : 0
-      const pieces: ExcelMergePiece[] = []
-      for (const merge of sheet.merges) {
-        const anchorKey = `${merge.row}:${merge.col}`
-        const text = formatCell(sheet.cells[merge.row]?.[merge.col] ?? null)
-        const cellStyle = sheet.styles?.[merge.row]?.[merge.col]
-        const align = cellStyle?.align ?? 'left'
-        const css = cellCss(cellStyle)
-        const border = visibleMergeBorders(sheet.styles ?? [], sheet.merges, merge)
-        if (edge === 'header') {
-          if (!headerRow || merge.row !== 0) continue
-          pieces.push({
-            key: `${anchorKey}:header`,
-            anchorKey,
-            row: merge.row,
-            col: merge.col,
-            showText: true,
-            text,
-            align,
-            css,
-            borderShadow: border.shadow,
-            borderRight: border.right,
-            borderBottom: border.bottom,
-            edge,
-            style: {
-              top: '0',
-              bottom: '0',
-              left: `${layoutLeft(merge.col)}px`,
-              width: `${sumWidths(merge.col, merge.col + merge.colspan, layoutWidth)}px`,
-              ...(cellStyle?.fill ? { backgroundColor: cellStyle.fill } : {}),
-              ...(border.rightColor
-                ? {
-                    '--cw-excel-br': border.rightColor,
-                    '--cw-excel-br-width': `${border.rightWidth}px`,
-                  }
-                : {}),
-            },
-          })
-          continue
-        }
-        const end = merge.row + merge.rowspan
-        if (end <= bodyStart) continue
-        const rowStart = Math.max(merge.row, bodyStart)
-        pieces.push({
-          key: `${anchorKey}:body`,
-          anchorKey,
-          row: merge.row,
-          col: merge.col,
-          showText: merge.row >= bodyStart,
-          text,
-          align,
-          css,
-          borderShadow: border.shadow,
-          borderRight: border.right,
-          borderBottom: border.bottom,
-          edge,
-          style: {
-            top: `${layoutRowTop(rowStart, bodyStart)}px`,
-            left: `${layoutLeft(merge.col)}px`,
-            width: `${sumWidths(merge.col, merge.col + merge.colspan, layoutWidth)}px`,
-            height: `${layoutRowSpanHeight(rowStart, end - rowStart)}px`,
-            ...(cellStyle?.fill ? { backgroundColor: cellStyle.fill } : {}),
-            ...(border.rightColor
-              ? {
-                  '--cw-excel-br': border.rightColor,
-                  '--cw-excel-br-width': `${border.rightWidth}px`,
-                }
-              : {}),
-          },
-        })
-      }
-      return pieces
-    }
-
-    const [mergeLayoutOverrides, setMergeLayoutOverrides, mergeLayoutOverridesRef] =
-      useMirroredState<Record<string, Record<string, string>>>({})
-
-    function cellWrapRect(root: HTMLElement, row: number, col: number): DOMRect | null {
-      const marker = root.querySelector(`[data-excel-row="${row}"][data-excel-col="${col}"]`)
-      if (!(marker instanceof Element)) return null
-      const wrap = marker.closest('.group > div')
-      if (!(wrap instanceof HTMLElement)) return null
-      return wrap.getBoundingClientRect()
-    }
-
-    function syncMergeLayoutFromDom() {
-      const root = rootRef.current
-      const sheet = getActiveSheet()
-      if (!root || !sheet?.merges.length) {
-        if (Object.keys(mergeLayoutOverridesRef.current).length > 0) setMergeLayoutOverrides({})
-        return
-      }
-      const bodyStart = headerRow ? 1 : 0
-      const next: Record<string, Record<string, string>> = {}
-      const assign = (
-        layerSelector: string,
-        filter: (merge: { row: number; rowspan: number }) => boolean,
-      ) => {
-        const layer = root.querySelector(layerSelector)
-        if (!(layer instanceof HTMLElement)) return
-        const layerRect = layer.getBoundingClientRect()
-        for (const merge of sheet.merges) {
-          if (!filter(merge)) continue
-          const anchorKey = `${merge.row}:${merge.col}`
-          const tl = cellWrapRect(root, merge.row, merge.col)
-          const br = cellWrapRect(
-            root,
-            merge.row + merge.rowspan - 1,
-            merge.col + merge.colspan - 1,
-          )
-          if (!tl || !br) continue
-          const top = Math.round(tl.top - layerRect.top)
-          const left = Math.round(tl.left - layerRect.left)
-          // 宽度按列宽累加，不用 DOM 右下角：虚拟列/右侧 pad 会把 br 量到表格外，横幅会多出一截。
-          const width = sumWidths(merge.col, merge.col + merge.colspan, layoutWidth)
-          const height = Math.round(br.bottom - tl.top)
-          next[anchorKey] = {
-            top: `${top}px`,
-            left: `${left}px`,
-            width: `${Math.max(0, width)}px`,
-            height: `${Math.max(0, height)}px`,
-          }
-        }
-      }
-      assign('.cw-data-table > div:first-child .cw-excel-merge-layer', (m) => headerRow && m.row === 0)
-      assign('.cw-div__viewport .cw-excel-merge-layer', (m) => m.row + m.rowspan > bodyStart)
-      if (mergeLayoutMatches(mergeLayoutOverridesRef.current, next)) return
-      setMergeLayoutOverrides(next)
-    }
-
-    function mergeLayoutMatches(
-      prev: Record<string, Record<string, string>>,
-      next: Record<string, Record<string, string>>,
-    ) {
-      const prevKeys = Object.keys(prev)
-      const nextKeys = Object.keys(next)
-      if (prevKeys.length !== nextKeys.length) return false
-      for (const key of nextKeys) {
-        const before = prev[key]
-        const after = next[key]
-        if (!before || !after) return false
-        if (before.top !== after.top || before.left !== after.left) return false
-        if (before.width !== after.width || before.height !== after.height) return false
-      }
-      return true
-    }
-
-    function scheduleMergeLayoutSync() {
-      if (mergeLayoutFrameRef.current) cancelAnimationFrame(mergeLayoutFrameRef.current)
-      mergeLayoutFrameRef.current = requestAnimationFrame(() => {
-        mergeLayoutFrameRef.current = 0
-        liveRef.current.syncMergeLayoutFromDom()
-      })
-    }
-
-    function withMergeLayout(
-      pieces: ExcelMergePiece[],
-      overrides: Record<string, Record<string, string>>,
-    ) {
-      if (!Object.keys(overrides).length) return pieces
-      return pieces.map((piece) => ({
-        ...piece,
-        style: overrides[piece.anchorKey]
-          ? { ...piece.style, ...overrides[piece.anchorKey]! }
-          : piece.style,
-      }))
-    }
-
-    const headerPieces = withMergeLayout(mergePieces('header'), mergeLayoutOverrides)
-    const bodyPieces = withMergeLayout(mergePieces('body'), mergeLayoutOverrides)
 
     function onMergeCommit(payload: { row: number; col: number; value: string; move: CommitMove }) {
       commitAt(payload.row, payload.col, payload.value, payload.move)

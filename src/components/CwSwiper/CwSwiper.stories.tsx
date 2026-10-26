@@ -3,6 +3,7 @@ import { CwSwiper } from './CwSwiper'
 import type { CwSwiperItem, CwSwiperItemSlotProps } from './types'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
+import { storybookPlaceholderImage } from '../../storybook/placeholderImage'
 
 const meta: Meta<typeof CwSwiper> = {
   title: '1. Components/Media/CwSwiper',
@@ -69,7 +70,7 @@ const generateItems = (count: number): CwSwiperItem[] =>
       title: `项目 ${i + 1}`,
       content: `这是第 ${i + 1} 个项目的内容`,
     },
-    image: `https://picsum.photos/300/200?random=${i}`,
+    image: storybookPlaceholderImage(300, 200, i),
   }))
 
 // 生成纯文本数据

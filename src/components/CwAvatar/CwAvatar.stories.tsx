@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '../../storybook/chatDefaultAvatar'
+import { storybookPlaceholderImage } from '../../storybook/placeholderImage'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 import { CwAvatar } from './CwAvatar'
@@ -92,7 +93,10 @@ export const AppearanceRingLight: Story = {
     size: 3,
   },
   render: (args) => (
-    <div className="rounded-lg bg-[url(https://picsum.photos/400/200)] bg-cover p-4">
+    <div
+      className="rounded-lg bg-cover p-4"
+      style={{ backgroundImage: `url("${storybookPlaceholderImage(400, 200, 0)}")` }}
+    >
       <CwAvatar {...args} />
     </div>
   ),

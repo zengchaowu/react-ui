@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
+import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '../../storybook/chatDefaultAvatar'
+import { CwButton } from '../CwButton'
 import { CwMessageInputMentionSheet } from './CwMessageInputMentionSheet'
 import type { CwMessageInputMentionItem } from '../CwMessageInput/types'
 
-const fallbackAvatar =
-  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"><rect width="36" height="36" fill="%23d9d9d9"/></svg>'
-
 const items: CwMessageInputMentionItem[] = [
-  { id: 'u1', label: 'Alice' },
-  { id: 'u2', label: 'Bob' },
-  { id: 'u3', label: 'Carol' },
+  { id: 'u1', label: 'Alice', avatar: chatDefaultAvatar },
+  { id: 'u2', label: 'Bob', avatar: chatDefaultAvatar },
+  { id: 'u3', label: 'Carol', avatar: chatDefaultAvatar },
 ]
 
 const meta: Meta<typeof CwMessageInputMentionSheet> = {
@@ -49,15 +48,15 @@ export const Default: Story = {
     const [selected, setSelected] = useState('')
     return (
       <div className="flex min-h-[24rem] items-start justify-center p-8">
-        <button type="button" className="rounded-md border px-3 py-1.5" onClick={() => setOpen(true)}>
+        <CwButton type="primary" onClick={() => setOpen(true)}>
           打开 @ 面板{selected ? `（已选 ${selected}）` : ''}
-        </button>
+        </CwButton>
         <CwMessageInputMentionSheet
           value={open}
           searchQuery={searchQuery}
           items={items}
           highlightIndex={0}
-          mentionAvatarFallbackSrc={fallbackAvatar}
+          mentionAvatarFallbackSrc={chatDefaultAvatar}
           onChange={setOpen}
           onSearchQueryChange={setSearchQuery}
           onSelect={(item) => {

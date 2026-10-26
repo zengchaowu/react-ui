@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CwTikTokFeed } from './CwTikTokFeed'
 import type { CwSocialActionEvent, CwTikTokFeedProps, VideoItem } from './types'
 import { defaultTexts } from './texts'
-
-const chatDefaultAvatar = 'https://picsum.photos/80'
+import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '../../storybook/chatDefaultAvatar'
+import { storybookPlaceholderImage } from '../../storybook/placeholderImage'
 
 // 模拟视频数据
 const createMockVideo = (id: number): VideoItem => ({
@@ -13,7 +13,7 @@ const createMockVideo = (id: number): VideoItem => ({
     title: `精彩视频 #${id}`,
     description: `这是第 ${id} 个精彩的短视频内容，展示了有趣的故事情节和精美的画面效果。`,
     tags: ['热门', '推荐', `标签${id}`],
-    poster: `https://picsum.photos/400/600?random=${id}`,
+    poster: storybookPlaceholderImage(400, 600, id),
   },
   user: {
     id: `user-${id}`,

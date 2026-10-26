@@ -183,7 +183,11 @@ export function CwCalculateGrid({
     if (total === 0 || height <= 0) {
       return { start: 0, end: Math.min(total - 1, FIRST_PAINT_ROWS - 1) }
     }
-    const scrollTop = Number(tableRef.current?.scrollTop ?? 0)
+    // 直接从表体 DOM 读滚动位置：React 侧 handle 上的 scrollTop 是上一次渲染的
+    // state，滚动回调里还是旧值；一次跳到末尾后不会再有新滚动事件，会漏掉补数据
+    const scrollTop = Number(
+      body?.scrollTop ?? tableRef.current?.scrollTop ?? 0,
+    )
     const win = getVirtualWindow(
       total,
       CALCULATE_GRID_ROW_HEIGHT,

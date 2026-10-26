@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { storybookPlaceholderImage } from '../../storybook/placeholderImage'
 import { CwImg } from './CwImg'
 
 const meta: Meta<typeof CwImg> = {
@@ -30,7 +31,7 @@ type Story = StoryObj<typeof CwImg>
 
 export const Default: Story = {
   args: {
-    src: 'https://picsum.photos/200/200',
+    src: storybookPlaceholderImage(200, 200, 0),
     alt: '示例图片',
     loadWhenVisible: false,
   },
@@ -43,7 +44,7 @@ export const Default: Story = {
 
 export const Loading: Story = {
   render: () => {
-    const src = 'https://picsum.photos/4000/4000?random=' + Date.now()
+    const src = storybookPlaceholderImage(4000, 4000, 1)
     return (
       <div className="w-64 h-64 border border-[var(--border-color)] rounded overflow-hidden">
         <CwImg src={src} alt="加载中的图片" loadWhenVisible={false} />
@@ -68,13 +69,25 @@ export const Sizes: Story = {
   render: () => (
     <div className="flex flex-col gap-4 items-center">
       <div className="w-32 h-32 border border-[var(--border-color)] rounded">
-        <CwImg src="https://picsum.photos/100/100" alt="小图片" loadWhenVisible={false} />
+        <CwImg
+          src={storybookPlaceholderImage(100, 100, 0)}
+          alt="小图片"
+          loadWhenVisible={false}
+        />
       </div>
       <div className="w-64 h-64 border border-[var(--border-color)] rounded">
-        <CwImg src="https://picsum.photos/200/200" alt="中图片" loadWhenVisible={false} />
+        <CwImg
+          src={storybookPlaceholderImage(200, 200, 1)}
+          alt="中图片"
+          loadWhenVisible={false}
+        />
       </div>
       <div className="w-96 h-96 border border-[var(--border-color)] rounded">
-        <CwImg src="https://picsum.photos/300/300" alt="大图片" loadWhenVisible={false} />
+        <CwImg
+          src={storybookPlaceholderImage(300, 300, 2)}
+          alt="大图片"
+          loadWhenVisible={false}
+        />
       </div>
     </div>
   ),

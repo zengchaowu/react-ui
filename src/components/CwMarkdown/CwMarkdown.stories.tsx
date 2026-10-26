@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { storybookPlaceholderImage } from '../../storybook/placeholderImage'
 import { CwMarkdown } from './CwMarkdown'
 import type { CwMarkdownCodeBlockExtensionProps } from './types'
 
@@ -59,7 +60,7 @@ console.log(x)
 
 [链接文字](https://example.com)
 
-![图片](https://picsum.photos/200/100)
+![图片](${storybookPlaceholderImage(200, 100)})
 `
 
 /** 覆盖所有支持语法的完整示例，用于文档与回归 */
@@ -81,7 +82,7 @@ const allSyntaxMarkdown = `# 标题 H1
 
 [普通链接](https://example.com)、[带 title 的链接](https://example.com "链接标题")。
 
-![图片](https://picsum.photos/300/150 "图片 title")、![仅 alt](https://picsum.photos/200/100)
+![图片](${storybookPlaceholderImage(300, 150)} "图片 title")、![仅 alt](${storybookPlaceholderImage(200, 100)})
 
 混合：**粗体里*斜体*和\`代码\`** 与 *斜体里**粗体***。
 

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { storybookPlaceholderImage } from '../../storybook/placeholderImage'
 import { CwMusicPlayer } from './CwMusicPlayer'
 import { defaultTexts } from './texts'
 
@@ -18,7 +19,7 @@ export const Default: Story = {
     src: demoSrc,
     title: 'SoundHelix Song 1',
     artist: 'SoundHelix',
-    cover: 'https://picsum.photos/seed/music-cover/400/400',
+    cover: storybookPlaceholderImage(400, 400, 0),
     controls: true,
     autoplay: false,
     loop: false,

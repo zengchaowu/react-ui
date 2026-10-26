@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
+import { storybookPlaceholderImage } from '../../storybook/placeholderImage'
 import { CwFileUpload } from './CwFileUpload'
 import type { CwFileUploadProps, UploadFile } from './types'
 
@@ -77,7 +78,7 @@ const initialFilesDemo: UploadFile[] = [
     size: 7716,
     type: 'image/jpeg',
     status: 'success',
-    url: 'https://picsum.photos/seed/uploader1/200/200',
+    url: storybookPlaceholderImage(200, 200, 0),
     file: new File([new Blob()], 'landscape.jpg', { type: 'image/jpeg' }),
   },
   {
@@ -86,7 +87,7 @@ const initialFilesDemo: UploadFile[] = [
     size: 40895,
     type: 'image/png',
     status: 'uploading',
-    url: 'https://picsum.photos/seed/uploader2/200/200',
+    url: storybookPlaceholderImage(200, 200, 1),
     file: new File([new Blob()], 'avatar.png', { type: 'image/png' }),
   },
   {
@@ -126,7 +127,7 @@ const demoUploadFile: UploadFile = {
   size: 1200,
   type: 'image/png',
   status: 'success',
-  url: 'https://picsum.photos/seed/cw-file-upload/120/120',
+  url: storybookPlaceholderImage(120, 120, 0),
   file: new File([new Blob()], '示例图.png', { type: 'image/png' }),
 }
 

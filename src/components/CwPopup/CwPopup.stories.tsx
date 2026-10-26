@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import type { CSSProperties, MouseEvent as ReactMouseEvent, RefObject } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 import { CwPopup } from './CwPopup'
-import type { CwPopupProps } from './types'
+import type { CwPopupInstance, CwPopupProps } from './types'
 import { CwButton } from '../CwButton'
 import { createDimensions } from './plugins/dimensions'
 import { createPosition } from './plugins/position'
@@ -84,6 +85,77 @@ type Story = StoryObj<typeof CwPopup>
 const triggerClass =
   'px-4 py-2 bg-[var(--brand-color-6)] text-[var(--text-color-anti)] rounded-md hover:bg-[var(--brand-color-hover)] transition-colors duration-200 cursor-move inline-block text-center'
 
+interface DraggableTriggerHandle {
+  style: CSSProperties
+  onMouseDown: (event: ReactMouseEvent<HTMLDivElement>) => void
+}
+
+/**
+ * 让 CwPopup 的触发器可拖动，对齐 Vue 版 story 的 useDraggable 行为。
+ * 拖拽作用在 CwPopup 自身的 trigger 容器上（弹出层按它的位置定位，才能一起移动）。
+ */
+function useDraggableTrigger(
+  popupRef: RefObject<CwPopupInstance | null>,
+): DraggableTriggerHandle {
+  const [style, setStyle] = useState<CSSProperties>({})
+  const stopDragRef = useRef<(() => void) | null>(null)
+
+  useLayoutEffect(() => {
+    popupRef.current?.updatePosition()
+  }, [style, popupRef])
+
+  useEffect(() => () => stopDragRef.current?.(), [])
+
+  const onMouseDown = (event: ReactMouseEvent<HTMLDivElement>) => {
+    const el = event.currentTarget
+    event.preventDefault()
+    event.stopPropagation()
+    const rect = el.getBoundingClientRect()
+    const startX = event.clientX - rect.left
+    const startY = event.clientY - rect.top
+
+    const onMouseMove = (moveEvent: MouseEvent) => {
+      moveEvent.preventDefault()
+      const parentRect = (el.offsetParent ?? document.body).getBoundingClientRect()
+      setStyle({
+        position: 'absolute',
+        left: moveEvent.clientX - startX - parentRect.left,
+        top: moveEvent.clientY - startY - parentRect.top,
+      })
+    }
+    const stop = () => {
+      document.removeEventListener('mousemove', onMouseMove)
+      document.removeEventListener('mouseup', stop)
+      stopDragRef.current = null
+    }
+    stopDragRef.current = stop
+    document.addEventListener('mousemove', onMouseMove, { passive: false })
+    document.addEventListener('mouseup', stop)
+  }
+
+  return { style, onMouseDown }
+}
+
+function HoverTriggerDemo(args: CwPopupProps) {
+  const popupRef = useRef<CwPopupInstance | null>(null)
+  const drag = useDraggableTrigger(popupRef)
+  return (
+    <div>
+      <CwPopup
+        {...args}
+        ref={popupRef}
+        className={triggerClass}
+        style={drag.style}
+        onMouseDown={drag.onMouseDown}
+        popupClass="bg-[var(--bg-color-container)] border border-[var(--border-color)] rounded-lg shadow-lg px-3 py-1.5"
+        triggerSlot="悬停显示弹出层"
+      >
+        <div className="text-[var(--text-color-primary)]">鼠标悬停时显示此内容</div>
+      </CwPopup>
+    </div>
+  )
+}
+
 export const HoverTrigger: Story = {
   args: {
     placement: 'top',
@@ -92,19 +164,7 @@ export const HoverTrigger: Story = {
     hideDelay: 300,
     plugins,
   },
-  render: (args) => (
-    <div className="relative">
-      <CwPopup
-        {...args}
-        popupClass="bg-[var(--bg-color-container)] border border-[var(--border-color)] rounded-lg shadow-lg px-3 py-1.5"
-        triggerSlot={
-          <div className={triggerClass}>悬停显示弹出层</div>
-        }
-      >
-        <div className="text-[var(--text-color-primary)]">鼠标悬停时显示此内容</div>
-      </CwPopup>
-    </div>
-  ),
+  render: (args) => <HoverTriggerDemo {...args} />,
 }
 
 const richPlugins = [
@@ -121,18 +181,20 @@ const richPlugins = [
   }),
 ]
 
-export const RichContent: Story = {
-  args: {
-    placement: 'bottom',
-    trigger: 'click',
-  },
-  render: (args) => (
+function RichContentDemo(args: CwPopupProps) {
+  const popupRef = useRef<CwPopupInstance | null>(null)
+  const drag = useDraggableTrigger(popupRef)
+  return (
     <div className="p-8">
       <CwPopup
         {...args}
+        ref={popupRef}
         plugins={richPlugins}
+        className={triggerClass}
+        style={drag.style}
+        onMouseDown={drag.onMouseDown}
         popupClass="bg-[var(--bg-color-container)] border border-[var(--border-color)] rounded-lg shadow-lg px-3 py-2"
-        triggerSlot={<div className={triggerClass}>底部弹出</div>}
+        triggerSlot="用户菜单"
       >
         <div className="min-w-[12.5rem]">
           <div className="flex items-center mb-3">
@@ -163,7 +225,15 @@ export const RichContent: Story = {
         </div>
       </CwPopup>
     </div>
-  ),
+  )
+}
+
+export const RichContent: Story = {
+  args: {
+    placement: 'bottom',
+    trigger: 'click',
+  },
+  render: (args) => <RichContentDemo {...args} />,
 }
 
 function ManualTriggerDemo({ args }: { args: CwPopupProps }) {
@@ -177,9 +247,10 @@ function ManualTriggerDemo({ args }: { args: CwPopupProps }) {
           modelValue={visible}
           onUpdateModelValue={setVisible}
           closeOnClickOutside={false}
+          className="mb-4"
           popupClass="bg-[var(--bg-color-container)] border border-[var(--border-color)] rounded-lg shadow-lg px-3 py-1.5"
           triggerSlot={
-            <div className="mb-4 px-4 py-2 bg-[var(--bg-color-secondarycomponent)] text-[var(--text-color-primary)] rounded-md inline-block">
+            <div className="px-4 py-2 bg-[var(--bg-color-secondarycomponent)] text-[var(--text-color-primary)] rounded-md inline-block">
               参考元素
             </div>
           }

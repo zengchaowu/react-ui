@@ -6,6 +6,7 @@ import { CwLoading } from '../CwLoading'
 import type { CwWaterfallItem, CwWaterfallProps } from './types'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
+import { storybookPlaceholderImage } from '../../storybook/placeholderImage'
 
 // 生成测试数据
 function generateItems(count: number): CwWaterfallItem[] {
@@ -22,7 +23,7 @@ function generateItems(count: number): CwWaterfallItem[] {
       height: itemHeight, // 使用固定的高度值
       imageUrl: isVideo
         ? undefined
-        : `https://picsum.photos/400/${itemHeight}?random=${i}`, // 图片项目使用图片URL
+        : storybookPlaceholderImage(400, itemHeight, i), // 图片项目使用本地占位图
       videoUrl: isVideo
         ? 'https://www.w3schools.com/html/mov_bbb.mp4'
         : undefined, // 视频项目使用视频URL
