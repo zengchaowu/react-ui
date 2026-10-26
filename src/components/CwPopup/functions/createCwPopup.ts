@@ -170,6 +170,7 @@ export function createCwPopup(options: CreateCwPopupOptions): CreateCwPopupResul
     closeOnClickOutside,
     isActive: () => state.visible,
     onHide: hide,
+    containerMounted: container.containerMounted,
     shouldAbortDismiss: () =>
       suppressOutsideCloseUntilRef.current > 0 &&
       Date.now() < suppressOutsideCloseUntilRef.current,

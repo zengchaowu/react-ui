@@ -58,10 +58,14 @@ let documentListenerAttached = false
 function reparentOverlayHostToFront(host: unknown): void {
   if (host == null) return
   const parent = (host as { parentNode?: unknown }).parentNode as
-    | { appendChild(node: unknown): unknown }
+    | { appendChild(node: unknown): unknown; lastElementChild?: unknown }
     | null
     | undefined
   if (!parent?.appendChild) return
+  // 已在末尾时无需重排：appendChild 会先摘除再插入，子树被摘除会让内部
+  // 滚动容器（如 CwDiv viewport、列表）的 scrollTop 归零，且会丢失 DOM 的
+  // :hover 状态，鼠标在弹层内容上移动时会闪烁。与 vue-ui 保持同一实现。
+  if (parent.lastElementChild === host) return
   parent.appendChild(host)
 }
 
