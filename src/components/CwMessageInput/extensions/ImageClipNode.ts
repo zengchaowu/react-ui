@@ -1,6 +1,7 @@
 import { Node, mergeAttributes } from '@tiptap/core'
 import { ReactNodeViewRenderer } from '@tiptap/react'
 import { IM_RICH_INLINE_IMAGE_ATTR } from '@zengchaowu/shared/functions/im/imRichContentHtml'
+import { INLINE_CHIP_REACT_RENDERER_CLASS } from '../chips/chipStyles'
 import { ImageClipNodeView } from './ImageClipNodeView'
 
 export interface ImageClipNodeOptions {
@@ -100,6 +101,8 @@ export const ImageClipNode = Node.create<ImageClipNodeOptions>({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(ImageClipNodeView)
+    return ReactNodeViewRenderer(ImageClipNodeView, {
+      className: INLINE_CHIP_REACT_RENDERER_CLASS,
+    })
   },
 })

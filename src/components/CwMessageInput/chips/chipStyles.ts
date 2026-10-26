@@ -9,6 +9,15 @@ const INLINE_CHIP_OUTER_WRAP_CLASS =
 export const INLINE_CHIP_EDITOR_TRIGGER_WRAP_CLASS =
   'inline-flex w-auto max-w-full min-w-0 shrink-0 cursor-text align-middle'
 
+/**
+ * React 专用：`@tiptap/react` 的 `ReactNodeViewRenderer` 会在 NodeView 外多包一层
+ * `.react-renderer`（Vue 无此层）。该层默认 `display:inline` 会按基线对齐，吞掉
+ * NodeViewWrapper 上的 `align-middle`，导致 chip 纵向偏移；让外层自身也 inline-flex
+ * 居中，几何即可与 Vue 的单一 NodeViewWrapper 对齐。
+ */
+export const INLINE_CHIP_REACT_RENDERER_CLASS =
+  'inline-flex items-center align-middle leading-none'
+
 /** 文件芯片外层（与编辑器 NodeViewWrapper 一致） */
 export const FILE_CHIP_WRAP_CLASS = [
   'cw-file-ref-wrap',

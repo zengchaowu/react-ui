@@ -13,7 +13,7 @@ import {
 import type { ImMentionNodeOptions } from './ImMentionNode'
 
 /** @提及 chip 节点视图（等价 Vue `ImMentionChipNodeView`） */
-export function ImMentionNodeView({ node, extension }: NodeViewProps) {
+export function ImMentionNodeView({ node, extension, selected }: NodeViewProps) {
   const opts = extension.options as ImMentionNodeOptions
   const uid = String(node.attrs.uid ?? '')
   const label = String(node.attrs.label ?? '').trim() || uid
@@ -33,7 +33,9 @@ export function ImMentionNodeView({ node, extension }: NodeViewProps) {
   return (
     <NodeViewWrapper
       as="span"
-      className={USER_MENTION_WRAP_CLASS}
+      className={[USER_MENTION_WRAP_CLASS, selected ? 'ProseMirror-selectednode' : '']
+        .filter(Boolean)
+        .join(' ')}
       {...{ [`${IM_RICH_MENTION_ATTR}-wrap`]: '' }}
       {...{ [IM_RICH_USER_ID_ATTR]: uid, [IM_RICH_LABEL_ATTR]: label }}
     >

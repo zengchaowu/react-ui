@@ -16,6 +16,7 @@ export function ImageClipNodeView({
   node,
   extension,
   deleteNode,
+  selected,
 }: NodeViewProps) {
   const opts = extension.options as ImageClipNodeOptions
   const previewSrc = String(node.attrs.previewSrc ?? '').trim()
@@ -38,7 +39,9 @@ export function ImageClipNodeView({
   return (
     <NodeViewWrapper
       as="span"
-      className={IMAGE_CHIP_WRAP_CLASS}
+      className={[IMAGE_CHIP_WRAP_CLASS, selected ? 'ProseMirror-selectednode' : '']
+        .filter(Boolean)
+        .join(' ')}
       data-cw-inline-image-wrap=""
       data-preview-src={previewSrc || undefined}
       data-natural-width={naturalWidth > 0 ? naturalWidth : undefined}

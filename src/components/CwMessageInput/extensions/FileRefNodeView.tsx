@@ -19,6 +19,7 @@ export function FileRefNodeView({
   node,
   extension,
   deleteNode,
+  selected,
 }: NodeViewProps) {
   const opts = extension.options as FileRefNodeOptions
   const id = String(node.attrs.id ?? '')
@@ -62,7 +63,9 @@ export function FileRefNodeView({
   return (
     <NodeViewWrapper
       as="span"
-      className={FILE_CHIP_WRAP_CLASS}
+      className={[FILE_CHIP_WRAP_CLASS, selected ? 'ProseMirror-selectednode' : '']
+        .filter(Boolean)
+        .join(' ')}
       data-cw-file-ref-wrap=""
     >
       {pathText ? (

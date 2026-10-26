@@ -6,6 +6,7 @@ import {
   IM_RICH_LABEL_ATTR,
 } from '@zengchaowu/shared/functions/im/imRichContentHtml'
 import { ReactNodeViewRenderer } from '@tiptap/react'
+import { INLINE_CHIP_REACT_RENDERER_CLASS } from '../chips/chipStyles'
 import { FileRefNodeView } from './FileRefNodeView'
 
 export interface FileRefNodeOptions {
@@ -126,6 +127,8 @@ export const FileRefNode = Node.create<FileRefNodeOptions>({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(FileRefNodeView)
+    return ReactNodeViewRenderer(FileRefNodeView, {
+      className: INLINE_CHIP_REACT_RENDERER_CLASS,
+    })
   },
 })

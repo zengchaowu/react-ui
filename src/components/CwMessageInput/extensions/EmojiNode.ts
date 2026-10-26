@@ -1,6 +1,9 @@
 import { Node, mergeAttributes } from '@tiptap/core'
 import { ReactNodeViewRenderer } from '@tiptap/react'
-import { EMOJI_WRAP_CLASS } from '../chips/chipStyles'
+import {
+  EMOJI_WRAP_CLASS,
+  INLINE_CHIP_REACT_RENDERER_CLASS,
+} from '../chips/chipStyles'
 import { CW_INLINE_EMOJI_IMG_CLASS } from '../../CwChatMessageQuote/emojioneEmoji'
 import { EmojiNodeView } from './EmojiNodeView'
 
@@ -117,6 +120,8 @@ export const EmojiNode = Node.create<EmojiNodeOptions>({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(EmojiNodeView)
+    return ReactNodeViewRenderer(EmojiNodeView, {
+      className: INLINE_CHIP_REACT_RENDERER_CLASS,
+    })
   },
 })
