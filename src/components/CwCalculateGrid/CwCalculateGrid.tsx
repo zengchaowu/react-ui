@@ -483,6 +483,12 @@ export function CwCalculateGrid({
 
   void texts
 
+  // 稳定 onScroll 引用，避免每次渲染创建新函数导致 useScrollSync 的
+  // handleBodyScroll useCallback 失效（进而失去 rAF 节流效果）。
+  const handleScroll = useCallback(() => {
+    engineRef.current.syncVisibleFormulas()
+  }, [])
+
   return (
     <div {...rest} className={rootClass}>
       <CwDataTable
@@ -490,9 +496,7 @@ export function CwCalculateGrid({
         className="h-full min-h-0 w-full flex-1"
         config={tableConfig}
         modelValue={displayRowsRef.current as unknown as CwDataTableRow[]}
-        onScroll={() => {
-          engineRef.current.syncVisibleFormulas()
-        }}
+        onScroll={handleScroll}
       />
     </div>
   )

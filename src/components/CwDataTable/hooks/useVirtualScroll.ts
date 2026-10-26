@@ -123,9 +123,13 @@ export function useVirtualScroll({
 
         const rows: DataTableRenderRow[] = []
         for (let index = startIndex; index <= endIndex; index += 1) {
+          const row = displayedRows[index]
+          // 稀疏数组中未物化的行在 materializeRange 完成前可能为 undefined，
+          // 极端滚动竞态下跳过避免下游 row._data 崩溃（下一帧物化后会补回）。
+          if (row == null) continue
           rows.push({
-            key: getRowKey(displayedRows[index], index, rowKey),
-            data: displayedRows[index]!,
+            key: getRowKey(row, index, rowKey),
+            data: row,
             rowIndex: index,
             isLast: index === lastDataIndex,
             height: (prefix[index + 1] ?? 0) - (prefix[index] ?? 0),
@@ -145,9 +149,11 @@ export function useVirtualScroll({
 
     const rows: DataTableRenderRow[] = []
     for (let index = win.startIndex; index <= win.endIndex; index += 1) {
+      const row = displayedRows[index]
+      if (row == null) continue
       rows.push({
-        key: getRowKey(displayedRows[index], index, rowKey),
-        data: displayedRows[index]!,
+        key: getRowKey(row, index, rowKey),
+        data: row,
         rowIndex: index,
         isLast: index === lastDataIndex,
         height: rowHeight,
