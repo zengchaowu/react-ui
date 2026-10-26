@@ -100,6 +100,30 @@ useEffect(() => { if (visible) setMentionPanelMounted(true) }, [visible])
 - `mouseenter` tooltip 元素时清除 hide timer
 - `mouseleave` chip 时检查 `relatedTarget`，若进入 tooltip 则不隐藏
 
+## 规范 7：事件委托用 mouseover/mouseout，不用 mouseenter/mouseleave
+
+**规则**：在父元素上做事件委托监听子元素的悬停时，必须用 `mouseover`/`mouseout`（冒泡事件），禁止用 `mouseenter`/`mouseleave`（非冒泡事件）。
+
+**原因**：`mouseenter`/`mouseleave` 不冒泡，其捕获阶段（`capture: true`）监听在浏览器中对**真实鼠标移动不可靠**——`dispatchEvent` 能触发，但用户真实移动鼠标时不会触发祖先元素上的捕获监听。`mouseover`/`mouseout` 正常冒泡，委托可靠。
+
+**正例**：
+```ts
+root.addEventListener('mouseover', (e) => {
+  const chip = (e.target as HTMLElement).closest('[data-cw-file]')
+  const related = e.relatedTarget as HTMLElement | null
+  if (chip && !(related && chip.contains(related))) {
+    showTooltipForChip(chip)
+  }
+})
+root.addEventListener('mouseout', (e) => {
+  const chip = (e.target as HTMLElement).closest('[data-cw-file]')
+  const related = e.relatedTarget as HTMLElement | null
+  if (chip && !(related && chip.contains(related))) {
+    scheduleHideTooltip()
+  }
+})
+```
+
 ## 已修复的问题清单
 
 | 组件 | 问题 | 根因 | 修复方案 |
@@ -109,7 +133,8 @@ useEffect(() => { if (visible) setMentionPanelMounted(true) }, [visible])
 | CwPopup | scroll/resize 监听器频繁重建 | `usePopupPosition` effect 依赖 `updatePosition` | `updatePositionRef` 解耦 |
 | CwPopup | trigger ResizeObserver 频繁重建 | `useTriggerResizeObserver` effect 依赖 `getTriggerElement` | `getTriggerElementRef` 解耦 |
 | CwMessageInput mentions | 无匹配时面板高度变 0 再消失 | `mentionPanelMounted` 永不重置 + `hide()` 异步 | 直接用 `mentionPopupVisible` 控制挂载 |
-| CwMessageInput file chip tooltip | 无 hideDelay、鼠标移入 tooltip 会消失 | 事件代理立即隐藏，未处理 tooltip 区域 | 添加 100ms hideDelay + tooltip 区域防隐藏 |
+| CwMessageInput file chip tooltip | 真实鼠标 hover 不显示 tooltip | 用 `mouseenter`/`mouseleave` 捕获阶段做事件委托，非冒泡事件对真实鼠标移动不可靠 | 改用 `mouseover`/`mouseout` 冒泡事件委托 |
+| CwPopup virtual-reference story | 鼠标移出容器区域后停止跟随 | story 把 `onMouseMove` 绑在内部 div 上，鼠标移出 div 不更新 virtualReference | 改用 `document.addEventListener('mousemove')`，对齐 Vue 版 |
 
 ## 自查命令
 

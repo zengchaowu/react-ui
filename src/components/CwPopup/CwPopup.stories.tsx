@@ -292,15 +292,20 @@ function VirtualReferenceDemo() {
     getBoundingClientRect: () => new DOMRect(0, 0, 0, 0),
   })
 
+  // 与 Vue 版一致：在 document 上监听 mousemove，确保鼠标移出容器区域
+  // 后仍能持续更新虚拟参考元素位置，弹窗全程跟随
+  useEffect(() => {
+    const onMouseMove = (e: MouseEvent) => {
+      virtualReference.current.getBoundingClientRect = () =>
+        new DOMRect(e.clientX, e.clientY, 0, 0)
+      popupRef.current?.updatePosition()
+    }
+    document.addEventListener('mousemove', onMouseMove)
+    return () => document.removeEventListener('mousemove', onMouseMove)
+  }, [])
+
   return (
-      <div
-        className="p-16 text-center"
-        onMouseMove={(event) => {
-          virtualReference.current.getBoundingClientRect = () =>
-            new DOMRect(event.clientX, event.clientY, 0, 0)
-          popupRef.current?.updatePosition()
-        }}
-      >
+      <div className="p-16 text-center">
         <div className="px-6 py-4 bg-[var(--bg-color-secondarycontainer)] border border-dashed border-[var(--border-color)] rounded-lg inline-block text-[var(--text-color-secondary)]">
           移动鼠标查看弹窗跟随效果
         </div>

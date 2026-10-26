@@ -766,6 +766,9 @@ export const CwMessageInput = forwardRef<
     const root = getRoot()
     if (!root) return
 
+    // 当前正在显示 tooltip 的 chip（用于在同一 chip 内移动时不重复触发 show）
+    const activeChipRef = { current: null as HTMLElement | null }
+
     const clearShowTimer = () => {
       if (fileChipTooltipTimerRef.current != null) {
         window.clearTimeout(fileChipTooltipTimerRef.current)
@@ -800,48 +803,68 @@ export const CwMessageInput = forwardRef<
       fileChipTooltipHideTimerRef.current = window.setTimeout(() => {
         setFileChipTooltipEl(null)
         setFileChipTooltipText('')
+        activeChipRef.current = null
       }, fileChipTooltipHideDelayMs)
     }
 
-    const onMouseEnter = (event: MouseEvent) => {
+    const isTooltipEl = (el: HTMLElement | null) =>
+      !!el?.closest('.cw-file-chip-tooltip')
+
+    // 用 mouseover/mouseout（冒泡事件）做事件委托；mouseenter/mouseleave 为非冒泡事件，
+    // 其捕获阶段监听在浏览器中对真实鼠标移动不可靠，仅 dispatchEvent 能触发。
+    const onMouseOver = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null
       if (!target) return
+      const related = event.relatedTarget as HTMLElement | null
+
       // 进入 tooltip 本身：取消隐藏
-      if (target.closest('.cw-file-chip-tooltip')) {
+      if (isTooltipEl(target)) {
         clearHideTimer()
         return
       }
+
       const chip = target.closest<HTMLElement>('[data-cw-file]')
       if (!chip) return
+
+      // 从同一 chip 内部移入：不重复触发
+      if (related && chip.contains(related)) return
+
+      // 从 tooltip 移入 chip：取消隐藏，不重新 show
+      if (isTooltipEl(related)) {
+        clearHideTimer()
+        return
+      }
+
       // 读取完整路径（优先 data-file-path，回退到 title）
       const path =
         (chip.getAttribute('data-file-path') || chip.getAttribute('title') || '').trim()
       if (!path) return
+
+      activeChipRef.current = chip
       showTooltipForChip(chip, path)
     }
 
-    const onMouseLeave = (event: MouseEvent) => {
+    const onMouseOut = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null
       if (!target) return
-      const chip = target.closest<HTMLElement>('[data-cw-file]')
-      if (!chip) {
-        // 离开 tooltip 本身：延迟隐藏
-        if (target.closest('.cw-file-chip-tooltip')) {
-          scheduleHideTooltip()
-        }
-        return
-      }
-      // 如果新的进入元素仍在同一个 chip wrap 或 tooltip 里，不隐藏
       const related = event.relatedTarget as HTMLElement | null
-      if (related && (chip.contains(related) || related.closest('.cw-file-chip-tooltip'))) return
+
+      const chip = target.closest<HTMLElement>('[data-cw-file]')
+      const fromTooltip = isTooltipEl(target)
+
+      if (!chip && !fromTooltip) return
+
+      // 移入 tooltip 或仍在同一 chip 内：不隐藏
+      if (related && (isTooltipEl(related) || (chip && chip.contains(related)))) return
+
       scheduleHideTooltip()
     }
 
-    root.addEventListener('mouseenter', onMouseEnter, true)
-    root.addEventListener('mouseleave', onMouseLeave, true)
+    root.addEventListener('mouseover', onMouseOver)
+    root.addEventListener('mouseout', onMouseOut)
     return () => {
-      root.removeEventListener('mouseenter', onMouseEnter, true)
-      root.removeEventListener('mouseleave', onMouseLeave, true)
+      root.removeEventListener('mouseover', onMouseOver)
+      root.removeEventListener('mouseout', onMouseOut)
       clearShowTimer()
       clearHideTimer()
     }
