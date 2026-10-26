@@ -40,7 +40,7 @@ export const CwVideoPlayer = forwardRef<CwVideoPlayerExpose, CwVideoPlayerProps>
     },
     ref,
   ) {
-    const texts = { ...defaultTexts, ...(textsProp ?? {}) }
+    const texts = { ...defaultTexts, ...textsProp }
 
     const containerClass = [
       fitToParent
