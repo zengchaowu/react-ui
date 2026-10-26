@@ -40,8 +40,6 @@ export function useMentionPicker(options: UseMentionPickerOptions) {
     filter: string
   } | null>(null)
   const [mentionHighlightIndex, setMentionHighlightIndex] = useState(0)
-  const [mentionPanelMounted, setMentionPanelMounted] = useState(false)
-  const [mentionSheetMounted, setMentionSheetMounted] = useState(false)
   const [mentionSheetSearch, setMentionSheetSearch] = useState('')
   const pickerOpenRef = useRef(false)
 
@@ -198,21 +196,6 @@ export function useMentionPicker(options: UseMentionPickerOptions) {
   }, [])
 
   useEffect(() => {
-    if (mentionPopupVisible) {
-      setMentionPanelMounted(true)
-      setMentionHighlightIndex(0)
-    }
-  }, [mentionPopupVisible])
-
-  useEffect(() => {
-    if (mentionSheetVisible) {
-      setMentionSheetMounted(true)
-      setMentionHighlightIndex(0)
-      setMentionSheetSearch(mentionQuery?.filter ?? '')
-    }
-  }, [mentionQuery?.filter, mentionSheetVisible])
-
-  useEffect(() => {
     if (mentionHighlightIndex < activeMentionCandidates.length) return
     setMentionHighlightIndex(Math.max(0, activeMentionCandidates.length - 1))
   }, [activeMentionCandidates.length, mentionHighlightIndex])
@@ -319,8 +302,6 @@ export function useMentionPicker(options: UseMentionPickerOptions) {
     mentionQuery,
     setMentionQuery,
     mentionHighlightIndex,
-    mentionPanelMounted,
-    mentionSheetMounted,
     mentionSheetSearch,
     setMentionSheetSearch,
     filteredMentionItems,

@@ -281,20 +281,24 @@ export const ManualTrigger: Story = {
 }
 
 function VirtualReferenceDemo() {
-  const [point, setPoint] = useState({ x: 0, y: 0 })
+  const popupRef = useRef<CwPopupInstance | null>(null)
 
-  const virtualReference = useMemo(
-      () => ({
-        getBoundingClientRect: () => new DOMRect(point.x, point.y, 0, 0),
-      }),
-      [point],
-    )
+  // 与 Vue 版一致：用稳定 ref 持有一个可变对象，mousemove 里
+  // 直接替换 getBoundingClientRect 方法引用并手动调 updatePosition，
+  // 避免每次鼠标移动都触发 React 重渲染 + useMemo 重建
+  const virtualReference = useRef<{
+    getBoundingClientRect: () => DOMRect
+  }>({
+    getBoundingClientRect: () => new DOMRect(0, 0, 0, 0),
+  })
 
-    return (
+  return (
       <div
         className="p-16 text-center"
         onMouseMove={(event) => {
-          setPoint({ x: event.clientX, y: event.clientY })
+          virtualReference.current.getBoundingClientRect = () =>
+            new DOMRect(event.clientX, event.clientY, 0, 0)
+          popupRef.current?.updatePosition()
         }}
       >
         <div className="px-6 py-4 bg-[var(--bg-color-secondarycontainer)] border border-dashed border-[var(--border-color)] rounded-lg inline-block text-[var(--text-color-secondary)]">
@@ -304,10 +308,11 @@ function VirtualReferenceDemo() {
           弹窗通过虚拟参考元素定位，无需真实的 trigger DOM 元素
         </div>
         <CwPopup
+          ref={popupRef}
           trigger="manual"
           placement="bottom-start"
           modelValue
-          virtualReference={virtualReference}
+          virtualReference={virtualReference.current}
           plugins={[
             createDimensions(),
             createFlip({ padding: 8 }),

@@ -32,6 +32,15 @@ import {
 import { clampIndex } from '@zengchaowu/shared/functions/number/clampIndex'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import { getEmojionePngUrl, splitTextToEmojiParts } from '../CwChatMessageQuote/emojioneEmoji'
+import {
+  CwPopup,
+  createDimensions,
+  createFlip,
+  createOffset,
+  createPosition,
+  createPreventOverflow,
+} from '../CwPopup'
+import type { VirtualElement } from '../CwPopup'
 import { CwMessageInputMentionPanel } from '../CwMessageInputMentionPanel'
 import type { CwMessageInputMentionPanelHandle } from '../CwMessageInputMentionPanel'
 import { CwMessageInputMentionSheet } from '../CwMessageInputMentionSheet'
@@ -138,6 +147,25 @@ export const CwMessageInput = forwardRef<
   const convertingEmojiRef = useRef(false)
   const lastRangeRef = useRef<Range | null>(null)
   const mentionPopupRef = useRef<CwMessageInputMentionPanelHandle | null>(null)
+
+  // 文件 chip 路径 tooltip（与 Vue `hFileChipPathTooltip` 对齐）
+  const fileChipTooltipDelayMs = 300
+  const fileChipTooltipHideDelayMs = 100
+  const [fileChipTooltipEl, setFileChipTooltipEl] = useState<VirtualElement | null>(null)
+  const [fileChipTooltipText, setFileChipTooltipText] = useState('')
+  const fileChipTooltipTimerRef = useRef<number | null>(null)
+  const fileChipTooltipHideTimerRef = useRef<number | null>(null)
+
+  const fileChipTooltipPlugins = useMemo(
+    () => [
+      createDimensions(),
+      createFlip({ padding: 8 }),
+      createPosition(),
+      createOffset({ offset: 8 }),
+      createPreventOverflow({ padding: 8 }),
+    ],
+    [],
+  )
 
   const styles = useMemo(
     () => resolveMessageInputLayoutClasses(fieldLayout),
@@ -250,8 +278,6 @@ export const CwMessageInput = forwardRef<
     mentionQuery,
     setMentionQuery,
     mentionHighlightIndex,
-    mentionPanelMounted,
-    mentionSheetMounted,
     mentionSheetSearch,
     setMentionSheetSearch,
     filteredMentionItems,
@@ -735,6 +761,92 @@ export const CwMessageInput = forwardRef<
     demoteOutOfScopeMentions()
   }, [demoteOutOfScopeMentions, mentionItems])
 
+  // ---- 文件 chip 路径 tooltip（对齐 Vue hFileChipPathTooltip） ----
+  useEffect(() => {
+    const root = getRoot()
+    if (!root) return
+
+    const clearShowTimer = () => {
+      if (fileChipTooltipTimerRef.current != null) {
+        window.clearTimeout(fileChipTooltipTimerRef.current)
+        fileChipTooltipTimerRef.current = null
+      }
+    }
+
+    const clearHideTimer = () => {
+      if (fileChipTooltipHideTimerRef.current != null) {
+        window.clearTimeout(fileChipTooltipHideTimerRef.current)
+        fileChipTooltipHideTimerRef.current = null
+      }
+    }
+
+    const showTooltipForChip = (chip: HTMLElement, path: string) => {
+      clearHideTimer()
+      clearShowTimer()
+      fileChipTooltipTimerRef.current = window.setTimeout(() => {
+        // 把真实 DOM 元素包成 VirtualElement 传给 CwPopup 的 virtualReference
+        const virtualRef: VirtualElement = {
+          getBoundingClientRect: () => chip.getBoundingClientRect(),
+        }
+        setFileChipTooltipEl(virtualRef)
+        setFileChipTooltipText(path)
+      }, fileChipTooltipDelayMs)
+    }
+
+    // 延迟隐藏（对齐 CwTooltip hideDelay=100），允许鼠标从 chip 移到 tooltip 上
+    const scheduleHideTooltip = () => {
+      clearShowTimer()
+      clearHideTimer()
+      fileChipTooltipHideTimerRef.current = window.setTimeout(() => {
+        setFileChipTooltipEl(null)
+        setFileChipTooltipText('')
+      }, fileChipTooltipHideDelayMs)
+    }
+
+    const onMouseEnter = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null
+      if (!target) return
+      // 进入 tooltip 本身：取消隐藏
+      if (target.closest('.cw-file-chip-tooltip')) {
+        clearHideTimer()
+        return
+      }
+      const chip = target.closest<HTMLElement>('[data-cw-file]')
+      if (!chip) return
+      // 读取完整路径（优先 data-file-path，回退到 title）
+      const path =
+        (chip.getAttribute('data-file-path') || chip.getAttribute('title') || '').trim()
+      if (!path) return
+      showTooltipForChip(chip, path)
+    }
+
+    const onMouseLeave = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null
+      if (!target) return
+      const chip = target.closest<HTMLElement>('[data-cw-file]')
+      if (!chip) {
+        // 离开 tooltip 本身：延迟隐藏
+        if (target.closest('.cw-file-chip-tooltip')) {
+          scheduleHideTooltip()
+        }
+        return
+      }
+      // 如果新的进入元素仍在同一个 chip wrap 或 tooltip 里，不隐藏
+      const related = event.relatedTarget as HTMLElement | null
+      if (related && (chip.contains(related) || related.closest('.cw-file-chip-tooltip'))) return
+      scheduleHideTooltip()
+    }
+
+    root.addEventListener('mouseenter', onMouseEnter, true)
+    root.addEventListener('mouseleave', onMouseLeave, true)
+    return () => {
+      root.removeEventListener('mouseenter', onMouseEnter, true)
+      root.removeEventListener('mouseleave', onMouseLeave, true)
+      clearShowTimer()
+      clearHideTimer()
+    }
+  }, [getRoot])
+
   // ---- 焦点 / 空区点击 ----
   function onFieldShellPointerDown(event: ReactMouseEvent<HTMLDivElement>): void {
     if (disabled) return
@@ -1100,7 +1212,7 @@ export const CwMessageInput = forwardRef<
         handleSend()
       }}
     >
-      {mentionPanelMounted && mentionPanelVariant !== 'sheet' && (
+      {mentionPopupVisible && mentionPanelVariant !== 'sheet' && (
         <CwMessageInputMentionPanel
           ref={mentionPopupRef}
           value={mentionPopupVisible}
@@ -1113,7 +1225,7 @@ export const CwMessageInput = forwardRef<
         />
       )}
 
-      {mentionSheetMounted && mentionPanelVariant === 'sheet' && (
+      {mentionSheetVisible && mentionPanelVariant === 'sheet' && (
         <CwMessageInputMentionSheet
           value={mentionSheetVisible}
           searchQuery={mentionSheetSearch}
@@ -1125,6 +1237,21 @@ export const CwMessageInput = forwardRef<
           onSelect={pickMention}
           onDismiss={cancelMention}
         />
+      )}
+
+      {/* 文件 chip 路径 tooltip（与 Vue hFileChipPathTooltip 对齐） */}
+      {fileChipTooltipEl && (
+        <CwPopup
+          trigger="manual"
+          placement="top"
+          modelValue
+          virtualReference={fileChipTooltipEl}
+          plugins={fileChipTooltipPlugins}
+          closeOnClickOutside={false}
+          popupClass="cw-file-chip-tooltip bg-[var(--bg-color-container)] border border-[var(--border-color)] rounded-md shadow-lg px-2 py-1 text-xs text-[var(--text-color-primary)] max-w-[24rem] truncate"
+        >
+          {fileChipTooltipText}
+        </CwPopup>
       )}
 
       <div

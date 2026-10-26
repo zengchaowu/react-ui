@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import type { PopupState } from '../types/state'
 import { DEFAULT_CONFIG } from '../constants'
 
@@ -11,9 +11,17 @@ export interface UseMouseMoveTrackerOptions {
 /**
  * 鼠标移动追踪 Hook
  * 负责节流处理鼠标移动事件，避免频繁触发位置更新
+ *
+ * 注意：onMove 通过 ref 访问，effect 只依赖 state.visible / throttleDelay。
+ * 否则若 onMove 每次渲染都是新引用（virtual-reference 场景下 virtualReference
+ * 随鼠标移动变化 → getTriggerElement 重建 → onMove 链重建），effect 会反复
+ * cleanup+re-run，移除/重加 mousemove 监听器并重置节流状态，导致"过一两秒就不跟随"。
  */
 export function useMouseMoveTracker(options: UseMouseMoveTrackerOptions): void {
   const { state, onMove, throttleDelay = DEFAULT_CONFIG.throttleDelay } = options
+
+  const onMoveRef = useRef(onMove)
+  onMoveRef.current = onMove
 
   useEffect(() => {
     if (!state.visible) return
@@ -29,7 +37,7 @@ export function useMouseMoveTracker(options: UseMouseMoveTrackerOptions): void {
         if (throttleTimer == null) {
           throttleTimer = window.setTimeout(() => {
             throttleTimer = null
-            onMove()
+            onMoveRef.current()
             lastUpdateTime = Date.now()
           }, throttleDelay - (now - lastUpdateTime))
         }
@@ -37,7 +45,7 @@ export function useMouseMoveTracker(options: UseMouseMoveTrackerOptions): void {
       }
 
       // 立即执行
-      onMove()
+      onMoveRef.current()
       lastUpdateTime = now
     }
 
@@ -50,5 +58,5 @@ export function useMouseMoveTracker(options: UseMouseMoveTrackerOptions): void {
         throttleTimer = null
       }
     }
-  }, [state.visible, throttleDelay, onMove])
+  }, [state.visible, throttleDelay])
 }

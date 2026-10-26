@@ -145,6 +145,11 @@ export function usePopupPosition(options: UsePopupPositionOptions) {
     return () => cancelAnimationFrame(frame)
   })
 
+  // updatePosition 依赖 getTriggerElement（virtual-reference 场景下随鼠标移动重建），
+  // 用 ref 解耦，避免 scroll/resize 监听器被频繁移除/重加。
+  const updatePositionRef = useRef(updatePosition)
+  updatePositionRef.current = updatePosition
+
   // 滚动 / 窗口尺寸变化时自动重算（等价 shared useAutoUpdate throttleMs=0）
   useEffect(() => {
     if (!state.visible) return
@@ -154,7 +159,7 @@ export function usePopupPosition(options: UsePopupPositionOptions) {
       if (frame != null) return
       frame = requestAnimationFrame(() => {
         frame = null
-        updatePosition()
+        updatePositionRef.current()
       })
     }
 
@@ -166,7 +171,7 @@ export function usePopupPosition(options: UsePopupPositionOptions) {
       window.removeEventListener('resize', schedule)
       if (frame != null) cancelAnimationFrame(frame)
     }
-  }, [state.visible, updatePosition])
+  }, [state.visible])
 
   return {
     updatePosition,

@@ -152,11 +152,11 @@ export const CwMessageInputMentionPanel = forwardRef<
               </div>
             )
           })
-        ) : (
+        ) : isOpen ? (
           <div className={mentionPanelBase.mentionEmpty}>
             {texts.mentionNoMatch}
           </div>
-        )}
+        ) : null}
       </div>
     </CwPopup>
   )
