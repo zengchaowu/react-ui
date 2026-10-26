@@ -1,27 +1,22 @@
+import type { Editor } from '@tiptap/core'
+
 type FocusPosition = 'start' | 'end' | number | boolean
 
-/** 同步 DOM 根节点的 virtualKeyboardPolicy（Chromium / 新版 WebView）。 */
+function editorDom(editor: Editor): HTMLElement {
+  return editor.view.dom as HTMLElement
+}
+
+/** 同步 ProseMirror 根节点的 virtualKeyboardPolicy（Chromium / 新版 WebView）。 */
 export function syncEditorVirtualKeyboardPolicy(
-  dom: HTMLElement | null | undefined,
+  editor: Editor | null | undefined,
   suppress: boolean,
 ): void {
-  if (!dom) return
+  if (!editor) return
+  const dom = editorDom(editor)
   if ('virtualKeyboardPolicy' in dom) {
     ;(dom as HTMLElement & { virtualKeyboardPolicy: string }).virtualKeyboardPolicy =
       suppress ? 'manual' : 'auto'
   }
-}
-
-function focusDom(dom: HTMLElement, position?: FocusPosition): void {
-  if (position === 'start' || position === 'end') {
-    const range = document.createRange()
-    range.selectNodeContents(dom)
-    range.collapse(position === 'start')
-    const selection = window.getSelection()
-    selection?.removeAllRanges()
-    selection?.addRange(range)
-  }
-  dom.focus({ preventScroll: true })
 }
 
 /**
@@ -30,27 +25,30 @@ function focusDom(dom: HTMLElement, position?: FocusPosition): void {
  * - iOS 等降级：只读属性瞬时切换
  */
 export function focusEditorWithKeyboardPolicy(
-  dom: HTMLElement,
+  editor: Editor,
   suppressKeyboard: boolean,
   /** 不传则保持当前选区；勿默认 `true`，避免误把光标移到文首 */
   position?: FocusPosition,
 ): void {
+  const dom = editorDom(editor)
+  const focusChain =
+    position === undefined ? editor.chain().focus() : editor.chain().focus(position)
   if (!suppressKeyboard) {
-    syncEditorVirtualKeyboardPolicy(dom, false)
-    focusDom(dom, position)
+    syncEditorVirtualKeyboardPolicy(editor, false)
+    focusChain.run()
     return
   }
 
-  syncEditorVirtualKeyboardPolicy(dom, true)
+  syncEditorVirtualKeyboardPolicy(editor, true)
 
   if ('virtualKeyboardPolicy' in dom) {
-    focusDom(dom, position)
+    focusChain.run()
     return
   }
 
   dom.setAttribute('readonly', 'true')
   dom.setAttribute('inputmode', 'none')
-  focusDom(dom, position)
+  focusChain.run()
   requestAnimationFrame(() => {
     dom.removeAttribute('readonly')
     dom.removeAttribute('inputmode')

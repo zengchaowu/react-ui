@@ -1,27 +1,12 @@
+import { Node, mergeAttributes } from '@tiptap/core'
 import {
   IM_RICH_FILE_ATTR,
-  IM_RICH_FILE_LINES_ATTR,
   IM_RICH_FILE_PATH_ATTR,
+  IM_RICH_FILE_LINES_ATTR,
   IM_RICH_LABEL_ATTR,
 } from '@zengchaowu/shared/functions/im/imRichContentHtml'
-import {
-  fileIconNameForPath,
-  fileIconUrl,
-  type FileIconMaps,
-} from '@zengchaowu/shared/functions/file/fileIcon'
-import iconMaps from '../../../assets/fileIconMaps.json'
-import { basenameFromFilePath } from '../../CwChatMessageCell/chatInlineContentClip'
-import {
-  FILE_CHIP_INNER_CLASS,
-  FILE_CHIP_LABEL_CLASS,
-  FILE_CHIP_WRAP_CLASS,
-  INLINE_CHIP_CLOSE_ICON_CLASS,
-  INLINE_CHIP_LEADING_WRAP_CLASS,
-} from '../chips/chipStyles'
-import {
-  defineCwMessageInputInlineNode,
-  type CwMessageInputInlineNodeDefinition,
-} from './createNode'
+import { ReactNodeViewRenderer } from '@tiptap/react'
+import { FileRefNodeView } from './FileRefNodeView'
 
 export interface FileRefNodeOptions {
   /** 点击关闭按钮时触发 */
@@ -29,122 +14,118 @@ export interface FileRefNodeOptions {
   removeAriaLabel?: string
 }
 
-export interface FileRefNodeAttrs {
-  id?: string
-  path?: string
-  label?: string
-  lines?: string
-  attachKey?: string
-}
-
-const CLOSE_ICON_ROOT_CLASS = 'cw-icon inline-flex items-center justify-center text-current'
-const CLOSE_ICON_ASSET_CLASS = 'icon-common--status--close-line asset inline-block not-italic leading-none text-current'
-
-function createCloseIcon(): HTMLSpanElement {
-  const root = document.createElement('span')
-  root.className = CLOSE_ICON_ROOT_CLASS
-  root.setAttribute('aria-hidden', 'true')
-  const icon = document.createElement('i')
-  icon.className = CLOSE_ICON_ASSET_CLASS
-  icon.style.fontSize = 'inherit'
-  root.appendChild(icon)
-  return root
-}
-
-function createFileIcon(path: string, baseUrl: string): HTMLSpanElement {
-  const root = document.createElement('span')
-  root.className =
-    'cw-file-icon inline-flex items-center justify-center shrink-0 select-none h-full w-full'
-  const img = document.createElement('img')
-  const iconName = fileIconNameForPath(
-    iconMaps as FileIconMaps,
+function attrsFromFileRefEl(el: HTMLElement) {
+  const id = el.getAttribute('data-file-ref') || ''
+  const path = el.getAttribute('data-file-path') || ''
+  const lines = el.getAttribute('data-file-lines') || undefined
+  const attachKey = el.getAttribute('data-attach-key') || undefined
+  const labelEl = el.querySelector('.cw-file-ref-label')
+  const label =
+    (labelEl?.textContent?.trim() || path.split('/').pop() || path || '') as string
+  return {
+    id,
     path,
-    false,
-  )
-  img.src = fileIconUrl(iconName, baseUrl || '/')
-  img.alt = ''
-  img.draggable = false
-  img.className = 'block h-full w-full object-contain [image-rendering:-webkit-optimize-contrast]'
-  root.appendChild(img)
-  return root
-}
-
-/** 构造文件引用 chip DOM（等价 Vue `FileRefChipNodeView`） */
-export function createFileRefElement(
-  attrs: FileRefNodeAttrs,
-  options: FileRefNodeOptions,
-  baseUrl: string,
-): HTMLSpanElement {
-  const id = String(attrs.id ?? '')
-  const path = String(attrs.path ?? '')
-  const lines = String(attrs.lines ?? '').trim()
-  const label =
-    String(attrs.label ?? '').trim() || basenameFromFilePath(path, path) || 'file'
-
-  const wrap = document.createElement('span')
-  wrap.className = FILE_CHIP_WRAP_CLASS
-  wrap.setAttribute('data-cw-file-ref-wrap', '')
-  wrap.setAttribute('contenteditable', 'false')
-
-  const chip = document.createElement('span')
-  chip.className = FILE_CHIP_INNER_CLASS
-  chip.setAttribute('data-cw-file', '')
-  chip.setAttribute(IM_RICH_FILE_ATTR, '')
-  chip.setAttribute(IM_RICH_FILE_PATH_ATTR, path)
-  chip.setAttribute(IM_RICH_LABEL_ATTR, label)
-  if (lines) chip.setAttribute(IM_RICH_FILE_LINES_ATTR, lines)
-  chip.setAttribute('data-file-ref', id)
-  chip.setAttribute('data-file-path', path)
-  if (lines) chip.setAttribute('data-file-lines', lines)
-  if (attrs.attachKey) chip.setAttribute('data-attach-key', attrs.attachKey)
-  chip.title = path
-
-  const leading = document.createElement('span')
-  leading.className = INLINE_CHIP_LEADING_WRAP_CLASS
-  leading.appendChild(createFileIcon(path, baseUrl))
-  chip.appendChild(leading)
-
-  const labelEl = document.createElement('span')
-  labelEl.className = `${FILE_CHIP_LABEL_CLASS} truncate`
-  labelEl.title = label.trim() || path
-  labelEl.textContent = label
-  chip.appendChild(labelEl)
-
-  const close = document.createElement('span')
-  close.className = INLINE_CHIP_CLOSE_ICON_CLASS
-  close.setAttribute('role', 'button')
-  close.setAttribute('tabindex', '-1')
-  close.setAttribute('aria-label', options.removeAriaLabel ?? '移除引用')
-  close.setAttribute('data-chip-close', 'fileRef')
-  close.appendChild(createCloseIcon())
-  chip.appendChild(close)
-
-  wrap.appendChild(chip)
-  return wrap
-}
-
-export function renderFileRefHtml(attrs: FileRefNodeAttrs): string {
-  const path = String(attrs.path ?? '').trim()
-  const label =
-    String(attrs.label ?? '').trim() || path.split(/[/\\]/).pop() || path || 'file'
-  const lines = String(attrs.lines ?? '').trim()
-  return `<span ${IM_RICH_FILE_ATTR} ${IM_RICH_FILE_PATH_ATTR}="${path}" ${IM_RICH_LABEL_ATTR}="${label}"${
-    lines ? ` ${IM_RICH_FILE_LINES_ATTR}="${lines}"` : ''
-  }>${label}</span>`
-}
-
-export function renderFileRefText(attrs: FileRefNodeAttrs): string {
-  const label =
-    String(attrs.label ?? '').trim() || String(attrs.path ?? '').trim()
-  return label ? `[文件] ${label}` : '[文件]'
+    label,
+    lines: lines || undefined,
+    attachKey: attachKey || undefined,
+  }
 }
 
 /**
- * 文件引用节点描述。React 侧无 Tiptap schema，实际 DOM 由
- * {@link createFileRefElement} / {@link renderFileRefHtml} 交给编辑器生成。
+ * 文件引用：`CwMessageInputInlineChip` + `CwTooltip`（等价 Vue `FileRefNode`）。
  */
-export const FileRefNode: CwMessageInputInlineNodeDefinition<FileRefNodeOptions> =
-  defineCwMessageInputInlineNode<FileRefNodeOptions>('fileRef', {
-    onRemove: undefined,
-    removeAriaLabel: '移除引用',
-  })
+export const FileRefNode = Node.create<FileRefNodeOptions>({
+  name: 'fileRef',
+
+  group: 'inline',
+
+  inline: true,
+
+  selectable: true,
+
+  draggable: false,
+
+  atom: true,
+
+  addOptions() {
+    return {
+      onRemove: undefined,
+      removeAriaLabel: '移除引用',
+    }
+  },
+
+  addAttributes() {
+    return {
+      id: { default: '' },
+      path: { default: '' },
+      label: { default: '' },
+      lines: { default: undefined as string | undefined },
+      attachKey: { default: undefined as string | undefined },
+    }
+  },
+
+  parseHTML() {
+    return [
+      {
+        tag: `span[${IM_RICH_FILE_ATTR}]`,
+        getAttrs: (el) => {
+          const path = (el as HTMLElement).getAttribute(IM_RICH_FILE_PATH_ATTR) || ''
+          const label =
+            (el as HTMLElement).getAttribute(IM_RICH_LABEL_ATTR)?.trim() ||
+            (el as HTMLElement).textContent?.trim() ||
+            path
+          return {
+            id: `ref_${Date.now()}`,
+            path,
+            label,
+            lines:
+              (el as HTMLElement).getAttribute(IM_RICH_FILE_LINES_ATTR)?.trim() ||
+              undefined,
+          }
+        },
+      },
+      {
+        tag: 'span[data-file-ref]',
+        getAttrs: (el) => attrsFromFileRefEl(el as HTMLElement),
+      },
+      {
+        tag: 'span[data-cw-file-ref-wrap]',
+        getAttrs: (el) => {
+          const inner = (el as HTMLElement).querySelector('[data-file-ref]')
+          if (!inner) return false
+          return attrsFromFileRefEl(inner as HTMLElement)
+        },
+      },
+    ]
+  },
+
+  renderHTML({ node }) {
+    const path = String(node.attrs.path ?? '').trim()
+    const label =
+      String(node.attrs.label ?? '').trim() ||
+      path.split(/[/\\]/).pop() ||
+      path ||
+      'file'
+    const lines = String(node.attrs.lines ?? '').trim()
+    return [
+      'span',
+      mergeAttributes({
+        [IM_RICH_FILE_ATTR]: '',
+        [IM_RICH_FILE_PATH_ATTR]: path,
+        [IM_RICH_LABEL_ATTR]: label,
+        ...(lines ? { [IM_RICH_FILE_LINES_ATTR]: lines } : {}),
+      }),
+      label,
+    ]
+  },
+
+  renderText({ node }) {
+    const label =
+      String(node.attrs.label ?? '').trim() || String(node.attrs.path ?? '').trim()
+    return label ? `[文件] ${label}` : '[文件]'
+  },
+
+  addNodeView() {
+    return ReactNodeViewRenderer(FileRefNodeView)
+  },
+})

@@ -1,4 +1,5 @@
 import type { KeyboardEvent, MouseEvent } from 'react'
+import { NodeViewWrapper, type NodeViewProps } from '@tiptap/react'
 import CwCornerClosableWrap from '../../CwCornerClosableWrap/CwCornerClosableWrap'
 import CwImageFit from '../../CwImageFit/CwImageFit'
 import {
@@ -10,49 +11,42 @@ import {
 } from '../chips/chipStyles'
 import type { ImageClipNodeOptions } from './ImageClipNode'
 
-export interface ImageClipNodeViewProps {
-  previewSrc?: string
-  name?: string
-  naturalWidth?: number
-  naturalHeight?: number
-  options?: ImageClipNodeOptions
-}
-
-/**
- * 内联图片 chip 的 React 视图（等价 Vue `ImageClipNodeView.vue`）。
- * 编辑器内部以 DOM 形式渲染，此组件供宿主只读复用。
- */
+/** 内联图片 chip 节点视图（等价 Vue `ImageClipNodeView`） */
 export function ImageClipNodeView({
-  previewSrc,
-  name = '',
-  naturalWidth = 0,
-  naturalHeight = 0,
-  options,
-}: ImageClipNodeViewProps) {
-  const src = String(previewSrc ?? '').trim()
+  node,
+  extension,
+  deleteNode,
+}: NodeViewProps) {
+  const opts = extension.options as ImageClipNodeOptions
+  const previewSrc = String(node.attrs.previewSrc ?? '').trim()
+  const name = String(node.attrs.name ?? '')
+  const naturalWidth = Number(node.attrs.naturalWidth) || 0
+  const naturalHeight = Number(node.attrs.naturalHeight) || 0
 
   function onClose() {
-    options?.onRemove?.({ previewSrc: src || undefined })
+    deleteNode()
+    opts.onRemove?.({ previewSrc: previewSrc || undefined })
   }
 
   function onPreviewClick(event: MouseEvent | KeyboardEvent) {
     event.preventDefault()
     event.stopPropagation()
-    if (!src) return
-    options?.onPreview?.(src)
+    if (!previewSrc) return
+    opts.onPreview?.(previewSrc)
   }
 
   return (
-    <span
+    <NodeViewWrapper
+      as="span"
       className={IMAGE_CHIP_WRAP_CLASS}
       data-cw-inline-image-wrap=""
-      data-preview-src={src || undefined}
+      data-preview-src={previewSrc || undefined}
       data-natural-width={naturalWidth > 0 ? naturalWidth : undefined}
       data-natural-height={naturalHeight > 0 ? naturalHeight : undefined}
       data-image-name={name || undefined}
     >
       <CwCornerClosableWrap
-        texts={{ closeLabel: options?.removeAriaLabel ?? '移除图片' }}
+        texts={{ closeLabel: opts.removeAriaLabel ?? '移除图片' }}
         onClose={onClose}
       >
         <span
@@ -68,9 +62,9 @@ export function ImageClipNodeView({
             onPreviewClick(event)
           }}
         >
-          {src ? (
+          {previewSrc ? (
             <CwImageFit
-              src={src}
+              src={previewSrc}
               alt={name || '图片'}
               readonly
               intrinsicWidth={naturalWidth}
@@ -83,7 +77,7 @@ export function ImageClipNodeView({
           ) : null}
         </span>
       </CwCornerClosableWrap>
-    </span>
+    </NodeViewWrapper>
   )
 }
 
