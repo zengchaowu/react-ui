@@ -1,4 +1,10 @@
-import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
+import {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from 'react'
 import type { Canvas, FabricObject } from 'fabric'
 import CwDesignEditorShell from '../CwDesignEditorShell/CwDesignEditorShell'
 import CwDesignToolRail from '../CwDesignToolRail/CwDesignToolRail'
@@ -159,6 +165,29 @@ export const TpFabricDesignEditor = forwardRef<
 
   const { fileInputRef, openFilePicker, onFileChange, onCanvasFilesDrop } =
     svgImport
+
+  // 这三个 ref 指向 ReactiveRef：若用内联回调，React 每次重渲染都会 detach/attach，
+  // 写入 undefined/元素会触发 setState，进而重渲染 -> 无限循环。回调必须保持引用稳定。
+  const handleCanvasWrapRef = useCallback(
+    (el: HTMLDivElement | null) => {
+      canvasWrapRef.value = el ?? undefined
+    },
+    [canvasWrapRef],
+  )
+
+  const handleCanvasHostRef = useCallback(
+    (el: HTMLDivElement | null) => {
+      canvasHostRef.value = el ?? undefined
+    },
+    [canvasHostRef],
+  )
+
+  const handleFileInputRef = useCallback(
+    (el: HTMLInputElement | null) => {
+      fileInputRef.value = el ?? undefined
+    },
+    [fileInputRef],
+  )
 
   useImperativeHandle(ref, () => ({
     getCanvas: () => stage.canvasRef.value,
@@ -321,9 +350,7 @@ export const TpFabricDesignEditor = forwardRef<
           onFilesDrop={(files) => onCanvasFilesDrop(files)}
         >
           <div
-            ref={(el) => {
-              canvasWrapRef.value = el ?? undefined
-            }}
+            ref={handleCanvasWrapRef}
             className={[
               'relative h-full min-h-0 w-full min-w-0 flex-1',
               readonly ? 'pointer-events-none opacity-90' : '',
@@ -331,12 +358,7 @@ export const TpFabricDesignEditor = forwardRef<
               .filter(Boolean)
               .join(' ')}
           >
-            <div
-              ref={(el) => {
-                canvasHostRef.value = el ?? undefined
-              }}
-              className={canvasHostClass}
-            />
+            <div ref={handleCanvasHostRef} className={canvasHostClass} />
             {showToolbar && !readonly && (
               <TpFabricViewportToolbar
                 viewportTool={viewportTool.value}
@@ -373,9 +395,7 @@ export const TpFabricDesignEditor = forwardRef<
       </CwDesignEditorShell>
 
       <input
-        ref={(el) => {
-          fileInputRef.value = el ?? undefined
-        }}
+        ref={handleFileInputRef}
         type="file"
         accept=".svg,.png,.jpg,.jpeg,image/svg+xml,image/png,image/jpeg"
         multiple

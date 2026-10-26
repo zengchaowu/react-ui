@@ -46,6 +46,8 @@ export interface CwCalculateGridComponentProps
 
 const FIRST_PAINT_ROWS = 100
 const VIRTUAL_BUFFER = 3
+/** 单次空闲补数据的行数上限，避免一次空闲里物化+算公式超出 50ms */
+const MAX_ADVANCE_ROWS = 1500
 
 /** 与表体 `py-2` + `text-sm` 行框实测一致，虚拟滚动按这个高度切片 */
 const CALCULATE_GRID_ROW_HEIGHT = 37
@@ -151,8 +153,10 @@ export function CwCalculateGrid({
     if (materializedCountRef.current >= total) return false
     const started = performance.now()
     const scopes: string[] = []
+    // 每次空闲既物化行又跑公式，行数不限时单批 ensureScopes 会越拖越长（50ms+ 长任务）。
     while (
       materializedCountRef.current < total &&
+      scopes.length < MAX_ADVANCE_ROWS &&
       performance.now() - started < 8
     ) {
       scopes.push(materializeIndex(materializedCountRef.current))

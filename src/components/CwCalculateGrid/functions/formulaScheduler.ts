@@ -4,7 +4,6 @@ import type {
   KeyPathFuncStrMap,
   ScopeDisplayRowMap,
 } from '../types'
-import { sortFormulaKeyPaths } from './evaluateAllFormulas'
 import getScopeFromKeypath from './getScopeFromKeypath'
 import runFormulaKeyPath from './runFormulaKeyPath'
 import { recordTopo } from './editTiming'
@@ -15,6 +14,8 @@ export interface CalculateIdleTiming {
 }
 
 const IDLE_BUDGET_MS = 12
+/** 全量执行顺序分片构建时单次空闲的时间预算 */
+const ORDER_BUILD_BUDGET_MS = 20
 const schedulers = new WeakMap<KeyPathDepsMap, FormulaScheduler>()
 const dependsOnByMap = new WeakMap<KeyPathDepsMap, Map<string, string[]>>()
 
@@ -47,6 +48,21 @@ interface IdleTask {
   cancel: () => void
 }
 
+/** 全量执行顺序的分片构建状态（百万行时一次拓扑排序会阻塞数秒） */
+interface OrderBuildState {
+  phase: 'keys' | 'deps' | 'seed' | 'drain' | 'leftover'
+  keys: IterableIterator<string> | null
+  deps: IterableIterator<[string, Set<string>]> | null
+  seeds: IterableIterator<[string, number]> | null
+  leftovers: IterableIterator<string> | null
+  indegree: Map<string, number>
+  queue: string[]
+  head: number
+  seen: Set<string>
+  sorted: string[]
+  orderIndex: Map<string, number>
+}
+
 function requestIdle(callback: () => void): IdleTask {
   if (typeof window.requestIdleCallback === 'function') {
     const id = window.requestIdleCallback(() => callback(), { timeout: 250 })
@@ -61,6 +77,7 @@ class FormulaScheduler {
   private advance: (() => boolean) | null = null
   private order: string[] | null = null
   private orderIndex = new Map<string, number>()
+  private orderBuild: OrderBuildState | null = null
   private cursor = 0
   private users = 0
   private stopped = false
@@ -199,6 +216,7 @@ class FormulaScheduler {
     this.stopped = true
     this.pending?.cancel()
     this.pending = null
+    this.orderBuild = null
   }
 
   private schedule() {
@@ -220,8 +238,19 @@ class FormulaScheduler {
       this.advance = null
     }
     if (!this.order) {
-      this.order = sortFormulaKeyPaths(this.keyPathFuncStrMap, this.keyPathDepsMap)
-      this.orderIndex = new Map(this.order.map((keyPath, index) => [keyPath, index]))
+      // 逐批 ensureScopes 已把公式全部算完时，不必再对全表做拓扑排序。
+      // 百万行场景下这次排序是同步的一次性长任务（数秒），会卡住页面。
+      if (this.fresh.size >= this.keyPathFuncStrMap.size) {
+        this.notifyIdle()
+        return
+      }
+      // 需要全量顺序时也分片构建，单次空闲只做一小段。
+      const built = this.buildOrder(ORDER_BUILD_BUDGET_MS)
+      if (!built) {
+        this.schedule()
+        return
+      }
+      this.order = built
       this.cursor = 0
     }
     const budgetStarted = performance.now()
@@ -251,12 +280,113 @@ class FormulaScheduler {
       this.schedule()
       return
     }
+    this.notifyIdle()
+  }
+
+  private notifyIdle() {
     if (this.idleNotified) return
     this.idleNotified = true
     this.onIdle({
       totalMs: Math.round((performance.now() - this.idleStartedAt) * 10) / 10,
       formulaCount: this.idleCount,
     })
+  }
+
+  /**
+   * 分片构建全量公式执行顺序（Kahn 拓扑排序）。
+   * 百万行时一次性排序是数秒的同步长任务，这里每段最多跑 `budgetMs`。
+   * @returns 构建完成时返回排序结果，未完成返回 null
+   */
+  private buildOrder(budgetMs: number): string[] | null {
+    const started = performance.now()
+    if (!this.orderBuild) {
+      this.orderBuild = {
+        phase: 'keys',
+        keys: this.keyPathFuncStrMap.keys(),
+        deps: null,
+        seeds: null,
+        leftovers: null,
+        indegree: new Map(),
+        queue: [],
+        head: 0,
+        seen: new Set(),
+        sorted: [],
+        orderIndex: new Map(),
+      }
+    }
+    const build = this.orderBuild
+    const include = (keyPath: string) => {
+      if (!this.keyPathFuncStrMap.has(keyPath)) return
+      build.orderIndex.set(keyPath, build.sorted.length)
+      build.sorted.push(keyPath)
+    }
+
+    while (performance.now() - started < budgetMs) {
+      if (build.phase === 'keys') {
+        const next = build.keys!.next()
+        if (next.done) {
+          build.phase = 'deps'
+          build.deps = this.keyPathDepsMap.entries()
+          continue
+        }
+        if (!build.indegree.has(next.value)) build.indegree.set(next.value, 0)
+        continue
+      }
+      if (build.phase === 'deps') {
+        const next = build.deps!.next()
+        if (next.done) {
+          build.phase = 'seed'
+          build.seeds = build.indegree.entries()
+          continue
+        }
+        const [dep, users] = next.value
+        if (!build.indegree.has(dep)) build.indegree.set(dep, 0)
+        for (const user of users) {
+          if (!build.indegree.has(user)) build.indegree.set(user, 0)
+          build.indegree.set(user, (build.indegree.get(user) ?? 0) + 1)
+        }
+        continue
+      }
+      if (build.phase === 'seed') {
+        const next = build.seeds!.next()
+        if (next.done) {
+          build.phase = 'drain'
+          continue
+        }
+        if (next.value[1] === 0) build.queue.push(next.value[0])
+        continue
+      }
+      if (build.phase === 'drain') {
+        if (build.head >= build.queue.length) {
+          build.phase = 'leftover'
+          build.leftovers = build.indegree.keys()
+          continue
+        }
+        const keyPath = build.queue[build.head]
+        build.head += 1
+        if (build.seen.has(keyPath)) continue
+        build.seen.add(keyPath)
+        include(keyPath)
+        const users = this.keyPathDepsMap.get(keyPath)
+        if (!users) continue
+        for (const user of users) {
+          const degree = (build.indegree.get(user) ?? 1) - 1
+          build.indegree.set(user, degree)
+          if (degree === 0) build.queue.push(user)
+        }
+        continue
+      }
+      const next = build.leftovers!.next()
+      if (next.done) {
+        this.orderIndex = build.orderIndex
+        this.orderBuild = null
+        return build.sorted
+      }
+      if (build.seen.has(next.value)) continue
+      build.seen.add(next.value)
+      include(next.value)
+    }
+    return null
   }
 
   private runFormulas(sorted: string[]) {

@@ -1,6 +1,7 @@
 import {
   forwardRef,
   useCallback,
+  useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -272,6 +273,17 @@ export const CwInput = forwardRef<CwInputHandle, CwInputProps>(function CwInput(
     onBlur?.(event.nativeEvent)
   }
 
+  // React 的合成 onSelect 不在原生 select 事件上派发（要等 keyup / selectionchange），
+  // Ctrl+A 全选时 prefix 会在按住按键期间保持选中，与 vue-ui 的 @select 行为不一致。
+  // 这里直接监听原生 select，与 vue-ui 同时机收拢选区。
+  useEffect(() => {
+    if (!hasDisplayPrefix) return
+    const el = inputRef.current
+    if (!el) return
+    el.addEventListener('select', guardPrefixSelection)
+    return () => el.removeEventListener('select', guardPrefixSelection)
+  }, [guardPrefixSelection, hasDisplayPrefix])
+
   const handleClear = () => {
     if (disabled || readonly) return
     onChange?.('')
@@ -321,7 +333,6 @@ export const CwInput = forwardRef<CwInputHandle, CwInputProps>(function CwInput(
             onKeyDown={handleKeydown}
             onClick={handlePointerSelection}
             onKeyUp={handlePointerSelection}
-            onSelect={handlePointerSelection}
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
           />

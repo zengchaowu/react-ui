@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type {
   FocusEvent as ReactFocusEvent,
   KeyboardEvent as ReactKeyboardEvent,
@@ -89,7 +89,8 @@ export function CwCalculateGridCell({
     flashHostCell(rootRef)
   }, [displayText])
 
-  useEffect(() => {
+  // 绘制前聚焦，等价 Vue nextTick(() => inputRef.focus())，避免编辑框晚一帧才出现光标
+  useLayoutEffect(() => {
     if (editing) inputRef.current?.focus()
   }, [editing])
 

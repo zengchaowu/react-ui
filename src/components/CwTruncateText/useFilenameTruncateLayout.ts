@@ -16,13 +16,14 @@ export interface UseFilenameTruncateLayoutOptions {
   sourceText: string
   headChars: number
   rootEl: HTMLElement | null
+  rootRef: RefObject<HTMLElement | null>
   measureRef: RefObject<HTMLElement | null>
 }
 
 export function useFilenameTruncateLayout(
   options: UseFilenameTruncateLayoutOptions,
 ) {
-  const { active, sourceText, headChars, rootEl, measureRef } = options
+  const { active, sourceText, headChars, rootEl, rootRef, measureRef } = options
 
   const [layout, setLayout] = useState<FilenameDisplayResolution>({ ...IDLE })
 
@@ -36,11 +37,13 @@ export function useFilenameTruncateLayout(
       return
     }
     const probe = measureRef.current
-    if (!rootEl || !probe) {
+    // 读 ref 而不是 rootEl 状态：节点切换时状态可能还指向已卸载的旧节点
+    const el = rootRef.current
+    if (!el || !probe) {
       setLayout({ text: sourceText, abbreviated: false, tailRtl: false })
       return
     }
-    const width = rootEl.clientWidth
+    const width = el.clientWidth
     setLayout(
       resolveFilenameDisplay(
         sourceText,
@@ -53,17 +56,18 @@ export function useFilenameTruncateLayout(
       ),
     )
     probe.textContent = ''
-  }, [active, sourceText, headChars, rootEl, measureRef])
+  }, [active, sourceText, headChars, rootRef, measureRef])
 
   useLayoutEffect(() => {
     remeasure()
-    if (!rootEl || typeof ResizeObserver === 'undefined') return
+    const el = rootRef.current
+    if (!el || typeof ResizeObserver === 'undefined') return
     const resizeObserver = new ResizeObserver(() => remeasure())
-    resizeObserver.observe(rootEl)
+    resizeObserver.observe(el)
     return () => {
       resizeObserver.disconnect()
     }
-  }, [remeasure, rootEl])
+  }, [remeasure, rootEl, rootRef])
 
   return { layout, remeasure }
 }

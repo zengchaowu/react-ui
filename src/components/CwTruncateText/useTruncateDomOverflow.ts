@@ -1,26 +1,32 @@
-import { useCallback, useLayoutEffect, useState } from 'react'
+import { useCallback, useLayoutEffect, useState, type RefObject } from 'react'
 
 /** 检测根节点是否因 CSS 省略产生可视溢出（scrollWidth > clientWidth） */
-export function useTruncateDomOverflow(rootEl: HTMLElement | null) {
+export function useTruncateDomOverflow(
+  rootEl: HTMLElement | null,
+  rootRef: RefObject<HTMLElement | null>,
+) {
   const [isOverflowing, setIsOverflowing] = useState(false)
 
   const measure = useCallback(() => {
-    if (!rootEl) {
+    // 读 ref 而不是 rootEl 状态：节点切换时状态可能还指向已卸载的旧节点
+    const el = rootRef.current
+    if (!el) {
       setIsOverflowing(false)
       return
     }
-    setIsOverflowing(rootEl.scrollWidth > rootEl.clientWidth + 1)
-  }, [rootEl])
+    setIsOverflowing(el.scrollWidth > el.clientWidth + 1)
+  }, [rootRef])
 
   useLayoutEffect(() => {
     measure()
-    if (!rootEl || typeof ResizeObserver === 'undefined') return
+    const el = rootRef.current
+    if (!el || typeof ResizeObserver === 'undefined') return
     const resizeObserver = new ResizeObserver(() => measure())
-    resizeObserver.observe(rootEl)
+    resizeObserver.observe(el)
     return () => {
       resizeObserver.disconnect()
     }
-  }, [measure, rootEl])
+  }, [measure, rootEl, rootRef])
 
   return { isOverflowing, remeasureOverflow: measure }
 }

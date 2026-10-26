@@ -35,9 +35,13 @@ export function CwTruncateText({
   }
 
   const measureRef = useRef<HTMLElement | null>(null)
+  const rootNodeRef = useRef<HTMLElement | null>(null)
   const [rootEl, setRootEl] = useState<HTMLElement | null>(null)
 
   const handleRootRef = useCallback((el: HTMLElement | null) => {
+    // 节点切换（如 tooltip 包裹/解包裹会重建 DOM）时 ref 先生效，
+    // 测量必须读 ref，否则会量到已卸载的旧节点（宽高 0）而反复抖动。
+    rootNodeRef.current = el
     setRootEl(el)
   }, [])
 
@@ -56,6 +60,7 @@ export function CwTruncateText({
     sourceText: fullText,
     headChars: filenameHeadChars,
     rootEl,
+    rootRef: rootNodeRef,
     measureRef,
   })
 
@@ -63,10 +68,11 @@ export function CwTruncateText({
     active: isMiddleMode,
     sourceText: fullText,
     rootEl,
+    rootRef: rootNodeRef,
     measureRef,
   })
 
-  const { isOverflowing, remeasureOverflow } = useTruncateDomOverflow(rootEl)
+  const { isOverflowing, remeasureOverflow } = useTruncateDomOverflow(rootEl, rootNodeRef)
 
   const visibleText = (() => {
     if (!fullText) return ''

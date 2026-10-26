@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import type {
   CSSProperties,
   ChangeEvent,
@@ -96,7 +96,7 @@ export function ExcelGridCell({
   liveRef.current.editing = editing
   liveRef.current.draft = draft
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!editing) {
       focusTokenRef.current += 1
       return
@@ -106,7 +106,7 @@ export function ExcelGridCell({
     liveRef.current.closed = false
     const token = ++focusTokenRef.current
     const original = draft
-    // useEffect 已经在 DOM 提交后跑，相当于 Vue watch + await nextTick
+    // useLayoutEffect 在 DOM 提交后、绘制前跑，等价 Vue watch + await nextTick，避免聚焦/全选晚一帧
     if (token !== focusTokenRef.current) return
     const input = inputRef.current
     if (!input) return

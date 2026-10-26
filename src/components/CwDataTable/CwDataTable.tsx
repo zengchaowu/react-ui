@@ -413,17 +413,16 @@ export const CwDataTable = forwardRef<CwDataTableHandle, CwDataTableComponentPro
       updateExpandFillLayout()
     }, [updateExpandFillLayout])
 
-    useEffect(() => {
-      const el = bodyEl
-      if (!el || typeof ResizeObserver === 'undefined') {
-        scheduleExpandFillUpdate()
-        return
-      }
+    useLayoutEffect(() => {
+      if (!bodyEl) return
+      // 首帧前同步量一次表体宽度：剩余空间分摊必须赶在第一次绘制前生效，
+      // 否则会先画出未分摊的列宽再跳一次（Vue 版在绘制前就完成了）。
+      flushExpandFillUpdate()
+      if (typeof ResizeObserver === 'undefined') return
       const observer = new ResizeObserver(() => scheduleExpandFillUpdate())
-      observer.observe(el)
-      scheduleExpandFillUpdate()
+      observer.observe(bodyEl)
       return () => observer.disconnect()
-    }, [bodyEl, scheduleExpandFillUpdate])
+    }, [bodyEl, flushExpandFillUpdate, scheduleExpandFillUpdate])
 
     useEffect(() => {
       scheduleExpandFillUpdate()
