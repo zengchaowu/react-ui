@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwProfileUploader } from './CwProfileUploader'
 import { numberControlArgType } from '../../storybook/argTypes'
+import { storybookChatDefaultAvatarSrc } from '../../storybook/chatDefaultAvatar'
 
-const storybookProfileImageSrc =
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=256&h=256&fit=crop'
+const storybookProfileImageSrc = storybookChatDefaultAvatarSrc
 
 async function mockUpload(file: File): Promise<string> {
   await new Promise((r) => setTimeout(r, 5000))
