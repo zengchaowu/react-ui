@@ -1,14 +1,5 @@
 import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
-import type {
-  ChangeEvent,
-  FocusEvent as ReactFocusEvent,
-  HTMLAttributes,
-  KeyboardEvent as ReactKeyboardEvent,
-  MouseEvent as ReactMouseEvent,
-  PointerEvent as ReactPointerEvent,
-} from 'react'
-import { showCwContextMenu } from '../CwContextMenu'
-import type { CwContextMenuItem } from '../CwContextMenu'
+import type { HTMLAttributes, PointerEvent as ReactPointerEvent } from 'react'
 import { CwDataTable } from '../CwDataTable'
 import ExcelMergeOverlay from './ExcelMergeOverlay'
 import { excelEditorBase } from './styles'
@@ -20,46 +11,31 @@ import type {
   CwExcelWorkbook,
 } from './types'
 import { buildSheetRows, buildSheetTable } from './functions/buildExcelTable'
+import { writeCellDraft } from './functions/sheetEdits'
 import {
-  appendSheet,
-  applyClipboardGrid,
-  deleteSheetAt,
-  duplicateSheetAt,
-  insertSheetAt,
-  renameSheetAt,
-  writeCellDraft,
-} from './functions/sheetEdits'
-import {
-  COL_LOOKAHEAD,
-  EDGE_GROW_INTERVAL,
-  EDGE_SLACK,
-  GUTTER_WIDTH,
-  MIN_SHEET_COLS,
-  MIN_SHEET_ROWS,
-  ROW_LOOKAHEAD,
-  SHEET_COL_CHUNK,
-  SHEET_ROW_CHUNK,
-  SHEET_ROW_HEIGHT,
   anchorCell,
   guessColumnRenderCount,
   planColumnWindow,
-  scrollSpanIntoView,
   selectionLabel as formatSelectionLabel,
-  sumWidths,
 } from './functions/sheetMetrics'
 import { isHistoryKey, useExcelHistory } from './hooks/useExcelHistory'
+import { useExcelFormulaBar } from './hooks/useExcelFormulaBar'
+import { useExcelGridKeyboard } from './hooks/useExcelGridKeyboard'
 import { useExcelGridLayout } from './hooks/useExcelGridLayout'
 import type { CellPosition } from './hooks/useExcelGridLayout'
+import { useExcelClipboard } from './hooks/useExcelClipboard'
+import { useExcelContextMenu } from './hooks/useExcelContextMenu'
+import { useExcelSelectionPaint } from './hooks/useExcelSelectionPaint'
+import { useExcelSheetStructure } from './hooks/useExcelSheetStructure'
+import { useExcelSheetTabs } from './hooks/useExcelSheetTabs'
+import { useExcelTableScroll } from './hooks/useExcelTableScroll'
+import { useExcelViewExtent } from './hooks/useExcelViewExtent'
 import { useMirroredState } from './hooks/useMirroredState'
 import {
   excelKeyboardOwner,
   cloneWorkbook,
   createBlankWorkbook,
-  deleteSheetColumns,
-  deleteSheetRows,
   formatCell,
-  insertSheetColumn,
-  insertSheetRow,
   mergeCovering,
   normalizeWorkbook,
   stepFromMerge,
@@ -89,10 +65,6 @@ type CommitMove = 'stay' | 'down' | 'up' | 'left' | 'right'
 function afterRender(callback: () => void) {
   setTimeout(callback, 0)
 }
-
-const CELL_ON = excelEditorBase.cellSelected.split(/\s+/).filter(Boolean)
-const MERGE_ON = excelEditorBase.mergeSelected.split(/\s+/).filter(Boolean)
-const AXIS_ON = excelEditorBase.axisSelected.split(/\s+/).filter(Boolean)
 
 export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorComponentProps>(
   function CwExcelEditor(props, ref) {
@@ -143,27 +115,6 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
     }
     const activeSheet = workbook.sheets[sheetIndex] ?? workbook.sheets[0]
 
-    function computeBaseExtent(index = sheetIndexRef.current) {
-      const sheet = workbookRef.current.sheets[index]
-      const cells = sheet?.cells ?? []
-      let rows = cells.length
-      let cols = cells[0]?.length ?? 1
-      for (const merge of sheet?.merges ?? []) {
-        rows = Math.max(rows, merge.row + merge.rowspan)
-        cols = Math.max(cols, merge.col + merge.colspan)
-      }
-      return {
-        rows: Math.max(rows, MIN_SHEET_ROWS),
-        cols: Math.max(cols, MIN_SHEET_COLS),
-      }
-    }
-
-    const [viewRows, setViewRows, viewRowsRef] = useMirroredState(
-      () => computeBaseExtent(sheetIndexRef.current).rows,
-    )
-    const [, setViewCols, viewColsRef] = useMirroredState(
-      () => computeBaseExtent(sheetIndexRef.current).cols,
-    )
     const [windowStart, setWindowStart, windowStartRef] = useMirroredState(0)
     const [columnRenderCount, setColumnRenderCount, columnRenderCountRef] = useMirroredState(() =>
       guessColumnRenderCount(),
@@ -308,6 +259,85 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
       bodyPieces,
     } = gridLayout
 
+    const {
+      viewRows,
+      setViewRows,
+      setViewCols,
+      viewRowsRef,
+      viewColsRef,
+      baseExtent,
+      resetViewExtent,
+      ensureViewCovers,
+      sheetColCount,
+    } = useExcelViewExtent({
+      workbookRef,
+      sheetIndexRef,
+      getActiveSheet,
+      resetColumnWidths,
+      setWindowStart,
+      bumpTableLayoutKey: () => setTableLayoutKey(tableLayoutKeyRef.current + 1),
+    })
+
+    const {
+      insertRow,
+      deleteRow,
+      insertColumn,
+      deleteColumn,
+    } = useExcelSheetStructure({
+      workbookRef,
+      sheetIndexRef,
+      selectionRef,
+      publish,
+      getActiveSheet,
+      shiftRowHeights,
+      shiftColumnWidths,
+      placeSelection,
+    })
+
+    const columnResizeObserverRef = useRef<ResizeObserver | null>(null)
+    const closeContextMenuRef = useRef<(() => void) | null>(null)
+    const ignoreEdgeGrowRef = useRef(0)
+    const rowGrowAtRef = useRef(0)
+    const colGrowAtRef = useRef(0)
+    const paintedRef = useRef<HTMLElement[]>([])
+    const paintedScrollBucketRef = useRef(-1)
+    const frameHandleRef = useRef(0)
+    const pendingFrameRef = useRef<{ row: number; col: number; scroll: boolean } | null>(null)
+
+    const { paintSelection, revealInView, queueFrame, schedulePaint, scheduleReveal } =
+      useExcelSelectionPaint({
+        rootRef,
+        headerRow,
+        paintedRef,
+        ignoreEdgeGrowRef,
+        frameHandleRef,
+        pendingFrameRef,
+        getActiveSheet,
+        getSelection: () => selectionRef.current,
+        sheetViewport,
+        layoutRowTop,
+        layoutRowSpanHeight,
+        layoutHeight,
+        layoutLeft,
+        layoutWidth,
+        syncColumnWindow,
+      })
+
+    const { onTableScroll } = useExcelTableScroll({
+      closeContextMenuRef,
+      ignoreEdgeGrowRef,
+      rowGrowAtRef,
+      colGrowAtRef,
+      paintedScrollBucketRef,
+      viewRowsRef,
+      setViewRows,
+      viewColsRef,
+      setViewCols,
+      syncColumnWindow,
+      schedulePaint,
+      sheetViewport,
+    })
+
     function onDocumentKeydown(event: KeyboardEvent) {
       const root = rootRef.current
       if (!root) return
@@ -329,15 +359,51 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
       onGridKeydown(event)
     }
 
-    const columnResizeObserverRef = useRef<ResizeObserver | null>(null)
-    const closeContextMenuRef = useRef<(() => void) | null>(null)
-    const ignoreEdgeGrowRef = useRef(0)
-    const rowGrowAtRef = useRef(0)
-    const colGrowAtRef = useRef(0)
-    const paintedRef = useRef<HTMLElement[]>([])
-    const paintedScrollBucketRef = useRef(-1)
-    const frameHandleRef = useRef(0)
-    const pendingFrameRef = useRef<{ row: number; col: number; scroll: boolean } | null>(null)
+    const { onDocumentCopy, onDocumentCut, onDocumentPaste, copyCell, pasteFromClipboard } =
+      useExcelClipboard({
+        rootRef,
+        previewing,
+        selectionRef,
+        anchor,
+        cellTextAt,
+        commitAt,
+        workbookRef,
+        sheetIndexRef,
+        publish,
+        ensureViewCovers,
+        placeSelection,
+      })
+
+    const { onGridKeydown } = useExcelGridKeyboard({
+      previewing,
+      selectionRef,
+      editingRef,
+      draftRef,
+      anchor,
+      getActiveSheet,
+      setSelection,
+      setDraftValue,
+      setDraft,
+      placeSelection,
+      editCell,
+      commitAt,
+      undo,
+      redo,
+      focusActiveEditor,
+      afterRender,
+    })
+
+    const { onFormulaFocus, onFormulaInput, onFormulaKeydown, onFormulaBlur } = useExcelFormulaBar({
+      previewing,
+      editingRef,
+      selectionRef,
+      draftRef,
+      anchor,
+      editCell,
+      setDraft,
+      commitAt,
+      cancelEdit,
+    })
 
     /** 每次渲染都换成最新一批闭包，供 document 监听 / rAF / ResizeObserver 等稳定回调调用。 */
     const liveRef = useRef({
@@ -492,19 +558,6 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
       return cellTextAt(current.row, current.col)
     })()
 
-    function baseExtent(index = sheetIndexRef.current) {
-      return computeBaseExtent(index)
-    }
-
-    function resetViewExtent(index = sheetIndexRef.current) {
-      const extent = baseExtent(index)
-      setViewRows(extent.rows)
-      setViewCols(extent.cols)
-      setWindowStart(0)
-      resetColumnWidths()
-      setTableLayoutKey(tableLayoutKeyRef.current + 1)
-    }
-
     // watch(sheetIndex)（非 immediate）
     const firstSheetIndexEffect = useRef(true)
     useEffect(() => {
@@ -534,16 +587,6 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
       if (viewColsRef.current < extent.cols) setViewCols(extent.cols)
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [extentSignature])
-
-    function ensureViewCovers(row: number, col: number) {
-      if (row >= viewRowsRef.current - ROW_LOOKAHEAD) setViewRows(row + 1 + SHEET_ROW_CHUNK)
-      if (col >= viewColsRef.current - COL_LOOKAHEAD) setViewCols(col + 1 + SHEET_COL_CHUNK)
-    }
-
-    function sheetColCount() {
-      const cells = getActiveSheet()?.cells
-      return Math.max(viewColsRef.current, cells?.[0]?.length ?? 1)
-    }
 
     /** 视口里的列都挂上表头。走出视口再整窗平移，滚动条宽度仍按全部列计算。 */
     function syncColumnWindow(scrollLeft: number) {
@@ -628,6 +671,45 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
       scheduleReveal(next.row, next.col)
     }
 
+    const { openSheetMenu, startRename, cancelRename, commitRename, addSheet } = useExcelSheetTabs({
+      rootRef,
+      texts,
+      previewing,
+      workbookRef,
+      publish,
+      selectSheet,
+      renamingSheetRef,
+      renameDraftRef,
+      renameCancelledRef,
+      setRenamingSheet,
+      setRenameDraft,
+      closeContextMenuRef,
+      afterRender,
+    })
+
+    const { onContextMenu } = useExcelContextMenu({
+      rootRef,
+      texts,
+      previewing,
+      selectionRef,
+      anchor,
+      getActiveSheet,
+      canUndo,
+      canRedo,
+      undo,
+      redo,
+      copyCell,
+      commitAt,
+      pasteFromClipboard,
+      placeSelection,
+      insertRow,
+      deleteRow,
+      insertColumn,
+      deleteColumn,
+      closeContextMenuRef,
+      openSheetMenu,
+    })
+
     async function loadSource(source: NonNullable<CwExcelEditorProps['src']>) {
       setLoading(true)
       setError('')
@@ -694,128 +776,6 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
       return viewport instanceof HTMLElement ? viewport : null
     }
 
-    function pinScrollLeft(viewport: HTMLElement, left: number) {
-      const max = Math.max(0, viewport.scrollWidth - viewport.clientWidth)
-      const next = Math.min(Math.max(0, left), max)
-      if (Math.abs(viewport.scrollLeft - next) <= 1) return
-      viewport.scrollLeft = next
-    }
-
-    /** 列宽落地可能晚一帧。连续几帧把滚动位置留在增长后的右端，并忽略由此触发的滚动。 */
-    function keepHorizontalEnd(viewport: HTMLElement, baseScrollLeft: number, baseScrollWidth: number) {
-      ignoreEdgeGrowRef.current += 1
-      let frames = 0
-      const step = () => {
-        const grown = Math.max(0, viewport.scrollWidth - baseScrollWidth)
-        pinScrollLeft(viewport, baseScrollLeft + grown)
-        frames += 1
-        if (frames < 3) {
-          requestAnimationFrame(step)
-          return
-        }
-        ignoreEdgeGrowRef.current = Math.max(0, ignoreEdgeGrowRef.current - 1)
-      }
-      requestAnimationFrame(step)
-    }
-
-    function paintSelection(row: number, col: number) {
-      const root = rootRef.current
-      if (!root) return
-      for (const el of paintedRef.current) {
-        el.removeAttribute('data-excel-on')
-        el.classList.remove(...CELL_ON, ...MERGE_ON, ...AXIS_ON)
-      }
-      paintedRef.current = []
-      const mark = (selector: string, classes: string[]) => {
-        const el = root.querySelector(selector)
-        if (!(el instanceof HTMLElement)) return
-        el.setAttribute('data-excel-on', '1')
-        el.classList.add(...classes)
-        paintedRef.current.push(el)
-      }
-      const sheet = getActiveSheet()
-      const merge = mergeCovering(sheet?.merges ?? [], row, col)
-      const rowStart = merge?.row ?? row
-      const rowEnd = merge ? merge.row + merge.rowspan : row + 1
-      const colStart = merge?.col ?? col
-      const colEnd = merge ? merge.col + merge.colspan : col + 1
-      for (let index = rowStart; index < rowEnd; index += 1) {
-        mark(`[data-excel-row="${index}"][data-excel-col="-1"]`, AXIS_ON)
-      }
-      for (let index = colStart; index < colEnd; index += 1) {
-        mark(`[data-excel-row="-1"][data-excel-col="${index}"]`, AXIS_ON)
-      }
-      const anchorRow = merge?.row ?? row
-      const anchorCol = merge?.col ?? col
-      if (merge) {
-        root.querySelectorAll(`[data-excel-merge="${anchorRow}:${anchorCol}"]`).forEach((node) => {
-          if (!(node instanceof HTMLElement)) return
-          node.setAttribute('data-excel-on', '1')
-          node.classList.add(...MERGE_ON)
-          paintedRef.current.push(node)
-        })
-      } else {
-        mark(`[data-excel-row="${row}"][data-excel-col="${col}"]`, CELL_ON)
-      }
-    }
-
-    function revealInView(row: number, col: number) {
-      const viewport = sheetViewport()
-      if (!viewport) return
-      ignoreEdgeGrowRef.current += 1
-      const bodyStart = headerRow ? 1 : 0
-      const sheet = getActiveSheet()
-      const merge = mergeCovering(sheet?.merges ?? [], row, col)
-      const anchorRow = merge?.row ?? row
-      const anchorCol = merge?.col ?? col
-      const top = layoutRowTop(Math.max(bodyStart, anchorRow), bodyStart)
-      const height = merge ? layoutRowSpanHeight(anchorRow, merge.rowspan) : layoutHeight(anchorRow)
-      const cellLeft = layoutLeft(anchorCol)
-      const cellWidth = merge
-        ? sumWidths(anchorCol, anchorCol + merge.colspan, layoutWidth)
-        : layoutWidth(anchorCol)
-      viewport.scrollTop = scrollSpanIntoView(viewport.scrollTop, viewport.clientHeight, top, height)
-      viewport.scrollLeft = scrollSpanIntoView(
-        viewport.scrollLeft,
-        Math.max(0, viewport.clientWidth - GUTTER_WIDTH),
-        Math.max(0, cellLeft - GUTTER_WIDTH),
-        cellWidth,
-      )
-      syncColumnWindow(viewport.scrollLeft)
-      requestAnimationFrame(() => {
-        ignoreEdgeGrowRef.current = Math.max(0, ignoreEdgeGrowRef.current - 1)
-      })
-    }
-
-    /** 同一帧里的方向键只滚一次，跟到目标格。滚动过程中只补画选中框。 */
-    function queueFrame(row: number, col: number, scroll: boolean) {
-      const pending = pendingFrameRef.current
-      if (pending) {
-        pending.row = row
-        pending.col = col
-        pending.scroll ||= scroll
-        return
-      }
-      pendingFrameRef.current = { row, col, scroll }
-      frameHandleRef.current = requestAnimationFrame(() => {
-        const job = pendingFrameRef.current
-        pendingFrameRef.current = null
-        frameHandleRef.current = 0
-        if (!job) return
-        liveRef.current.paintSelection(job.row, job.col)
-        if (job.scroll) liveRef.current.revealInView(job.row, job.col)
-      })
-    }
-
-    function schedulePaint() {
-      const current = selectionRef.current
-      if (current) queueFrame(current.row, current.col, false)
-    }
-
-    function scheduleReveal(row: number, col: number) {
-      queueFrame(row, col, true)
-    }
-
     // watch：选中 / 合并数 / gridEpoch 变化后补画选中框
     const paintSignature = `${selection?.row ?? ''}:${selection?.col ?? ''}:${
       activeSheet?.merges?.length ?? 0
@@ -839,204 +799,6 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
       scheduleMergeLayoutSync()
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mergeWatchSignature])
-
-    function hitCell(event: { target: EventTarget | null }) {
-      const target = event.target
-      if (!(target instanceof Element)) return null
-      const cell = target.closest('[data-excel-row]')
-      if (!(cell instanceof HTMLElement)) return null
-      const row = Number(cell.dataset.excelRow)
-      const col = Number(cell.dataset.excelCol)
-      if (!Number.isFinite(row) || !Number.isFinite(col)) return null
-      return { row, col }
-    }
-
-    function onContextMenu(event: ReactMouseEvent<HTMLDivElement>) {
-      const target = event.target
-      if (!(target instanceof Element) || !rootRef.current?.contains(target)) return
-      const sheetTab = target.closest('[data-excel-sheet]')
-      if (sheetTab instanceof HTMLElement) {
-        event.preventDefault()
-        const index = Number(sheetTab.dataset.excelSheet)
-        if (Number.isFinite(index)) openSheetMenu(event.nativeEvent, index)
-        return
-      }
-      if (target.closest('input, textarea, button, a')) return
-      event.preventDefault()
-      const hit = hitCell(event)
-      const fallback = selectionRef.current ?? anchor()
-      const row = hit && hit.row >= 0 ? hit.row : fallback.row
-      const col = hit && hit.col >= 0 ? hit.col : fallback.col
-      placeSelection(row, col)
-      const readOnly = previewing
-      const items: CwContextMenuItem[] = [
-        { key: 'undo', label: texts.undo, shortcut: 'Ctrl+Z', disabled: readOnly || !canUndo() },
-        {
-          key: 'redo',
-          label: texts.redo,
-          shortcut: 'Ctrl+Y',
-          disabled: readOnly || !canRedo(),
-          dividerAfter: true,
-        },
-        { key: 'cut', label: texts.cut, shortcut: 'Ctrl+X', disabled: readOnly },
-        { key: 'copy', label: texts.copy, shortcut: 'Ctrl+C' },
-        {
-          key: 'paste',
-          label: texts.paste,
-          shortcut: 'Ctrl+V',
-          disabled: readOnly,
-          dividerAfter: true,
-        },
-        { key: 'insert-row-above', label: texts.insertRowAbove, disabled: readOnly },
-        { key: 'insert-row-below', label: texts.insertRowBelow, disabled: readOnly },
-        { key: 'insert-col-left', label: texts.insertColLeft, disabled: readOnly },
-        {
-          key: 'insert-col-right',
-          label: texts.insertColRight,
-          disabled: readOnly,
-          dividerAfter: true,
-        },
-        { key: 'clear', label: texts.clear, shortcut: 'Delete', disabled: readOnly },
-        { key: 'delete-row', label: texts.deleteRow, danger: true, disabled: readOnly },
-        { key: 'delete-col', label: texts.deleteColumn, danger: true, disabled: readOnly },
-      ]
-      closeContextMenuRef.current?.()
-      const handle = showCwContextMenu({
-        x: event.clientX,
-        y: event.clientY,
-        appearance: 'plain',
-        items,
-        onSelect: (key) => runContextAction(key, row, col),
-        onClose: () => {
-          if (closeContextMenuRef.current === handle.close) closeContextMenuRef.current = null
-        },
-      })
-      closeContextMenuRef.current = handle.close
-    }
-
-    function runContextAction(key: string, row: number, col: number) {
-      if (key === 'undo') {
-        undo()
-        return
-      }
-      if (key === 'redo') {
-        redo()
-        return
-      }
-      if (key === 'copy') {
-        void copyCell(row, col)
-        return
-      }
-      if (previewing) return
-      if (key === 'cut') {
-        void copyCell(row, col).then(() => commitAt(row, col, '', 'stay'))
-        return
-      }
-      if (key === 'paste') {
-        void pasteFromClipboard()
-        return
-      }
-      if (key === 'clear') {
-        commitAt(row, col, '', 'stay')
-        return
-      }
-      const span = mergeCovering(getActiveSheet()?.merges ?? [], row, col)
-      if (key === 'insert-row-above') insertRow(row)
-      else if (key === 'insert-row-below') insertRow(row + (span?.rowspan ?? 1))
-      else if (key === 'insert-col-left') insertColumn(col)
-      else if (key === 'insert-col-right') insertColumn(col + (span?.colspan ?? 1))
-      else if (key === 'delete-row') deleteRow(row)
-      else if (key === 'delete-col') deleteColumn(col)
-    }
-
-    async function copyCell(row: number, col: number) {
-      try {
-        await navigator.clipboard.writeText(cellTextAt(row, col))
-      } catch {
-        // 浏览器拒绝剪贴板时，Ctrl+C 仍走 copy 事件
-      }
-    }
-
-    async function pasteFromClipboard() {
-      try {
-        pasteGrid(await navigator.clipboard.readText())
-      } catch {
-        // 无剪贴板权限时不改表格
-      }
-    }
-
-    function mutateSheet(change: (sheet: CwExcelWorkbook['sheets'][number]) => void) {
-      const next = cloneWorkbook(workbookRef.current)
-      const sheet = next.sheets[sheetIndexRef.current]
-      if (!sheet) return
-      change(sheet)
-      publish(next)
-    }
-
-    function selectedSpan(row: number, col: number) {
-      return mergeCovering(getActiveSheet()?.merges ?? [], row, col)
-    }
-
-    function insertRow(at: number) {
-      shiftRowHeights(at, 1, true)
-      mutateSheet((sheet) => insertSheetRow(sheet, at))
-      placeSelection(at, selectionRef.current?.col ?? 0)
-    }
-
-    function deleteRow(at: number) {
-      const merge = selectedSpan(at, selectionRef.current?.col ?? 0)
-      const count = merge && merge.row === at ? merge.rowspan : 1
-      shiftRowHeights(at, count, false)
-      mutateSheet((sheet) => deleteSheetRows(sheet, at, count))
-      const height = workbookRef.current.sheets[sheetIndexRef.current]?.cells.length ?? 1
-      placeSelection(Math.min(at, Math.max(0, height - 1)), selectionRef.current?.col ?? 0)
-    }
-
-    function insertColumn(at: number) {
-      shiftColumnWidths(at, 1, true)
-      mutateSheet((sheet) => insertSheetColumn(sheet, at))
-      placeSelection(selectionRef.current?.row ?? 0, at)
-    }
-
-    function deleteColumn(at: number) {
-      const merge = selectedSpan(selectionRef.current?.row ?? 0, at)
-      const count = merge && merge.col === at ? merge.colspan : 1
-      shiftColumnWidths(at, count, false)
-      mutateSheet((sheet) => deleteSheetColumns(sheet, at, count))
-      const width = workbookRef.current.sheets[sheetIndexRef.current]?.cells[0]?.length ?? 1
-      placeSelection(selectionRef.current?.row ?? 0, Math.min(at, Math.max(0, width - 1)))
-    }
-
-    function onTableScroll(scrollTop: number, scrollLeft: number) {
-      closeContextMenuRef.current?.()
-      syncColumnWindow(scrollLeft)
-      // 合并块画在滚动内容里，跟着内容走，不必每个滚动像素重测。
-      // 选中框在行被虚拟列表换掉之后补一次即可。
-      const bucket = Math.floor(scrollTop / SHEET_ROW_HEIGHT)
-      if (bucket !== paintedScrollBucketRef.current) {
-        paintedScrollBucketRef.current = bucket
-        schedulePaint()
-      }
-      if (ignoreEdgeGrowRef.current > 0) return
-      const viewport = sheetViewport()
-      if (!viewport) return
-      const now = performance.now()
-      if (
-        scrollTop > 0 &&
-        viewport.scrollHeight - scrollTop - viewport.clientHeight < EDGE_SLACK &&
-        now - rowGrowAtRef.current >= EDGE_GROW_INTERVAL
-      ) {
-        rowGrowAtRef.current = now
-        setViewRows(viewRowsRef.current + SHEET_ROW_CHUNK)
-      }
-      const slackRight = viewport.scrollWidth - scrollLeft - viewport.clientWidth
-      if (scrollLeft > 0 && slackRight <= 1 && now - colGrowAtRef.current >= EDGE_GROW_INTERVAL) {
-        colGrowAtRef.current = now
-        const widthBefore = viewport.scrollWidth
-        setViewCols(viewColsRef.current + SHEET_COL_CHUNK)
-        keepHorizontalEnd(viewport, scrollLeft, widthBefore)
-      }
-    }
 
     function selectCell(row: number, col: number) {
       placeSelection(row, col)
@@ -1065,279 +827,6 @@ export const CwExcelEditor = forwardRef<CwExcelEditorHandle, CwExcelEditorCompon
           ? { row, col }
           : stepFromMerge(next.sheets[sheetIndexRef.current]?.merges ?? [], row, col, move)
       placeSelection(target.row, target.col, move !== 'stay')
-    }
-
-    function onFormulaFocus() {
-      if (previewing || editingRef.current) return
-      const current = selectionRef.current ?? anchor()
-      editCell(current.row, current.col, undefined, 'formula')
-    }
-
-    function onFormulaInput(event: ChangeEvent<HTMLInputElement>) {
-      if (previewing) return
-      const value = event.target.value
-      if (!editingRef.current) {
-        const current = selectionRef.current ?? anchor()
-        editCell(current.row, current.col, value, 'formula')
-        return
-      }
-      setDraft(value)
-    }
-
-    function onFormulaKeydown(event: ReactKeyboardEvent<HTMLInputElement>) {
-      if (!editingRef.current) return
-      const current = selectionRef.current
-      if (!current) return
-      if (event.key === 'Enter') {
-        event.preventDefault()
-        event.stopPropagation()
-        commitAt(current.row, current.col, draftRef.current, event.shiftKey ? 'up' : 'down')
-      } else if (event.key === 'Tab') {
-        event.preventDefault()
-        event.stopPropagation()
-        commitAt(current.row, current.col, draftRef.current, event.shiftKey ? 'left' : 'right')
-      } else if (event.key === 'Escape') {
-        event.preventDefault()
-        event.stopPropagation()
-        cancelEdit()
-      }
-    }
-
-    function onFormulaBlur(event: ReactFocusEvent<HTMLInputElement>) {
-      if (!editingRef.current) return
-      const next = event.relatedTarget
-      if (next instanceof Element && next.closest('.cw-excel-input')) return
-      const current = selectionRef.current
-      if (!current) return
-      commitAt(current.row, current.col, draftRef.current, 'stay')
-    }
-
-    function clipboardOwns(event: Event) {
-      const root = rootRef.current
-      if (!root) return false
-      const active = document.activeElement
-      const inside = !!active && root.contains(active)
-      const idle = !active || active === document.body || active === document.documentElement
-      if (!inside && !(idle && excelKeyboardOwner.root === root)) return false
-      const target = event.target
-      return !(
-        target instanceof Element && target.closest('input, textarea, select, [contenteditable="true"]')
-      )
-    }
-
-    function onDocumentCopy(event: ClipboardEvent) {
-      if (!clipboardOwns(event)) return
-      const current = selectionRef.current ?? anchor()
-      event.preventDefault()
-      event.clipboardData?.setData('text/plain', cellTextAt(current.row, current.col))
-    }
-
-    function onDocumentCut(event: ClipboardEvent) {
-      if (!clipboardOwns(event) || previewing) return
-      const current = selectionRef.current ?? anchor()
-      event.preventDefault()
-      event.clipboardData?.setData('text/plain', cellTextAt(current.row, current.col))
-      commitAt(current.row, current.col, '', 'stay')
-    }
-
-    function onDocumentPaste(event: ClipboardEvent) {
-      if (!clipboardOwns(event) || previewing) return
-      const text = event.clipboardData?.getData('text/plain') ?? ''
-      event.preventDefault()
-      pasteGrid(text)
-    }
-
-    function pasteGrid(text: string) {
-      const origin = selectionRef.current ?? anchor()
-      const next = cloneWorkbook(workbookRef.current)
-      const sheet = next.sheets[sheetIndexRef.current]
-      if (!sheet) return
-      const applied = applyClipboardGrid(sheet, origin.row, origin.col, text)
-      if (!applied) return
-      if (applied.changed) publish(next)
-      ensureViewCovers(origin.row + applied.rows - 1, origin.col + applied.cols - 1)
-      placeSelection(origin.row, origin.col)
-    }
-
-    function onGridKeydown(event: KeyboardEvent) {
-      if ((event.ctrlKey || event.metaKey) && !event.altKey) {
-        const key = event.key.toLowerCase()
-        if (key === 'z') {
-          event.preventDefault()
-          if (event.shiftKey) redo()
-          else undo()
-          return
-        }
-        if (key === 'y') {
-          event.preventDefault()
-          redo()
-          return
-        }
-      }
-      const current = selectionRef.current ?? anchor()
-      if (!selectionRef.current) setSelection(current)
-      const go = (row: number, col: number) => {
-        event.preventDefault()
-        if (editingRef.current) {
-          afterRender(focusActiveEditor)
-          return
-        }
-        placeSelection(row, col, true)
-      }
-      const merges = getActiveSheet()?.merges ?? []
-      if (event.key === 'ArrowDown') {
-        const next = stepFromMerge(merges, current.row, current.col, 'down')
-        return go(next.row, next.col)
-      }
-      if (event.key === 'ArrowUp') {
-        const next = stepFromMerge(merges, current.row, current.col, 'up')
-        return go(next.row, next.col)
-      }
-      if (event.key === 'ArrowRight') {
-        const next = stepFromMerge(merges, current.row, current.col, 'right')
-        return go(next.row, next.col)
-      }
-      if (event.key === 'ArrowLeft') {
-        const next = stepFromMerge(merges, current.row, current.col, 'left')
-        return go(next.row, next.col)
-      }
-      if (event.key === 'Enter') {
-        const next = stepFromMerge(merges, current.row, current.col, event.shiftKey ? 'up' : 'down')
-        return go(next.row, next.col)
-      }
-      if (event.key === 'Tab') {
-        const next = stepFromMerge(merges, current.row, current.col, event.shiftKey ? 'left' : 'right')
-        return go(next.row, next.col)
-      }
-      if (event.key === 'F2') {
-        event.preventDefault()
-        if (editingRef.current) {
-          afterRender(focusActiveEditor)
-          return
-        }
-        editCell(current.row, current.col)
-        return
-      }
-      if (event.key === 'Delete' || event.key === 'Backspace') {
-        event.preventDefault()
-        if (previewing) return
-        if (editingRef.current) {
-          setDraftValue(event.key === 'Backspace' ? draftRef.current.slice(0, -1) : '')
-          afterRender(focusActiveEditor)
-          return
-        }
-        commitAt(current.row, current.col, '', 'stay')
-        return
-      }
-      if (
-        event.key.length === 1 &&
-        !event.ctrlKey &&
-        !event.metaKey &&
-        !event.altKey &&
-        !event.isComposing
-      ) {
-        event.preventDefault()
-        if (editingRef.current) {
-          // 输入框还没接住焦点时，数字会一格一格被替换。接在草稿后面。
-          setDraft(draftRef.current + event.key)
-          afterRender(focusActiveEditor)
-          return
-        }
-        editCell(current.row, current.col, event.key)
-      }
-    }
-
-    function openSheetMenu(event: MouseEvent, index: number) {
-      selectSheet(index)
-      const readOnly = previewing
-      const onlySheet = workbookRef.current.sheets.length <= 1
-      const items: CwContextMenuItem[] = [
-        { key: 'insert-sheet', label: texts.insertSheet, disabled: readOnly },
-        {
-          key: 'delete-sheet',
-          label: texts.deleteSheet,
-          danger: true,
-          disabled: readOnly || onlySheet,
-        },
-        { key: 'rename-sheet', label: texts.renameSheet, disabled: readOnly },
-        { key: 'duplicate-sheet', label: texts.duplicateSheet, disabled: readOnly },
-      ]
-      closeContextMenuRef.current?.()
-      const handle = showCwContextMenu({
-        x: event.clientX,
-        y: event.clientY,
-        appearance: 'plain',
-        items,
-        onSelect: (key) => runSheetAction(key, index),
-        onClose: () => {
-          if (closeContextMenuRef.current === handle.close) closeContextMenuRef.current = null
-        },
-      })
-      closeContextMenuRef.current = handle.close
-    }
-
-    function runSheetAction(key: string, index: number) {
-      if (previewing) return
-      if (key === 'insert-sheet') insertSheet(index)
-      else if (key === 'delete-sheet') deleteSheet(index)
-      else if (key === 'rename-sheet') startRename(index)
-      else if (key === 'duplicate-sheet') duplicateSheet(index)
-    }
-
-    function insertSheet(at: number) {
-      const created = insertSheetAt(workbookRef.current, at)
-      publish(created.workbook)
-      selectSheet(created.index)
-    }
-
-    function deleteSheet(index: number) {
-      const created = deleteSheetAt(workbookRef.current, index)
-      if (!created) return
-      publish(created.workbook)
-      selectSheet(created.index)
-    }
-
-    function duplicateSheet(index: number) {
-      const created = duplicateSheetAt(workbookRef.current, index)
-      if (!created) return
-      publish(created.workbook)
-      selectSheet(created.index)
-    }
-
-    function startRename(index: number) {
-      if (previewing || !workbookRef.current.sheets[index]) return
-      renameCancelledRef.current = false
-      setRenamingSheet(index)
-      setRenameDraft(workbookRef.current.sheets[index]!.name)
-      afterRender(() => {
-        const input = rootRef.current?.querySelector('[data-excel-rename]')
-        if (!(input instanceof HTMLInputElement)) return
-        input.focus()
-        input.select()
-      })
-    }
-
-    function cancelRename() {
-      renameCancelledRef.current = true
-      setRenamingSheet(null)
-    }
-
-    function commitRename() {
-      const index = renamingSheetRef.current
-      if (renameCancelledRef.current || index == null) {
-        renameCancelledRef.current = false
-        return
-      }
-      setRenamingSheet(null)
-      const next = renameSheetAt(workbookRef.current, index, renameDraftRef.current)
-      if (!next) return
-      publish(next)
-    }
-
-    function addSheet() {
-      const created = appendSheet(workbookRef.current)
-      publish(created.workbook)
-      selectSheet(created.index)
     }
 
     useImperativeHandle(
