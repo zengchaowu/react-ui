@@ -5,7 +5,6 @@ import {
   useImperativeHandle,
   useMemo,
   useRef,
-  type CSSProperties,
   type FormHTMLAttributes,
   type MouseEvent as ReactMouseEvent,
 } from 'react'
@@ -21,7 +20,7 @@ import {
   sanitizeImRichContentHtml,
 } from '@zengchaowu/shared/functions/im/imRichContentHtml'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
-import { splitTextToEmojiParts } from '../CwChatMessageQuote/emojioneEmoji'
+import { splitTextToEmojiParts } from '../../utils/emojioneEmoji'
 import { CwMessageInputMentionPanel } from '../CwMessageInputMentionPanel'
 import { CwMessageInputMentionSheet } from '../CwMessageInputMentionSheet'
 import { EmojiNode } from './extensions/EmojiNode'
@@ -38,22 +37,19 @@ import {
   focusEditorWithKeyboardPolicy,
   syncEditorVirtualKeyboardPolicy,
 } from './functions/focusEditorWithKeyboardPolicy'
+import { useComposerLayout } from './hooks/useComposerLayout'
 import { useComposerSelection } from './hooks/useComposerSelection'
 import { useEmojiComposer } from './hooks/useEmojiComposer'
 import { useImRichPaste } from './hooks/useImRichPaste'
 import { useInlineImageClips } from './hooks/useInlineImageClips'
 import { useMentions } from './hooks/useMentions'
-import { resolveMessageInputLayoutClasses } from './styles'
-import { defaultCwMessageInputTexts } from './texts'
 import type {
   CwMessageInputEditorHandle,
   CwMessageInputEmits,
   CwMessageInputExpose,
   CwMessageInputProps,
-  CwMessageInputTexts,
 } from './types'
 
-const COMPOSER_LINE_HEIGHT_REM = 1.5
 const EDITOR_CLASS =
   'prose prose-sm max-w-none outline-none min-h-[var(--size-touch-target)] [&>*]:my-0 [&>*:first-child]:mt-0 [&>*:last-child]:mb-0'
 
@@ -131,46 +127,15 @@ export const CwMessageInput = forwardRef<
   const editorRef = useRef<Editor | null>(null)
   const handlersRef = useRef<CompositorEventHandlers>({})
 
-  const styles = useMemo(
-    () => resolveMessageInputLayoutClasses(fieldLayout),
-    [fieldLayout],
-  )
-  const texts = useMemo<CwMessageInputTexts>(
-    () => ({ ...defaultCwMessageInputTexts, ...(textsProp ?? {}) }),
-    [textsProp],
-  )
-  const placeholderResolved = placeholder ?? texts.placeholder
-
-  const fieldStyle = useMemo<CSSProperties>(() => {
-    const minR = textareaMinRows
-    const maxR = textareaMaxRows
-    if (
-      minR != null &&
-      maxR != null &&
-      minR > 0 &&
-      maxR >= minR &&
-      (fixedTextareaRows == null || fixedTextareaRows <= 0)
-    ) {
-      const padY = textareaFieldPadYRem ?? 1.75
-      return {
-        minHeight: `${padY + COMPOSER_LINE_HEIGHT_REM * minR}rem`,
-        maxHeight: `${padY + COMPOSER_LINE_HEIGHT_REM * maxR}rem`,
-        overflowY: 'auto',
-        flex: '0 0 auto',
-      }
-    }
-    const rowCount = fixedTextareaRows
-    if (rowCount == null || rowCount <= 0) return {}
-    const lineHRem = 1.25
-    const padRem = 0.625
-    const hRem = lineHRem * rowCount + padRem + padRem
-    return {
-      minHeight: `${hRem}rem`,
-      maxHeight: `${hRem}rem`,
-      overflowY: 'auto',
-      flex: '0 0 auto',
-    }
-  }, [fixedTextareaRows, textareaFieldPadYRem, textareaMaxRows, textareaMinRows])
+  const { styles, texts, placeholderResolved, fieldStyle } = useComposerLayout({
+    fieldLayout,
+    texts: textsProp,
+    placeholder,
+    fixedTextareaRows,
+    textareaMinRows,
+    textareaMaxRows,
+    textareaFieldPadYRem,
+  })
 
   const getEditor = useCallback((): Editor | null => editorRef.current, [])
 

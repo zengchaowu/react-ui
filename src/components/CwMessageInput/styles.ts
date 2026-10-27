@@ -1,15 +1,10 @@
 import { APP_PAGE_CHROME_SAFE_BOTTOM_CLASS } from '@zengchaowu/ui-shared/constants/appSafeAreaClasses'
 import { chatMessageBodyTextClass } from '../CwChatMessageCell/chatMessageTypography'
+import { CW_WORKSPACE_CHAT_INSET_PAD_X } from '../CwChatMessageCell/chatWorkspaceSurface'
 
 import type { CwMessageInputFieldLayout } from './types'
 
 export type { CwMessageInputFieldLayout }
-
-/**
- * 与 vue-ui `components/chatWorkspaceSurface.ts` 的 `CW_WORKSPACE_CHAT_INSET_PAD_X` 对齐。
- * React 侧该文件尚未导出此常量，这里保持同一 class 值。
- */
-const CW_WORKSPACE_CHAT_INSET_PAD_X = 'px-2.5'
 
 export interface CwMessageInputLayoutClasses {
   root: string
@@ -22,7 +17,7 @@ const messageInputFieldDefault = [
   `flex min-h-0 min-w-0 w-full max-h-full flex-1 flex-col overflow-y-auto cursor-text border-0 bg-transparent px-3 py-3.5 ${chatMessageBodyTextClass} leading-relaxed text-[var(--text-color-primary)] outline-none placeholder:text-[var(--text-color-placeholder)] focus:ring-0`,
   '[&_.ProseMirror]:min-h-full [&_.ProseMirror]:[font-size:inherit] [&_.ProseMirror]:text-[var(--text-color-primary)] [&_.ProseMirror]:leading-relaxed [&_.ProseMirror]:outline-none',
   '[&_.ProseMirror_p.is-editor-empty:first-child::before]:text-[var(--text-color-placeholder)] [&_.ProseMirror_p.is-editor-empty:first-child::before]:content-[attr(data-placeholder)] [&_.ProseMirror_p.is-editor-empty:first-child::before]:float-left [&_.ProseMirror_p.is-editor-empty:first-child::before]:h-0 [&_.ProseMirror_p.is-editor-empty:first-child::before]:pointer-events-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:cursor-text',
-  '[&_.cw-emoji-wrap]:inline-flex [&_.cw-emoji-wrap]:items-center [&_.cw-emoji-wrap]:align-middle',
+  '[&_.cw-emoji-wrap]:inline-flex [&_.cw-emoji-wrap]:items-center',
   '[&_.ProseMirror_img.cw-emoji]:inline-block [&_.ProseMirror_img.cw-emoji]:h-[1.25em] [&_.ProseMirror_img.cw-emoji]:w-[1.25em] [&_.ProseMirror_img.cw-emoji]:max-h-[1.25em] [&_.ProseMirror_img.cw-emoji]:max-w-[1.25em] [&_.ProseMirror_img.cw-emoji]:shrink-0 [&_.ProseMirror_img.cw-emoji]:object-contain [&_.ProseMirror_img.cw-emoji]:align-middle',
 ].join(' ')
 
@@ -34,7 +29,7 @@ export const messageInputMobileCompactFieldClass = [
   'leading-[var(--line-height-composer)] text-[var(--text-color-primary)]',
   '[&_.ProseMirror]:min-h-0 [&_.ProseMirror]:[font-size:inherit] [&_.ProseMirror]:text-[var(--text-color-primary)] [&_.ProseMirror]:leading-[var(--line-height-composer)] [&_.ProseMirror]:outline-none',
   '[&_.ProseMirror_p.is-editor-empty:first-child::before]:hidden',
-  '[&_.cw-emoji-wrap]:inline-flex [&_.cw-emoji-wrap]:items-center [&_.cw-emoji-wrap]:align-middle',
+  '[&_.cw-emoji-wrap]:inline-flex [&_.cw-emoji-wrap]:items-center',
   '[&_.ProseMirror_img.cw-emoji]:inline-block [&_.ProseMirror_img.cw-emoji]:h-[1.25em] [&_.ProseMirror_img.cw-emoji]:w-[1.25em]',
 ].join(' ')
 
@@ -44,7 +39,7 @@ export const messageInputWorkspaceInlineFieldClass = [
   'leading-[var(--line-height-composer)] text-[var(--text-color-primary)] outline-none',
   '[&_.ProseMirror]:min-h-[var(--line-height-composer)] [&_.ProseMirror]:[font-size:inherit] [&_.ProseMirror]:text-[var(--text-color-primary)] [&_.ProseMirror]:leading-[var(--line-height-composer)] [&_.ProseMirror]:outline-none',
   '[&_.ProseMirror_p.is-editor-empty:first-child::before]:text-[var(--text-color-placeholder)] [&_.ProseMirror_p.is-editor-empty:first-child::before]:content-[attr(data-placeholder)] [&_.ProseMirror_p.is-editor-empty:first-child::before]:float-left [&_.ProseMirror_p.is-editor-empty:first-child::before]:h-0 [&_.ProseMirror_p.is-editor-empty:first-child::before]:pointer-events-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:cursor-text',
-  '[&_.cw-emoji-wrap]:inline-flex [&_.cw-emoji-wrap]:items-center [&_.cw-emoji-wrap]:align-middle',
+  '[&_.cw-emoji-wrap]:inline-flex [&_.cw-emoji-wrap]:items-center',
   '[&_.ProseMirror_img.cw-emoji]:inline-block [&_.ProseMirror_img.cw-emoji]:h-[1.25em] [&_.ProseMirror_img.cw-emoji]:w-[1.25em]',
 ].join(' ')
 
@@ -54,7 +49,7 @@ export const messageInputWorkspaceFieldClass = [
   'leading-[var(--line-height-composer)] text-[var(--text-color-primary)] outline-none',
   '[&_.ProseMirror]:min-h-[var(--line-height-composer)] [&_.ProseMirror]:[font-size:inherit] [&_.ProseMirror]:text-[var(--text-color-primary)] [&_.ProseMirror]:leading-[var(--line-height-composer)] [&_.ProseMirror]:outline-none',
   '[&_.ProseMirror_p.is-editor-empty:first-child::before]:text-[var(--text-color-placeholder)] [&_.ProseMirror_p.is-editor-empty:first-child::before]:content-[attr(data-placeholder)] [&_.ProseMirror_p.is-editor-empty:first-child::before]:float-left [&_.ProseMirror_p.is-editor-empty:first-child::before]:h-0 [&_.ProseMirror_p.is-editor-empty:first-child::before]:pointer-events-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:cursor-text',
-  '[&_.cw-emoji-wrap]:inline-flex [&_.cw-emoji-wrap]:items-center [&_.cw-emoji-wrap]:align-middle',
+  '[&_.cw-emoji-wrap]:inline-flex [&_.cw-emoji-wrap]:items-center',
   '[&_.ProseMirror_img.cw-emoji]:inline-block [&_.ProseMirror_img.cw-emoji]:h-[1.25em] [&_.ProseMirror_img.cw-emoji]:w-[1.25em]',
 ].join(' ')
 

@@ -2,15 +2,15 @@ import type { CwEmptyStateAppearance, CwEmptyStateStyles } from './types'
 
 const sizeMap = {
   small: {
-    icon: 'w-10 h-10 mb-3',
+    icon: 'mb-3',
     text: 'text-sm',
   },
   medium: {
-    icon: 'w-20 h-20 mb-3',
+    icon: 'mb-3',
     text: 'text-sm',
   },
   large: {
-    icon: 'w-[7.5rem] h-[7.5rem] mb-4',
+    icon: 'mb-4',
     text: 'text-base',
   },
 }

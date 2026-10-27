@@ -1,6 +1,6 @@
 import { Fragment, useMemo } from 'react'
 import type { KeyboardEvent, MouseEvent, ReactNode } from 'react'
-import { CW_INLINE_EMOJI_IMG_CLASS, splitTextToEmojiParts } from './emojioneEmoji'
+import { CW_INLINE_EMOJI_IMG_CLASS, splitTextToEmojiParts } from '../../utils/emojioneEmoji'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import { CwViewportImg } from '../CwViewportImg'
 import { quoteBase } from './styles'

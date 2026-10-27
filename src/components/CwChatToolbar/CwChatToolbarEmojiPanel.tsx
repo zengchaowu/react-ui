@@ -14,7 +14,7 @@ import {
   resolveEmojiItemToPicker,
   resolveEmojiPickerItems,
   type EmojiItem,
-} from './emojioneEmoji'
+} from '../../utils/emojioneEmoji'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import CwGrid from '../CwGrid/CwGrid'
 import CwViewportImg from '../CwViewportImg/CwViewportImg'

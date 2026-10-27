@@ -31,8 +31,6 @@ export interface CwDataTableBodyRowsProps {
   getBodyCellClassList: (column: CwDataTableColumn) => string[]
   getColumnStyle: (column: CwDataTableColumn) => CSSProperties
   handleColumnSelect: (column: CwDataTableColumn) => void
-  handleColumnMouseEnter: (column: CwDataTableColumn) => void
-  handleColumnMouseLeave: () => void
   lifecycle?: CwDataTableLifecycle
   treeEnabled?: boolean
   indentSize?: number
@@ -41,6 +39,8 @@ export interface CwDataTableBodyRowsProps {
   getTreeRowMeta?: (row: CwDataTableRow) => CwDataTableTreeRowMeta | undefined
   toggleTreeExpand?: (row: CwDataTableRow) => void
   showOverflowTooltip?: boolean
+  /** 行级属性：class / data-* / 事件，透传到行容器 */
+  rowAttrs?: (row: any, rowIndex: number) => Record<string, any>
   overlay?: ReactNode
 }
 
@@ -56,8 +56,6 @@ export function CwDataTableBodyRows({
   getBodyCellClassList,
   getColumnStyle,
   handleColumnSelect,
-  handleColumnMouseEnter,
-  handleColumnMouseLeave,
   lifecycle,
   treeEnabled,
   indentSize,
@@ -66,6 +64,7 @@ export function CwDataTableBodyRows({
   getTreeRowMeta,
   toggleTreeExpand,
   showOverflowTooltip,
+  rowAttrs,
   overlay,
 }: CwDataTableBodyRowsProps) {
   const isPlainColumn = (column: CwDataTableColumn) =>
@@ -94,6 +93,7 @@ export function CwDataTableBodyRows({
       {renderRows.map((row) => (
         <div
           key={row.key}
+          data-cw-dt-row=""
           className={getRowClasses(
             row.isLast,
             omitLastRowBottomBorder,
@@ -103,10 +103,12 @@ export function CwDataTableBodyRows({
             .filter(Boolean)
             .join(' ')}
           style={row.height != null ? { height: `${row.height}px` } : undefined}
+          {...(rowAttrs ? rowAttrs(row.data, row.rowIndex) : {})}
         >
           {visibleColumns.map((column) => (
             <div
               key={column.key}
+              data-cw-dt-col={column.key}
               className={getBodyCellClassList(column).filter(Boolean).join(' ')}
               style={getColumnStyle(column)}
               onClick={
@@ -114,8 +116,6 @@ export function CwDataTableBodyRows({
                   ? (_event: ReactMouseEvent<HTMLDivElement>) => handleColumnSelect(column)
                   : undefined
               }
-              onMouseEnter={() => handleColumnMouseEnter(column)}
-              onMouseLeave={handleColumnMouseLeave}
             >
               {/* Plain text: Content + CellRenderer + TruncateText 会放大进退成本 */}
               {isPlainColumn(column) ? (

@@ -6,7 +6,7 @@ import {
   getTreeRowMeta,
 } from '../functions'
 
-export interface UseTreeRowsOptions {
+export interface UseTableTreeOptions {
   tree?: CwDataTableTreeConfig
   modelValue: CwDataTableRow[]
   columns: CwDataTableColumn[]
@@ -17,7 +17,7 @@ export interface UseTreeRowsOptions {
 }
 
 /** 树形表格：展开态维护 + 拍平可见行 */
-export function useTreeRows(options: UseTreeRowsOptions) {
+export function useTableTree(options: UseTableTreeOptions) {
   const {
     tree: treeConfig,
     modelValue,
@@ -28,9 +28,9 @@ export function useTreeRows(options: UseTreeRowsOptions) {
     onTreeExpandChange,
   } = options
 
-  const treeEnabled = treeConfig?.enabled === true
+  const enabled = treeConfig?.enabled === true
   const childrenKey = treeConfig?.childrenKey ?? 'children'
-  const treeIndentSize = treeConfig?.indentSize ?? 16
+  const indentSize = treeConfig?.indentSize ?? 16
   const indentColumnKey =
     treeConfig?.indentColumnKey ?? columns.find((c) => c.visible !== false)?.key
 
@@ -51,7 +51,7 @@ export function useTreeRows(options: UseTreeRowsOptions) {
   }, [expandedKeysProp])
 
   useEffect(() => {
-    if (!treeEnabled || modelValue.length === 0) return
+    if (!enabled || modelValue.length === 0) return
     if (expandedKeysRef.current.length > 0) return
 
     let next: Array<string | number> | null = null
@@ -65,7 +65,7 @@ export function useTreeRows(options: UseTreeRowsOptions) {
       onUpdateExpandedKeys?.(next)
     }
   }, [
-    treeEnabled,
+    enabled,
     modelValue,
     treeConfig,
     childrenKey,
@@ -95,28 +95,29 @@ export function useTreeRows(options: UseTreeRowsOptions) {
   )
 
   const isIndentColumn = useCallback(
-    (column: CwDataTableColumn) => treeEnabled && column.key === indentColumnKey,
-    [treeEnabled, indentColumnKey],
+    (column: CwDataTableColumn) => enabled && column.key === indentColumnKey,
+    [enabled, indentColumnKey],
   )
 
   const flatRows = useMemo(
     () =>
-      treeEnabled
+      enabled
         ? flattenTreeRows(modelValue, {
             childrenKey,
             rowKey: rowKeyField,
             expandedKeys: new Set(expandedKeysState),
           })
         : modelValue,
-    [treeEnabled, modelValue, childrenKey, rowKeyField, expandedKeysState],
+    [enabled, modelValue, childrenKey, rowKeyField, expandedKeysState],
   )
 
   return {
-    treeEnabled,
-    treeIndentSize,
-    indentColumnKey,
+    enabled,
     flatRows,
+    indentSize,
+    indentColumnKey,
     isIndentColumn,
     toggleTreeExpand,
+    getTreeRowMeta,
   }
 }

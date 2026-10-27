@@ -9,8 +9,6 @@ import {
   useState,
 } from 'react'
 import type {
-  CSSProperties,
-  FocusEvent as ReactFocusEvent,
   HTMLAttributes,
   KeyboardEvent as ReactKeyboardEvent,
   MouseEvent as ReactMouseEvent,
@@ -22,7 +20,6 @@ import type {
   CwDataTableHandle,
   CwDataTableProps,
   CwDataTableSlots,
-  CwDataTableSortState,
   CwDataTableStyles,
 } from './types'
 import {
@@ -40,28 +37,26 @@ import CwDataTableHeaderRenderer from './CwDataTableHeaderRenderer'
 import CwDataTableBodyRows from './CwDataTableBodyRows'
 import CwDataTableBodyPanel from './CwDataTableBodyPanel'
 import { useVirtualScroll } from './hooks/useVirtualScroll'
-import { useTreeRows } from './hooks/useTreeRows'
+import { useTableTree } from './hooks/useTableTree'
 import { useScrollSync } from './hooks/useScrollSync'
+import { useExternalRowScrollSync } from './hooks/useExternalRowScrollSync'
+import { useScrollbarAlignment } from './hooks/useScrollbarAlignment'
 import { useTableEdgeBorders } from './hooks/useTableEdgeBorders'
-import { useColumnWidths } from './hooks/useColumnWidths'
+import { useExpandFillColumns } from './hooks/useExpandFillColumns'
+import { useSyncColumnWidthsFromBody } from './hooks/useSyncColumnWidthsFromBody'
 import { useColumnResize } from './hooks/useColumnResize'
-import { useColumnSelection } from './hooks/useColumnSelection'
-import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
-import {
-  calculateColumnStyle,
-  calculateHeaderProps,
-  calculateNextSortOrder,
-  computeLeftoverShares,
-  computeVisibleColumns,
-  fixedSideHasWidth,
-  getTreeRowMeta,
-  isSortedAsc,
-  isSortedDesc,
-  mergeColumnStyleTransparentLateralBorders,
-  mergeColumnStyleTransparentRight,
-  resizeHandleId as toResizeHandleId,
-  stripFixedBodyFirstBorderClasses,
-} from './functions'
+import { useTableConfig } from './hooks/useTableConfig'
+import { useVisibleColumns } from './hooks/useVisibleColumns'
+import { useTableSort } from './hooks/useTableSort'
+import { useSortButtonKeyboard } from './hooks/useSortButtonKeyboard'
+import { useColumnSelect } from './hooks/useColumnSelect'
+import { useColumnHover } from './hooks/useColumnHover'
+import { useScrollToColumnCenterOnSelect } from './hooks/useScrollToColumnCenterOnSelect'
+import { useCellClassLists } from './hooks/useCellClassLists'
+import { useColumnStyleGetter } from './hooks/useColumnStyleGetter'
+import { useExternalRowSlotHelpers } from './hooks/useExternalRowSlotHelpers'
+import { useFixedColumnOverlap } from './hooks/useFixedColumnOverlap'
+import { calculateHeaderProps, resizeHandleId as toResizeHandleId } from './functions'
 
 export interface CwDataTableComponentProps
   extends CwDataTableProps,
@@ -111,26 +106,30 @@ export const CwDataTable = forwardRef<CwDataTableHandle, CwDataTableComponentPro
       ...rest
     } = props
 
-    const columns = config.columns
-    const showHeader = config.showHeader !== false
-    const fixedHeader = config.fixedHeader ?? false
-    const fixedLeftColumns = config.fixedLeftColumns ?? 0
-    const fixedRightColumns = config.fixedRightColumns ?? 0
-    const rowHeight = config.rowHeight ?? 50
-    const rowHeightKey = config.rowHeightKey
-    const virtualScroll = config.virtualScroll ?? false
-    const virtualBuffer = config.virtualBuffer ?? 3
-    const resizable = config.resizable !== false
-    const showOverflowTooltip = config.showOverflowTooltip !== false
-    const defaultSortable = config.sort?.defaultSortable ?? false
-    const sortState = config.sort?.state
-    const rowKeyField = config.rowKey
-    const columnSelectConfig = config.columnSelect
-    const columnSelectEnabled = columnSelectConfig?.enabled ?? false
-    const columnSelectRequired = columnSelectConfig?.required ?? false
-    const syncWidthsFromBody = config.syncColumnWidthsFromBody !== false
-    const stretchFitColumnsToContainer = config.stretchFitColumnsToContainer === true
-    const bodyLayoutFill = (config.bodyLayout ?? 'fill') === 'fill'
+    const {
+      columns,
+      showHeader,
+      fixedHeader,
+      fixedLeftColumns,
+      fixedRightColumns,
+      rowHeight,
+      rowHeightKey,
+      virtualScroll,
+      virtualBuffer,
+      resizable,
+      showOverflowTooltip,
+      sortConfig,
+      defaultSortable,
+      rowKey: rowKeyField,
+      rowAttrs,
+      columnSelectConfig,
+      syncWidthsFromBody,
+      defaultExpandFillColumns,
+      stretchFitColumnsToContainer,
+      bodyLayout,
+    } = useTableConfig(config)
+
+    const bodyLayoutFill = bodyLayout === 'fill'
 
     const styles = useMemo<CwDataTableStyles>(
       () =>
@@ -169,12 +168,13 @@ export const CwDataTable = forwardRef<CwDataTableHandle, CwDataTableComponentPro
 
     // 树形表格
     const {
-      treeEnabled,
-      treeIndentSize,
+      enabled: treeEnabled,
+      indentSize: treeIndentSize,
       flatRows: displayedRows,
       isIndentColumn,
       toggleTreeExpand,
-    } = useTreeRows({
+      getTreeRowMeta,
+    } = useTableTree({
       tree: config.tree,
       modelValue,
       columns,
@@ -185,42 +185,47 @@ export const CwDataTable = forwardRef<CwDataTableHandle, CwDataTableComponentPro
     })
 
     // 可见列
-    const visibleColumns = useMemo(
-      () => computeVisibleColumns(columns, fixedLeftColumns, fixedRightColumns),
-      [columns, fixedLeftColumns, fixedRightColumns],
+    const { visibleColumns, visibleColumnsRef } = useVisibleColumns(
+      columns,
+      fixedLeftColumns,
+      fixedRightColumns,
     )
-    const visibleColumnsRef = useRef(visibleColumns)
-    visibleColumnsRef.current = visibleColumns
 
     const { containerHeight } = useContainerSize(bodyEl)
 
     // 列宽管理
     const isResizingRef = useRef(false)
+    const [columnWidths, setColumnWidthsState] = useState<Record<string, number>>({})
+    const columnWidthsRef = useRef(columnWidths)
+    columnWidthsRef.current = columnWidths
+    const setColumnWidths = useCallback((next: Record<string, number>) => {
+      columnWidthsRef.current = next
+      setColumnWidthsState(next)
+    }, [])
+
+    // fill / 剩余空间
     const {
-      columnWidths,
-      setColumnWidths,
-      columnWidthsRef,
       expandFillColumns,
       layoutContainerWidth,
-      scrollbarWidth,
+      scheduleExpandFillUpdate,
       flushExpandFillUpdate,
-      runSyncColumnWidths,
-      bodyScrollMetrics,
-    } = useColumnWidths({
+    } = useExpandFillColumns({
       bodyEl,
       bodyElRef,
-      cwDivHandleRef,
-      headerRef,
       visibleColumns,
       visibleColumnsRef,
-      displayedRowCount: displayedRows.length,
-      loading,
-      modelValue,
-      syncWidthsFromBody,
-      stretchFitColumnsToContainer,
-      defaultExpandFillColumns: config.defaultExpandFillColumns === true,
-      isResizingRef,
-      containerHeight,
+      columnWidths,
+      columnWidthsRef,
+      initialExpandFill: defaultExpandFillColumns,
+      onAfterUpdate: () => cwDivHandleRef.current?.remeasure(),
+    })
+
+    // 列样式
+    const { getColumnStyle } = useColumnStyleGetter({
+      columnWidths,
+      visibleColumns,
+      expandFillColumns,
+      layoutContainerWidth,
     })
 
     const tableStyles = useMemo<CwDataTableStyles>(
@@ -257,17 +262,34 @@ export const CwDataTable = forwardRef<CwDataTableHandle, CwDataTableComponentPro
       scrollLeft,
       handleHeaderScroll,
       handleBodyScroll,
-      handleExternalRowScroll,
+      isSyncingRef,
+      stopSyncing,
     } = useScrollSync({ headerRef, externalRowRef, bodyElRef, onScroll })
 
+    // 外部行横向滚动同步
+    const { handleExternalRowScroll } = useExternalRowScrollSync({
+      externalRowRef,
+      headerRef,
+      bodyElRef,
+      scrollLeft,
+      isSyncingRef,
+      stopSyncing,
+    })
 
 
 
 
-    const headerStyle = useMemo<CSSProperties>(
-      () => (scrollbarWidth > 0 ? { paddingRight: `${scrollbarWidth}px` } : {}),
-      [scrollbarWidth],
-    )
+
+    // 滚动条对齐
+    const { headerStyle, updateScrollbarWidth } = useScrollbarAlignment({
+      bodyEl,
+      bodyElRef,
+      containerHeight,
+      displayedRowCount: displayedRows.length,
+      columnWidths,
+      visibleColumnCount: visibleColumns.length,
+      loading,
+    })
 
 
 
@@ -315,122 +337,124 @@ export const CwDataTable = forwardRef<CwDataTableHandle, CwDataTableComponentPro
       onColumnResize,
     })
 
+    // 从表体同步列宽
+    const { syncColumnWidthsFromBody: runSyncColumnWidths } = useSyncColumnWidthsFromBody({
+      enabled: syncWidthsFromBody,
+      bodyEl,
+      bodyElRef,
+      headerRef,
+      visibleColumns,
+      visibleColumnsRef,
+      columnWidthsRef,
+      setColumnWidths,
+      modelValue,
+      loading,
+      isResizingRef,
+      expandFillColumns,
+      stretchFitColumnsToContainer,
+      onAfterSync: () => {
+        scheduleExpandFillUpdate()
+        updateScrollbarWidth()
+      },
+    })
+
+    // fill 状态切换后重新测量横滚/列宽
+    const prevExpandFillReminderRef = useRef(expandFillColumns)
+    useEffect(() => {
+      if (prevExpandFillReminderRef.current === expandFillColumns) return
+      prevExpandFillReminderRef.current = expandFillColumns
+      requestAnimationFrame(() => {
+        cwDivHandleRef.current?.remeasure()
+        runSyncColumnWidths()
+        updateScrollbarWidth()
+      })
+    }, [expandFillColumns, runSyncColumnWidths, updateScrollbarWidth])
 
 
-    const leftFixedOverlaps =
-      fixedSideHasWidth(visibleColumns, columnWidths, 'left') && scrollLeft > 0
-    const rightFixedOverlaps = (() => {
-      if (!fixedSideHasWidth(visibleColumns, columnWidths, 'right')) return false
-      const overflow = bodyScrollMetrics.scrollWidth - bodyScrollMetrics.clientWidth
-      if (overflow <= OVERFLOW_EPSILON) return false
-      return scrollLeft < overflow - OVERFLOW_EPSILON
-    })()
+
+    // 固定列重叠
+    const { leftFixedOverlaps, rightFixedOverlaps } = useFixedColumnOverlap({
+      bodyEl,
+      bodyElRef,
+      visibleColumns,
+      columnWidths,
+      scrollLeft,
+    })
 
     // 排序
-    const handleSort = useCallback(
-      (column: CwDataTableColumn) => {
-        if (column.sortable === false && !defaultSortable) return
-        const nextOrder = calculateNextSortOrder(
-          sortState?.key,
-          sortState?.order,
-          column.key,
-        )
-        const nextSortState: CwDataTableSortState | undefined = nextOrder
-          ? { key: column.key, order: nextOrder }
-          : undefined
-
-        onUpdateSort?.({
-          ...(config.sort ?? {}),
-          state: nextSortState,
-        })
-        onSortChange?.(nextSortState)
-      },
-      [defaultSortable, sortState, config.sort, onUpdateSort, onSortChange],
-    )
-
-    const isColumnSortedAscFn = (column: CwDataTableColumn) => isSortedAsc(column, sortState)
-    const isColumnSortedDescFn = (column: CwDataTableColumn) => isSortedDesc(column, sortState)
+    const {
+      sortState,
+      isColumnSortedAsc: isColumnSortedAscFn,
+      isColumnSortedDesc: isColumnSortedDescFn,
+      handleSort,
+    } = useTableSort({
+      sortConfig,
+      defaultSortable,
+      onUpdateSort,
+      onSortChange,
+    })
 
     // 排序按钮键盘
-    const { isFocusVisible: isSortButtonFocusVisible, handleFocus, handleBlur } =
-      useBrowserFocusVisible()
-    const tabindex = 0
-
-    const handleSortButtonFocus = (_event: ReactFocusEvent<HTMLDivElement>) => {
-      handleFocus()
-    }
-    const handleSortButtonBlur = () => {
-      handleBlur()
-    }
-    const handleSortButtonKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault()
-        const column = visibleColumns.find((c) => c.sortable !== false)
-        if (column) handleSort(column)
-      }
-    }
+    const {
+      isFocusVisible: isSortButtonFocusVisible,
+      tabindex,
+      handleSortButtonFocus,
+      handleSortButtonBlur,
+      handleSortButtonKeyDown,
+    } = useSortButtonKeyboard({ visibleColumns, handleSort })
 
     // 列选中
     const {
+      enabled: columnSelectEnabled,
       selectedColumnKey,
+      selectedColumn,
       isColumnSelected,
       handleColumnSelect,
+    } = useColumnSelect({
+      columnSelectConfig,
+      visibleColumns,
+      onUpdate: onUpdateColumnSelect,
+      onChange: onColumnSelectChange,
+    })
+
+    // 列 hover
+    const {
       hoveredColumnKey,
       isColumnHovered,
       handleColumnMouseEnter,
       handleColumnMouseLeave,
-      getBodyCellClassList,
-      getHeaderCellClassList,
-    } = useColumnSelection({
+      handleColumnHoverOver,
+    } = useColumnHover(columnSelectEnabled)
+
+    // 单元格 class 变体
+    const { getBodyCellClassList, getHeaderCellClassList } = useCellClassLists({
       visibleColumns,
       styles,
-      columnSelect: columnSelectConfig,
-      columnSelectEnabled,
-      columnSelectRequired,
-      resizable,
-      bodyElRef,
-      headerRef,
-      columnWidths,
       leftFixedOverlaps,
       rightFixedOverlaps,
       omitLastColumnRightBorder,
-      onUpdateColumnSelect,
-      onColumnSelectChange,
+      resizable,
+      columnSelectEnabled,
+      selectedColumnKey,
+      hoveredColumnKey,
     })
 
-    // 列样式
-    const leftoverShares = useMemo(
-      () => computeLeftoverShares(visibleColumns, columnWidths, layoutContainerWidth),
-      [visibleColumns, columnWidths, layoutContainerWidth],
-    )
-
-    const getColumnStyle = useCallback(
-      (column: CwDataTableColumn) =>
-        calculateColumnStyle(column, columnWidths, visibleColumns, {
-          expandFillColumns,
-          leftoverShares,
-        }),
-      [columnWidths, visibleColumns, expandFillColumns, leftoverShares],
-    )
+    // 选中列水平居中
+    useScrollToColumnCenterOnSelect({
+      selectedColumn,
+      columnSelectEnabled,
+      visibleColumns,
+      columnWidths,
+      bodyElRef,
+      headerRef,
+    })
 
     // external-row 插槽辅助
-    const getExternalRowColumnStyle = useCallback(
-      (column: CwDataTableColumn) => mergeColumnStyleTransparentRight(getColumnStyle(column)),
-      [getColumnStyle],
-    )
-    const getExternalCellStyle = useCallback(
-      (column: CwDataTableColumn) =>
-        mergeColumnStyleTransparentLateralBorders(getColumnStyle(column)),
-      [getColumnStyle],
-    )
-    const getExternalRowBodyCellClasses = useCallback(
-      (column: CwDataTableColumn) => {
-        void hoveredColumnKey
-        void selectedColumnKey
-        return stripFixedBodyFirstBorderClasses(getBodyCellClassList(column))
-      },
-      [getBodyCellClassList, hoveredColumnKey, selectedColumnKey],
-    )
+    const {
+      getExternalRowColumnStyle,
+      getExternalCellStyle,
+      getExternalRowBodyCellClasses,
+    } = useExternalRowSlotHelpers({ getColumnStyle, getBodyCellClassList })
 
     // 折叠表体
     const [bodyExpandedState, setBodyExpandedState] = useState(bodyExpandedProp ?? true)
@@ -613,9 +637,8 @@ export const CwDataTable = forwardRef<CwDataTableHandle, CwDataTableComponentPro
         hoveredColumnKey={hoveredColumnKey}
         getBodyCellClassList={getBodyCellClassList}
         getColumnStyle={getColumnStyle}
+        rowAttrs={config.rowAttrs}
         handleColumnSelect={handleColumnSelect}
-        handleColumnMouseEnter={handleColumnMouseEnter}
-        handleColumnMouseLeave={handleColumnMouseLeave}
         lifecycle={lifecycle}
         treeEnabled={treeEnabled}
         indentSize={treeIndentSize}
@@ -664,10 +687,15 @@ export const CwDataTable = forwardRef<CwDataTableHandle, CwDataTableComponentPro
             {externalRowSlot(externalRowScope)}
           </div>
         ) : null}
-        <div className={styles.root}>
+        <div
+          className={styles.root}
+          onMouseOver={handleColumnHoverOver}
+          onMouseLeave={handleColumnMouseLeave}
+        >
           {showHeader ? (
             <div
               ref={headerRef}
+              data-cw-dt-header=""
               className={headerClass}
               style={headerStyle}
               tabIndex={collapsibleEffective ? 0 : undefined}
@@ -695,8 +723,6 @@ export const CwDataTable = forwardRef<CwDataTableHandle, CwDataTableComponentPro
                       className={getHeaderCellClassList(column).filter(Boolean).join(' ')}
                       style={getColumnStyle(column)}
                       onClick={(event) => onHeaderCellSurfaceClick(column, event)}
-                      onMouseEnter={() => handleColumnMouseEnter(column)}
-                      onMouseLeave={handleColumnMouseLeave}
                     >
                       <div
                         className={

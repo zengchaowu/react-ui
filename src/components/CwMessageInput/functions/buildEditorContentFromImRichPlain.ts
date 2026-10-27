@@ -1,6 +1,6 @@
 import { parseImRichClipboardPlainText } from '@zengchaowu/shared/functions/im/imRichClipboardPlain'
 import { parseImRichContentHtml } from '@zengchaowu/shared/functions/im/imRichContentHtml'
-import { getEmojionePngUrl } from '../../CwChatMessageQuote/emojioneEmoji'
+import { getEmojionePngUrl } from '../../../utils/emojioneEmoji'
 
 export type ImRichEditorContentNode =
   | { type: 'text'; text: string }

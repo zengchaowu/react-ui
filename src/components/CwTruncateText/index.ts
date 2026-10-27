@@ -13,4 +13,4 @@ export type {
   FilenameDisplayOptions,
   FilenameDisplayResolution,
 } from './functions/resolveFilenameDisplay'
-export { useFilenameTruncateLayout } from './useFilenameTruncateLayout'
+export { useFilenameTruncateLayout } from './hooks/useFilenameTruncateLayout'

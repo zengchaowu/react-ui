@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from 'react'
 import type { RefObject } from 'react'
-import { COMPOSER_LINE_HEIGHT_REM } from '../../CwAiChatComposer/constants'
+import { COMPOSER_LINE_HEIGHT_REM } from './constants'
 
-export interface UseComposerContentRowsOptions {
+export interface UseCwAiChatComposerContentRowsOptions {
   editorShellRef: RefObject<HTMLDivElement | null>
   minRows: number
   maxRows: number
   /** 布局变化（宽度/模式/文本）时重新测量 */
-  revision: unknown
+  layoutRevision: unknown
 }
 
 function readLineHeightPx(proseMirror: HTMLElement): number {
@@ -42,13 +42,13 @@ function rowsFromContentHeight(
 }
 
 /**
- * React 等价 Vue `useCwAiChatComposerContentRows`（仅本组件所需能力）：
- * 通过 ResizeObserver 测量 `.ProseMirror` 内容高度并换算为行数。
+ * 通过 ResizeObserver 测量 `.ProseMirror` 内容高度并换算为行数
+ * （等价 Vue `useCwAiChatComposerContentRows`）。
  */
-export function useComposerContentRows(
-  options: UseComposerContentRowsOptions,
+export function useCwAiChatComposerContentRows(
+  options: UseCwAiChatComposerContentRowsOptions,
 ) {
-  const { editorShellRef, maxRows, revision } = options
+  const { editorShellRef, maxRows, layoutRevision } = options
   const [measuredRows, setMeasuredRows] = useState(1)
 
   const measureContentRows = useCallback(() => {
@@ -101,7 +101,7 @@ export function useComposerContentRows(
       cancelAnimationFrame(frame)
       observer.disconnect()
     }
-  }, [measureContentRows, editorShellRef, revision])
+  }, [measureContentRows, editorShellRef, layoutRevision])
 
   return { measuredRows, measureContentRows }
 }

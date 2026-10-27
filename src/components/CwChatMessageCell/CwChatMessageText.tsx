@@ -7,7 +7,7 @@ import {
 } from '@zengchaowu/shared/functions/im/imRichContentHtml'
 import { writeBubbleSelectionClipboard } from '@zengchaowu/shared/functions/im/imBubbleSelectionClipboard'
 import { buildInlineAttachmentPreviewItems, resolveInlineAttachmentPreviewIndex } from './chatInlineContentClip'
-import { splitTextToEmojiParts, getEmojionePngUrl } from '../CwChatMessageQuote/emojioneEmoji'
+import { splitTextToEmojiParts, getEmojionePngUrl } from '../../utils/emojioneEmoji'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import CwViewportImg from '../CwViewportImg/CwViewportImg'
 import CwChatInlineContentClip from './CwChatInlineContentClip'

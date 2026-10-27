@@ -1,13 +1,13 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import type { CSSProperties, RefObject } from 'react'
 import type { CwAiChatComposerLayout } from './types'
 import { aiChatComposerBase } from './styles'
 import {
-  COMPOSER_LINE_HEIGHT_REM,
   countComposerVisualRows,
   NARROW_LAYOUT_MAX_ROWS,
   WIDE_LAYOUT_MIN_ROWS,
 } from './constants'
+import { useCwAiChatComposerContentRows } from './useCwAiChatComposerContentRows'
 import {
   COMPOSER_ABSOLUTE_HEIGHT_TRANSITION,
   COMPOSER_ABSOLUTE_TRANSITION,
@@ -74,37 +74,6 @@ function joinFieldClasses(...parts: Array<string | undefined | false>): string {
   return parts.filter(Boolean).join(' ')
 }
 
-function readLineHeightPx(root: HTMLElement): number {
-  const parsed = parseFloat(getComputedStyle(root).lineHeight)
-  if (Number.isFinite(parsed) && parsed > 0) return parsed
-  const rootFontSize =
-    parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
-  return COMPOSER_LINE_HEIGHT_REM * rootFontSize
-}
-
-function measureContentHeight(root: HTMLElement): number {
-  const lineHeightPx = readLineHeightPx(root)
-  const blocks = root.children
-  if (blocks.length === 0) return lineHeightPx
-
-  let total = 0
-  for (let i = 0; i < blocks.length; i++) {
-    total += (blocks[i] as HTMLElement).offsetHeight
-  }
-
-  return total > 0 ? total : lineHeightPx
-}
-
-function rowsFromContentHeight(
-  contentHeightPx: number,
-  lineHeightPx: number,
-  max: number,
-): number {
-  const ratio = contentHeightPx / lineHeightPx
-  const rows = Math.max(1, Math.ceil(ratio - 0.05))
-  return Math.min(max, rows)
-}
-
 export function useCwAiChatComposerLayout(
   options: UseCwAiChatComposerLayoutOptions,
 ) {
@@ -155,52 +124,7 @@ export function useCwAiChatComposerLayout(
   const effectiveMinRows = effectiveRowBounds.min
   const effectiveMaxRows = effectiveRowBounds.max
 
-  const [measuredRows, setMeasuredRows] = useState(1)
-
-  const measureContentRows = useCallback(() => {
-    const root = editorShellRef.current?.querySelector(
-      '.ProseMirror',
-    ) as HTMLElement | null
-    if (!root) {
-      setMeasuredRows(1)
-      return
-    }
-    const lineHeightPx = readLineHeightPx(root)
-    const max = Math.max(1, effectiveMaxRows)
-    setMeasuredRows(
-      rowsFromContentHeight(
-        measureContentHeight(root),
-        lineHeightPx,
-        max,
-      ),
-    )
-  }, [editorShellRef, effectiveMaxRows])
-
-  useEffect(() => {
-    measureContentRows()
-    const frame = requestAnimationFrame(() => measureContentRows())
-
-    const root = editorShellRef.current?.querySelector(
-      '.ProseMirror',
-    ) as HTMLElement | null
-    if (typeof ResizeObserver === 'undefined' || !root) {
-      return () => cancelAnimationFrame(frame)
-    }
-
-    const observer = new ResizeObserver(() => measureContentRows())
-    observer.observe(root)
-    for (let i = 0; i < root.children.length; i++) {
-      const child = root.children[i]
-      if (child) observer.observe(child)
-    }
-
-    return () => {
-      cancelAnimationFrame(frame)
-      observer.disconnect()
-    }
-  }, [
-    measureContentRows,
-    editorShellRef,
+  const layoutRevision = [
     value,
     layoutMode,
     isVoiceMode,
@@ -208,7 +132,14 @@ export function useCwAiChatComposerLayout(
     showVoice,
     effectiveMaxRows,
     effectiveMinRows,
-  ])
+  ].join('|')
+
+  const { measuredRows } = useCwAiChatComposerContentRows({
+    editorShellRef,
+    minRows: effectiveMinRows,
+    maxRows: effectiveMaxRows,
+    layoutRevision,
+  })
 
   const newlineVisualRows = countComposerVisualRows(value)
   const contentRows = Math.max(newlineVisualRows, measuredRows)

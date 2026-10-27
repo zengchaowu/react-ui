@@ -3,10 +3,7 @@ import type {
   CwChatMessageComposerStyles,
 } from './types'
 import { APP_PAGE_CHROME_SAFE_BOTTOM_CLASS } from '@zengchaowu/ui-shared/constants/appSafeAreaClasses'
-import { CW_WORKSPACE_CHAT_RADIUS } from '../CwChatMessageCell/chatWorkspaceSurface'
-
-/** 与 vue-ui `chatWorkspaceSurface` 的 `CW_WORKSPACE_CHAT_INSET_PAD_X` 对齐 */
-const CW_WORKSPACE_CHAT_INSET_PAD_X = 'px-2.5'
+import { CW_WORKSPACE_CHAT_RADIUS, CW_WORKSPACE_CHAT_INSET_PAD_X } from '../CwChatMessageCell/chatWorkspaceSurface'
 
 const mobileSideBtnClass =
   'inline-flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center border-0 bg-transparent p-0 text-[var(--text-color-primary)] transition-[color,transform] duration-200 ease-out hover:text-[var(--brand-color-6)] active:scale-95 active:text-[var(--brand-color-6)] aria-disabled:cursor-not-allowed aria-disabled:pointer-events-none aria-disabled:opacity-45'

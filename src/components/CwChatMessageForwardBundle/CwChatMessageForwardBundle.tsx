@@ -5,7 +5,7 @@ import { materializeImForwardBundlePreviewText } from '@zengchaowu/shared/functi
 import {
   CW_INLINE_EMOJI_IMG_CLASS,
   splitTextToEmojiParts,
-} from '../CwChatMessageQuote/emojioneEmoji'
+} from '../../utils/emojioneEmoji'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import CwViewportImg from '../CwViewportImg/CwViewportImg'
 import { chatCardBubbleWrapperMaxWidthStyle } from '../CwChatMessageCell/chatMessageBubbleLayout'

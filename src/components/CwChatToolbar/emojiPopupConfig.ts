@@ -6,7 +6,7 @@ import {
   createPosition,
   createPreventOverflow,
 } from '../CwPopup'
-import { getEmojiCategoryOrder, type EmojiItem } from './emojioneEmoji'
+import { getEmojiCategoryOrder, type EmojiItem } from '../../utils/emojioneEmoji'
 import {
   CW_GLASS_FROSTED_MENU_ITEM_HOVER_CLASS,
   CW_GLASS_FROSTED_MENU_ITEM_SELECTED_CLASS,

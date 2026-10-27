@@ -4,7 +4,7 @@ import {
   EMOJI_WRAP_CLASS,
   INLINE_CHIP_REACT_RENDERER_CLASS,
 } from '../chips/chipStyles'
-import { CW_INLINE_EMOJI_IMG_CLASS } from '../../CwChatMessageQuote/emojioneEmoji'
+import { CW_INLINE_EMOJI_IMG_CLASS } from '../../../utils/emojioneEmoji'
 import { EmojiNodeView } from './EmojiNodeView'
 
 const EMOJI_NODE_IMG_CLASS = `cw-emoji shrink-0 object-contain ${CW_INLINE_EMOJI_IMG_CLASS}`

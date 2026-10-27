@@ -104,34 +104,6 @@ export function useScrollSync(options: UseScrollSyncOptions) {
     [externalRowRef, headerRef, scheduleScrollFlush, stopSyncing],
   )
 
-  // 外部行横向滚动同步
-  const handleExternalRowScroll = useCallback(
-    (event: ReactUIEvent<HTMLDivElement>) => {
-      if (isSyncingRef.current) return
-      const target = event.currentTarget
-      isSyncingRef.current = true
-      const header = headerRef.current
-      if (header && Math.abs(target.scrollLeft - header.scrollLeft) > 1) {
-        header.scrollLeft = target.scrollLeft
-      }
-      const body = bodyElRef.current
-      if (body && Math.abs(target.scrollLeft - body.scrollLeft) > 1) {
-        body.scrollLeft = target.scrollLeft
-      }
-      stopSyncing()
-    },
-    [bodyElRef, headerRef, stopSyncing],
-  )
-
-  useEffect(() => {
-    const el = externalRowRef.current
-    if (!el || isSyncingRef.current) return
-    if (Math.abs(el.scrollLeft - scrollLeft) <= 1) return
-    isSyncingRef.current = true
-    el.scrollLeft = scrollLeft
-    stopSyncing()
-  }, [externalRowRef, scrollLeft, stopSyncing])
-
   useEffect(() => {
     return () => {
       if (scrollRafRef.current) cancelAnimationFrame(scrollRafRef.current)
@@ -143,6 +115,8 @@ export function useScrollSync(options: UseScrollSyncOptions) {
     scrollLeft,
     handleHeaderScroll,
     handleBodyScroll,
-    handleExternalRowScroll,
+    /** 回声拦截标记，与 useExternalRowScrollSync 共用 */
+    isSyncingRef,
+    stopSyncing,
   }
 }

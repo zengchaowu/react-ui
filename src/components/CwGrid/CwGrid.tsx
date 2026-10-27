@@ -89,7 +89,11 @@ export function CwGrid({
     .filter(Boolean)
     .join(' ')
 
-  const rootClass = ['min-w-0 w-full overflow-x-hidden', className]
+  const rootClass = [
+    'min-w-0 w-full',
+    usesMeasuredLayout ? '' : 'overflow-x-hidden',
+    className,
+  ]
     .filter(Boolean)
     .join(' ')
 

@@ -11,9 +11,9 @@ import type {
   CwTruncateTextProps,
 } from './types'
 import { appearanceStyles, truncateTextBase } from './styles'
-import { useFilenameTruncateLayout } from './useFilenameTruncateLayout'
-import { useMiddleEllipsisLayout } from './useMiddleEllipsisLayout'
-import { useTruncateDomOverflow } from './useTruncateDomOverflow'
+import { useFilenameTruncateLayout } from './hooks/useFilenameTruncateLayout'
+import { useMiddleEllipsisLayout } from './hooks/useMiddleEllipsisLayout'
+import { useTruncateDomOverflow } from './hooks/useTruncateDomOverflow'
 
 export function CwTruncateText({
   text,

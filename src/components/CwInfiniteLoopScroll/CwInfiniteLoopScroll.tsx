@@ -10,7 +10,6 @@ import {
 import type { CSSProperties, HTMLAttributes } from 'react'
 import type {
   CwInfiniteLoopScrollExpose,
-  CwInfiniteLoopScrollItem,
   CwInfiniteLoopScrollProps,
 } from './types'
 import { infiniteLoopScrollBase } from './styles'
@@ -24,7 +23,6 @@ import {
   calculateContentTransform,
   checkAndJumpToMiddle as checkAndJumpToMiddleFn,
   calculateCenterIndex,
-  calculateVisibleRangeFromLoopItems,
 } from './functions'
 import { loopScrollbarSpan } from './functions/loopScrollbarSpan'
 import { useInfiniteLoop } from './hooks/useInfiniteLoop'
@@ -40,6 +38,9 @@ import { usePagedHorizontalInteraction } from './hooks/usePagedHorizontalInterac
 import { useWheel } from './hooks/useWheel'
 import { useDrag } from './hooks/useDrag'
 import type { DragScrollMeta } from './hooks/useDrag'
+import { useInfiniteLoopJump } from './hooks/useInfiniteLoopJump'
+import { useInfiniteLoopScrollInit } from './hooks/useInfiniteLoopScrollInit'
+import { useInfiniteLoopScrollWatchers } from './hooks/useInfiniteLoopScrollWatchers'
 
 export interface CwInfiniteLoopScrollHandle extends CwInfiniteLoopScrollExpose {}
 
@@ -241,27 +242,21 @@ export const CwInfiniteLoopScroll = forwardRef<
     )
   }
 
-  function checkAndJumpToMiddle(options?: { emitScroll?: boolean }) {
-    const result = checkAndJumpToMiddleFn(
-      scrollTopRef.current,
-      scrollLeftRef.current,
-      direction,
-      singleCopyHeight,
-      singleCopyWidth,
-      middleCopyInfo,
-      containerHeight,
-      containerWidth,
-    )
-
-    if (result.needsUpdate) {
-      setPendingScrollTop(result.newTop)
-      setPendingScrollLeft(result.newLeft)
-      updateScrollPositionDirect(result.newTop, result.newLeft, () => {
-        if (options?.emitScroll === false) return
-        handleScroll(scrollTopRef.current, scrollLeftRef.current)
-      })
-    }
-  }
+  // 无限循环跳转逻辑
+  const { checkAndJumpToMiddle } = useInfiniteLoopJump({
+    scrollTopRef,
+    scrollLeftRef,
+    direction,
+    singleCopyHeight,
+    singleCopyWidth,
+    middleCopyInfo,
+    containerHeight,
+    containerWidth,
+    setPendingScrollTop,
+    setPendingScrollLeft,
+    updateScrollPositionDirect,
+    onScroll: handleScroll,
+  })
 
   // 惯性滚动
   const momentum = useMomentum({
@@ -500,98 +495,36 @@ export const CwInfiniteLoopScroll = forwardRef<
   }, [disabled, readonly, useNativeScroll, containerEl])
 
   // 初始化滚动位置到中间副本
-  const didInitRef = useRef(false)
-  useEffect(() => {
-    if (didInitRef.current || !middleCopyInfo) return
-    didInitRef.current = true
+  useInfiniteLoopScrollInit({
+    middleCopyInfo,
+    direction,
+    snapToPage,
+    scrollTopRef,
+    scrollLeftRef,
+    setScrollTop,
+    setScrollLeft,
+    onScroll: handleScroll,
+  })
 
-    const shouldEmit = !(snapToPage && direction === 'horizontal')
-    if (direction === 'horizontal') {
-      setScrollLeft(middleCopyInfo.left, () => {
-        if (shouldEmit) handleScroll(scrollTopRef.current, scrollLeftRef.current)
-      })
-    } else {
-      setScrollTop(middleCopyInfo.top, () => {
-        if (shouldEmit) handleScroll(scrollTopRef.current, scrollLeftRef.current)
-      })
-    }
-  }, [middleCopyInfo, direction, snapToPage, setScrollLeft, setScrollTop])
-
-  // 监听可见范围变化
-  const previousVisibleRangeRef = useRef<{ startIndex: number; endIndex: number } | null>(null)
-  useEffect(() => {
-    const { startIndex, endIndex } = visibleRange
-    if (startIndex < 0 || endIndex < 0) return
-
-    const previous = previousVisibleRangeRef.current
-    if (
-      previous &&
-      previous.startIndex === startIndex &&
-      previous.endIndex === endIndex
-    ) {
-      return
-    }
-    previousVisibleRangeRef.current = { startIndex, endIndex }
-
-    const visibleItemsList: CwInfiniteLoopScrollItem[] = visibleItems.map((item) => ({
-      key: items[item.originalIndex]?.key ?? item.key,
-      data: item.data,
-      height: item.height,
-      width: item.width,
-    }))
-
-    const {
-      startIndex: startOriginalIndex,
-      endIndex: endOriginalIndex,
-    } = calculateVisibleRangeFromLoopItems({ startIndex, endIndex }, loopItems)
-
-    onVisibleChange?.(startOriginalIndex, endOriginalIndex, visibleItemsList)
-  }, [visibleRange, visibleItems, items, loopItems, onVisibleChange])
-
-  // 列表身份变化时回到中间副本
-  const itemsSignature = useMemo(() => {
-    if (items.length === 0) return '0'
-    return `${items.length}\0${items.map((item) => String(item.key)).join('\0')}`
-  }, [items])
-  const previousSignatureRef = useRef<string | null>(null)
-  useEffect(() => {
-    if (previousSignatureRef.current === null) {
-      previousSignatureRef.current = itemsSignature
-      return
-    }
-    if (previousSignatureRef.current === itemsSignature) return
-    previousSignatureRef.current = itemsSignature
-
-    if (!middleCopyInfo) return
-
-    if (direction === 'horizontal') {
-      setScrollLeft(middleCopyInfo.left, () => {
-        setPagedPage(0)
-        handleScroll(scrollTopRef.current, scrollLeftRef.current)
-      })
-    } else {
-      setScrollTop(middleCopyInfo.top, () => {
-        setPagedPage(0)
-        handleScroll(scrollTopRef.current, scrollLeftRef.current)
-      })
-    }
-  }, [itemsSignature, middleCopyInfo, direction, setScrollLeft, setScrollTop, setPagedPage])
-
-  // 容器尺寸变化：检查并跳回中间副本
-  const previousSizeRef = useRef({ height: containerHeight, width: containerWidth })
-  useEffect(() => {
-    const previous = previousSizeRef.current
-    previousSizeRef.current = { height: containerHeight, width: containerWidth }
-
-    if (
-      (containerHeight === 0 && containerWidth === 0) ||
-      (containerHeight === previous.height && containerWidth === previous.width)
-    ) {
-      return
-    }
-    checkAndJumpToMiddle({ emitScroll: false })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerHeight, containerWidth])
+  // 可见范围上报 / 列表身份变化回中 / 容器尺寸变化跳中
+  useInfiniteLoopScrollWatchers({
+    items,
+    direction,
+    middleCopyInfo,
+    containerHeight,
+    containerWidth,
+    scrollTopRef,
+    scrollLeftRef,
+    loopItems,
+    visibleRange,
+    visibleItems,
+    setScrollTop,
+    setScrollLeft,
+    checkAndJumpToMiddle,
+    onScroll: handleScroll,
+    onVisibleChange,
+    onItemsScrollReset: () => setPagedPage(0),
+  })
 
   // 手势模式：非 passive 监听滚轮/触摸（需要 preventDefault）
   const handleWheelEventRef = useRef(handleWheelEvent)

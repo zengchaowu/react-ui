@@ -1,14 +1,24 @@
 /**
  * EmojiOne（emoji-datasource-emojione）资源与「emoji 字符 → 展示用 PNG URL」
  * PNG 路径：`{publicAssetBaseUrl}/emojione/64/{unified}.png`（由宿主 provide 或 `import.meta.env.BASE_URL`）
+ *
+ * 切分 / 判定等纯逻辑在 `@zengchaowu/shared/functions/emoji/emojione`，
+ * 本文件只负责把资源清单与资源根绑定到那些纯函数上。
  */
 
 import emojioneUnifiedKeys from '../generated/emojione-unified-keys.json'
 import { resolveDefaultPublicAssetBaseUrl } from './publicAssetBaseUrl'
+import {
+  containsEmoji as containsEmojiPure,
+  emojiToEmojioneUnifiedKey,
+  emojionePngUrlForUnifiedKey as emojionePngUrlForUnifiedKeyPure,
+  isSingleEmojiGlyph as isSingleEmojiGlyphPure,
+  segmentGraphemes,
+  splitTextToEmojiParts as splitTextToEmojiPartsPure,
+  type EmojiTextPart,
+} from '@zengchaowu/shared/functions/emoji/emojione'
 
-export type EmojiTextPart =
-  | { type: 'text'; text: string }
-  | { type: 'emoji'; emoji: string; src: string }
+export type { EmojiTextPart }
 
 /** 行内 emoji 图尺寸（1.25em），Markdown / 气泡 / 输入框等统一使用 */
 export const CW_INLINE_EMOJI_IMG_CLASS =
@@ -71,11 +81,7 @@ interface EmojiDatasourceItem {
   has_img_emojione: boolean
 }
 
-function buildAvailableUnifiedKeys(): Set<string> {
-  return new Set(emojioneUnifiedKeys as string[])
-}
-
-const availableUnifiedKeys = buildAvailableUnifiedKeys()
+const availableUnifiedKeys = new Set(emojioneUnifiedKeys as string[])
 
 function resolvePublicAssetBaseUrl(baseUrl?: string): string {
   return baseUrl?.trim() || resolveDefaultPublicAssetBaseUrl()
@@ -86,19 +92,13 @@ export function emojionePngUrlForUnifiedKey(
   unifiedKey: string,
   baseUrl?: string,
 ): string {
-  const b = resolvePublicAssetBaseUrl(baseUrl).replace(/\/$/, '')
-  if (b === './' || b === '.') return `./emojione/64/${unifiedKey}.png`
-  if (b === '/') return `/emojione/64/${unifiedKey}.png`
-  return `${b}/emojione/64/${unifiedKey}.png`
+  return emojionePngUrlForUnifiedKeyPure(
+    unifiedKey,
+    resolvePublicAssetBaseUrl(baseUrl),
+  )
 }
 
-/** 将 emoji 图形簇转为 emoji-datasource 文件名 unified key（小写十六进制，以 `-` 连接码点） */
-export function emojiToEmojioneUnifiedKey(emoji: string): string {
-  return Array.from(emoji)
-    .map((ch) => ch.codePointAt(0)?.toString(16).toLowerCase())
-    .filter((x): x is string => !!x)
-    .join('-')
-}
+export { emojiToEmojioneUnifiedKey }
 
 /** 是否存在对应 EmojiOne PNG */
 export function hasEmojioneAsset(emoji: string): boolean {
@@ -113,40 +113,14 @@ export function getEmojionePngUrl(emoji: string, baseUrl?: string): string | nul
   return emojionePngUrlForUnifiedKey(key, baseUrl)
 }
 
-type GraphemeSegmenter = { segment: (input: string) => Iterable<{ segment: string }> }
-const SegmenterCtor = (Intl as unknown as {
-  Segmenter?: new (locales?: string, options?: { granularity?: string }) => GraphemeSegmenter
-}).Segmenter
-const graphemeSegmenter: GraphemeSegmenter | null =
-  typeof Intl !== 'undefined' && typeof SegmenterCtor === 'function'
-    ? new SegmenterCtor(undefined, { granularity: 'grapheme' })
-    : null
-
-function segmentGraphemes(text: string): string[] {
-  return graphemeSegmenter
-    ? Array.from(graphemeSegmenter.segment(text), (s) => s.segment)
-    : Array.from(text)
-}
-
 /** 将纯文本拆成「文本段 + 可替换为 EmojiOne 的 emoji 段」 */
-export function splitTextToEmojiParts(text: string, baseUrl?: string): EmojiTextPart[] {
-  if (!text) return [{ type: 'text', text: '' }]
-  const out: EmojiTextPart[] = []
-  let buf = ''
-  for (const g of segmentGraphemes(text)) {
-    const src = getEmojionePngUrl(g, baseUrl)
-    if (!src) {
-      buf += g
-      continue
-    }
-    if (buf) {
-      out.push({ type: 'text', text: buf })
-      buf = ''
-    }
-    out.push({ type: 'emoji', emoji: g, src })
-  }
-  if (buf) out.push({ type: 'text', text: buf })
-  return out
+export function splitTextToEmojiParts(
+  text: string,
+  baseUrl?: string,
+): EmojiTextPart[] {
+  return splitTextToEmojiPartsPure(text, (glyph) =>
+    getEmojionePngUrl(glyph, baseUrl),
+  )
 }
 
 /** 供表情面板等：根据配置字符列表生成 { emoji, src } */
@@ -164,9 +138,18 @@ export function resolveEmojiPickerItems(
 
 /** 检查文本是否包含可转换为 EmojiOne 的 emoji */
 export function containsEmoji(text: string): boolean {
-  if (!text) return false
-  return segmentGraphemes(text).some((g) => hasEmojioneAsset(g))
+  return containsEmojiPure(text, hasEmojioneAsset)
 }
+
+/** 单字符 emoji 判定（整段文本恰好是一个有资源的 emoji 时返回该 emoji） */
+export function isSingleEmojiGlyph(
+  text: string,
+  baseUrl?: string,
+): string | null {
+  return isSingleEmojiGlyphPure(text, (glyph) => getEmojionePngUrl(glyph, baseUrl))
+}
+
+export { segmentGraphemes }
 
 function unifiedKeyToEmoji(unifiedKey: string): string {
   return unifiedKey

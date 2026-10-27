@@ -4,7 +4,7 @@ import type { Node as PMNode } from '@tiptap/pm/model'
 import {
   getEmojionePngUrl,
   splitTextToEmojiParts,
-} from '../../CwChatMessageQuote/emojioneEmoji'
+} from '../../../utils/emojioneEmoji'
 import { focusEditorWithKeyboardPolicy } from '../functions/focusEditorWithKeyboardPolicy'
 
 export type EmojiComposerNode =

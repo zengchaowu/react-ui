@@ -12,6 +12,7 @@ import type {
 } from 'react'
 import type { CwSegmentOption, CwSegmentProps } from './types'
 import { resolveSegmentStyles } from './styles'
+import { CwIcon } from '../CwIcon'
 
 const EMPTY_SLIDER_STYLE: CSSProperties = {
   width: '0px',
@@ -103,6 +104,12 @@ export function CwSegment({
     large: 'py-2',
   }[size ?? 'medium']
 
+  const iconSize = {
+    small: 0.875,
+    medium: 1,
+    large: 1.125,
+  }[size ?? 'medium']
+
   const handleSelect = (opt: CwSegmentOption) => {
     if (disabled || opt.disabled) return
     if (value !== opt.value) {
@@ -157,10 +164,13 @@ export function CwSegment({
             tabIndex={isDisabled ? -1 : 0}
             aria-selected={isActive}
             aria-disabled={isDisabled}
+            aria-label={!opt.label && opt.title ? opt.title : undefined}
+            title={opt.title}
             className={[
               styles.item,
               sizeHeightClass,
               isActive ? styles.itemActive : styles.itemInactive,
+              opt.label ? 'px-2' : 'px-1.5',
               isDisabled ? 'pointer-events-none opacity-50' : 'cursor-pointer',
             ]
               .filter(Boolean)
@@ -168,7 +178,15 @@ export function CwSegment({
             onClick={() => handleSelect(opt)}
             onKeyDown={handleKeyDown}
           >
-            {opt.label}
+            {opt.icon ? (
+              <span
+                aria-hidden="true"
+                className="inline-flex shrink-0 items-center justify-center"
+              >
+                <CwIcon name={opt.icon} prefix="icon" size={iconSize} />
+              </span>
+            ) : null}
+            {opt.label ? <span>{opt.label}</span> : null}
           </div>
         )
       })}

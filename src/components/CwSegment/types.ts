@@ -2,8 +2,12 @@ import type { HTMLAttributes } from 'react'
 
 /** 分段选项 */
 export interface CwSegmentOption {
-  /** 显示标签 */
-  label: string
+  /** 显示标签；仅图标模式可省略 */
+  label?: string
+  /** 图标名（asset icon，如 common--commerce--card-view-line） */
+  icon?: string
+  /** 仅图标模式下的无障碍名称与 tooltip */
+  title?: string
   /** 选项值 */
   value: string | number
   /** 是否禁用 */

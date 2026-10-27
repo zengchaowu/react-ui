@@ -1,26 +1,31 @@
 import { useCallback, useLayoutEffect, useState } from 'react'
 import type { RefObject } from 'react'
 import {
-  resolveMiddleEllipsisDisplay,
-  type MiddleEllipsisResolution,
-} from './functions/resolveMiddleEllipsisDisplay'
+  resolveFilenameDisplay,
+  type FilenameDisplayResolution,
+} from '../functions/resolveFilenameDisplay'
 
-const IDLE: MiddleEllipsisResolution = { text: '', abbreviated: false }
+const IDLE: FilenameDisplayResolution = {
+  text: '',
+  abbreviated: false,
+  tailRtl: false,
+}
 
-export interface UseMiddleEllipsisLayoutOptions {
+export interface UseFilenameTruncateLayoutOptions {
   active: boolean
   sourceText: string
+  headChars: number
   rootEl: HTMLElement | null
   rootRef: RefObject<HTMLElement | null>
   measureRef: RefObject<HTMLElement | null>
 }
 
-export function useMiddleEllipsisLayout(
-  options: UseMiddleEllipsisLayoutOptions,
+export function useFilenameTruncateLayout(
+  options: UseFilenameTruncateLayoutOptions,
 ) {
-  const { active, sourceText, rootEl, rootRef, measureRef } = options
+  const { active, sourceText, headChars, rootEl, rootRef, measureRef } = options
 
-  const [layout, setLayout] = useState<MiddleEllipsisResolution>({ ...IDLE })
+  const [layout, setLayout] = useState<FilenameDisplayResolution>({ ...IDLE })
 
   const remeasure = useCallback(() => {
     if (!active) {
@@ -28,26 +33,30 @@ export function useMiddleEllipsisLayout(
       return
     }
     if (!sourceText) {
-      setLayout({ text: '', abbreviated: false })
+      setLayout({ text: '', abbreviated: false, tailRtl: false })
       return
     }
     const probe = measureRef.current
     // 读 ref 而不是 rootEl 状态：节点切换时状态可能还指向已卸载的旧节点
     const el = rootRef.current
     if (!el || !probe) {
-      setLayout({ text: sourceText, abbreviated: false })
+      setLayout({ text: sourceText, abbreviated: false, tailRtl: false })
       return
     }
     const width = el.clientWidth
     setLayout(
-      resolveMiddleEllipsisDisplay(sourceText, (candidate) => {
-        if (width <= 0) return true
-        probe.textContent = candidate
-        return probe.scrollWidth <= width + 1
-      }),
+      resolveFilenameDisplay(
+        sourceText,
+        (candidate) => {
+          if (width <= 0) return true
+          probe.textContent = candidate
+          return probe.scrollWidth <= width + 1
+        },
+        { headChars },
+      ),
     )
     probe.textContent = ''
-  }, [active, sourceText, rootRef, measureRef])
+  }, [active, sourceText, headChars, rootRef, measureRef])
 
   useLayoutEffect(() => {
     remeasure()

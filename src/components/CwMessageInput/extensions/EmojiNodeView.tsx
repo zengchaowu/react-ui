@@ -3,7 +3,7 @@ import CwViewportImg from '../../CwViewportImg/CwViewportImg'
 import {
   CW_INLINE_EMOJI_IMG_CLASS,
   getEmojionePngUrl,
-} from '../../CwChatMessageQuote/emojioneEmoji'
+} from '../../../utils/emojioneEmoji'
 import { EMOJI_WRAP_CLASS } from '../chips/chipStyles'
 import type { EmojiNodeOptions } from './EmojiNode'
 

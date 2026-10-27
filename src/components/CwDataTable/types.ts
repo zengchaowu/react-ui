@@ -174,6 +174,11 @@ export interface CwDataTableConfig {
   sort?: CwDataTableSortConfig
   /** 行唯一键字段名 */
   rowKey?: string
+  /**
+   * 行级属性（class / data-* / 事件等），用于整行点击、右键菜单等交互。
+   * 返回的对象会透传到行容器上。
+   */
+  rowAttrs?: (row: any, rowIndex: number) => Record<string, any>
   /** 列选中配置 */
   columnSelect?: CwDataTableColumnSelectConfig
   /**

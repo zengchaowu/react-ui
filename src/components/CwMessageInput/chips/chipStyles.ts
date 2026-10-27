@@ -3,13 +3,17 @@ const INLINE_CHIP_OUTER_WRAP_CLASS =
   'inline-flex w-fit max-w-full cursor-text items-center px-0.5'
 
 /**
- * 文字型 chip（文件 / @人）在行盒内纵向居中。
- * `align-middle` 对齐的是父级 x-height 中线而非行盒中线，chip 与文字混排时会偏低
- * （实测上方间隙 2.5px、下方 0.25px）；改为顶部对齐 + 上边距补足行盒与 chip 高度差的一半，
- * `1lh` 取元素自身行高，故需 `leading-[inherit]` 继承正文行高（不能是 `leading-none`）。
+ * 文字型 chip（文件 / @人）与正文同一行对齐。
+ *
+ * 不能按「行盒」居中：同一行内只要有更高的内联元素（内联图片 clip 高 20~40px），
+ * 行盒就会被撑高，此时所有以行盒顶/底为基准的写法（`align-top` + 按 `1lh` 算出的
+ * margin 等）都会失准——实测 chip 被钉在行盒顶部，比正文高 6.6px。
+ *
+ * 改用 `text-bottom`：把 chip 底边对齐到正文内容区底边（基线下方 descent 处）。该基准
+ * 只跟字体度量有关、与行盒高度无关，行盒被撑高也不会失准。实测 chip 中心比正文中线高
+ * 0.5px（原来是偏高 6.6px）。
  */
-const INLINE_TEXT_CHIP_CENTER_CLASS =
-  'align-top leading-[inherit] mt-[calc((1lh_-_1.25rem)/2)]'
+const INLINE_TEXT_CHIP_CENTER_CLASS = 'align-text-bottom leading-[inherit]'
 
 /**
  * 编辑器内联 chip 触发包裹（搭配 `<CwTooltip appearance="inline" />` + `cursor-text`）。
@@ -20,11 +24,16 @@ export const INLINE_CHIP_EDITOR_TRIGGER_WRAP_CLASS =
 
 /**
  * React 专用：`@tiptap/react` 的 `ReactNodeViewRenderer` 会在 NodeView 外多包一层
- * `.react-renderer`（Vue 无此层）。该层不参与居中计算，只需顶部对齐并继承正文行高，
- * 让内层 chip 的 `margin-top: calc((1lh - chip高度)/2)` 按真实行盒高度生效。
+ * `.react-renderer`（Vue 无此层）。真正参与行内对齐的是这一层——内层 wrap 是 flex 项，
+ * 它身上的 `vertical-align` 会被忽略，所以对齐必须写在这里。
+ *
+ * 用 `text-bottom`（底边对齐正文内容区底边，与行盒高度无关）。不要用默认的 baseline：
+ * 对「只含替换元素」的链（emoji = inline-flex > inline-flex > img，无文本）浏览器合成出的
+ * 基线会落在盒子底边下方，实测把 emoji 抬高 17.75px 并把行盒从 22.75px 撑到 41.375px。
+ * `items-center` 同理——基线对齐是上面那个问题的成因，这里不参与布局。
  */
 export const INLINE_CHIP_REACT_RENDERER_CLASS =
-  'inline-flex items-center align-top leading-[inherit]'
+  'inline-flex items-center align-text-bottom leading-[inherit]'
 
 /** React 专用：图片 chip 高度可变（20~40px），沿用原 baseline 居中，不做按行高计算的偏移 */
 export const INLINE_IMAGE_CHIP_REACT_RENDERER_CLASS =
@@ -54,8 +63,8 @@ const EMOJI_WRAP_SELECTED_CLASSES =
 export const EMOJI_WRAP_CLASS = [
   'cw-emoji-wrap',
   /** 用 flex 行内盒避免 `inline-block` 行盒在 img 下留白（与文件芯片外层思路一致） */
-  /** 与文字型 chip 同理：行盒内纵向居中（emoji 高度 = 1.25em） */
-  'inline-flex items-center align-top leading-[inherit] mt-[calc((1lh_-_1.25em)/2)]',
+  /** 与文字型 chip 同理：底边对齐正文内容区底边（Vue 侧该元素即行内盒，React 侧由 .react-renderer 决定） */
+  'inline-flex items-center align-text-bottom leading-[inherit]',
   EMOJI_WRAP_SELECTED_CLASSES,
 ].join(' ')
 

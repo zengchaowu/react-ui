@@ -24,7 +24,7 @@ import {
   computeComposerLayoutGeometry,
   toAbsoluteStyle,
 } from '../CwAiChatComposer/layoutGeometry'
-import { useComposerContentRows } from './functions/useComposerContentRows'
+import { useCwAiChatComposerContentRows } from '../CwAiChatComposer/useCwAiChatComposerContentRows'
 import type {
   CwChatMessageComposerMobileShellEmits,
   CwChatMessageComposerMobileShellHandle,
@@ -123,11 +123,11 @@ export const CwChatMessageComposerMobileShell = forwardRef<
     showSendAction,
   ].join('|')
 
-  const { measuredRows } = useComposerContentRows({
+  const { measuredRows } = useCwAiChatComposerContentRows({
     editorShellRef,
     minRows: minRowsComputed,
     maxRows: maxRowsComputed,
-    revision: layoutRevision,
+    layoutRevision,
   })
 
   const visualRows = isVoiceMode

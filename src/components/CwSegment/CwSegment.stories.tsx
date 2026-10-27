@@ -27,7 +27,8 @@ const meta: Meta<typeof CwSegment> = {
       description: '当前选中值',
     },
     options: {
-      description: '选项列表，支持字符串数组或 CwSegmentOption 对象数组',
+      description:
+        '选项列表，支持字符串数组或 CwSegmentOption 对象数组；对象可传 icon 显示图标，无 label 时为纯图标模式',
     },
     disabled: {
       control: { type: 'boolean' },
@@ -88,4 +89,37 @@ export const StringOptions: Story = {
     options: ['选项 A', '选项 B', '选项 C'],
   },
   render: (args) => <ControlledSegment {...args} initialValue="选项 A" />,
+}
+
+const iconOnlyOptions = [
+  {
+    value: 'grid',
+    icon: 'common--commerce--card-view-line',
+    title: '网栅视图',
+  },
+  {
+    value: 'list',
+    icon: 'common--commerce--list-view-line',
+    title: '列表视图',
+  },
+]
+
+const iconLabelOptions = iconOnlyOptions.map((option) => ({
+  ...option,
+  label: option.title,
+}))
+
+export const IconOnly: Story = {
+  args: {
+    options: iconOnlyOptions,
+    size: 'small',
+  },
+  render: (args) => <ControlledSegment {...args} initialValue="grid" />,
+}
+
+export const IconWithLabel: Story = {
+  args: {
+    options: iconLabelOptions,
+  },
+  render: (args) => <ControlledSegment {...args} initialValue="grid" />,
 }

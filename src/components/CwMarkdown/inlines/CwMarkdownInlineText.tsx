@@ -4,7 +4,7 @@ import { useCwMarkdownContext } from '../context'
 import {
   CW_INLINE_EMOJI_IMG_CLASS,
   splitTextToEmojiParts,
-} from '../../CwChatMessageQuote/emojioneEmoji'
+} from '../../../utils/emojioneEmoji'
 import { usePublicAssetBaseUrl } from '../../../utils/publicAssetBaseUrl'
 import { CwViewportImg } from '../../CwViewportImg'
 
