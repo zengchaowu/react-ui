@@ -6,9 +6,9 @@ import type { CwChatShellLayoutProps, CwChatShellTabItem } from './types'
 import {
   CW_CHAT_SHELL_MOBILE_TABBAR_TOOLTIP_OFFSET,
   CW_CHAT_SHELL_NAV_TABBAR_TOOLTIP_OFFSET,
-} from './constants'
-import { defaultCwChatShellLayoutStyles } from './styles'
-import { tabbarOuterEdgeTopHairline } from '../CwTabbar/styles'
+} from '@zengchaowu/ui-shared/components/CwChatShell/constants'
+import { defaultCwChatShellLayoutStyles } from '@zengchaowu/ui-shared/components/CwChatShell/styles'
+import { tabbarOuterEdgeTopHairline } from '@zengchaowu/ui-shared/components/CwTabbar/styles'
 
 export function CwChatShellLayout({
   value,

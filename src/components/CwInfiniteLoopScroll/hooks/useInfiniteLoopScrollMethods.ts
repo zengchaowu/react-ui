@@ -1,5 +1,6 @@
 import { useCallback, useRef } from 'react'
-import type { CwInfiniteLoopScrollItem, CwInfiniteLoopScrollExpose } from '../types'
+import type { CwInfiniteLoopScrollExpose } from '../types'
+import type { CwInfiniteLoopScrollItem } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/types'
 import {
   calculateScrollTargetForIndex,
   calculateRelativeScrollPosition,

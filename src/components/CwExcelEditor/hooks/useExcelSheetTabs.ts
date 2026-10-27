@@ -7,8 +7,8 @@ import {
   duplicateSheetAt,
   insertSheetAt,
   renameSheetAt,
-} from '../functions/sheetEdits'
-import type { CwExcelEditorTexts, CwExcelWorkbook } from '../types'
+} from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/sheetEdits'
+import type { CwExcelEditorTexts, CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
 
 /**
  * 工作表标签域：右键菜单、增删/复制工作表、标签重命名。

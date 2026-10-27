@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react'
-import type { PopupState } from '../types/state'
+import type { PopupState } from '@zengchaowu/ui-shared/components/CwPopup/types/state'
 
 export interface UsePopupTimersOptions {
   state: PopupState

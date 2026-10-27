@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
 import type { RefObject } from 'react'
-import type { TurnstileWidgetSize } from '../types'
+import type { TurnstileWidgetSize } from '@zengchaowu/ui-shared/components/CwTurnstileCaptchaDialog/types'
 
 const TURNSTILE_SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
 

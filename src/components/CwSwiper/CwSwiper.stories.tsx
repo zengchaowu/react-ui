@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwSwiper } from './CwSwiper'
-import type { CwSwiperItem, CwSwiperItemSlotProps } from './types'
+import type { CwSwiperItemSlotProps } from './types'
+import type { CwSwiperItem } from '@zengchaowu/ui-shared/components/CwSwiper/types'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 import { storybookPlaceholderImage } from '../../storybook/placeholderImage'

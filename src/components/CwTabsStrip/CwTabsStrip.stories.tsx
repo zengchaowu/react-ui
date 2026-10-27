@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwTabsStrip } from './CwTabsStrip'
-import type {
-  CwTabsStripItem,
-  CwTabsStripProps,
-  CwTabsStripValue,
-} from './types'
+import type { CwTabsStripItem, CwTabsStripProps } from './types'
+import type { CwTabsStripValue } from '@zengchaowu/ui-shared/components/CwTabsStrip/types'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 

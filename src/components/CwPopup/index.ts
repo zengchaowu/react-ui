@@ -11,18 +11,19 @@ export {
   isHoverFinePointerMode,
   isHoverCoarseTouchMode,
   resolveHoverCloseOnClickOutside,
-} from './utils/finePointerHoverMedia'
+} from '@zengchaowu/ui-shared/components/CwPopup/utils/finePointerHoverMedia'
 
 // 插件导出
-export { createDimensions } from './plugins/dimensions'
-export { createPosition } from './plugins/position'
-export { createOffset } from './plugins/offset'
-export { createFlip } from './plugins/flip'
-export { createPreventOverflow } from './plugins/prevent-overflow'
-export { createArrow } from './plugins/arrow'
-export { createAdaptiveHeight } from './plugins/adaptive-height'
+export { createDimensions } from '@zengchaowu/ui-shared/components/CwPopup/plugins/dimensions'
+export { createPosition } from '@zengchaowu/ui-shared/components/CwPopup/plugins/position'
+export { createOffset } from '@zengchaowu/ui-shared/components/CwPopup/plugins/offset'
+export { createFlip } from '@zengchaowu/ui-shared/components/CwPopup/plugins/flip'
+export { createPreventOverflow } from '@zengchaowu/ui-shared/components/CwPopup/plugins/prevent-overflow'
+export { createArrow } from '@zengchaowu/ui-shared/components/CwPopup/plugins/arrow'
+export { createAdaptiveHeight } from '@zengchaowu/ui-shared/components/CwPopup/plugins/adaptive-height'
 
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwPopup/types'
 export {
   CW_POPUP_MENTION_PANEL_SHELL_CLASS,
   CW_POPUP_EMOJI_PICKER_SHELL_CLASS,

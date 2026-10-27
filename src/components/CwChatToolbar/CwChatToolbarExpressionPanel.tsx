@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState, type KeyboardEvent, type ReactNode } from
 import CwIcon from '../CwIcon/CwIcon'
 import CwGrid from '../CwGrid/CwGrid'
 import CwChatToolbarEmojiPanel from './CwChatToolbarEmojiPanel'
-import type { CwChatToolbarTexts } from './types'
-import { defaultCwChatToolbarTexts } from './texts'
+import type { CwChatToolbarTexts } from '@zengchaowu/ui-shared/components/CwChatToolbar/types'
+import { defaultCwChatToolbarTexts } from '@zengchaowu/ui-shared/components/CwChatToolbar/texts'
 import {
   emojiPickerMobilePanelClass,
   emojiPickerPanelClass,
@@ -21,7 +21,7 @@ import type {
   CwChatStickerItem,
   CwChatStickerPackItem,
   CwChatStickerPickPayload,
-} from './types/stickerPack'
+} from '@zengchaowu/ui-shared/components/CwChatToolbar/types/stickerPack'
 
 interface ExpressionPackTabProps {
   active?: boolean

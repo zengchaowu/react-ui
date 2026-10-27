@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { tokenSolidColors } from '../../assets/tokens/tokenSolidColors'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 import { TpFabricDesignEditor } from './TpFabricDesignEditor'
 
 const SAMPLE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120">

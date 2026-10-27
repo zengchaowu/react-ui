@@ -7,12 +7,12 @@ import type {
   FabricFillPaintLayer,
   FabricStrokeAlign,
   FabricStrokePaintLayer,
-} from '../appearance/fabricEditorPaintLayers.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/appearance/fabricEditorPaintLayers.pure'
 import {
   FABRIC_EDITOR_ICON_BTN_CLASS,
   FABRIC_EDITOR_ICON_BTN_DANGER_CLASS,
   FABRIC_EDITOR_INSPECTOR_NUMBER_ROOT_CLASS,
-} from '../document/fabricDesignEditorUi'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricDesignEditorUi'
 import TpFabricAppearanceEyeIcon from './TpFabricAppearanceEyeIcon'
 
 export interface TpFabricDesignEditorAppearanceSectionProps {

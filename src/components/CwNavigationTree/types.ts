@@ -1,14 +1,8 @@
 import type { HTMLAttributes } from 'react'
 import type { CwTreeNode } from '../CwTree/types'
+import type { CwNavigationTreeAppearance, CwNavigationTreeTexts } from '@zengchaowu/ui-shared/components/CwNavigationTree/types'
 
 export type { CwTreeNode }
-
-/** 侧栏导航树场景外观 */
-export type CwNavigationTreeAppearance = 'admin' | 'cloudDisk'
-
-export interface CwNavigationTreeTexts {
-  [key: string]: string | undefined
-}
 
 export interface CwNavigationTreeProps
   extends Omit<

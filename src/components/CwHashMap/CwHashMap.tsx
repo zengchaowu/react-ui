@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import type { HTMLAttributes, MouseEvent as ReactMouseEvent } from 'react'
-import { hashMapBase } from './styles'
+import { hashMapBase } from '@zengchaowu/ui-shared/components/CwHashMap/styles'
 import type {
   CwHashMapBucket,
   CwHashMapEmits,

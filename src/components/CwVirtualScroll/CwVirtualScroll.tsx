@@ -20,7 +20,7 @@ import type {
   CwVirtualScrollItem,
   CwVirtualScrollItemRenderArgs,
 } from './types'
-import { virtualScrollBase } from './styles'
+import { virtualScrollBase } from '@zengchaowu/ui-shared/components/CwVirtualScroll/styles'
 import { defaultTexts } from './texts'
 import { useContainerSize, useItemPositions, useScrollPosition, usePadding, useTotalSize, useVisibleRange, useVirtualScrollWatchers } from './hooks'
 import { calculateItemStyle, normalizePadding } from './functions'

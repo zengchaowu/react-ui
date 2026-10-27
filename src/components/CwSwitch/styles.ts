@@ -1,4 +1,4 @@
-import type { CwSwitchStyles } from './types'
+import type { CwSwitchStyles } from '@zengchaowu/ui-shared/components/CwSwitch/types'
 import { INTERACTIVE_FOCUS_CLASS } from '@zengchaowu/ui-shared/functions/ui/focusStyles'
 
 export const switchBase: CwSwitchStyles = {

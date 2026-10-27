@@ -9,15 +9,10 @@ import {
 import { CwLoading } from '../CwLoading'
 import CwDocxParagraphBlock from './CwDocxParagraphBlock'
 import CwDocxTableBlock from './CwDocxTableBlock'
-import { docxEditorBase } from './styles'
-import { defaultTexts } from './texts'
-import type {
-  CwDocxDocument,
-  CwDocxEditorHandle,
-  CwDocxEditorProps,
-  CwDocxParagraph,
-  CwDocxRun,
-} from './types'
+import { docxEditorBase } from '@zengchaowu/ui-shared/components/CwDocxEditor/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDocxEditor/texts'
+import type { CwDocxEditorHandle, CwDocxEditorProps } from './types'
+import type { CwDocxDocument, CwDocxParagraph, CwDocxRun } from '@zengchaowu/ui-shared/components/CwDocxEditor/types'
 import {
   cloneDocument,
   createBlankDocument,
@@ -26,8 +21,8 @@ import {
   parseDocx,
   readDocxSource,
   sameDocument,
-} from './functions/docx'
-import { listLabelsForBlocks } from './functions/listNumbering'
+} from '@zengchaowu/ui-shared/components/CwDocxEditor/functions/docx'
+import { listLabelsForBlocks } from '@zengchaowu/ui-shared/components/CwDocxEditor/functions/listNumbering'
 
 export const CwDocxEditor = forwardRef<CwDocxEditorHandle, CwDocxEditorProps>(
   function CwDocxEditor(

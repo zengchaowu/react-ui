@@ -1,4 +1,5 @@
 export { default as CwBreadcrumb } from './CwBreadcrumb'
 export * from './types'
-export { breadcrumbBase } from './styles'
-export { defaultTexts } from './texts'
+export type * from '@zengchaowu/ui-shared/components/CwBreadcrumb/types'
+export { breadcrumbBase } from '@zengchaowu/ui-shared/components/CwBreadcrumb/styles'
+export { defaultTexts } from '@zengchaowu/ui-shared/components/CwBreadcrumb/texts'

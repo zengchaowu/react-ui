@@ -1,9 +1,7 @@
 import { useRef } from 'react'
 import type { ChangeEvent } from 'react'
-import type {
-  CwChatToolbarActionPayload,
-  CwChatToolbarItemConfig,
-} from '../../CwChatToolbar/types'
+import type { CwChatToolbarItemConfig } from '../../CwChatToolbar/types'
+import type { CwChatToolbarActionPayload } from '@zengchaowu/ui-shared/components/CwChatToolbar/types'
 
 export interface UseChatToolbarFilePickOptions {
   onToolbarTap: (payload: CwChatToolbarActionPayload) => void

@@ -1,11 +1,11 @@
 export { default as CwWorkbenchAiPanel } from './CwWorkbenchAiPanel'
 export type { CwWorkbenchAiPanelComponentProps } from './CwWorkbenchAiPanel'
-export { defaultCwWorkbenchAiPanelTexts } from './texts'
-export { cwWorkbenchAiPanelStyles } from './styles'
+export { defaultCwWorkbenchAiPanelTexts } from '@zengchaowu/ui-shared/components/CwWorkbenchAiPanel/texts'
+export { cwWorkbenchAiPanelStyles } from '@zengchaowu/ui-shared/components/CwWorkbenchAiPanel/styles'
 export {
   newWorkbenchAiMessageId,
   workbenchAiMessagesToChatList,
-} from './functions'
+} from '@zengchaowu/ui-shared/components/CwWorkbenchAiPanel/functions'
 export { useAgentAssistWorkbenchAi } from './useAgentAssistWorkbenchAi'
 export type {
   AgentAssistAiConfig,
@@ -18,4 +18,4 @@ export type {
   CwWorkbenchAiMessageStatus,
   CwWorkbenchAiPanelProps,
   CwWorkbenchAiPanelTexts,
-} from './types'
+} from '@zengchaowu/ui-shared/components/CwWorkbenchAiPanel/types'

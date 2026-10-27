@@ -12,23 +12,12 @@ import CwDiv from '../CwDiv'
 import type { CwDivHandle } from '../CwDiv/CwDiv'
 import { resolveCwDivViewport } from '../CwDiv/resolveCwDivViewport'
 import { CwLoading } from '../CwLoading'
-import { tokenSolidColors } from '../../assets/tokens/tokenSolidColors'
-import { pptEditorBase } from './styles'
-import { defaultTexts } from './texts'
-import type {
-  CwPptBorderSide,
-  CwPptBox,
-  CwPptDeck,
-  CwPptEditorHandle,
-  CwPptEditorProps,
-  CwPptEmbeddedFont,
-  CwPptImage,
-  CwPptLine,
-  CwPptSlide,
-  CwPptTextParagraph,
-  CwPptTextRun,
-} from './types'
-import { polygonClipPathFromPoints100, roundRectRadiusPercent } from './functions/presetGeometry'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
+import { pptEditorBase } from '@zengchaowu/ui-shared/components/CwPptEditor/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwPptEditor/texts'
+import type { CwPptEditorHandle, CwPptEditorProps } from './types'
+import type { CwPptBorderSide, CwPptBox, CwPptDeck, CwPptEmbeddedFont, CwPptImage, CwPptLine, CwPptSlide, CwPptTextParagraph, CwPptTextRun } from '@zengchaowu/ui-shared/components/CwPptEditor/types'
+import { polygonClipPathFromPoints100, roundRectRadiusPercent } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/presetGeometry'
 import {
   blankSlide,
   cloneDeck,

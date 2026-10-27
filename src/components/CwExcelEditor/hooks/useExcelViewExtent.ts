@@ -6,8 +6,8 @@ import {
   ROW_LOOKAHEAD,
   SHEET_COL_CHUNK,
   SHEET_ROW_CHUNK,
-} from '../functions/sheetMetrics'
-import type { CwExcelSheet, CwExcelWorkbook } from '../types'
+} from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/sheetMetrics'
+import type { CwExcelSheet, CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
 import { useMirroredState } from './useMirroredState'
 
 /**

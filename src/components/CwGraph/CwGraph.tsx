@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { HTMLAttributes, MouseEvent as ReactMouseEvent } from 'react'
-import { graphBase } from './styles'
+import { graphBase } from '@zengchaowu/ui-shared/components/CwGraph/styles'
 import type {
   CwGraphEdge,
   CwGraphEmits,

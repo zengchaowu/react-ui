@@ -1,24 +1,5 @@
-export type IconPickerType = 'icon' | 'emoji'
+import type { IconPickerType, IconCategory, CwIconPickerTexts, IconItem } from '@zengchaowu/ui-shared/components/CwIconPicker/types'
 
-export interface IconCategory {
-  /** 分类名称 */
-  name: string
-  /** 分类下的图标列表 */
-  icons: IconItem[]
-}
-
-export interface IconItem {
-  /** 图标标识 */
-  value: string
-  /** 图标显示内容（iconfont font_class 或 emoji） */
-  content: string
-  /** 图标类型 */
-  type: 'asset' | 'emoji'
-  /** 图标标签（用于搜索） */
-  label?: string
-  /** asset 前缀（仅当 type 为 asset 时使用） */
-  prefix?: string
-}
 
 export interface CwIconPickerProps {
   /** 当前选中的图标值（对应 Vue `modelValue`） */
@@ -44,49 +25,6 @@ export interface CwIconPickerProps {
   /** 恢复默认时触发（对应 Vue `reset`） */
   onReset?: () => void
 }
-
-export interface CwIconPickerStyles {
-  /** 根容器 */
-  root: string
-  /** 头部区域 */
-  header: string
-  /** 标签页容器 */
-  tabs: string
-  /** 恢复默认按钮 */
-  resetButton: string
-  /** 搜索框容器 */
-  searchWrapper: string
-  /** 内容区域（CwDiv 根） */
-  content: string
-  /** 内容内边距（CwDiv contentClass） */
-  contentInner: string
-  /** 分类容器 */
-  category: string
-  /** 分类标题 */
-  categoryTitle: string
-  /** 图标项 */
-  iconItem: string
-  /** 图标项激活状态 */
-  iconItemActive: string
-  /** 图标项悬停状态 */
-  iconItemHover: string
-  /** 图标内容 */
-  iconContent: string
-  /** Emoji 图片样式 */
-  emojiImage?: string
-}
-
-export interface CwIconPickerTexts {
-  /** 图标标签页文本 */
-  iconTab?: string
-  /** Emoji 标签页文本 */
-  emojiTab?: string
-  /** 搜索框占位符 */
-  searchPlaceholder?: string
-  /** 恢复默认按钮文本 */
-  resetButtonText?: string
-}
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwIconPickerEmits {

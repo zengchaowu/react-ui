@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CwConfigCard } from './CwConfigCard'
 import { CwTag } from '../CwTag'
 import type { CwConfigCardItem } from './types'
-import type { CwRichTextNode } from '../CwRichText/types'
+import type { CwRichTextNode } from '@zengchaowu/ui-shared/components/CwRichText/types'
 
 const meta: Meta<typeof CwConfigCard> = {
   title: '1. Components/Display/CwConfigCard',

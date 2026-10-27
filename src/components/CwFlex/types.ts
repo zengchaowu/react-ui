@@ -1,24 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
-
-export type CwFlexDirection = 'column' | 'row'
-
-export type CwFlexAlign = 'stretch' | 'center' | 'flex-start' | 'flex-end'
-
-export type CwFlexJustify =
-  | 'flex-start'
-  | 'center'
-  | 'flex-end'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly'
-
-export interface CwFlexStyles {
-  root: string
-  directionColumn: string
-  directionRow: string
-}
-
-export interface CwFlexTexts {}
+import type { CwFlexDirection, CwFlexAlign, CwFlexJustify, CwFlexTexts } from '@zengchaowu/ui-shared/components/CwFlex/types'
 
 export interface CwFlexProps {
   /** 主轴方向 */

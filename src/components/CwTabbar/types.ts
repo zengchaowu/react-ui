@@ -1,5 +1,6 @@
 import type { Placement } from '@zengchaowu/shared/types/placement'
-import type { CwIconEmbed } from '../CwIcon/types'
+import type { CwIconEmbed } from '@zengchaowu/ui-shared/components/CwIcon/types'
+import type { CwTabbarAppearance } from '@zengchaowu/ui-shared/components/CwTabbar/types'
 
 export interface CwTabbarItem {
   /**
@@ -123,62 +124,6 @@ export interface CwTabbarProps {
    * 自定义文本对象
    */
   texts?: Partial<CwTabbarTexts>
-}
-
-/**
- * 官方 appearance 变体
- */
-export type CwTabbarAppearance = 'default' | 'sidebar' | 'bottom-bar'
-
-export interface CwTabbarStyles {
-  /** 根容器基础样式 */
-  root: string
-  /** 根容器正常状态 */
-  rootNormal: string
-  /** 根容器禁用状态 */
-  rootDisabled: string
-  /** 根容器只读状态 */
-  rootReadonly: string
-  /** 项容器包裹样式 */
-  items: string
-  /** 横向底栏项过多、启用 CwDiv 横向滚动时的 items 追加样式 */
-  itemsHorizontalScroll?: string
-  /** 单个项基础样式 */
-  item: string
-  /** 单个项正常状态 */
-  itemNormal: string
-  /** 单个项选中状态 */
-  itemActive: string
-  /** 单个项禁用状态 */
-  itemDisabled: string
-  /** 单个项只读状态 */
-  itemReadonly: string
-  /** 单个项聚焦状态 */
-  itemFocused: string
-  /** 单个项内容容器基础样式 */
-  itemContent: string
-  /** 图标容器基础样式 */
-  itemIconWrapper: string
-  /** 标签文本基础样式 */
-  itemLabel: string
-  /** 标签文本正常状态 */
-  itemLabelNormal: string
-  /** 标签文本选中状态 */
-  itemLabelActive: string
-  /** 标签文本禁用状态 */
-  itemLabelDisabled: string
-  /** 标签文本只读状态 */
-  itemLabelReadonly: string
-  /** 角标基础样式 */
-  badge: string
-  /** 角标正常状态 */
-  badgeNormal: string
-  /** 角标禁用状态 */
-  badgeDisabled: string
-  /** 角标只读状态 */
-  badgeReadonly: string
-  /** 图标样式配置 */
-  itemIconStyles?: CwIconEmbed
 }
 
 export interface CwTabbarTexts {

@@ -2,7 +2,7 @@ import { showDynamicDialog } from '../CwDynamicDialog'
 import { CW_OVERLAY_HEADER_TITLE_IN_BAR_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
 import CwLoginPhoneDialogContent from './CwLoginPhoneDialogContent'
 import type { ShowLoginPhoneDialogOptions, ShowLoginPhoneDialogResult } from './types'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwLoginPhoneDialog/texts'
 
 /**
  * 显示手机号登录弹窗（可选微信扫码）

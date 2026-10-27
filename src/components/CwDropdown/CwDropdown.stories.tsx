@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwDropdown } from './CwDropdown'
 import { CwButton } from '../CwButton'
-import type { CwDropdownItem, CwDropdownProps } from './types'
+import type { CwDropdownProps } from './types'
+import type { CwDropdownItem } from '@zengchaowu/ui-shared/components/CwDropdown/types'
 
 const sampleItems: CwDropdownItem[] = [
   { value: 'doc', label: '文档' },

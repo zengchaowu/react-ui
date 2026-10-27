@@ -1,8 +1,5 @@
-import type {
-  CwDataTableColumn,
-  CwDataTableHeaderRenderContext,
-  CwDataTableSortState,
-} from './types'
+import type { CwDataTableColumn, CwDataTableHeaderRenderContext } from './types'
+import type { CwDataTableSortState } from '@zengchaowu/ui-shared/components/CwDataTable/types'
 
 export interface CwDataTableHeaderRendererProps {
   column: CwDataTableColumn

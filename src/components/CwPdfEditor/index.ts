@@ -1,4 +1,5 @@
 export { default as CwPdfEditor } from './CwPdfEditor'
-export { defaultTexts as defaultCwPdfEditorTexts } from './texts'
+export { defaultTexts as defaultCwPdfEditorTexts } from '@zengchaowu/ui-shared/components/CwPdfEditor/texts'
 export { createBlankPdfDocument, pdfDocumentToArrayBuffer } from './functions/pdfDocument'
 export type * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwPdfEditor/types'

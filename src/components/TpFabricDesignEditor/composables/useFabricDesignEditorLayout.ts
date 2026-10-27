@@ -2,10 +2,10 @@
 import type { Canvas } from 'fabric'
 import {
   applyFabricContainerLayout,
-} from '../layers/fabricContainerLayout.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricContainerLayout.pure'
 import {
   readFabricLayoutSelectionSnapshot,
-} from '../layers/fabricEditorLayoutSync.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricEditorLayoutSync.pure'
 import {
   isFabricContainerObject,
   getFabricContainerClipContent,
@@ -15,7 +15,7 @@ import {
   type FabricContainerLayoutAlign,
   type FabricContainerLayoutJustify,
   type FabricContainerLayoutMode,
-} from '../tools/fabricContainerTool.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/fabricContainerTool.pure'
 import type { TpFabricDesignEditorProps } from '../types'
 
 type EmitFn = {

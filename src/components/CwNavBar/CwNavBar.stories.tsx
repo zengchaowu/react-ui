@@ -5,7 +5,7 @@ import { CwNavBar } from './CwNavBar'
 import {
   CW_NAV_BAR_ICON_BUTTON_CLASS,
   CW_NAV_BAR_TEXT_BUTTON_CLASS,
-} from './styles'
+} from '@zengchaowu/ui-shared/components/CwNavBar/styles'
 
 const meta: Meta<typeof CwNavBar> = {
   title: '1. Components/Navigation/CwNavBar',

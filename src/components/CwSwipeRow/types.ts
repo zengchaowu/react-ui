@@ -1,37 +1,5 @@
 import type { MouseEvent as ReactMouseEvent, ReactNode } from 'react'
-
-/** 左滑操作项语义底色（内部默认类名，业务勿覆盖） */
-export type CwSwipeRowActionTone = 'default' | 'primary' | 'muted' | 'warning' | 'danger'
-
-/** 左滑露出的操作项（列表行），`tone` / `buttonClass` 由应用配置 */
-export interface CwSwipeRowAction {
-  key: string
-  label: string
-  danger?: boolean
-  tone?: CwSwipeRowActionTone
-  buttonClass?: string
-}
-
-export interface CwSwipeRowStyles {
-  swipeOuter: string
-  swipeTrack: string
-  swipeActionsBar: string
-  swipeActionsBarRevealed: string
-  swipeSlideLayer: string
-  swipeActionBtn: string
-  swipeActionToneDefault: string
-  swipeActionTonePrimary: string
-  swipeActionToneMuted: string
-  swipeActionToneWarning: string
-  swipeActionToneDanger: string
-  /** 与 `showBodyInsetDivider` 配合；左 inset 由业务约定（如跳过头像列） */
-  rowDividerInset: string
-}
-
-export type CwSwipeRowContentClass =
-  | string
-  | Record<string, boolean>
-  | Array<string | Record<string, boolean>>
+import type { CwSwipeRowContentClass, CwSwipeRowAction } from '@zengchaowu/ui-shared/components/CwSwipeRow/types'
 
 export interface CwSwipeRowProps {
   /** 主行容器类名（背景、padding、布局等） */

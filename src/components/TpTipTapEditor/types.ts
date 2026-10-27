@@ -1,5 +1,6 @@
 import type { Extension } from '@tiptap/core'
 import type { Editor } from '@tiptap/core'
+import type { TpTipTapEditorToolbarIcons, TpTipTapEditorTexts } from '@zengchaowu/ui-shared/components/TpTipTapEditor/types'
 
 export interface TpTipTapEditorProps {
   /** 编辑器内容（HTML 字符串），受控值（对应 Vue v-model） */
@@ -26,49 +27,6 @@ export interface TpTipTapEditorProps {
   extensions?: Extension[]
   /** 自定义文案（国际化） */
   texts?: Partial<TpTipTapEditorTexts>
-}
-
-export type TpTipTapEditorToolbarIcons = {
-  bold?: string
-  italic?: string
-  strike?: string
-  code?: string
-  bulletList?: string
-  orderedList?: string
-  blockquote?: string
-  codeBlock?: string
-  image?: string
-  video?: string
-  undo?: string
-  redo?: string
-  [key: string]: string | undefined
-}
-
-export interface TpTipTapEditorStyles {
-  root: string
-  toolbar: string
-  toolbarDisabled: string
-  toolbarGroup: string
-  toolbarButton: string
-  toolbarButtonActive: string
-  editorWrap: string
-  editorContent: string
-}
-
-export interface TpTipTapEditorTexts {
-  placeholder?: string
-  bold?: string
-  italic?: string
-  strike?: string
-  code?: string
-  bulletList?: string
-  orderedList?: string
-  blockquote?: string
-  codeBlock?: string
-  image?: string
-  video?: string
-  undo?: string
-  redo?: string
 }
 
 /** 组件回调 props（对应 Vue emits） */

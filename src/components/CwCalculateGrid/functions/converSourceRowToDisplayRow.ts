@@ -1,10 +1,5 @@
-import type {
-  DisplayRow,
-  GlobalScope,
-  ScopeDisplayRowMap,
-  SourceRow,
-} from '../types'
-import getKeyPathFromScopeAndKey from './getKeyPathFromScopeAndKey'
+import type { DisplayRow, GlobalScope, ScopeDisplayRowMap, SourceRow } from '@zengchaowu/ui-shared/components/CwCalculateGrid/types'
+import getKeyPathFromScopeAndKey from '@zengchaowu/ui-shared/components/CwCalculateGrid/functions/getKeyPathFromScopeAndKey'
 
 export default (
   sourceRow: SourceRow,

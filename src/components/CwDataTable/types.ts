@@ -1,32 +1,10 @@
 import type { ComponentType, CSSProperties, ReactNode } from 'react'
-import type { CwIconEmbed } from '../CwIcon/types'
+
+import type { CwDataTableTreeRowMeta, CwDataTableSortState, CwDataTableSortConfig, CwDataTableColumnSelectConfig, CwDataTableTreeConfig, CwDataTableAppearance, CwDataTableTexts, CwDataTableColumnBase } from '@zengchaowu/ui-shared/components/CwDataTable/types'
+import type { CwDataTableStyles } from '@zengchaowu/ui-shared/components/CwDataTable/types'
 
 /** 表格行数据（列配置按 key 取值） */
 export type CwDataTableRow = Record<string, unknown>
-
-/** 树形行元数据（由 CwDataTable 在拍平树数据时写入 row） */
-export interface CwDataTableTreeRowMeta {
-  depth: number
-  hasChildren: boolean
-  expanded: boolean
-  rowKey: string | number
-}
-
-/** 树形表格配置 */
-export interface CwDataTableTreeConfig {
-  /** 启用树形表格：modelValue 为带 children 的树，表体按展开状态拍平渲染 */
-  enabled?: boolean
-  /** 子节点字段名，默认 children */
-  childrenKey?: string
-  /** 默认展开全部父节点 */
-  defaultExpandAll?: boolean
-  /** 默认展开的节点 rowKey 列表 */
-  defaultExpandedKeys?: Array<string | number>
-  /** 缩进与展开按钮所在列 key，默认第一列可见列 */
-  indentColumnKey?: string
-  /** 每级缩进像素，默认 16 */
-  indentSize?: number
-}
 
 /** 单元格渲染上下文 */
 export interface CwDataTableCellRenderContext {
@@ -51,55 +29,8 @@ export interface CwDataTableHeaderRenderContext {
 /** 自定义表头/单元格组件 */
 export type CwDataTableComponent = ComponentType<Record<string, unknown>>
 
-/** 列配置 */
-export interface CwDataTableColumn {
-  /** 唯一键 */
-  key: string
-  /** 列标题 */
-  title: string
-  /** 列宽（px）；不设则参与 flex 分配，或由 fitContent / flex:0 按内容自适应 */
-  width?: number
-  /** 最小列宽（px） */
-  minWidth?: number
-  /** 最大列宽（px） */
-  maxWidth?: number
-  /**
-   * 填满表格剩余宽度（与右侧/左侧固定列搭配时尤其有用）。
-   * 设为 true 时列参与 flex 拉伸，优先级高于 `width` / `maxWidth` 的固定锁宽：
-   * - `width` 与 `minWidth` 取较大值作为保底宽，不锁死列宽
-   * - `maxWidth` 仅在未吃满剩余宽（需横向滚动）时限制列宽；吃满时由 flex 撑满至操作列前
-   * 未设 `width` 的中间列默认也会拉伸，效果相同；`fill: true` 用于在保留 `width` 作保底时显式声明。
-   */
-  fill?: boolean
-  /**
-   * 按内容自适应宽度，不参与剩余空间拉伸。
-   * 与 `flex: 0`（且无 width）等价；布局稳定后会从表体（及表头）测量并锁定像素宽。
-   */
-  fitContent?: boolean
-  /** 列宽 flex 值，默认 1；设为 0 时等同 fitContent */
-  flex?: number
-  /** 是否可调整列宽 */
-  resizable?: boolean
-  /** 是否固定（'left' | 'right'） */
-  fixed?: 'left' | 'right'
-  /** 固定列索引（用于排序，左侧从0开始，右侧从-1开始递减） */
-  fixedIndex?: number
-  /** 对齐方式 */
-  align?: 'left' | 'center' | 'right'
-  /** 是否可排序 */
-  sortable?: boolean
-  /** 是否可见 */
-  visible?: boolean
-  /** 是否允许单元格内容换行（默认 false，使用 truncate） */
-  wrap?: boolean
-  /**
-   * 内容被省略（…）时悬停是否显示完整文案 Tooltip。
-   * 默认跟随表格 `showOverflowTooltip`（表格默认 true）；
-   * `wrap` / `fitContent` 列不启用。
-   */
-  showOverflowTooltip?: boolean
-  /** 是否隐藏右侧分割线（默认 false） */
-  hideRightBorder?: boolean
+/** 列配置（共享字段见 `CwDataTableColumnBase`） */
+export interface CwDataTableColumn extends CwDataTableColumnBase {
   /** 自定义表头组件 */
   headerComponent?: CwDataTableComponent
   /** 表头组件 props（函数，接收 column, sortState, onSort） */
@@ -112,32 +43,6 @@ export interface CwDataTableColumn {
   cellProps?: (ctx: CwDataTableCellRenderContext) => Record<string, unknown>
   /** 自定义单元格渲染函数（优先级高于 cellComponent） */
   cellRender?: (ctx: CwDataTableCellRenderContext) => ReactNode
-}
-
-/** 排序状态 */
-export interface CwDataTableSortState {
-  key: string
-  order: 'asc' | 'desc'
-}
-
-/** 排序配置 */
-export interface CwDataTableSortConfig {
-  /** 当前排序状态（受控） */
-  state?: CwDataTableSortState
-  /** 默认所有列是否可排序，具体列也可以单独配置 sortable 覆盖 */
-  defaultSortable?: boolean
-}
-
-/** 列选中配置 */
-export interface CwDataTableColumnSelectConfig {
-  /** 是否启用列选中模式 */
-  enabled?: boolean
-  /** 当前选中的列 key（受控） */
-  selectedColumnKey?: string
-  /** 默认选中的列 key（非受控） */
-  defaultSelectedColumnKey?: string
-  /** 是否必须选中一列（默认 false，设为 true 时不允许取消选中，且默认选中第一列） */
-  required?: boolean
 }
 
 /** 表格配置 */
@@ -234,9 +139,6 @@ export interface CwDataTableLifecycle {
   ) => void | Promise<void>
 }
 
-/** 表格场景外观 */
-export type CwDataTableAppearance = 'default' | 'markdown' | 'workbench' | 'dense-mono'
-
 /** Props */
 export interface CwDataTableProps {
   /** 表格配置 */
@@ -260,108 +162,6 @@ export interface CwDataTableProps {
   bodyExpanded?: boolean
   /** v-model:expanded-keys */
   expandedKeys?: Array<string | number>
-}
-
-/** @internal */
-export interface CwDataTableStyles {
-  // 根容器
-  root: string
-
-  // 表头（与表体一致：scrollContent 包裹 + 内层 flex 行，避免 w-max 与 flex 同层导致列宽与表体不一致）
-  header: string
-  headerFixed: string
-  scrollContent: string
-  /** 存在 fill/弹性中间列时，行宽贴合表格容器（见 columnUtils.hasElasticFillInMiddleSection） */
-  scrollContentFitContainer: string
-  headerRow: string
-  headerCell: string
-  headerCellFixed: string
-  headerCellResizable: string
-  headerCellContent: string
-  headerCellContentFit: string
-  headerCellNoRightBorder: string
-  /** collapsibleBody 且表体已收起：去掉表头与表体之间的下边线，避免「悬空的线」 */
-  headerCellBodyDividerOffWhenCollapsed: string
-  sortButton: string
-  sortButtonFocused: string
-  sortIcon: string
-  /** 手柄共用（宽、光标、显隐） */
-  resizeHandle: string
-  /** 分割线左侧：本列右缘 */
-  resizeHandleEnd: string
-  /** 分割线右侧：本列左缘（拖的是上一列） */
-  resizeHandleStart: string
-  resizeHandleHover: string
-
-  // 表体
-  body: string
-  row: string
-  rowNoBottomBorder: string
-  cell: string
-  cellFixed: string
-  cellContent: string
-  cellContentFit: string
-  cellNoRightBorder: string
-
-  // 固定列容器
-  fixedLeftHeader: string
-  fixedRightHeader: string
-  fixedRightHeaderFirst: string
-  fixedLeftHeaderShadow: string
-  fixedRightHeaderShadow: string
-  fixedLeftBody: string
-  fixedRightBody: string
-  fixedRightBodyFirst: string
-  fixedLeftBodyShadow: string
-  fixedRightBodyShadow: string
-
-  // 虚拟滚动占位
-  placeholder: string
-
-  // 空状态
-  empty: string
-  emptyContent: string
-  emptyText: string
-
-  // 加载状态
-  loading: string
-  loadingContent: string
-  loadingText: string
-
-  // 列选中状态
-  headerCellSelected: string
-  cellSelected: string
-  // 列 hover 状态（仅在列选中模式下）
-  headerCellHovered: string
-  cellHovered: string
-
-  bodyCollapseShell: string
-  bodyCollapseShellOpen: string
-  bodyCollapseShellClosed: string
-  bodyCollapseInner: string
-
-  treeIndentRoot: string
-  treeIndentSpacer: string
-  treeIndentContent: string
-  treeSwitcher: string
-  treeSwitcherExpanded: string
-  treeSwitcherCollapsed: string
-  treeSwitcherPlaceholder: string
-  treeSwitcherIconStyles?: CwIconEmbed
-}
-
-/** 文本定义 */
-export interface CwDataTableTexts {
-  emptyText: string
-  loadingText: string
-  /** 可折叠表体：表头在表体已收起时表示「展开」 */
-  collapseBodyExpandAriaLabel: string
-  /** 可折叠表体：表头在表体已展开时表示「收起」 */
-  collapseBodyCollapseAriaLabel: string
-  /** 树形行：展开子节点 */
-  treeExpandAriaLabel: string
-  /** 树形行：收起子节点 */
-  treeCollapseAriaLabel: string
 }
 
 /** Emits（Vue defineEmits 的 React 回调等价） */

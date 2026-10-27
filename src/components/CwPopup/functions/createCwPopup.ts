@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import type { RefObject } from 'react'
 import type { CwPopupInstance, CwPopupOptions, VirtualElement } from '../types'
-import type { PopupState } from '../types/state'
+import type { PopupState } from '@zengchaowu/ui-shared/components/CwPopup/types/state'
 import { usePopupState } from '../hooks/usePopupState'
 import { usePopupContainer } from '../hooks/usePopupContainer'
 import { usePopupPosition } from '../hooks/usePopupPosition'
@@ -11,8 +11,8 @@ import { useKeyboard } from '../hooks/useKeyboard'
 import { useTriggerResizeObserver } from '../hooks/useTriggerResizeObserver'
 import { clearPopupPosition, afterAnimationFrame } from '../utils/popupStateHelpers'
 import { revokeOverlayLayer } from '../../../constants/cwOverlayStack'
-import { validateCwPopupOptions } from './validateCwPopupOptions'
-import { DEFAULT_CONFIG } from '../constants'
+import { validateCwPopupOptions } from '@zengchaowu/ui-shared/components/CwPopup/functions/validateCwPopupOptions'
+import { DEFAULT_CONFIG } from '@zengchaowu/ui-shared/components/CwPopup/constants'
 
 export interface CreateCwPopupOptions extends CwPopupOptions {
   /** 获取参考元素（真实 DOM 或虚拟元素） */

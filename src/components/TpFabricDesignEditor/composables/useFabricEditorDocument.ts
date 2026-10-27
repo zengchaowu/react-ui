@@ -1,14 +1,14 @@
 ﻿import { useStableBox, type ReactiveRef } from './reactivity'
 import type { Canvas } from 'fabric'
 import type { TpFabricDesignEditorProps, TpFabricDesignEditorTool } from '../types'
-import type { FabricEditorDocumentContext } from '../document/fabricEditorDocument.types'
+import type { FabricEditorDocumentContext } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorDocument.types'
 import {
   fabricEditorClipboardHasItems,
-} from '../document/fabricEditorClipboard'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorClipboard'
 import {
   imageFilesFromClipboardEvent,
   readSystemClipboardImageFiles,
-} from '../import/fabricEditorImageImport.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/import/fabricEditorImageImport.pure'
 import { useFabricEditorDocumentSelection } from './useFabricEditorDocumentSelection'
 import { useFabricEditorDocumentSvg } from './useFabricEditorDocumentSvg'
 

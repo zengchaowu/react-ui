@@ -4,9 +4,10 @@ import type {
   MouseEvent as ReactMouseEvent,
   TouchEvent as ReactTouchEvent,
 } from 'react'
-import type { CwImagePreviewProps, CwImagePreviewTexts } from './types'
-import { imagePreviewBase } from './styles'
-import { defaultTexts } from './texts'
+import type { CwImagePreviewProps } from './types'
+import type { CwImagePreviewTexts } from '@zengchaowu/ui-shared/components/CwImagePreview/types'
+import { imagePreviewBase } from '@zengchaowu/ui-shared/components/CwImagePreview/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwImagePreview/texts'
 import { CwImageFit } from '../CwImageFit'
 import { useImagePreviewInteraction } from './hooks'
 import { isImagePreviewScaledForPan } from './functions'

@@ -6,8 +6,8 @@ import type {
   CwDesignToolRailItemSlotProps,
   CwDesignToolRailProps,
 } from './types'
-import { designToolRailSideBase, designToolRailTopBase } from './styles'
-import { defaultCwDesignToolRailTexts } from './texts'
+import { designToolRailSideBase, designToolRailTopBase } from '@zengchaowu/ui-shared/components/CwDesignToolRail/styles'
+import { defaultCwDesignToolRailTexts } from '@zengchaowu/ui-shared/components/CwDesignToolRail/texts'
 import CwDesignToolRailItem from './CwDesignToolRailItem'
 
 export function CwDesignToolRail({

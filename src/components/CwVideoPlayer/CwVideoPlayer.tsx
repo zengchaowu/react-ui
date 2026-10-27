@@ -9,8 +9,8 @@ import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
 import type { CwVideoPlayerExpose, CwVideoPlayerProps } from './types'
 import { CwVideoPlayerControls } from './CwVideoPlayerControls'
 import { CwIcon } from '../CwIcon/CwIcon'
-import { videoPlayerBase } from './styles'
-import { defaultTexts } from './texts'
+import { videoPlayerBase } from '@zengchaowu/ui-shared/components/CwVideoPlayer/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwVideoPlayer/texts'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 
 export const CwVideoPlayer = forwardRef<CwVideoPlayerExpose, CwVideoPlayerProps>(

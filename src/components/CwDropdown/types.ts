@@ -1,31 +1,7 @@
-﻿import type { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import type { CwButtonType, CwButtonVariant } from '../CwButton/types'
-import type { CwIconEmbed } from '../CwIcon/types'
-
-/** 下拉菜单项 */
-export interface CwDropdownItem {
-  /** 选项值，随 `select` 事件回传 */
-  value: string | number
-  /** 展示文案 */
-  label: string
-  /** 是否禁用 */
-  disabled?: boolean
-  /** 左侧图标（CwIcon name） */
-  icon?: string
-  /**
-   * 当前选中项：默认仅品牌色高亮（不变勾）。
-   * 需要左侧勾选列时由 `showSelectedCheck` 打开。
-   */
-  selected?: boolean
-}
-
-export type CwDropdownAppearance =
-  | 'default'
-  | 'toolbar'
-  | 'toolbar-emphasis'
-  | 'sidebar-full'
-  /** 工具栏触发器 + 与右键菜单一致的毛玻璃面板 */
-  | 'glass-frosted'
+import type { CwIconEmbed } from '@zengchaowu/ui-shared/components/CwIcon/types'
+import type { CwDropdownItem, CwDropdownAppearance, CwDropdownTexts } from '@zengchaowu/ui-shared/components/CwDropdown/types'
 
 export interface CwDropdownStyles {
   root: string
@@ -66,13 +42,6 @@ export interface CwDropdownStyles {
   checkIconStyles: CwIconEmbed
   /** 菜单项左侧图标 */
   itemIconStyles: CwIconEmbed
-}
-
-export interface CwDropdownTexts {
-  /** 触发按钮文案 */
-  triggerLabel: string
-  /** 无选项时的菜单提示 */
-  empty: string
 }
 
 /** 自定义触发器作用域参数 */
@@ -127,9 +96,4 @@ export interface CwDropdownProps {
     | ReactNode
     | ((scope: CwDropdownTriggerSlotScope) => ReactNode)
   className?: string
-}
-
-export interface CwDropdownEmits {
-  (e: 'visibleChange', value: boolean): void
-  (e: 'select', value: string | number, item: CwDropdownItem): void
 }

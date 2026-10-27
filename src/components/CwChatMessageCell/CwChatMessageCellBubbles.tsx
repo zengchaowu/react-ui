@@ -31,23 +31,17 @@ import {
   CHAT_CARD_BUBBLE_BODY_INNER_CLASS,
   CHAT_CARD_BUBBLE_WRAPPER_CLASS,
   chatCardBubbleWrapperMaxWidthStyle,
-} from './chatMessageBubbleLayout'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
 import {
   CW_AI_ASSISTANT_BUBBLE_APPEARANCE,
   CW_WORKSPACE_OWN_BUBBLE_APPEARANCE,
   type CwChatMessageBubbleAppearance,
 } from './chatMessageBubbleSurface'
-import { chatAiDisplaySegmentStackClass } from './chatMessageTypography'
-import type {
-  CwChatAttachmentPreviewOpenPayload,
-  CwChatDownloadByUrlFn,
-  CwChatFileDownloadProgressResolver,
-  CwChatMessageLayoutVariant,
-  CwChatRevealLocalFileFn,
-} from './types'
+import { chatAiDisplaySegmentStackClass } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageTypography'
+import type { CwChatAttachmentPreviewOpenPayload, CwChatDownloadByUrlFn, CwChatFileDownloadProgressResolver, CwChatMessageLayoutVariant, CwChatRevealLocalFileFn } from '@zengchaowu/ui-shared/components/CwChatMessageCell/types'
 import type { CwChatMessageForwardBundleTexts } from '../CwChatMessageForwardBundle/types'
-import type { CwChatMessageRedEnvelopeTexts } from './redEnvelopeTexts'
-import type { CwChatMessageTransferTexts } from './transferTexts'
+import type { CwChatMessageRedEnvelopeTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/redEnvelopeTexts'
+import type { CwChatMessageTransferTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/transferTexts'
 import type {
   CwImMentionProfileClickPayload,
   CwImMentionProfileResolver,

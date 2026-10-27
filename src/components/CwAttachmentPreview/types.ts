@@ -2,23 +2,13 @@ import type {
   CwAttachmentGalleryImagePreviewConfig,
   CwAttachmentGalleryItem,
 } from '../CwAttachmentGallery/types'
+import type { CwAttachmentPreviewTexts } from '@zengchaowu/ui-shared/components/CwAttachmentPreview/types'
 
 export interface AttachmentPreviewContextMenuEvent {
   clientX: number
   clientY: number
   index: number
   item: CwAttachmentGalleryItem | null
-}
-
-export interface CwAttachmentPreviewStyles {
-  indexLabel: string
-  galleryWrap: string
-}
-
-export interface CwAttachmentPreviewTexts {
-  closeLabel: string
-  downloadLabel: string
-  dialogAriaLabel: string
 }
 
 export interface CwAttachmentPreviewProps {
@@ -47,12 +37,6 @@ export interface CwAttachmentPreviewProps {
   onContextMenu?: (payload: AttachmentPreviewContextMenuEvent) => void
 }
 
-export interface CwAttachmentPreviewEmits {
-  (e: 'close'): void
-  (e: 'update:visible', value: boolean): void
-  (e: 'change', index: number): void
-}
-
 export interface ShowCwAttachmentPreviewOptions {
   files?: File[]
   /** 纯 URL 图片列表（与 files/items 三选一，优先 items） */
@@ -74,8 +58,4 @@ export interface ShowCwAttachmentPreviewOptions {
    * 微前端场景下需显式传入，否则非预览文件图标会 404。
    */
   publicAssetBaseUrl?: string
-}
-
-export interface ShowCwAttachmentPreviewReturn {
-  close: () => void
 }

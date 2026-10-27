@@ -6,7 +6,7 @@ import { CwImageFit } from '../../CwImageFit'
 import {
   CW_MARKDOWN_INLINE_IMAGE_BOUNDS_MAX_WIDTH_PX,
   resolveMarkdownInlineImageBoundsMaxHeightPx,
-} from '../constants/markdownInlineImageBounds'
+} from '@zengchaowu/ui-shared/components/CwMarkdown/constants/markdownInlineImageBounds'
 import { resolveMarkdownInlineImageDocumentIndex } from '../functions/resolveMarkdownInlineImageDocumentIndex'
 
 const MARKDOWN_ROOT = '[data-cw-markdown-root]'

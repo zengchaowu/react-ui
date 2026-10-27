@@ -1,6 +1,5 @@
 import type { HTMLAttributes } from 'react'
-
-export type CwProgressDirection = 'vertical' | 'horizontal'
+import type { CwProgressDirection, CwProgressTexts } from '@zengchaowu/ui-shared/components/CwProgress/types'
 
 export interface CwProgressProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange' | 'size'> {
@@ -17,30 +16,6 @@ export interface CwProgressProps
   texts?: Partial<CwProgressTexts>
   /** Vue `update:modelValue` / `change` 事件 */
   onChange?: (value: number) => void
-}
-
-export interface CwProgressStyles {
-  root: string
-  rootNormal: string
-  rootDisabled: string
-  rootReadonly: string
-  track: string
-  trackNormal: string
-  trackDisabled: string
-  trackReadonly: string
-  trackFocused: string
-  fill: string
-  fillNormal: string
-  fillReadonly: string
-  fillDisabled: string
-  sizeSmall: string
-  sizeMedium: string
-  sizeLarge: string
-}
-
-export interface CwProgressTexts {
-  /** 无障碍：滑块标签，由父级通过 aria-label 传入时可为空 */
-  sliderLabel: string
 }
 
 export interface CwProgressEmits {

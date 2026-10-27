@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { CwInfiniteLoopScrollHandle } from '../../CwInfiniteLoopScroll/CwInfiniteLoopScroll'
-import type { CwInfiniteLoopScrollItem } from '../../CwInfiniteLoopScroll/types'
+import type { CwInfiniteLoopScrollItem } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/types'
 import { clampIndex } from '@zengchaowu/shared/functions/number/clampIndex'
 
 const FALLBACK_WIDTH = 1000

@@ -5,10 +5,10 @@ import { createRoot, type Root } from 'react-dom/client'
 import { CW_OVERLAY_LEAVE_MS } from '@zengchaowu/ui-shared/constants/cwOverlayZIndex'
 import { scheduleBringOverlayHostToFront } from '../../constants/cwOverlayStack'
 import CwToast from './CwToast'
-import type { CwRichTextNode } from '../CwRichText/types'
-import type { CwToastPosition, CwToastType } from './types'
+import type { CwRichTextNode } from '@zengchaowu/ui-shared/components/CwRichText/types'
+import type { CwToastPosition, CwToastType } from '@zengchaowu/ui-shared/components/CwToast/types'
 
-export type { CwRichTextNode } from '../CwRichText/types'
+export type { CwRichTextNode } from '@zengchaowu/ui-shared/components/CwRichText/types'
 
 export interface ShowCwToastOptions {
   /** 纯文案；与 {@link dsl} 二选一，dsl 优先 */

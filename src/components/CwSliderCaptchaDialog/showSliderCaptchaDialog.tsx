@@ -1,13 +1,9 @@
 import type { ReactNode } from 'react'
 import { showDynamicDialog } from '../CwDynamicDialog'
-import { buildDialogModalContentClass } from '../CwDynamicDialog/styles'
+import { buildDialogModalContentClass } from '@zengchaowu/ui-shared/components/CwDynamicDialog/styles'
 import CwSliderCaptchaDialogContent from './CwSliderCaptchaDialogContent'
-import { defaultTexts } from './texts'
-import type {
-  CwSliderCaptchaDialogTexts,
-  ShowSliderCaptchaDialogOptions,
-  ShowSliderCaptchaDialogResult,
-} from './types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwSliderCaptchaDialog/texts'
+import type { CwSliderCaptchaDialogTexts, ShowSliderCaptchaDialogOptions, ShowSliderCaptchaDialogResult } from '@zengchaowu/ui-shared/components/CwSliderCaptchaDialog/types'
 
 /**
  * 显示滑块安全验证弹窗。

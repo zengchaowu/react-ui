@@ -1,16 +1,14 @@
 import { useState } from 'react'
 import { CW_OVERLAY_HEADER_TITLE_IN_BAR_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
 import { showDynamicDialog } from '../CwDynamicDialog'
+import type { CwDynamicDialogConfig } from '../CwDynamicDialog/types'
 import CwButton from '../CwButton/CwButton'
 import CwInput from '../CwInput/CwInput'
-import type { CwButtonTexts } from '../CwButton/types'
-import type {
-  CwNameConfirmDialogOptions,
-  CwNameConfirmDialogResult,
-  CwNameConfirmDialogStyles,
-} from './types'
-import { nameConfirmDialogBase } from './styles'
-import { defaultCwNameConfirmDialogTexts } from './texts'
+import type { CwButtonTexts } from '@zengchaowu/ui-shared/components/CwButton/types'
+import type { CwNameConfirmDialogOptions } from '@zengchaowu/ui-shared/components/CwNameConfirmDialog/types'
+import type { CwNameConfirmDialogResult, CwNameConfirmDialogStyles } from '@zengchaowu/ui-shared/components/CwNameConfirmDialog/types'
+import { nameConfirmDialogBase } from '@zengchaowu/ui-shared/components/CwNameConfirmDialog/styles'
+import { defaultCwNameConfirmDialogTexts } from '@zengchaowu/ui-shared/components/CwNameConfirmDialog/texts'
 
 interface CwNameConfirmDialogBodyProps {
   styles: CwNameConfirmDialogStyles
@@ -106,8 +104,8 @@ export function showNameConfirmDialog(
     confirmText = texts.confirmText,
     cancelText = texts.cancelText,
     inputPlaceholder = texts.inputPlaceholder,
-    dialogConfig = {},
   } = options
+  const dialogConfig: CwDynamicDialogConfig = options.dialogConfig ?? {}
 
   const expected = expectedName.trim()
   const styles = nameConfirmDialogBase

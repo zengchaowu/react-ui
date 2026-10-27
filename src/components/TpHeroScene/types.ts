@@ -76,27 +76,4 @@ export type TpHeroSceneResolvedProps = Omit<
   enableTrisolaris: boolean
 }
 
-export interface TpHeroSceneTexts {
-  title: string
-  subtitle: string
-  button: string
-  loading: string
-  error: string
-  retry: string
-  play: string
-  pause: string
-  fullscreen: string
-  exitFullscreen: string
-  volume: string
-  mute: string
-  unmute: string
-}
-
-export interface SceneQuality {
-  terrainDetail: number
-  shadowMapSize: number
-  pixelRatio: number
-  antialias: boolean
-  enableFog: boolean
-  enablePostProcessing: boolean
-}
+export type { SceneQuality } from '@zengchaowu/ui-shared/components/TpHeroScene/types'

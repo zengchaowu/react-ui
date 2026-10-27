@@ -1,12 +1,7 @@
 import type { CSSProperties, MouseEvent as ReactMouseEvent, ReactNode } from 'react'
-import type {
-  CwDataTableColumn,
-  CwDataTableLifecycle,
-  CwDataTableRow,
-  CwDataTableStyles,
-  CwDataTableTexts,
-  CwDataTableTreeRowMeta,
-} from './types'
+import type { CwDataTableColumn, CwDataTableLifecycle, CwDataTableRow } from './types'
+import type { CwDataTableStyles } from '@zengchaowu/ui-shared/components/CwDataTable/types'
+import type { CwDataTableTexts, CwDataTableTreeRowMeta } from '@zengchaowu/ui-shared/components/CwDataTable/types'
 import type { DataTableRenderRow } from './hooks/useVirtualScroll'
 import CwDataTableBodyCellContent from './CwDataTableBodyCellContent'
 import CwDataTableCellOverflow from './CwDataTableCellOverflow'

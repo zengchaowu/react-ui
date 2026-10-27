@@ -4,14 +4,10 @@ import type {
   MouseEvent as ReactMouseEvent,
   ReactNode,
 } from 'react'
-import type {
-  CwRichTextNode,
-  CwRichTextProps,
-  CwRichTextStyles,
-  CwRichTextTexts,
-} from './types'
-import { resolveRichTextStyles } from './richTextAppearance'
-import { defaultTexts } from './texts'
+import type { CwRichTextProps } from './types'
+import type { CwRichTextNode, CwRichTextStyles, CwRichTextTexts } from '@zengchaowu/ui-shared/components/CwRichText/types'
+import { resolveRichTextStyles } from '@zengchaowu/ui-shared/components/CwRichText/richTextAppearance'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwRichText/texts'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 
 export function CwRichText({

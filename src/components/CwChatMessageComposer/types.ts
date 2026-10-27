@@ -1,87 +1,17 @@
 import type { RefObject } from 'react'
-import type {
-  CwChatStickerPackItem,
-  CwChatStickerPickPayload,
-  CwChatToolbarActionPayload,
-  CwChatToolbarItemConfig,
-  CwChatToolbarTexts,
-} from '../CwChatToolbar/types'
-import type { VoiceRecordEndPayload } from '../CwAiChatComposer/voiceHoldTypes'
+import type { CwChatStickerPackItem, CwChatStickerPickPayload, CwChatToolbarItemConfig } from '../CwChatToolbar/types'
+import type { CwChatToolbarActionPayload, CwChatToolbarTexts } from '@zengchaowu/ui-shared/components/CwChatToolbar/types'
+import type { VoiceRecordEndPayload } from '@zengchaowu/ui-shared/components/CwAiChatComposer/voiceHoldTypes'
 import type { ChatMessageQuotePreview } from '@zengchaowu/shared/types/im-chat'
-import type {
-  CwMessageInputExpose,
-  CwMessageInputMentionItem,
-  CwMessageInputTexts,
-} from '../CwMessageInput/types'
+import type { CwMessageInputExpose } from '../CwMessageInput/types'
+import type { CwMessageInputMentionItem, CwMessageInputTexts } from '@zengchaowu/ui-shared/components/CwMessageInput/types'
 import type { AttachmentPreviewContextMenuEvent } from '../CwAttachmentPreview/types'
-
-export interface CwChatMessageComposerStyles {
-  root: string
-  /** 工具栏隐藏 file input（屏幕外、不参与布局） */
-  toolbarFileInput: string
-  /** 引用预览条容器（与待传附件条纵向间距一致） */
-  replyPreviewWrap: string
-  /** 移动端紧凑壳：外边框容器 */
-  mobileShell?: string
-  /** 移动端：左侧语音 / 右侧表情、加号按钮 */
-  mobileSideBtn?: string
-  /** 移动端：配件按钮激活态 */
-  mobileSideBtnActive?: string
-  /** 移动端：有草稿时右侧发送态（+ → 发送） */
-  mobileSendBtn?: string
-  /** 移动端：表情/加号底栏外层（高度动画） */
-  mobileAccessoryDock?: string
-  /** 移动端：底栏内容区固定高度 */
-  mobileAccessoryDockInner?: string
-  /** workspace 变体：圆角卡片容器 */
-  workspaceShell?: string
-  /** workspace 变体：底栏 */
-  workspaceFooter?: string
-  workspaceFooterLeft?: string
-  workspaceFooterRight?: string
-  workspaceMetaBtn?: string
-  workspaceMetaBtnIcon?: string
-  workspaceMetaBtnChevron?: string
-  workspaceModeBtn?: string
-  workspaceIconBtn?: string
-  workspaceSendBtn?: string
-  workspaceSendBtnDisabled?: string
-  workspaceStopBtn?: string
-}
-
-export interface CwChatMessageComposerMobileShellTexts {
-  voiceAriaLabel: string
-  keyboardAriaLabel: string
-  holdToSpeakLabel: string
-  voiceRecordingHint: string
-  voiceRecordingCancelHint: string
-  voiceRecordingConvertHint: string
-  voiceCancelLabel: string
-  voiceConvertTextLabel: string
-  emojiAriaLabel: string
-  moreAriaLabel: string
-  sendAriaLabel: string
-  sendLabel: string
-  stopAriaLabel: string
-}
-
-export type CwChatMessageComposerMobileAccessoryPanel = 'none' | 'emoji' | 'more'
-
-export interface CwChatMessageComposerMobileMoreItem {
-  key: string
-  label: string
-  icon: string
-}
+import type { CwChatMessageComposerTexts, CwChatMessageComposerMobileShellTexts, CwChatMessageComposerMobileMoreItem, CwChatMessageComposerMobileAccessoryPanel } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/types'
 
 export type CwChatMessageComposerRootLayout =
   | 'default'
   | 'fillPane'
   | 'transparentShell'
-
-export interface CwChatMessageComposerTexts {
-  /** 根容器可选无障碍标签 */
-  regionLabel?: string
-}
 
 export interface CwChatMessageComposerProps {
   disabled?: boolean

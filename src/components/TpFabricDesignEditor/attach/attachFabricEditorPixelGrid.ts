@@ -3,17 +3,17 @@ import {
   canvasRgba,
   hexToRgb,
   tokenSolidColors,
-} from '../../../assets/tokens/tokenSolidColors'
+} from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 import { ZCW_APP_THEME_CHANGED_EVENT } from '../../../utils/appThemeDom'
 import {
   parseCssRgbChannels,
   resolveElementCssColor,
 } from '../utils/resolveElementCssColor'
-import type { ArtboardSize } from '../document/fabricArtboard'
+import type { ArtboardSize } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricArtboard'
 import {
   paintFabricEditorPixelGrid,
   shouldShowFabricEditorPixelGrid,
-} from '../transform/fabricEditorPixelGrid.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/transform/fabricEditorPixelGrid.pure'
 
 function resolvePixelGridColors(host: HTMLElement) {
   const fallback = hexToRgb(tokenSolidColors.grayColor15)

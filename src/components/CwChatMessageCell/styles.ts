@@ -1,6 +1,6 @@
-import type { CwChatMessageCellStyles } from './types'
-import { CHAT_BUBBLE_MAX_WIDTH_CLASS } from './chatMessageBubbleLayout'
-import { chatMessageFooterMetaTextClass } from './chatMessageTypography'
+import type { CwChatMessageCellStyles } from '@zengchaowu/ui-shared/components/CwChatMessageCell/types'
+import { CHAT_BUBBLE_MAX_WIDTH_CLASS } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
+import { chatMessageFooterMetaTextClass } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageTypography'
 import { FOCUS_VISIBLE_INTERACTIVE_CLASS } from '@zengchaowu/ui-shared/functions/ui/focusStyles'
 
 /** 己方发送态 tooltip：`appearance="inline"` */

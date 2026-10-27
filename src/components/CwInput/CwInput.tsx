@@ -12,13 +12,8 @@ import {
 } from 'react'
 import './cw-input-plain.css'
 import CwIcon from '../CwIcon/CwIcon'
-import type {
-  CwInputAppearance,
-  CwInputHandle,
-  CwInputProps,
-  CwInputSlotContent,
-  CwInputSlotProps,
-} from './types'
+import type { CwInputHandle, CwInputProps, CwInputSlotContent, CwInputSlotProps } from './types'
+import type { CwInputAppearance } from '@zengchaowu/ui-shared/components/CwInput/types'
 import {
   appearanceIconClass,
   appearanceInputClass,
@@ -29,8 +24,8 @@ import {
   appearanceSuffixClass,
   appearanceWrapperClass,
   inputBase,
-} from './styles'
-import { defaultTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwInput/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwInput/texts'
 import { cwClearIconSize } from '@zengchaowu/ui-shared/functions/ui/cwClearIconSize'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 import { useCwInputDisplayPrefix } from './useCwInputDisplayPrefix'

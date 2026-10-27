@@ -5,10 +5,10 @@ import { chatOwnBubbleBodyClasses } from './chatMessageBubbleSurface'
 import {
   chatVoiceBubbleWidthRem,
   formatChatVoiceDurationLabel,
-} from './chatVoiceBubbleLayout'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatVoiceBubbleLayout'
 import { useChatVoiceIconFrame } from './useChatVoiceIconFrame'
 import { useChatVoiceMessagePlayback } from './useChatVoiceMessagePlayback'
-import { chatMessageOwnLeadingActionClass } from './chatMessageOwnLeadingAction'
+import { chatMessageOwnLeadingActionClass } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageOwnLeadingAction'
 import type { CwChatMessageVoiceProps } from './messageParts.types'
 
 const chatOwnVoiceBubbleClasses = [

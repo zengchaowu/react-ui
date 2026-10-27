@@ -1,16 +1,5 @@
 export { default as CwSidebarNav } from './CwSidebarNav'
-export { defaultCwSidebarNavTexts } from './texts'
-export { sidebarNavBase, resolveSidebarNavStyles } from './styles'
-export type {
-  CwSidebarNavAppearance,
-  CwSidebarNavEmits,
-  CwSidebarNavIconScope,
-  CwSidebarNavItem,
-  CwSidebarNavItemKey,
-  CwSidebarNavItemScope,
-  CwSidebarNavProps,
-  CwSidebarNavSection,
-  CwSidebarNavSectionLabelScope,
-  CwSidebarNavStyles,
-  CwSidebarNavTexts,
-} from './types'
+export { defaultCwSidebarNavTexts } from '@zengchaowu/ui-shared/components/CwSidebarNav/texts'
+export { sidebarNavBase, resolveSidebarNavStyles } from '@zengchaowu/ui-shared/components/CwSidebarNav/styles'
+export type { CwSidebarNavEmits, CwSidebarNavIconScope, CwSidebarNavItem, CwSidebarNavItemScope, CwSidebarNavProps, CwSidebarNavSection, CwSidebarNavSectionLabelScope } from './types'
+export type { CwSidebarNavAppearance, CwSidebarNavItemKey, CwSidebarNavStyles, CwSidebarNavTexts } from '@zengchaowu/ui-shared/components/CwSidebarNav/types'

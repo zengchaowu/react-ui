@@ -1,5 +1,6 @@
 export { default as CwExcelEditor } from './CwExcelEditor'
-export { defaultTexts as defaultCwExcelEditorTexts } from './texts'
-export { createBlankWorkbook } from './functions/workbook'
+export { defaultTexts as defaultCwExcelEditorTexts } from '@zengchaowu/ui-shared/components/CwExcelEditor/texts'
+export { createBlankWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/workbook'
 export { parseExcelSource, workbookToArrayBuffer, workbookToBlob } from './functions/workbookIo'
 export type * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwExcelEditor/types'

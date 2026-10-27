@@ -15,26 +15,18 @@ import CwChatMessageQuote from '../CwChatMessageQuote/CwChatMessageQuote'
 import {
   CHAT_CARD_BUBBLE_BODY_INNER_CLASS,
   chatCardBubbleWrapperMaxWidthStyle,
-} from '../CwChatMessageCell/chatMessageBubbleLayout'
-import { defaultCwChatToolbarTexts } from '../CwChatToolbar/texts'
-import { defaultCwMessageInputTexts } from '../CwMessageInput/texts'
-import { CW_TREE_NODE_DRAG_MIME } from '../CwTree/treeDragMime'
-import type {
-  CwChatToolbarActionPayload,
-  CwChatToolbarItemConfig,
-} from '../CwChatToolbar/types'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
+import { defaultCwChatToolbarTexts } from '@zengchaowu/ui-shared/components/CwChatToolbar/texts'
+import { defaultCwMessageInputTexts } from '@zengchaowu/ui-shared/components/CwMessageInput/texts'
+import { CW_TREE_NODE_DRAG_MIME } from '@zengchaowu/ui-shared/components/CwTree/treeDragMime'
+import type { CwChatToolbarItemConfig } from '../CwChatToolbar/types'
+import type { CwChatToolbarActionPayload } from '@zengchaowu/ui-shared/components/CwChatToolbar/types'
 import type {
   CwMessageInputExpose,
   CwMessageInputInlineImagePreviewPayload,
 } from '../CwMessageInput/types'
-import type {
-  CwChatMessageComposerEmits,
-  CwChatMessageComposerHandle,
-  CwChatMessageComposerMobileAccessoryPanel,
-  CwChatMessageComposerMobileMoreItem,
-  CwChatMessageComposerMobileShellHandle,
-  CwChatMessageComposerProps,
-} from './types'
+import type { CwChatMessageComposerEmits, CwChatMessageComposerHandle, CwChatMessageComposerMobileShellHandle, CwChatMessageComposerProps } from './types'
+import type { CwChatMessageComposerMobileAccessoryPanel, CwChatMessageComposerMobileMoreItem } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/types'
 import CwChatMessageComposerMobileShell from './CwChatMessageComposerMobileShell'
 import CwChatToolbarExpressionPanel from '../CwChatToolbar/CwChatToolbarExpressionPanel'
 import CwChatToolbarEmojiPanel from '../CwChatToolbar/CwChatToolbarEmojiPanel'
@@ -47,9 +39,9 @@ import { showCwAttachmentPreview } from '../CwAttachmentPreview/showCwAttachment
 import type { AttachmentPreviewContextMenuEvent } from '../CwAttachmentPreview/types'
 import type { CwAttachmentGalleryItem } from '../CwAttachmentGallery/types'
 import { composerBase, resolveComposerRootClass } from './styles'
-import { defaultCwChatMessageComposerTexts } from './texts'
+import { defaultCwChatMessageComposerTexts } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/texts'
 import { syncVirtualKeyboardOpenState } from '../../lib/virtualKeyboard'
-import { absolutePathFromTreeDrop } from './functions/absolutePathFromTreeDrop'
+import { absolutePathFromTreeDrop } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/functions/absolutePathFromTreeDrop'
 import { useChatToolbarFilePick } from './functions/useChatToolbarFilePick'
 import {
   CwPublicAssetBaseUrlContext,

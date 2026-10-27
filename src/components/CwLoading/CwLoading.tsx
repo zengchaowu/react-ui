@@ -1,5 +1,6 @@
-import type { CwLoadingAppearance, CwLoadingProps } from './types'
-import { appearanceStyles, loadingBase } from './styles'
+import type { CwLoadingProps } from './types'
+import type { CwLoadingAppearance } from '@zengchaowu/ui-shared/components/CwLoading/types'
+import { appearanceStyles, loadingBase } from '@zengchaowu/ui-shared/components/CwLoading/styles'
 
 type CwLoadingSize = 'small' | 'medium' | 'large'
 type CwLoadingType = 'spinner' | 'dots' | 'bars'

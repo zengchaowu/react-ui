@@ -6,7 +6,7 @@ import {
 } from 'react'
 import type { CwDivProps } from './types'
 import type { CwDivScrollExpose } from './resolveCwDivViewport'
-import { divBase } from './styles'
+import { divBase } from '@zengchaowu/ui-shared/components/CwDiv/styles'
 import { useCwDivScrollbar } from './composables/useCwDivScrollbar'
 
 export interface CwDivHandle extends CwDivScrollExpose {

@@ -1,4 +1,5 @@
 import type { ComponentType, ReactNode } from 'react'
+import type { CwDesignToolRailTexts } from '@zengchaowu/ui-shared/components/CwDesignToolRail/types'
 
 export interface CwDesignToolRailItemConfig {
   key: string
@@ -23,25 +24,6 @@ export interface CwDesignToolRailGroupConfig {
   /** 底部对齐（如文件/编辑操作） */
   align?: 'top' | 'bottom'
   items: CwDesignToolRailItemConfig[]
-}
-
-export interface CwDesignToolRailStyles {
-  root: string
-  leading: string
-  /** top 顶栏：绝对居中的工具簇 */
-  center: string
-  scroll: string
-  group: string
-  divider: string
-  item: string
-  itemActive: string
-  itemDanger: string
-  footer: string
-  dropdownCaret: string
-}
-
-export interface CwDesignToolRailTexts {
-  itemTooltipSuffix: string
 }
 
 export interface CwDesignToolRailItemSlotProps {
@@ -78,9 +60,7 @@ export interface CwDesignToolRailProps {
   onItemClick?: (item: CwDesignToolRailItemConfig) => void
 }
 
-
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwDesignToolRailEmits {
   'item-click': [item: CwDesignToolRailItemConfig]
 }
-

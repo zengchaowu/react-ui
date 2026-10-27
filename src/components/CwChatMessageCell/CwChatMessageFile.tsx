@@ -11,7 +11,7 @@ import {
 import {
   chatMessageFileMetaTextClass,
   chatMessageFileNameTextClass,
-} from './chatMessageTypography'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageTypography'
 
 function numericPercent(value: number | undefined): number | null {
   if (typeof value !== 'number' || !Number.isFinite(value)) return null

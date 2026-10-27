@@ -4,17 +4,13 @@ import type {
   WechatPcQrcodeGenerateResult,
   WechatPcQrcodeLoginStatus,
 } from '@zengchaowu/shared/functions/wechat/openPlatform/resolveWechatPcQrcodeLoginSession'
-import type { CwInputTexts } from '../CwInput/types'
-import type { CwButtonTexts } from '../CwButton/types'
-import type { CwCountDownButtonTexts } from '../CwCountDownButton/types'
-import type { CwCheckboxTexts } from '../CwCheckbox/types'
+import type { CwInputTexts } from '@zengchaowu/ui-shared/components/CwInput/types'
+import type { CwButtonTexts } from '@zengchaowu/ui-shared/components/CwButton/types'
+import type { CwCountDownButtonTexts } from '@zengchaowu/ui-shared/components/CwCountDownButton/types'
+import type { CwCheckboxTexts } from '@zengchaowu/ui-shared/components/CwCheckbox/types'
 import type { CwSelectTexts, CwSelectOption } from '../CwSelect/types'
-import type { CwRichTextNode, CwRichTextTexts } from '../CwRichText/types'
-
-export interface CwLoginDialogAgreementLink {
-  id: string
-  text: string
-}
+import type { CwRichTextNode, CwRichTextTexts } from '@zengchaowu/ui-shared/components/CwRichText/types'
+import type { CwLoginDialogAgreementLink } from '@zengchaowu/ui-shared/components/CwLoginDialog/types'
 
 export interface CwLoginDialogThirdPartyLink {
   id: string
@@ -265,7 +261,6 @@ export interface ShowLoginDialogResult {
   userInfo: unknown
   token: string
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwLoginDialogContentEmits {

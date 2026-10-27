@@ -9,36 +9,36 @@ import {
 import {
   exportArtboardSvg,
   resolveArtboardSize,
-} from '../document/fabricArtboard'
-import { tokenSolidColors } from '../../../assets/tokens/tokenSolidColors'
-import { resolveFabricCanvasBackgroundColor } from '../document/fabricEditorBackground.pure'
-import type { FabricEditorDocumentContext } from '../document/fabricEditorDocument.types'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricArtboard'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
+import { resolveFabricCanvasBackgroundColor } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorBackground.pure'
+import type { FabricEditorDocumentContext } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorDocument.types'
 import {
   layerExportBasenameForSvg,
   sanitizeSvgFilenameBase,
-} from '../layers/fabricDesignEditorLayerTree.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricDesignEditorLayerTree.pure'
 import {
   sanitizeSvgMarkupBeforeEditorImport,
   wrapFabricObjectSvgAsDocument,
-} from '../document/fabricDesignEditorPure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricDesignEditorPure'
 import {
   hydrateFabricDesignDocument,
-} from '../document/fabricDesignDocument.pure'
-import { buildFabricDesignSelectionContext } from '../document/fabricDesignDocumentSerialize.pure'
-import type { FabricDesignDocumentV1 } from '../document/fabricDesignDocument.types'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricDesignDocument.pure'
+import { buildFabricDesignSelectionContext } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricDesignDocumentSerialize.pure'
+import type { FabricDesignDocumentV1 } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricDesignDocument.types'
 import {
   materializeSvgImportRoots,
   triggerSvgFileDownload,
-} from '../import/fabricEditorSvgImport.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/import/fabricEditorSvgImport.pure'
 import {
   createFabricImageFromFile,
   placeImportedFabricRoots,
-} from '../import/fabricEditorImageImport.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/import/fabricEditorImageImport.pure'
 import {
   ensureFabricLayerNamesInTree,
   importLayerBaseNameFromFileName,
-} from '../layers/fabricLayerNaming.pure'
-import { syncGroupsInteractionFromCanvasSelection } from '../layers/fabricGroupPointerPolicy.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricLayerNaming.pure'
+import { syncGroupsInteractionFromCanvasSelection } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricGroupPointerPolicy.pure'
 import type { TpFabricDesignEditorTool } from '../types'
 
 export function useFabricEditorDocumentSvg(options: {

@@ -4,7 +4,7 @@ import { APP_OVERLAY_SAFE_BOTTOM_CLASS } from '@zengchaowu/ui-shared/constants/a
 import {
   CW_GLASS_FROSTED_MENU_ITEM_HOVER_CLASS,
   CW_GLASS_FROSTED_MENU_ITEM_KEYBOARD_CLASS,
-} from '../CwContextMenu/styles'
+} from '@zengchaowu/ui-shared/components/CwContextMenu/styles'
 import type { CwMessageInputMentionSheetStyles } from './types'
 
 const sheetNoDrag = CW_OVERLAY_ELECTRON_NO_DRAG_CLASS

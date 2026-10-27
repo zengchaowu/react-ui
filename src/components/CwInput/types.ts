@@ -1,19 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-
-export type CwInputAppearance =
-  | 'default'
-  | 'pill'
-  | 'search'
-  | 'glass-rounded'
-  | 'pill-compact'
-  | 'surface-light'
-  | 'surface-dark'
-  /** 复合控件内嵌：无边框透明底（如登录区号+手机号行） */
-  | 'embedded'
-  /** 裸输入框：无背景、无边框、无内边距 */
-  | 'plain'
-  /** 工具栏紧凑数字框：小边框、全方向收紧内边距（如 AI 温度） */
-  | 'compact'
+import type { CwInputAppearance, CwInputTexts } from '@zengchaowu/ui-shared/components/CwInput/types'
 
 /** 具名插槽（icon / clear / suffix）可用的作用域参数 */
 export interface CwInputSlotProps {
@@ -90,12 +76,6 @@ export interface CwInputProps
   onClear?: () => void
   /** 按键事件 */
   onKeyDown?: (event: KeyboardEvent) => void
-}
-
-export interface CwInputTexts {
-  placeholder?: string
-  label?: string
-  clear?: string
 }
 
 /** 组件暴露的 imperative 方法（对应 Vue defineExpose） */

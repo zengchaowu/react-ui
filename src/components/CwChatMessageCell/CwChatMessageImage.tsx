@@ -2,7 +2,7 @@ import type { CwChatMessageImageProps } from './messageParts.types'
 import {
   CHAT_MEDIA_BUBBLE_MAX_PX,
   computeImageOrVideoBubbleSizeStyle,
-} from './chatMessageBubbleLayout'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
 import {
   chatOwnMediaBubbleRingClasses,
   chatPeerBubbleBodyClasses,
@@ -10,7 +10,7 @@ import {
 import {
   chatMessageMetaTextClass,
   chatMessageSecondaryTextClass,
-} from './chatMessageTypography'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageTypography'
 
 function numericPercent(value: number | undefined): number | null {
   if (typeof value !== 'number' || !Number.isFinite(value)) return null

@@ -1,6 +1,5 @@
 import type { HTMLAttributes } from 'react'
-
-export type CwCenterRulerPickerValue = number | string
+import type { CwCenterRulerPickerValue, CwCenterRulerPickerTexts } from '@zengchaowu/ui-shared/components/CwCenterRulerPicker/types'
 
 export interface CwCenterRulerPickerProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'className' | 'onChange'> {
@@ -36,33 +35,8 @@ export interface CwCenterRulerPickerProps
   onChange?: (value: CwCenterRulerPickerValue) => void
 }
 
-export interface CwCenterRulerPickerStyles {
-  root: string
-  rootDisabled: string
-  rootReadonly: string
-  viewport: string
-  viewportFocused: string
-  centerIndicator: string
-  track: string
-  trackDragging: string
-  trackInstant: string
-  trackIdle: string
-  tick: string
-  tickMark: string
-  tickLabel: string
-  tickLabelHidden: string
-  tickLabelActive: string
-  tickLabelInactive: string
-}
-
-export interface CwCenterRulerPickerTexts {
-  ariaLabel: string
-}
-
-
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwCenterRulerPickerEmits {
   'update:modelValue': [value: CwCenterRulerPickerValue]
   change: [value: CwCenterRulerPickerValue]
 }
-

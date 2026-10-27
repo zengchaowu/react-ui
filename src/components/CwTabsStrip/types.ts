@@ -1,7 +1,6 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 import type { CwBadgeOptions } from '../CwBadge/types'
-
-export type CwTabsStripValue = string | number
+import type { CwTabsStripValue, CwTabsStripAppearance, CwTabsStripTexts } from '@zengchaowu/ui-shared/components/CwTabsStrip/types'
 
 /**
  * Tab 条：横向/纵向、滚动或等分、底部（或侧向）指示器，可选角标。
@@ -18,84 +17,6 @@ export interface CwTabsStripItem {
   /** 透传 `CwBadge` */
   badge?: CwBadgeOptions
 }
-
-export interface CwTabsStripStyles {
-  /** 根容器（基础，不含方向） */
-  root: string
-  /** 横向布局 */
-  rootHorizontal: string
-  /** 纵向布局 */
-  rootVertical: string
-  /** 等分宽度时的根容器（横向） */
-  rootEqualWidth: string
-  /** 非等分横向滚动 */
-  rootScroll: string
-  /** 纵向可滚动 */
-  rootScrollVertical: string
-  /** 整组禁用 */
-  rootDisabled: string
-  /** 整组只读 */
-  rootReadonly: string
-  /** 单个 Tab 按钮基础样式 */
-  tab: string
-  /** 横向 Tab 默认高度与内边距 */
-  tabHorizontal: string
-  /** 纵向 Tab */
-  tabVertical: string
-  /** Tab 等分宽度 */
-  tabEqualWidth: string
-  /** Tab 自适应宽度 */
-  tabAdaptive: string
-  /** Tab 激活状态 */
-  tabActive: string
-  /** Tab 禁用状态 */
-  tabDisabled: string
-  /** Tab 只读（可聚焦不可切换） */
-  tabReadonly: string
-  /** Tab 聚焦样式 */
-  tabFocused: string
-  /** Tab 内容包裹（含 Badge） */
-  tabContent: string
-  /** Tab 文本基础样式 */
-  tabText: string
-  /** Tab 文本未激活状态 */
-  tabTextInactive: string
-  /** Tab 文本激活状态 */
-  tabTextActive: string
-  /** 指示条基础 */
-  indicator: string
-  /** 横向、指示条在末端（通常为底） */
-  indicatorHorizontalEnd: string
-  /** 横向、指示条在起始（通常为顶） */
-  indicatorHorizontalStart: string
-  /** 纵向、指示条在末端（通常为右） */
-  indicatorVerticalEnd: string
-  /** 纵向、指示条在起始（通常为左） */
-  indicatorVerticalStart: string
-  /** 指示条整组禁用色 */
-  indicatorDisabled: string
-  /** 指示条只读色 */
-  indicatorReadonly: string
-  /** 指示条完成首次布局后可附加的类 */
-  indicatorReady: string
-  /** 指示条位置过渡 */
-  indicatorMotion: string
-  /** 无过渡 */
-  indicatorNoMotion: string
-  /** 尺寸：小 */
-  sizeSmall: string
-  /** 尺寸：中（横向时与 `tabHorizontal` 搭配） */
-  sizeMedium: string
-  /** 尺寸：大 */
-  sizeLarge: string
-}
-
-export interface CwTabsStripTexts {
-  /** 标签列表无障碍名称 */
-  tablistLabel?: string
-}
-
-export type CwTabsStripAppearance = 'default' | 'underline'
 
 /** 自定义 Tab 内容（对应 Vue 作用域插槽 `tab`） */
 export interface CwTabsStripTabScope {

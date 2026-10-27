@@ -17,8 +17,8 @@ import {
   countDownRootBase,
   countDownRootBlock,
   resolveCountDownLabelClass,
-} from './styles'
-import { defaultTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwCountDownButton/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwCountDownButton/texts'
 import { CwButton } from '../CwButton'
 
 export interface CwCountDownButtonComponentProps

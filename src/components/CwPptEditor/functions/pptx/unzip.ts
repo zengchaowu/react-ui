@@ -1,4 +1,4 @@
-import { buildArchivePayload, type PptxArchivePayload } from '../archiveEntries'
+import { buildArchivePayload, type PptxArchivePayload } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/archiveEntries'
 
 /**
  * pptx 解压 Worker：创建一次复用。pako 解压和图片 base64 都是同步重活，放主线程会卡住渲染，

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-import type { CwIconEmbed } from '../CwIcon/types'
+
+import type { CwSelectTagsTexts } from '@zengchaowu/ui-shared/components/CwSelectTags/types'
 
 export interface CwSelectTagsTag {
   label: string
@@ -60,50 +61,6 @@ export interface CwSelectTagsProps {
   onFocus?: (event: FocusEvent) => void
   /** 失焦事件 */
   onBlur?: (event: FocusEvent) => void
-}
-
-export interface CwSelectTagsStyles {
-  root: string
-  rootNormal: string
-  rootDisabled: string
-  rootReadonly: string
-  label: string
-  labelNormal: string
-  labelDisabled: string
-  tagsWrapper: string
-  tagsWrapperNormal: string
-  tagsWrapperReadonly: string
-  tagsWrapperFocus: string
-  tagsWrapperDisabled: string
-  tagsContainer: string
-  /** 右侧后缀区（清除、下拉箭头等，由 CwSelect 等多选场景注入） */
-  suffix: string
-  tagItem: string
-  moreTag: string
-  placeholder: string
-  placeholderNormal: string
-  placeholderDisabled: string
-  /** 尺寸样式：小（容器和占位符） */
-  sizeSmall?: string
-  /** 尺寸样式：中（容器和占位符） */
-  sizeMedium?: string
-  /** 尺寸样式：大（容器和占位符） */
-  sizeLarge?: string
-  /** 占位符尺寸样式：小 */
-  placeholderSizeSmall?: string
-  /** 占位符尺寸样式：中 */
-  placeholderSizeMedium?: string
-  /** 占位符尺寸样式：大 */
-  placeholderSizeLarge?: string
-  /** CwIcon 样式配置 */
-  moreIconStyles?: CwIconEmbed
-}
-
-export interface CwSelectTagsTexts {
-  placeholder?: string
-  label?: string
-  selectAll?: string
-  more?: string
 }
 
 export interface CwSelectTagsEmits {

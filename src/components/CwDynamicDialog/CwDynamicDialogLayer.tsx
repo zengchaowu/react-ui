@@ -6,7 +6,7 @@ import type {
   CwDynamicDialogInnerHandle,
   CwDynamicDialogLayerProps,
 } from './types'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDynamicDialog/texts'
 
 function generateLayerId(): string {
   return `cw-dialog-layer-${Date.now()}_${Math.random().toString(36).slice(2, 11)}`

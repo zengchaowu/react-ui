@@ -1,9 +1,5 @@
-import type { UploadFile } from '../CwFileUpload/types'
-
-export interface CwProfileUploaderTexts {
-  /** 预览头像 `img` 的 alt */
-  previewImageAlt: string
-}
+import type { UploadFile } from '@zengchaowu/ui-shared/components/CwFileUpload/types'
+import type { CwProfileUploaderTexts } from '@zengchaowu/ui-shared/components/CwProfileUploader/types'
 
 export interface CwProfileUploaderProps {
   accept?: string
@@ -25,9 +21,8 @@ export interface CwProfileUploaderProps {
   className?: string
 }
 
-
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwProfileUploaderEmits {
-  'update:modelValue': [value: import('../CwFileUpload/types').UploadFile[]]
-  change: [value: import('../CwFileUpload/types').UploadFile[]]
+  'update:modelValue': [value: import('@zengchaowu/ui-shared/components/CwFileUpload/types').UploadFile[]]
+  change: [value: import('@zengchaowu/ui-shared/components/CwFileUpload/types').UploadFile[]]
 }

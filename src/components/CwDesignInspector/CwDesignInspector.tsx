@@ -1,10 +1,8 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
-import { designInspectorBase } from './styles'
-import { defaultCwDesignInspectorTexts } from './texts'
-import type {
-  CwDesignInspectorProps,
-  CwDesignInspectorSectionConfig,
-} from './types'
+import { designInspectorBase } from '@zengchaowu/ui-shared/components/CwDesignInspector/styles'
+import { defaultCwDesignInspectorTexts } from '@zengchaowu/ui-shared/components/CwDesignInspector/texts'
+import type { CwDesignInspectorProps } from './types'
+import type { CwDesignInspectorSectionConfig } from '@zengchaowu/ui-shared/components/CwDesignInspector/types'
 
 function renderSectionSlot(
   slot:

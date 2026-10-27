@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CwSelectTags } from './CwSelectTags'
 import { CwSelect } from '../CwSelect'
 import type { CwSelectOption } from '../CwSelect/types'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwSelectTags/texts'
 
 const demoTags: CwSelectOption[] = [
   { label: '选项 A', value: 'a' },

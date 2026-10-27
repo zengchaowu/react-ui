@@ -6,8 +6,8 @@ import {
   type ReactNode,
 } from 'react'
 import type { CwResizeFrameProps } from './types'
-import { resizeFrameBase } from './styles'
-import { defaultCwResizeFrameTexts } from './texts'
+import { resizeFrameBase } from '@zengchaowu/ui-shared/components/CwResizeFrame/styles'
+import { defaultCwResizeFrameTexts } from '@zengchaowu/ui-shared/components/CwResizeFrame/texts'
 
 export interface CwResizeFrameComponentProps
   extends CwResizeFrameProps,

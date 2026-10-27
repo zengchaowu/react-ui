@@ -1,10 +1,7 @@
 import { useMemo } from 'react'
-import type {
-  CwDynamicDialogConfig,
-  CwDynamicDialogStyles,
-  CwDynamicDialogVariant,
-} from '../types'
-import { mergeDialogModalContentClass } from '../styles'
+import type { CwDynamicDialogConfig } from '../types'
+import type { CwDynamicDialogStyles, CwDynamicDialogVariant } from '@zengchaowu/ui-shared/components/CwDynamicDialog/types'
+import { mergeDialogModalContentClass } from '@zengchaowu/ui-shared/components/CwDynamicDialog/styles'
 
 export interface UseCwDialogVariantOptions {
   config: CwDynamicDialogConfig

@@ -2,25 +2,13 @@ import type { ComponentType, ReactNode } from 'react'
 import type {
   CwChatStickerPackItem,
   CwChatStickerPickPayload,
-} from './types/stickerPack'
+} from '@zengchaowu/ui-shared/components/CwChatToolbar/types/stickerPack'
+import type { CwChatToolbarAction, CwChatToolbarTexts } from '@zengchaowu/ui-shared/components/CwChatToolbar/types'
 
-export type { CwChatStickerPackItem, CwChatStickerPickPayload } from './types/stickerPack'
+export type { CwChatStickerPackItem, CwChatStickerPickPayload } from '@zengchaowu/ui-shared/components/CwChatToolbar/types/stickerPack'
 
 /** 等价 Vue `Component`：可渲染的 React 组件类型 */
 export type CwChatToolbarIconComponent = ComponentType<Record<string, unknown>>
-
-/**
- * 声明式「行为」数据，仅供业务页面在 @item-click 后读取；
- * CwChatToolbar 不解析、不执行。
- */
-export type CwChatToolbarAction =
-  | { type: 'emit' }
-  | { type: 'open-file-picker'; accept: string; multiple?: boolean }
-
-/** 业务层对工具栏行为归一后的载荷（Toolbar 自身不发出） */
-export type CwChatToolbarActionPayload =
-  | { kind: 'tap'; key: string }
-  | { kind: 'file'; key: string; files: FileList }
 
 /**
  * 工具栏项：纯展示配置 + 可序列化的 action 元数据（由父组件解释）
@@ -38,27 +26,6 @@ export interface CwChatToolbarItemConfig {
    */
   action?: CwChatToolbarAction
   buttonClass?: string
-}
-
-export interface CwChatToolbarStyles {
-  root: string
-  cluster: string
-  itemButton: string
-}
-
-export interface CwChatToolbarTexts {
-  /** icon 缺失或无效时的 asset 图标名（无 `icon-` 前缀） */
-  fallbackAssetIcon: string
-  /** EmojiOne 分类 Tab 显示名（key 为英文分类 id） */
-  emojiCategoryLabels?: Record<string, string>
-  /** 表情/贴纸面板：常用 emoji Tab */
-  emojiTabAriaLabel: string
-  /** 贴纸包为空时的占位文案 */
-  emptyStickerPackLabel: string
-  /** 单个贴纸无名称时的 aria-label */
-  stickerFallbackAriaLabel: string
-  /** 全量表情分类面板加载中文案 */
-  emojiPanelLoadingLabel: string
 }
 
 export interface CwChatToolbarProps {

@@ -9,13 +9,9 @@ import {
   type PointerEvent as ReactPointerEvent,
   type MouseEvent as ReactMouseEvent,
 } from 'react'
-import type {
-  CwSwipeRowAction,
-  CwSwipeRowActionTone,
-  CwSwipeRowContentClass,
-  CwSwipeRowProps,
-} from './types'
-import { swipeRowBase } from './styles'
+import type { CwSwipeRowProps } from './types'
+import type { CwSwipeRowAction, CwSwipeRowActionTone, CwSwipeRowContentClass } from '@zengchaowu/ui-shared/components/CwSwipeRow/types'
+import { swipeRowBase } from '@zengchaowu/ui-shared/components/CwSwipeRow/styles'
 
 export interface CwSwipeRowComponentProps
   extends CwSwipeRowProps,

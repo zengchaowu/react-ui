@@ -11,11 +11,9 @@ import {
 } from 'react'
 import '../CwInput/cw-input-plain.css'
 import { CwIcon } from '../CwIcon/CwIcon'
-import type {
-  CwNumberInputProps,
-  CwNumberInputStyles,
-} from './types'
-import { numberInputBase } from './styles'
+import type { CwNumberInputProps } from './types'
+import type { CwNumberInputStyles } from '@zengchaowu/ui-shared/components/CwNumberInput/types'
+import { numberInputBase } from '@zengchaowu/ui-shared/components/CwNumberInput/styles'
 import {
   appearanceIconClass,
   appearanceInputClass,
@@ -26,9 +24,9 @@ import {
   appearanceSuffixClass,
   appearanceWrapperClass,
   inputBase,
-} from '../CwInput/styles'
-import { defaultTexts } from './texts'
-import { stepNumber } from './functions/stepNumber'
+} from '@zengchaowu/ui-shared/components/CwInput/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwNumberInput/texts'
+import { stepNumber } from '@zengchaowu/ui-shared/components/CwNumberInput/functions/stepNumber'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 import { cwClearIconSize } from '@zengchaowu/ui-shared/functions/ui/cwClearIconSize'
 import type { CwInputSlotContent, CwInputSlotProps } from '../CwInput/types'

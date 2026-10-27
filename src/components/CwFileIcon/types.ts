@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from 'react'
+import type { CwFileIconTexts } from '@zengchaowu/ui-shared/components/CwFileIcon/types'
 
 export interface CwFileIconProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'size'> {
@@ -15,16 +16,4 @@ export interface CwFileIconProps
   baseUrl?: string
   /** 自定义文本 */
   texts?: Partial<CwFileIconTexts>
-}
-
-export interface CwFileIconTexts {
-  /** 图标描述（用于无障碍访问） */
-  alt?: string
-}
-
-/** 其它组件内嵌 FileIcon 时的精简配置 */
-export interface CwFileIconEmbed {
-  size?: number
-  class?: string
-  image?: string
 }

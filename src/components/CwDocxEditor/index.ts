@@ -1,4 +1,5 @@
 export { default as CwDocxEditor } from './CwDocxEditor'
-export { defaultTexts as defaultCwDocxEditorTexts } from './texts'
-export { createBlankDocument, documentToArrayBuffer, parseDocx } from './functions/docx'
+export { defaultTexts as defaultCwDocxEditorTexts } from '@zengchaowu/ui-shared/components/CwDocxEditor/texts'
+export { createBlankDocument, documentToArrayBuffer, parseDocx } from '@zengchaowu/ui-shared/components/CwDocxEditor/functions/docx'
 export type * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwDocxEditor/types'

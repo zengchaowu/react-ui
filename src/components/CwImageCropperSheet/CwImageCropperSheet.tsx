@@ -15,7 +15,7 @@ import {
 } from '../CwDynamicSheet/showDynamicSheet'
 import type { CwDynamicSheetConfig } from '../CwDynamicSheet'
 import CwImageCropper from '../CwImageCropper/CwImageCropper'
-import { cropImageToBlob } from '../CwImageCropper/functions/canvasCrop'
+import { cropImageToBlob } from '@zengchaowu/ui-shared/components/CwImageCropper/functions/canvasCrop'
 import type { CwImageCropExportRequest } from '../CwImageCropper/types'
 import type {
   CwImageCropperSheetHandle,

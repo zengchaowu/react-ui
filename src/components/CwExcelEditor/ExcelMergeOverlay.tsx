@@ -1,6 +1,6 @@
 import type { MouseEvent as ReactMouseEvent } from 'react'
 import ExcelGridCell from './ExcelGridCell'
-import { excelEditorBase } from './styles'
+import { excelEditorBase } from '@zengchaowu/ui-shared/components/CwExcelEditor/styles'
 
 export interface ExcelMergePiece {
   key: string

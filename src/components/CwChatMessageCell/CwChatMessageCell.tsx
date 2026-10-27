@@ -8,7 +8,7 @@ import type { ChatMessage } from '@zengchaowu/shared/types/im-chat'
 import { formatChatMessageLlmContextLabel } from '@zengchaowu/shared/functions/im/imLlmContextLabel'
 import { chatMessageHidesFooterTime } from '@zengchaowu/shared/functions/im/imChatMessageFooterMeta'
 import CwAvatar from '../CwAvatar/CwAvatar'
-import { CW_CHAT_AVATAR_PROPS } from '../CwAvatar/cwAvatarPresets'
+import { CW_CHAT_AVATAR_PROPS } from '@zengchaowu/ui-shared/components/CwAvatar/cwAvatarPresets'
 import CwChatMessageCellBubbles from './CwChatMessageCellBubbles'
 import CwChatMessageCellAssistantActions from './CwChatMessageCellAssistantActions'
 import CwChatMessageOwnEdit from './CwChatMessageOwnEdit'
@@ -16,25 +16,20 @@ import CwChatMessageQuote from '../CwChatMessageQuote/CwChatMessageQuote'
 import CwIcon from '../CwIcon/CwIcon'
 import CwLoading from '../CwLoading/CwLoading'
 import CwTooltip from '../CwTooltip/CwTooltip'
-import type {
-  CwChatAttachmentPreviewOpenPayload,
-  CwChatMessageCellProps,
-  CwChatMessageMarkdownCodeBlockCopyPayload,
-  CwChatMessageMarkdownCodeBlockPreviewPayload,
-  CwChatMessageMarkdownImageContextMenuPayload,
-} from './types'
+import type { CwChatMessageCellProps, CwChatMessageMarkdownCodeBlockCopyPayload, CwChatMessageMarkdownCodeBlockPreviewPayload, CwChatMessageMarkdownImageContextMenuPayload } from './types'
+import type { CwChatAttachmentPreviewOpenPayload } from '@zengchaowu/ui-shared/components/CwChatMessageCell/types'
 import { messageCellBase } from './styles'
-import { defaultCwChatMessageCellTexts } from './texts'
+import { defaultCwChatMessageCellTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/texts'
 import {
   CHAT_BUBBLE_MAX_WIDTH_CLASS,
   CHAT_CARD_BUBBLE_BODY_INNER_CLASS,
   CHAT_CARD_BUBBLE_WRAPPER_CLASS,
   chatCardBubbleWrapperMaxWidthStyle,
-} from './chatMessageBubbleLayout'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
 import {
   chatMessageFooterMetaTextClass,
   chatMessageMetaTextClass,
-} from './chatMessageTypography'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageTypography'
 import {
   CW_WORKSPACE_CHAT_RADIUS,
   CW_WORKSPACE_OWN_OUTLINED_BUBBLE,
@@ -42,7 +37,7 @@ import {
 import {
   hasNonCollapsedTextSelection,
   isWorkspaceOwnMessageEditable,
-} from './ownMessageEdit'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/ownMessageEdit'
 
 const peerSenderNameClass = `${chatMessageMetaTextClass} leading-none text-[var(--text-color-placeholder)]`
 const inlineAttachmentCountClass = `${chatMessageFooterMetaTextClass} leading-none`

@@ -1,5 +1,6 @@
 import type { MouseEvent, ReactNode } from 'react'
 import type { CwSwipeRowProps } from '../CwSwipeRow/types'
+import type { CwChatConversationCellTexts } from '@zengchaowu/ui-shared/components/CwChatConversationCell/types'
 
 export type CwChatConversationSwipeTone =
   | 'default'
@@ -14,29 +15,6 @@ export interface CwChatConversationSwipeAction {
   danger?: boolean
   tone?: CwChatConversationSwipeTone
   buttonClass?: string
-}
-
-export interface CwChatConversationCellStyles {
-  root: string
-  rootSelected: string
-  rootUnselected: string
-  /** flex：避免内层 inline-flex（角标根）参与行盒基线对齐，在头像下产生空白条 */
-  avatarWrap: string
-  redDot: string
-  body: string
-  rowTop: string
-  nameRow: string
-  name: string
-  time: string
-  rowBottom: string
-  description: string
-  /** 传给内层 `CwSwipeRow` 的 `bodyInsetDividerClass` */
-  rowDividerInset: string
-}
-
-export interface CwChatConversationCellTexts {
-  /** 无名称时头像占位字符 */
-  avatarFallbackSymbol: string
 }
 
 export interface CwChatConversationCellProps
@@ -78,7 +56,6 @@ export interface CwChatConversationCellProps
   /** 等价 Vue `@swipe-open-change` */
   onSwipeOpenChange?: (key: string | null) => void
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwChatConversationCellEmits {

@@ -1,6 +1,6 @@
 import type { MutableRefObject } from 'react'
-import { stepFromMerge } from '../functions/workbook'
-import type { CwExcelWorkbook } from '../types'
+import { stepFromMerge } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/workbook'
+import type { CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
 import type { CellPosition } from './useExcelGridLayout'
 
 type CommitMove = 'stay' | 'down' | 'up' | 'left' | 'right'

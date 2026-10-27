@@ -2,7 +2,7 @@ import CwChatShellTabIcon from './CwChatShellTabIcon'
 import CwChatShellConnDot from './CwChatShellConnDot'
 import CwLoading from '../CwLoading/CwLoading'
 import type { CwChatShellTabbarIconProps } from './types'
-import { CW_CHAT_SHELL_DEFAULT_AVATAR_SRC } from './constants'
+import { CW_CHAT_SHELL_DEFAULT_AVATAR_SRC } from '@zengchaowu/ui-shared/components/CwChatShell/constants'
 
 export function CwChatShellTabbarIcon({
   item,

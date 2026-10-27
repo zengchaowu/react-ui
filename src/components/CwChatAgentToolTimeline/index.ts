@@ -1,3 +1,3 @@
 export { default as CwChatAgentToolTimeline } from './CwChatAgentToolTimeline'
-export { defaultCwChatAgentToolTimelineTexts } from './texts'
-export * from './types'
+export { defaultCwChatAgentToolTimelineTexts } from '@zengchaowu/ui-shared/components/CwChatAgentToolTimeline/texts'
+export * from '@zengchaowu/ui-shared/components/CwChatAgentToolTimeline/types'

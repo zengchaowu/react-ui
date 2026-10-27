@@ -1,39 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-
-export type CwLoginMethod = 'sms' | 'password'
-
-export interface CwLoginFormStyles {
-  container: string
-  content: string
-  segmentGroup: string
-  inputGroup: string
-  errorMessage: string
-  globalError: string
-  buttonGroup: string
-  privacyGroup: string
-  privacyLink: string
-}
-
-/** 短信/密码登录表单文案，均由调用方传入 */
-export interface CwLoginFormTexts {
-  segmentSms: string
-  segmentPassword: string
-  phonePlaceholder: string
-  phoneOrEmailPlaceholder: string
-  codePlaceholder: string
-  passwordPlaceholder: string
-  sendCodeButton: string
-  loginButton: string
-  loggingIn: string
-  privacyPrefix: string
-  privacyLink: string
-  forgotPassword: string
-  showPasswordLabel: string
-  hidePasswordLabel: string
-  sendCodeError: string
-  loginError: string
-  loginErrorGeneral: string
-}
+import type { CwLoginFormTexts, CwLoginMethod } from '@zengchaowu/ui-shared/components/CwLoginForm/types'
 
 export interface CwLoginFormProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -66,7 +32,6 @@ export interface CwLoginFormHandle {
   setCodeError: (msg: string) => void
   setPasswordError: (msg: string) => void
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwLoginFormEmits {

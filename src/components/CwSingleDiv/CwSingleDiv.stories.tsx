@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useEffect, useState, type ReactNode } from 'react'
-import { tokenSolidColors } from '../../assets/tokens/tokenSolidColors'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 import { CwSingleDiv } from './CwSingleDiv'
 import type { CwSingleDivDSL, CwSingleDivProps } from './types'
 

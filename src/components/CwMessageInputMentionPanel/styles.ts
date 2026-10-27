@@ -3,7 +3,7 @@ import {
   CW_GLASS_FROSTED_MENU_ITEM_HOVER_CLASS,
   CW_GLASS_FROSTED_MENU_ITEM_KEYBOARD_CLASS,
   CW_GLASS_FROSTED_SHELL_PAD_CLASS,
-} from '../CwContextMenu/styles'
+} from '@zengchaowu/ui-shared/components/CwContextMenu/styles'
 import type { CwMessageInputMentionPanelStyles } from './types'
 
 export const mentionPanelBase: CwMessageInputMentionPanelStyles = {

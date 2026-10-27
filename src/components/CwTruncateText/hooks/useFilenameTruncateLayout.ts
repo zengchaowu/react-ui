@@ -3,7 +3,7 @@ import type { RefObject } from 'react'
 import {
   resolveFilenameDisplay,
   type FilenameDisplayResolution,
-} from '../functions/resolveFilenameDisplay'
+} from '@zengchaowu/ui-shared/components/CwTruncateText/functions/resolveFilenameDisplay'
 
 const IDLE: FilenameDisplayResolution = {
   text: '',

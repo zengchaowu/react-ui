@@ -6,15 +6,10 @@ import {
   type HTMLAttributes,
   type MouseEvent as ReactMouseEvent,
 } from 'react'
-import type {
-  CwDataTreeEmits,
-  CwDataTreeNode,
-  CwDataTreeNode as TreeNode,
-  CwDataTreeProps,
-  CwDataTreeTexts,
-} from './types'
-import { dataTreeBase } from './styles'
-import { defaultTexts } from './texts'
+import type { CwDataTreeEmits, CwDataTreeNode, CwDataTreeNode as TreeNode, CwDataTreeProps } from './types'
+import type { CwDataTreeTexts } from '@zengchaowu/ui-shared/components/CwDataTree/types'
+import { dataTreeBase } from '@zengchaowu/ui-shared/components/CwDataTree/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDataTree/texts'
 import CwIcon from '../CwIcon/CwIcon'
 import {
   shouldShowFocus,

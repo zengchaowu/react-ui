@@ -8,7 +8,7 @@ import {
   type CSSProperties,
   type RefObject,
 } from 'react'
-import type { CwDivScrollbarMap } from '../types'
+import type { CwDivScrollbarMap } from '@zengchaowu/ui-shared/components/CwDiv/types'
 
 const MIN_THUMB_SIZE = 24
 const SCROLLBAR_FADE_DELAY = 600

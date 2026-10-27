@@ -1,5 +1,5 @@
 ﻿import type { Canvas } from 'fabric'
-import { tokenSolidColors } from '../../../assets/tokens/tokenSolidColors'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 import {
   ZCW_APP_THEME_CHANGED_EVENT,
 } from '../../../utils/appThemeDom'
@@ -7,7 +7,7 @@ import { resolveElementCssColor } from '../utils/resolveElementCssColor'
 import {
   FABRIC_EDITOR_RULER_SIZE_PX,
   paintFabricEditorRulers,
-} from '../transform/fabricEditorRuler.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/transform/fabricEditorRuler.pure'
 
 function resolveRulerColors(host: HTMLElement) {
   return {

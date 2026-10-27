@@ -1,13 +1,13 @@
 import { useMemo } from 'react'
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
-import type { CwColProps } from './types'
+import type { CwColProps } from '@zengchaowu/ui-shared/components/CwRow/types'
 import { useCwGridMeasuredLayout, useCwRowGutter } from './keys'
 import {
   buildColInlineStyle,
   buildMeasuredColInlineStyle,
   GRID_COL_BREAKPOINT_KEYS,
-} from './layout'
-import { normalizeAttrStyle } from './functions/normalizeAttrStyle'
+} from '@zengchaowu/ui-shared/components/CwRow/layout'
+import { normalizeAttrStyle } from '@zengchaowu/ui-shared/components/CwRow/functions/normalizeAttrStyle'
 
 export interface CwColComponentProps
   extends CwColProps,

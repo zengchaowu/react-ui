@@ -8,13 +8,10 @@ import {
   type CSSProperties,
 } from 'react'
 import { designPxToRem } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
-import type {
-  CwIndicatorExposed,
-  CwIndicatorProps,
-  CwIndicatorStyles,
-} from './types'
-import { indicatorBase } from './styles'
-import { defaultTexts } from './texts'
+import type { CwIndicatorProps } from './types'
+import type { CwIndicatorExposed, CwIndicatorStyles } from '@zengchaowu/ui-shared/components/CwIndicator/types'
+import { indicatorBase } from '@zengchaowu/ui-shared/components/CwIndicator/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwIndicator/texts'
 
 export const CwIndicator = forwardRef<CwIndicatorExposed, CwIndicatorProps>(
   function CwIndicator(

@@ -3,7 +3,7 @@ import type { RefObject } from 'react'
 import {
   resolveMiddleEllipsisDisplay,
   type MiddleEllipsisResolution,
-} from '../functions/resolveMiddleEllipsisDisplay'
+} from '@zengchaowu/ui-shared/components/CwTruncateText/functions/resolveMiddleEllipsisDisplay'
 
 const IDLE: MiddleEllipsisResolution = { text: '', abbreviated: false }
 

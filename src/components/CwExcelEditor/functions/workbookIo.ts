@@ -1,7 +1,7 @@
-import type { CwExcelBorderEdge, CwExcelCellBorders, CwExcelCellStyle, CwExcelCellValue, CwExcelMerge, CwExcelSource, CwExcelWorkbook } from '../types'
-import { tokenSolidColors } from '../../../assets/tokens/tokenSolidColors'
-import { patchXlsx, workbookContentSame, type ExcelSourcePackage } from './patchXlsx'
-import { cloneWorkbook, normalizeCell, normalizeWorkbook } from './workbook'
+import type { CwExcelBorderEdge, CwExcelCellBorders, CwExcelCellStyle, CwExcelCellValue, CwExcelMerge, CwExcelSource, CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
+import { patchXlsx, workbookContentSame, type ExcelSourcePackage } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/patchXlsx'
+import { cloneWorkbook, normalizeCell, normalizeWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/workbook'
 
 const XLSX_MIME = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 

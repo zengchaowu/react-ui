@@ -2,6 +2,6 @@ export { default as CwChatMessageForwardBundle } from './CwChatMessageForwardBun
 export {
   defaultCwChatMessageForwardBundleTexts,
   buildCwChatMessageForwardBundleTitle,
-} from './texts'
-export type { CwChatMessageForwardBundleTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwChatMessageForwardBundle/texts'
+export type { CwChatMessageForwardBundleTexts } from '@zengchaowu/ui-shared/components/CwChatMessageForwardBundle/texts'
 export type * from './types'

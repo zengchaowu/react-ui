@@ -1,40 +1,6 @@
 import type { MouseEvent as ReactMouseEvent, ReactNode } from 'react'
 import type { CwTreeNode, CwTreeReorderPayload } from '../CwTree/types'
-
-export interface CwDesignLayersPanelTexts {
-  title: string
-  sizeColumnLabel: string
-  /** 当前已全部展开时的按钮提示 */
-  collapseAllGroups: string
-  /** 当前未全部展开时的按钮提示 */
-  expandAllGroups: string
-  lockLayer: string
-  unlockLayer: string
-  hideLayer: string
-  showLayer: string
-  searchPlaceholder: string
-  emptySearch: string
-  emptyLayers: string
-  renamePlaceholder: string
-}
-
-export interface CwDesignLayersPanelStyles {
-  root: string
-  header: string
-  headerTitle: string
-  headerActions: string
-  headerMeta: string
-  expandToggle: string
-  search: string
-  treeWrap: string
-  empty: string
-  labelText: string
-  labelTextHidden: string
-  labelInput: string
-  rowActions: string
-  rowAction: string
-  rowActionActive: string
-}
+import type { CwDesignLayersPanelTexts } from '@zengchaowu/ui-shared/components/CwDesignLayersPanel/types'
 
 export interface CwDesignLayersPanelProps {
   data?: CwTreeNode[]
@@ -75,7 +41,6 @@ export interface CwDesignLayersPanelProps {
   ) => void
 }
 
-
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwDesignLayersPanelEmits {
   'update:selectedKeys': [keys: (string | number)[]]
@@ -92,4 +57,3 @@ export interface CwDesignLayersPanelEmits {
   ]
   'node-contextmenu': [node: CwTreeNode, event: MouseEvent]
 }
-

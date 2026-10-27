@@ -9,22 +9,22 @@ import {
   setFabricLayerDisplayName,
   setFabricLayerLocked,
   setFabricLayerVisible,
-} from '../layers/fabricDesignEditorLayerTree.pure'
-import { assignDefaultFabricLayerName } from '../layers/fabricLayerNaming.pure'
-import { isFabricArtboardGuide } from '../document/fabricArtboard'
-import { isFabricEditorPaintClone } from '../appearance/fabricEditorPaintLayers.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricDesignEditorLayerTree.pure'
+import { assignDefaultFabricLayerName } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricLayerNaming.pure'
+import { isFabricArtboardGuide } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricArtboard'
+import { isFabricEditorPaintClone } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/appearance/fabricEditorPaintLayers.pure'
 import {
   ensureFabricContainerLayoutMeta,
   isFabricContainerFrame,
   isFabricContainerObject,
   stripFabricContainerLegacySizeLabels,
-} from '../tools/fabricContainerTool.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/fabricContainerTool.pure'
 import {
   reorderFabricLayerTreeSiblings,
   type LayerTreeReorderPosition,
-} from '../layers/fabricLayerTreeReorder.pure'
-import { fabricObjectLayerThumbnailUrl } from '../layers/fabricLayerThumbnail.pure'
-import { syncGroupsInteractionFromCanvasSelection } from '../layers/fabricGroupPointerPolicy.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricLayerTreeReorder.pure'
+import { fabricObjectLayerThumbnailUrl } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricLayerThumbnail.pure'
+import { syncGroupsInteractionFromCanvasSelection } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricGroupPointerPolicy.pure'
 
 function isFabricTransforming(canvas: Canvas): boolean {
   return Boolean(

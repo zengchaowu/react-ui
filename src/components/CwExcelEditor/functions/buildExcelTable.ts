@@ -3,10 +3,10 @@ import type { MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent }
 import type { CwDataTableColumn, CwDataTableConfig } from '../../CwDataTable'
 import { ExcelGridCell } from '../ExcelGridCell'
 import { excelGridCellRole, renderExcelGridSlot } from '../excelGrid'
-import { excelEditorBase } from '../styles'
-import type { CwExcelCellStyle, CwExcelCellValue, CwExcelMerge } from '../types'
-import { columnLetter, formatCell } from './workbook'
-import { cellCss, GUTTER_WIDTH, MIN_COL_WIDTH, SHEET_ROW_HEIGHT, sumWidths, visibleCellBorders } from './sheetMetrics'
+import { excelEditorBase } from '@zengchaowu/ui-shared/components/CwExcelEditor/styles'
+import type { CwExcelCellStyle, CwExcelCellValue, CwExcelMerge } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
+import { columnLetter, formatCell } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/workbook'
+import { cellCss, GUTTER_WIDTH, MIN_COL_WIDTH, SHEET_ROW_HEIGHT, sumWidths, visibleCellBorders } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/sheetMetrics'
 
 export type ExcelCommitMove = 'stay' | 'down' | 'up' | 'left' | 'right'
 

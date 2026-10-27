@@ -7,7 +7,7 @@ import {
   type FloatingWindowClampConstraints,
   type FloatingWindowResizeEdge,
 } from '@zengchaowu/shared/functions/ui/floatingWindowGeometry'
-import { isCwWindowTitleBarDragTarget } from '../components/CwWindowTitleBar/dragTarget'
+import { isCwWindowTitleBarDragTarget } from '@zengchaowu/ui-shared/components/CwWindowTitleBar/dragTarget'
 
 export type {
   FloatingWindowBounds,

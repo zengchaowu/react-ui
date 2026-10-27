@@ -1,17 +1,13 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import type { HTMLAttributes } from 'react'
-import type {
-  CwAttachmentGalleryItem,
-  CwAttachmentGalleryProps,
-  CwAttachmentGalleryScrollItemData,
-  CwAttachmentGalleryTexts,
-} from './types'
-import { attachmentGalleryBase } from './styles'
-import { defaultCwAttachmentGalleryTexts } from './texts'
+import type { CwAttachmentGalleryItem, CwAttachmentGalleryProps, CwAttachmentGalleryScrollItemData } from './types'
+import type { CwAttachmentGalleryTexts } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/types'
+import { attachmentGalleryBase } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/styles'
+import { defaultCwAttachmentGalleryTexts } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/texts'
 import CwAttachmentGallerySlide from './CwAttachmentGallerySlide'
 import CwIndicator from '../CwIndicator/CwIndicator'
 import CwInfiniteLoopScroll from '../CwInfiniteLoopScroll/CwInfiniteLoopScroll'
-import type { CwInfiniteLoopScrollItem } from '../CwInfiniteLoopScroll/types'
+import type { CwInfiniteLoopScrollItem } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/types'
 import { droppedAttachmentNeedsObjectUrl } from './functions/attachmentKind'
 import { usePagedGalleryLayout } from './hooks/usePagedGalleryLayout'
 import { useBrowserFileObjectUrlMap } from './hooks/useBrowserFileObjectUrlMap'

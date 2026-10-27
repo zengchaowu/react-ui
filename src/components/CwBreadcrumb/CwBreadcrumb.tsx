@@ -1,5 +1,6 @@
 import type { MouseEvent as ReactMouseEvent } from 'react'
-import type { CwBreadcrumbItem, CwBreadcrumbProps } from './types'
+import type { CwBreadcrumbProps } from './types'
+import type { CwBreadcrumbItem } from '@zengchaowu/ui-shared/components/CwBreadcrumb/types'
 import {
   appearanceCurrentClass,
   appearanceItemClass,
@@ -8,8 +9,8 @@ import {
   appearanceRootClass,
   appearanceSeparatorClass,
   breadcrumbBase,
-} from './styles'
-import { defaultTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwBreadcrumb/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwBreadcrumb/texts'
 
 function isLink(item: CwBreadcrumbItem): boolean {
   return !item.disabled && (item.to != null || item.href != null)

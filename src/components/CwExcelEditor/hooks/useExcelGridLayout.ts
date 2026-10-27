@@ -12,9 +12,9 @@ import {
   fitRowHeight,
   sumWidths,
   visibleMergeBorders,
-} from '../functions/sheetMetrics'
-import { cloneWorkbook, formatCell } from '../functions/workbook'
-import type { CwExcelWorkbook } from '../types'
+} from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/sheetMetrics'
+import { cloneWorkbook, formatCell } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/workbook'
+import type { CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
 import { useMirroredState } from './useMirroredState'
 
 export type CellPosition = { row: number; col: number }

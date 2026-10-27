@@ -7,8 +7,8 @@ import {
   type FileIconMaps,
 } from '@zengchaowu/shared/functions/file/fileIcon'
 import type { CwFileIconProps } from './types'
-import { fileIconBase } from './styles'
-import { defaultTexts } from './texts'
+import { fileIconBase } from '@zengchaowu/ui-shared/components/CwFileIcon/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwFileIcon/texts'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import iconMaps from '../../assets/fileIconMaps.json'
 

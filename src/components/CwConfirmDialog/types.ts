@@ -1,5 +1,8 @@
-import type { CwButtonTexts, CwButtonType } from '../CwButton/types'
-import type { CwDynamicDialogConfig, CwDynamicDialogTexts } from '../CwDynamicDialog/types'
+import type { CwButtonType } from '../CwButton/types'
+
+import type { CwDynamicDialogConfig } from '../CwDynamicDialog/types'
+
+import type { CwConfirmDialogTexts } from '@zengchaowu/ui-shared/components/CwConfirmDialog/types'
 
 export interface CwConfirmDialogOptions {
   /**
@@ -50,39 +53,3 @@ export interface CwConfirmDialogOptions {
   dialogConfig?: CwDynamicDialogConfig
 }
 
-/** @internal */
-export interface CwConfirmDialogStyles {
-  /**
-   * 内容容器样式
-   */
-  content?: string
-  /**
-   * 标题样式
-   */
-  title?: string
-  /**
-   * 消息样式
-   */
-  message?: string
-  /**
-   * 按钮容器样式
-   */
-  footer?: string
-}
-
-export interface CwConfirmDialogTexts {
-  /**
-   * 对话框文本配置
-   */
-  dialogTexts?: Partial<CwDynamicDialogTexts>
-  /**
-   * 确认按钮文本配置
-   */
-  confirmButtonTexts?: Partial<CwButtonTexts>
-  /**
-   * 取消按钮文本配置
-   */
-  cancelButtonTexts?: Partial<CwButtonTexts>
-}
-
-export type CwConfirmDialogResult = 'confirm' | 'cancel'

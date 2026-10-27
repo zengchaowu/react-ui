@@ -1,6 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-
-export type CwSidebarNavItemKey = string | number
+import type { CwSidebarNavItemKey, CwSidebarNavAppearance, CwSidebarNavTexts } from '@zengchaowu/ui-shared/components/CwSidebarNav/types'
 
 export interface CwSidebarNavItem {
   key: CwSidebarNavItemKey
@@ -26,24 +25,6 @@ export interface CwSidebarNavSection {
   /** Placeholder when items is empty */
   emptyText?: string
 }
-
-export interface CwSidebarNavStyles {
-  root: string
-  section: string
-  sectionLabel: string
-  sectionLabelButton: string
-  sectionChevron: string
-  itemLabel: string
-  itemIcon: string
-  pin: string
-  empty: string
-}
-
-export interface CwSidebarNavTexts {
-  pinTitle: string
-}
-
-export type CwSidebarNavAppearance = 'default' | 'explorer'
 
 /** `section-label` 作用域插槽参数 */
 export interface CwSidebarNavSectionLabelScope {

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { CSSProperties, RefObject } from 'react'
-import { calculateItemPositions } from '../functions/calculateItemPositions'
-import { calculateItemScale } from '../functions/calculateItemScale'
+import { calculateItemPositions } from '@zengchaowu/ui-shared/components/CwSwiper/functions/calculateItemPositions'
+import { calculateItemScale } from '@zengchaowu/ui-shared/components/CwSwiper/functions/calculateItemScale'
 
 const CALM_FRAMES = 2
 

@@ -1,12 +1,8 @@
-import type {
-  CwDataTableColumn,
-  CwDataTableLifecycle,
-  CwDataTableRow,
-  CwDataTableTreeRowMeta,
-} from './types'
+import type { CwDataTableColumn, CwDataTableLifecycle, CwDataTableRow } from './types'
+import type { CwDataTableTreeRowMeta } from '@zengchaowu/ui-shared/components/CwDataTable/types'
 import CwDataTableCellRenderer from './CwDataTableCellRenderer'
 import CwDataTableCellOverflow from './CwDataTableCellOverflow'
-import { isColumnOverflowTooltipEnabled } from './functions/overflowTooltip'
+import { isColumnOverflowTooltipEnabled } from '@zengchaowu/ui-shared/components/CwDataTable/functions/overflowTooltip'
 
 export interface CwDataTableBodyCellInnerProps {
   column: CwDataTableColumn

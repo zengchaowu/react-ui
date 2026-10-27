@@ -4,15 +4,15 @@ import CwInput from '../CwInput/CwInput'
 import CwButton from '../CwButton/CwButton'
 import CwCountDownButton from '../CwCountDownButton/CwCountDownButton'
 import CwLoginMethodSwitch from '../CwLoginMethodSwitch/CwLoginMethodSwitch'
-import type { LoginMethodType } from '../CwLoginMethodSwitch/types'
+import type { LoginMethodType } from '@zengchaowu/ui-shared/components/CwLoginMethodSwitch/types'
 import { isPhone } from '@zengchaowu/shared/functions/validation/isPhone'
 import type { CwLoginPhoneDialogContentProps } from './types'
 import {
   cwLoginPhoneDialogBase,
   phoneLoginSheetButtonGroupClass,
   phoneLoginSheetContentClass,
-} from './styles'
-import { defaultTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwLoginPhoneDialog/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwLoginPhoneDialog/texts'
 import { useWechatQrcodeLogin } from '../../hooks/useWechatQrcodeLogin'
 
 const qrcodeContainerId = 'cw-login-phone-wechat-wx-login'

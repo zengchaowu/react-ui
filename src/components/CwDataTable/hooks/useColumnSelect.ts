@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import type { CwDataTableColumn, CwDataTableColumnSelectConfig } from '../types'
+import type { CwDataTableColumn } from '../types'
+import type { CwDataTableColumnSelectConfig } from '@zengchaowu/ui-shared/components/CwDataTable/types'
 
 export interface UseColumnSelectOptions {
   columnSelectConfig?: CwDataTableColumnSelectConfig

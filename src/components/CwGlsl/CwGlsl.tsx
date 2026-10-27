@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { HTMLAttributes } from 'react'
-import { tokenSolidColors } from '../../assets/tokens/tokenSolidColors'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 import type {
   CwGlslEmits,
   CwGlslProps,

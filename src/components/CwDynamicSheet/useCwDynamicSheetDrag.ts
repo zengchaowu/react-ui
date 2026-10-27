@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { CSSProperties, RefObject } from 'react'
-import type { CwDynamicSheetDirection } from './types'
+import type { CwDynamicSheetDirection } from '@zengchaowu/ui-shared/components/CwDynamicSheet/types'
 
 const DISMISS_RATIO = 0.28
 const DISMISS_MIN_PX = 72

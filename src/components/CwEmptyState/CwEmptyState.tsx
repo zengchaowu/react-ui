@@ -1,6 +1,7 @@
-import type { CwEmptyStateAppearance, CwEmptyStateProps } from './types'
-import { appearanceRootClass, getStyles } from './styles'
-import { defaultCwEmptyStateTexts } from './texts'
+import type { CwEmptyStateProps } from './types'
+import type { CwEmptyStateAppearance } from '@zengchaowu/ui-shared/components/CwEmptyState/types'
+import { appearanceRootClass, getStyles } from '@zengchaowu/ui-shared/components/CwEmptyState/styles'
+import { defaultCwEmptyStateTexts } from '@zengchaowu/ui-shared/components/CwEmptyState/texts'
 
 export function CwEmptyState({
   size = 'medium',

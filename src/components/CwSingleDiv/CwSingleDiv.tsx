@@ -4,7 +4,7 @@ import type {
   CwSingleDivEmits,
   CwSingleDivProps,
 } from './types'
-import { singleDivBase } from './styles'
+import { singleDivBase } from '@zengchaowu/ui-shared/components/CwSingleDiv/styles'
 
 export interface CwSingleDivComponentProps
   extends CwSingleDivProps,

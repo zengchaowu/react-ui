@@ -2,7 +2,7 @@ import type { ImRedEnvelopeExtra } from '@zengchaowu/shared/types/im-wallet-mess
 import {
   CHAT_WALLET_BUBBLE_WRAPPER_CLASS,
   chatWalletBubbleSizeStyle,
-} from './chatMessageBubbleLayout'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
 import {
   chatWalletCardBodyClasses,
   chatWalletCardContentClasses,
@@ -13,11 +13,11 @@ import {
   chatWalletRedEnvelopeRootClasses,
   chatWalletRedEnvelopeStatusClasses,
   chatWalletRedEnvelopeTitleClasses,
-} from './chatMessageWalletBubbleSurface'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageWalletBubbleSurface'
 import {
   defaultCwChatMessageRedEnvelopeTexts,
   type CwChatMessageRedEnvelopeTexts,
-} from './redEnvelopeTexts'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/redEnvelopeTexts'
 
 export interface CwChatMessageRedEnvelopeProps {
   chatMessageId: string

@@ -1,4 +1,4 @@
-import type { CwRadioStyles } from './types'
+import type { CwRadioStyles } from '@zengchaowu/ui-shared/components/CwRadio/types'
 import { INTERACTIVE_FOCUS_CLASS } from '@zengchaowu/ui-shared/functions/ui/focusStyles'
 
 export const radioBase: CwRadioStyles = {

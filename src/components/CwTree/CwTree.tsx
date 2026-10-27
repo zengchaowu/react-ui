@@ -10,17 +10,9 @@ import type {
   MouseEvent as ReactMouseEvent,
   UIEvent as ReactUIEvent,
 } from 'react'
-import type {
-  CwTreeCheckInfo,
-  CwTreeExpandInfo,
-  CwTreeInteractionEvent,
-  CwTreeNode as CwTreeNodeData,
-  CwTreeProps,
-  CwTreeReorderPayload,
-  CwTreeSelectInfo,
-  CwTreeTexts,
-} from './types'
-import { defaultTexts } from './texts'
+import type { CwTreeCheckInfo, CwTreeExpandInfo, CwTreeInteractionEvent, CwTreeNode as CwTreeNodeData, CwTreeProps, CwTreeReorderPayload, CwTreeSelectInfo } from './types'
+import type { CwTreeTexts } from '@zengchaowu/ui-shared/components/CwTree/types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwTree/texts'
 import { resolveCwTreeStyles } from './resolveCwTreeStyles'
 import { useCwTreeStylesOverride } from './cwTreeStylesOverride'
 import CwTreeNodeComponent from './CwTreeNode'
@@ -39,7 +31,7 @@ import {
 import {
   collectVisibleSelectableKeys,
   resolveTreeMultiSelectKeys,
-} from './cwTreeSelection.pure'
+} from '@zengchaowu/ui-shared/components/CwTree/cwTreeSelection.pure'
 import {
   flattenVisibleTreeRows,
   treeVirtualRowHeight,

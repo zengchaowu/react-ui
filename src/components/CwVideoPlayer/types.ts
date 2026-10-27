@@ -1,5 +1,6 @@
 import type { HTMLAttributes } from 'react'
-import type { CwIconEmbed } from '../CwIcon/types'
+
+import type { CwVideoPlayerTexts } from '@zengchaowu/ui-shared/components/CwVideoPlayer/types'
 
 export interface CwVideoPlayerProps
   extends Omit<
@@ -47,58 +48,6 @@ export interface CwVideoPlayerProps
    * 自定义文本对象
    */
   texts?: Partial<CwVideoPlayerTexts>
-}
-
-export interface CwVideoPlayerStyles {
-  container: string
-  /** 嵌入固定宽高父级时：无 aspect-video，与 videoObjectFit 搭配 */
-  containerFillParent: string
-  containerFocused: string
-  video: string
-  /** fitToParent 时 video 铺满裁切（与聊天气泡封面一致） */
-  videoObjectFit: string
-  overlayLoading: string
-  overlayPlayButton: string
-  controls: string
-  controlsVisible: string
-  controlsHidden: string
-  playButton: string
-  progressBarContainer: string
-  progressBarTrack: string
-  progressFill: string
-  progressThumb: string
-  timeDisplay: string
-  volumeButton: string
-  volumeGroup: string
-  volumeSlider: string
-  volumeSliderFill: string
-  fullscreenButton: string
-  controlsRow: string
-  controlsGroupLeft: string
-  controlsGroupRight: string
-  /** CwIcon 样式配置（加载图标） */
-  loadingIconStyles?: CwIconEmbed
-  /** CwIcon 样式配置（播放按钮图标） */
-  playButtonIconStyles?: CwIconEmbed
-  /** CwIcon 样式配置（控制栏播放图标） */
-  playIconStyles?: CwIconEmbed
-  /** CwIcon 样式配置（音量图标） */
-  volumeIconStyles?: CwIconEmbed
-  /** CwIcon 样式配置（全屏图标） */
-  fullscreenIconStyles?: CwIconEmbed
-}
-
-export interface CwVideoPlayerTexts {
-  player: string
-  play: string
-  pause: string
-  mute: string
-  unmute: string
-  fullscreen: string
-  exitFullscreen: string
-  loading: string
-  error: string
-  retry: string
 }
 
 export interface CwVideoPlayerEmits {

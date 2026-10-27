@@ -1,20 +1,4 @@
-export type TpCherryMarkdownThemeName = 'default' | 'dark' | 'workDocs' | (string & {})
-
-export interface TpCherryMarkdownThemeListItem {
-  className: string
-  label: string
-}
-
-export interface TpCherryMarkdownThemeSettings {
-  /** 主题列表（用于工具栏切换） */
-  themeList?: TpCherryMarkdownThemeListItem[]
-  /** 主主题 className，控制工具栏/编辑区/预览区 */
-  mainTheme?: string
-  /** 代码块主题 */
-  codeBlockTheme?: string
-  /** 行内代码主题 */
-  inlineCodeTheme?: 'red' | 'black'
-}
+import type { TpCherryMarkdownThemeName, TpCherryMarkdownThemeSettings, TpCherryMarkdownTexts } from '@zengchaowu/ui-shared/components/TpCherryMarkdown/types'
 
 export interface TpCherryMarkdownProps {
   /** Markdown 内容 */
@@ -62,43 +46,6 @@ export interface TpCherryMarkdownProps {
   onReady?: () => void
   /** 文件上传（对应 Vue `file-upload` 事件） */
   onFileUpload?: (file: File) => void
-}
-
-export interface TpCherryMarkdownTexts {
-  placeholder?: string
-  title?: string
-  editorTitle?: string
-  previewTitle?: string
-  bold?: string
-  italic?: string
-  underline?: string
-  strikethrough?: string
-  heading?: string
-  quote?: string
-  code?: string
-  link?: string
-  image?: string
-  table?: string
-  list?: string
-  taskList?: string
-  horizontalRule?: string
-  undo?: string
-  redo?: string
-  save?: string
-  export?: string
-  import?: string
-  clear?: string
-  fullscreen?: string
-  exitFullscreen?: string
-  loading?: string
-  error?: string
-  retry?: string
-  saveSuccess?: string
-  exportSuccess?: string
-  importSuccess?: string
-  help?: string
-  shortcuts?: string
-  markdownGuide?: string
 }
 
 /** Cherry Markdown 实例的最小结构（cherry-markdown 未提供完整类型） */

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type RefObject } fro
 import { getTextBetween, getTextSerializersFromSchema, type Editor } from '@tiptap/core'
 import { getActiveMentionQuery } from '@zengchaowu/shared/functions/im/getActiveMentionQuery'
 import type { CwMessageInputMentionPanelHandle } from '../../CwMessageInputMentionPanel'
-import type { CwMessageInputMentionItem } from '../types'
+import type { CwMessageInputMentionItem } from '@zengchaowu/ui-shared/components/CwMessageInput/types'
 
 /** @ 提及：候选过滤、浮层/Sheet 状态、键盘导航与选中/取消（等价 Vue `useMentions`） */
 export function useMentions(options: {

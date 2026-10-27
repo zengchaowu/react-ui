@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 import { CwFileDropTarget } from './CwFileDropTarget'
 import type { CwFileDropTargetProps } from './types'
-import { defaultCwFileDropTargetTexts } from './texts'
+import { defaultCwFileDropTargetTexts } from '@zengchaowu/ui-shared/components/CwFileDropTarget/texts'
 
 const meta: Meta<typeof CwFileDropTarget> = {
   title: '1. Components/Form/CwFileDropTarget',

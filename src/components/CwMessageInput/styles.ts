@@ -1,5 +1,5 @@
 import { APP_PAGE_CHROME_SAFE_BOTTOM_CLASS } from '@zengchaowu/ui-shared/constants/appSafeAreaClasses'
-import { chatMessageBodyTextClass } from '../CwChatMessageCell/chatMessageTypography'
+import { chatMessageBodyTextClass } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageTypography'
 import { CW_WORKSPACE_CHAT_INSET_PAD_X } from '../CwChatMessageCell/chatWorkspaceSurface'
 
 import type { CwMessageInputFieldLayout } from './types'

@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react'
-import type { CwIconEmbed } from '../CwIcon/types'
-import type { CwInputTexts } from '../CwInput/types'
+
+import type { CwInputTexts } from '@zengchaowu/ui-shared/components/CwInput/types'
 
 export type CwEditableTextEditIconVisibility = 'always' | 'hover' | 'never'
 
@@ -60,39 +60,6 @@ export interface CwEditableTextProps
   onError?: (error: unknown) => void
 }
 
-/** @internal */
-export interface CwEditableTextStyles {
-  root: string
-  rootNormal: string
-  rootDisabled: string
-  rootReadonly: string
-  previewContainer: string
-  previewContainerNormal: string
-  previewContainerDisabled: string
-  previewContainerReadonly: string
-  previewContainerFocused: string
-  previewText: string
-  previewTextNormal: string
-  previewTextDisabled: string
-  previewTextReadonly: string
-  previewTextEmpty: string
-  previewTextAlign: string
-  /** 保存中展示的文本（与预览同行，后接 overlayAnchor） */
-  savingText?: string
-  editIconContainer: string
-  editIconContainerNormal: string
-  editIconContainerDisabled: string
-  editIconContainerReadonly: string
-  editIconContainerVisible: string
-  editIconContainerHoverReveal: string
-  overlayAnchor: string
-  overlayLoading: string
-  editContainer: string
-  loadingContainer: string
-  loadingContainerInField: string
-  iconStyles?: CwIconEmbed
-}
-
 export interface CwEditableTextTexts {
   /** 编辑图标标签 */
   edit?: string
@@ -103,7 +70,6 @@ export interface CwEditableTextTexts {
   /** CwInput 文本配置 */
   inputTexts?: Partial<CwInputTexts>
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwEditableTextEmits {

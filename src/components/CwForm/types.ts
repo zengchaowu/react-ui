@@ -1,13 +1,10 @@
 import type { ReactNode } from 'react'
-import type {
-  CwFormItemConfig as CwFormItemConfigBase,
-  CwFormItemAppearance,
-  ComponentConfig,
-  ValidationResult,
-} from '../CwFormItem/types'
-import type { CwRowProps, CwColProps } from '../CwRow/types'
+import type { CwFormItemConfig as CwFormItemConfigBase, ComponentConfig, ValidationResult } from '../CwFormItem/types'
+import type { CwFormItemAppearance } from '@zengchaowu/ui-shared/components/CwFormItem/types'
+import type { CwRowProps, CwColProps } from '@zengchaowu/ui-shared/components/CwRow/types'
+import type { CwFormTexts } from '@zengchaowu/ui-shared/components/CwForm/types'
 
-export type { CwFormItemAppearance } from '../CwFormItem/types'
+export type { CwFormItemAppearance } from '@zengchaowu/ui-shared/components/CwFormItem/types'
 
 // CwForm 中扩展的 CwFormItemConfig
 export interface CwFormItemConfigInForm extends CwFormItemConfigBase {
@@ -64,22 +61,6 @@ export interface CwFormProps {
   /** Vue `#collapse-controls` 具名插槽 */
   collapseControlsSlot?: ReactNode
   className?: string
-}
-
-/** @internal */
-export interface CwFormStyles {
-  // 根容器：基础样式 + 状态样式
-  root: string
-  rootNormal: string
-  rootReadonly: string
-  rootDisabled: string
-  /** layout.native 时用于承接回车提交的隐藏按钮 */
-  nativeSubmitTrigger?: string
-}
-
-export interface CwFormTexts {
-  /** 必填提示文案 */
-  requiredMessage?: string
 }
 
 // 表单事件（React 回调等价物）

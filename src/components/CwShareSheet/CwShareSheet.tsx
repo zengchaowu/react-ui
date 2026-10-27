@@ -9,7 +9,7 @@ import {
 import { showDynamicSheet } from '../CwDynamicSheet/showDynamicSheet'
 import type { ShowDynamicSheetReturn } from '../CwDynamicSheet/showDynamicSheet'
 import type { CwDynamicSheetConfig } from '../CwDynamicSheet/types'
-import { defaultTexts as defaultSheetTexts } from '../CwDynamicSheet/texts'
+import { defaultTexts as defaultSheetTexts } from '@zengchaowu/ui-shared/components/CwDynamicSheet/texts'
 import { CW_OVERLAY_SHEET_BOTTOM_ROUNDED_CONTENT_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
 import CwShareSheetContent from './CwShareSheetContent'
 import type {

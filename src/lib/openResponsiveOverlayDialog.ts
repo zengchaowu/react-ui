@@ -4,7 +4,7 @@ import type { CwDynamicDialogConfig } from '../components/CwDynamicDialog/types'
 import {
   CW_OVERLAY_DIALOG_HOST_CLASS,
   resolveResponsiveOverlayDialogConfig,
-} from '../constants/cwOverlayDialogShell'
+} from '@zengchaowu/ui-shared/constants/cwOverlayDialogShell'
 import type { ShowDynamicDialogReturn } from '../components/CwDynamicDialog/showDynamicDialog'
 
 export interface OpenResponsiveOverlayDialogOptions {

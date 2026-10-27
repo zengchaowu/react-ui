@@ -1,4 +1,5 @@
 export { default as CwDesignLayersPanel } from './CwDesignLayersPanel'
-export { defaultCwDesignLayersPanelTexts } from './texts'
-export { filterDesignLayerTree, designLayerTreeHasMatch } from './filterDesignLayerTree'
+export { defaultCwDesignLayersPanelTexts } from '@zengchaowu/ui-shared/components/CwDesignLayersPanel/texts'
+export { filterDesignLayerTree, designLayerTreeHasMatch } from '@zengchaowu/ui-shared/components/CwDesignLayersPanel/filterDesignLayerTree'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwDesignLayersPanel/types'

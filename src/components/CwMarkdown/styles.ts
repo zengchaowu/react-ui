@@ -1,4 +1,4 @@
-import type { CwMarkdownStyles } from './types'
+import type { CwMarkdownStyles } from '@zengchaowu/ui-shared/components/CwMarkdown/types'
 import { INTERACTIVE_FOCUS_CLASS } from '@zengchaowu/ui-shared/functions/ui/focusStyles'
 
 export const markdownBase: CwMarkdownStyles = {

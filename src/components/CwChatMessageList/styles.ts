@@ -1,5 +1,5 @@
-import type { CwChatMessageListStyles } from './types'
-import { chatMessageBodyTextClass } from '../CwChatMessageCell/chatMessageTypography'
+import type { CwChatMessageListStyles } from '@zengchaowu/ui-shared/components/CwChatMessageList/types'
+import { chatMessageBodyTextClass } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageTypography'
 
 /** 消息列表 / composer 左右外边距（相对面板）——与 vue-ui `chatWorkspaceSurface` 对齐 */
 const CW_WORKSPACE_CHAT_GUTTER_X = 'px-[18px]'

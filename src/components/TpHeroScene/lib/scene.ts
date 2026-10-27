@@ -2,16 +2,16 @@
  * 场景管理和初始化
  */
 
-import { loadThreeJS, type LoadersResult } from './loaders'
-import { createTerrain } from './terrain'
-import { createWater } from './water'
-import { createSky, createTrisolarisSky, createStars, createClouds, updateSkyAndSun, type TrisolarisSystem } from './sky'
-import { setupLights } from './lights'
-import { createFireflies } from './particles'
-import { addEnvironmentObjects } from './environment'
-import { createCampfire } from './fire'
-import { createDancers } from './dancers'
-import { setupPostProcessing } from './postprocessing'
+import { loadThreeJS, type LoadersResult } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/loaders'
+import { createTerrain } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/terrain'
+import { createWater } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/water'
+import { createSky, createTrisolarisSky, createStars, createClouds, updateSkyAndSun, type TrisolarisSystem } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/sky'
+import { setupLights } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/lights'
+import { createFireflies } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/particles'
+import { addEnvironmentObjects } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/environment'
+import { createCampfire } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/fire'
+import { createDancers } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/dancers'
+import { setupPostProcessing } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/postprocessing'
 import type { TpHeroSceneResolvedProps, SceneQuality } from '../types'
 
 export interface SceneState {

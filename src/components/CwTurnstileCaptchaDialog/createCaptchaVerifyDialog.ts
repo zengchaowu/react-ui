@@ -4,7 +4,7 @@ import type { CwDynamicDialogConfig } from '../CwDynamicDialog/types'
 import { openSliderCaptchaToken } from '../CwSliderCaptchaDialog/showSliderCaptchaDialog'
 import { preloadTurnstileScript } from './composables/useTurnstile'
 import { openTurnstileCaptchaToken } from './showTurnstileCaptchaDialog'
-import type { TurnstileWidgetSize } from './types'
+import type { TurnstileWidgetSize } from '@zengchaowu/ui-shared/components/CwTurnstileCaptchaDialog/types'
 
 export type CreateCaptchaVerifyDialogDeps = CreateSliderCaptchaApiDeps & {
   /** 默认 Turnstile widget 尺寸；也可在 open 时覆盖 */

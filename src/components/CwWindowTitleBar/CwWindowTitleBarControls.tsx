@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent } from 'react'
 import CwIcon from '../CwIcon/CwIcon'
-import { titleBarBase } from './styles'
-import type { CwWindowTitleBarTexts, WindowTitleBarMode } from './types'
+import { titleBarBase } from '@zengchaowu/ui-shared/components/CwWindowTitleBar/styles'
+import type { CwWindowTitleBarTexts, WindowTitleBarMode } from '@zengchaowu/ui-shared/components/CwWindowTitleBar/types'
 
 export interface CwWindowTitleBarControlsProps {
   mode?: WindowTitleBarMode

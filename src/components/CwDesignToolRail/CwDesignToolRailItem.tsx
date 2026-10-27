@@ -7,7 +7,8 @@ import {
   type ShowCwContextMenuReturn,
 } from '../CwContextMenu/showCwContextMenu'
 import type { CwContextMenuItem } from '../CwContextMenu/types'
-import type { CwDesignToolRailItemConfig, CwDesignToolRailStyles } from './types'
+import type { CwDesignToolRailItemConfig } from './types'
+import type { CwDesignToolRailStyles } from '@zengchaowu/ui-shared/components/CwDesignToolRail/types'
 
 export interface CwDesignToolRailItemProps {
   item: CwDesignToolRailItemConfig

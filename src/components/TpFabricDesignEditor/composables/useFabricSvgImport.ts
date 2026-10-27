@@ -4,7 +4,7 @@ import {
   isFabricEditorImportableFile,
   isFabricEditorRasterImageFile,
   isFabricEditorSvgFile,
-} from '../import/fabricEditorImageImport.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/import/fabricEditorImageImport.pure'
 import type { TpFabricDesignEditorImportMode } from '../types'
 
 type FileImportEmit = (e: 'error', err: Error) => void

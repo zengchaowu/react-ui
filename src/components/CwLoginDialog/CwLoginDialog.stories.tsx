@@ -1,12 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwButton } from '../CwButton/CwButton'
 import { showLoginDialog } from './showLoginDialog'
-import type {
-  CwLoginDialogAgreementLink,
-  CwLoginDialogTexts,
-  CwLoginDialogThirdPartyLink,
-  ShowLoginDialogOptions,
-} from './types'
+import type { CwLoginDialogTexts, CwLoginDialogThirdPartyLink, ShowLoginDialogOptions } from './types'
+import type { CwLoginDialogAgreementLink } from '@zengchaowu/ui-shared/components/CwLoginDialog/types'
 
 const demoAgreementLinks: CwLoginDialogAgreementLink[] = [
   { id: 'user', text: '用户协议' },

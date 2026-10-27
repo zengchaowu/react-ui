@@ -1,4 +1,5 @@
 export { default as CwSegment } from './CwSegment'
-export { defaultCwSegmentTexts } from './texts'
-export { segmentBase } from './styles'
+export { defaultCwSegmentTexts } from '@zengchaowu/ui-shared/components/CwSegment/texts'
+export { segmentBase } from '@zengchaowu/ui-shared/components/CwSegment/styles'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwSegment/types'

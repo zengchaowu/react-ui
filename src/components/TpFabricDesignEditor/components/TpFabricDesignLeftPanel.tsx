@@ -7,12 +7,12 @@ import type { CwTreeNode } from '../../CwTree/types'
 import type {
   FabricEditorComponent,
   FabricEditorPage,
-} from '../document/fabricEditorPages.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorPages.pure'
 import {
   filterFabricEditorComponents,
   TP_FABRIC_DESIGN_LEFT_TABS,
   type TpFabricDesignLeftTab,
-} from './tpFabricDesignLeftPanel.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/components/tpFabricDesignLeftPanel.pure'
 
 export interface TpFabricDesignLeftPanelProps {
   readonly?: boolean

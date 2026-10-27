@@ -6,7 +6,7 @@ import type {
   TouchEvent as ReactTouchEvent,
 } from 'react'
 import type { CwSliderProps } from './types'
-import { sliderBase } from './styles'
+import { sliderBase } from '@zengchaowu/ui-shared/components/CwSlider/styles'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 
 function clamp(v: number, a: number, b: number) {

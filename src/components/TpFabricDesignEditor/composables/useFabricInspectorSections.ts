@@ -1,5 +1,5 @@
 ﻿import { useReactiveComputed, type ReactiveRef } from './reactivity'
-import { defaultTpFabricInspectorSections } from '../config/defaultInspectorSections'
+import { defaultTpFabricInspectorSections } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/config/defaultInspectorSections'
 
 export function useFabricInspectorSections(options: {
   hasIconMetaSlot: () => boolean

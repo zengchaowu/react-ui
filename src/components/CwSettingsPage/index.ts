@@ -1,4 +1,5 @@
 export { default as CwSettingsPage } from './CwSettingsPage'
-export { defaultCwSettingsPageTexts } from './texts'
-export { settingsPageBase } from './styles'
+export { defaultCwSettingsPageTexts } from '@zengchaowu/ui-shared/components/CwSettingsPage/texts'
+export { settingsPageBase } from '@zengchaowu/ui-shared/components/CwSettingsPage/styles'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwSettingsPage/types'

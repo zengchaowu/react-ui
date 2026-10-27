@@ -4,8 +4,8 @@ import type { GLTFLoader as GLTFLoaderClass } from 'three/examples/jsm/loaders/G
 import type { OrbitControls as OrbitControlsClass } from 'three/examples/jsm/controls/OrbitControls.js'
 import type { GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import type { TpThreeJsProps } from './types'
-import { threeJsBase } from './styles'
-import { defaultTexts } from './texts'
+import { threeJsBase } from '@zengchaowu/ui-shared/components/TpThreeJs/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/TpThreeJs/texts'
 import { CwIcon } from '../CwIcon'
 import { designPxToRem } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
 

@@ -4,7 +4,7 @@ import { CwDataTable } from './CwDataTable'
 import type { CwDataTableComponentProps } from './CwDataTable'
 import CwLoading from '../CwLoading/CwLoading'
 import CwEmptyState from '../CwEmptyState/CwEmptyState'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDataTable/texts'
 import type {
   CwDataTableConfig,
   CwDataTableExternalRowScope,

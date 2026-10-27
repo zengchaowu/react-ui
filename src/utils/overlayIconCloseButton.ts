@@ -4,7 +4,7 @@ import {
   CW_OVERLAY_PREVIEW_CLOSE_BUTTON_ROOT_CLASS,
   CW_OVERLAY_PREVIEW_DOWNLOAD_BUTTON_ROOT_CLASS,
 } from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
-import type { CwButtonAppearance } from '../components/CwButton/types'
+import type { CwButtonAppearance } from '@zengchaowu/ui-shared/components/CwButton/types'
 
 /** 与 --size-overlay-icon（18px）一致 */
 export const CW_OVERLAY_ICON_CLOSE_SIZE = 1.125

@@ -1,6 +1,7 @@
-import type { CwInputAppearance } from '../CwInput/types'
-import type { CwEditableTextAppearance, CwEditableTextStyles } from './types'
-import { editableTextBase } from './styles'
+import type { CwInputAppearance } from '@zengchaowu/ui-shared/components/CwInput/types'
+import type { CwEditableTextAppearance } from './types'
+import type { CwEditableTextStyles } from '@zengchaowu/ui-shared/components/CwEditableText/types'
+import { editableTextBase } from '@zengchaowu/ui-shared/components/CwEditableText/styles'
 
 export interface ResolvedEditableTextAppearance {
   styles: CwEditableTextStyles

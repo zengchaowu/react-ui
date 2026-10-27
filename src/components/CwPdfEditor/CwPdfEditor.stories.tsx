@@ -2,8 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useRef, useState } from 'react'
 import type { ChangeEvent } from 'react'
 import CwPdfEditor from './CwPdfEditor'
-import type { CwPdfEditorHandle, CwPdfSource } from './types'
-import { defaultTexts } from './texts'
+import type { CwPdfEditorHandle } from './types'
+import type { CwPdfSource } from '@zengchaowu/ui-shared/components/CwPdfEditor/types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwPdfEditor/texts'
 import samplePdf from '../../storybook/assets/cw-pdf-editor/sample.pdf?url'
 
 const meta: Meta<typeof CwPdfEditor> = {

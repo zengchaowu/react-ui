@@ -4,8 +4,8 @@ import type { CwCornerClosableWrapProps } from './types'
 import {
   CW_CORNER_CLOSABLE_WRAP_CLOSE_ICON_STYLES,
   cornerClosableWrapBase,
-} from './styles'
-import { defaultCwCornerClosableWrapTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwCornerClosableWrap/styles'
+import { defaultCwCornerClosableWrapTexts } from '@zengchaowu/ui-shared/components/CwCornerClosableWrap/texts'
 
 export function CwCornerClosableWrap({
   closable = true,

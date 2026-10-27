@@ -11,15 +11,9 @@ import type {
 } from 'react'
 import type { CwDivHandle } from '../../CwDiv/CwDiv'
 import { resolveCwDivViewport } from '../../CwDiv/resolveCwDivViewport'
-import { defaultTexts } from '../texts'
-import type {
-  CwPdfDocument,
-  CwPdfEditorEmits,
-  CwPdfEditorProps,
-  CwPdfNote,
-  CwPdfRotation,
-  CwPdfTextRun,
-} from '../types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwPdfEditor/texts'
+import type { CwPdfEditorEmits } from '../types'
+import type { CwPdfDocument, CwPdfEditorProps, CwPdfNote, CwPdfRotation, CwPdfTextRun } from '@zengchaowu/ui-shared/components/CwPdfEditor/types'
 import {
   blankPage,
   clonePdfDocument,
@@ -37,7 +31,7 @@ import {
   pageIndexAtScroll,
   totalStackHeight,
   visiblePageSlots,
-} from '../functions/pdfPageLayout'
+} from '@zengchaowu/ui-shared/components/CwPdfEditor/functions/pdfPageLayout'
 import {
   filterVisibleRuns,
   noteBoxStyle,

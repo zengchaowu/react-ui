@@ -5,13 +5,11 @@ import { scheduleBringOverlayHostToFront } from '../../constants/cwOverlayStack'
 import { CwPublicAssetBaseUrlContext } from '../../utils/publicAssetBaseUrl'
 import CwAttachmentPreview from './CwAttachmentPreview'
 import { buildAttachmentGalleryItems } from '../CwAttachmentGallery/functions/buildAttachmentGalleryItems'
-import { buildImageAttachmentItems } from '../CwAttachmentGallery/functions/buildImageAttachmentItems'
+import { buildImageAttachmentItems } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/functions/buildImageAttachmentItems'
 import type { CwAttachmentGalleryItem } from '../CwAttachmentGallery/types'
 import { clampIndex } from '@zengchaowu/shared/functions/number/clampIndex'
-import type {
-  ShowCwAttachmentPreviewOptions,
-  ShowCwAttachmentPreviewReturn,
-} from './types'
+import type { ShowCwAttachmentPreviewOptions } from './types'
+import type { ShowCwAttachmentPreviewReturn } from '@zengchaowu/ui-shared/components/CwAttachmentPreview/types'
 
 type ActiveAttachmentPreview = ShowCwAttachmentPreviewReturn & {
   fingerprint: string

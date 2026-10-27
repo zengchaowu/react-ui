@@ -6,17 +6,14 @@ import {
   type HTMLAttributes,
   type ReactNode,
 } from 'react'
-import type {
-  CwCellAppearance,
-  CwCellGroupAppearance,
-  CwCellGroupProps,
-  CwCellTexts,
-} from './types'
+import type { CwCellGroupProps } from './types'
+import type { CwCellTexts } from '@zengchaowu/ui-shared/components/CwCell/types'
+import type { CwCellAppearance, CwCellGroupAppearance } from '@zengchaowu/ui-shared/components/CwCell/types'
 import {
   cellGroupAppearanceStyles,
   cellGroupBase,
   cellGroupDefaultCellAppearance,
-} from './styles'
+} from '@zengchaowu/ui-shared/components/CwCell/styles'
 
 export interface CwCellGroupContextValue {
   cellAppearance?: CwCellAppearance

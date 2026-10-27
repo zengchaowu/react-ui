@@ -1,7 +1,7 @@
 import { Fragment, isValidElement } from 'react'
 import type { ReactNode } from 'react'
-import type { CwColProps } from '../types'
-import { GRID_SPAN_TOTAL } from '../layout'
+import type { CwColProps } from '@zengchaowu/ui-shared/components/CwRow/types'
+import { GRID_SPAN_TOTAL } from '@zengchaowu/ui-shared/components/CwRow/layout'
 
 /** 展开数组 / Fragment，得到扁平子节点列表 */
 export function flattenReactNodes(node: ReactNode): ReactNode[] {

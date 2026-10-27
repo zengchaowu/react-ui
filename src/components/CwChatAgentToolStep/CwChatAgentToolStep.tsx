@@ -16,7 +16,7 @@ import {
   parseRunAgentStepPresentation,
 } from '@zengchaowu/shared/functions/ai/agentToolDisplayPolicy'
 import { CwIcon } from '../CwIcon'
-import { resolveAgentToolStepLayoutClasses } from './styles'
+import { resolveAgentToolStepLayoutClasses } from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/styles'
 import {
   AGENT_TOOL_CHEVRON_SIZE,
   AGENT_TOOL_TERMINAL_COLLAPSED_MAX_LINES,
@@ -25,14 +25,12 @@ import {
   agentToolTerminalHoverToggleClass,
   agentToolTerminalOutputCollapsedClass,
   agentToolTerminalOutputExpandedClass,
-} from './chrome'
+} from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/chrome'
 import CwAgentToolShimmerLabel from './CwAgentToolShimmerLabel'
 import CwChatAgentToolStatusIcon from './CwChatAgentToolStatusIcon'
-import { defaultCwChatAgentToolStepTexts } from './texts'
-import type {
-  CwChatAgentToolStepProps,
-  CwChatAgentToolStepTexts,
-} from './types'
+import { defaultCwChatAgentToolStepTexts } from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/texts'
+import type { CwChatAgentToolStepProps } from './types'
+import type { CwChatAgentToolStepTexts } from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/types'
 
 export interface CwChatAgentToolStepComponentProps
   extends CwChatAgentToolStepProps,

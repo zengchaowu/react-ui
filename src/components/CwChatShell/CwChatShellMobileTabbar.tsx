@@ -5,13 +5,13 @@ import type {
   CwChatShellMobileTabbarProps,
   CwChatShellTabItem,
 } from './types'
-import { chatShellMobileTabbarBase } from './styles'
-import { defaultCwChatShellMobileTabbarTexts } from './texts'
+import { chatShellMobileTabbarBase } from '@zengchaowu/ui-shared/components/CwChatShell/styles'
+import { defaultCwChatShellMobileTabbarTexts } from '@zengchaowu/ui-shared/components/CwChatShell/texts'
 import {
   CW_CHAT_SHELL_MINE_AVATAR_SIZE,
   CW_CHAT_SHELL_MOBILE_TABBAR_TOOLTIP_OFFSET,
   CW_CHAT_SHELL_TOOLTIP_SHOW_DELAY_MS,
-} from './constants'
+} from '@zengchaowu/ui-shared/components/CwChatShell/constants'
 
 export function CwChatShellMobileTabbar({
   value,

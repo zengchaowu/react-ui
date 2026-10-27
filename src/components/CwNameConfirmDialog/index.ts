@@ -1,7 +1,5 @@
 export { showNameConfirmDialog } from './showNameConfirmDialog'
-export { defaultCwNameConfirmDialogTexts } from './texts'
-export type {
-  CwNameConfirmDialogOptions,
-  CwNameConfirmDialogResult,
-  CwNameConfirmDialogTexts,
-} from './types'
+export { defaultCwNameConfirmDialogTexts } from '@zengchaowu/ui-shared/components/CwNameConfirmDialog/texts'
+export type { CwNameConfirmDialogOptions } from '@zengchaowu/ui-shared/components/CwNameConfirmDialog/types'
+export type { CwNameConfirmDialogTexts } from '@zengchaowu/ui-shared/components/CwNameConfirmDialog/types'
+export type { CwNameConfirmDialogResult } from '@zengchaowu/ui-shared/components/CwNameConfirmDialog/types'

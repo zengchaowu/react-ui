@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 import type { CwTabbarItem } from '../CwTabbar/types'
-import type { CwIconEmbed } from '../CwIcon/types'
+import type { CwIconEmbed } from '@zengchaowu/ui-shared/components/CwIcon/types'
+import type { CwChatShellNavTexts, CwChatShellMobileTabbarTexts } from '@zengchaowu/ui-shared/components/CwChatShell/types'
 
 /** Chat 壳层 Tab 项（兼容 iconfont + CwTabbar） */
 export interface CwChatShellTabItem extends CwTabbarItem {
@@ -141,39 +142,17 @@ export interface CwChatShellConnDotProps {
   title?: string
 }
 
-export interface CwChatShellNavStyles {
-  root: string
-  tabbarWrap: string
-  footer: string
-}
-
-export interface CwChatShellNavTexts {
-  navAriaLabel: string
-  tabbarLabel: string
-}
-
-export interface CwChatShellMobileTabbarStyles {
-  root: string
-}
-
-export interface CwChatShellMobileTabbarTexts {
-  tabbarLabel: string
-}
-
-
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwChatShellLayoutEmits {
   (e: 'update:modelValue', key: string): void
   (e: 'change', key: string, item: CwChatShellTabItem): void
 }
 
-
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwChatShellMobileTabbarEmits {
   (e: 'update:modelValue', key: string): void
   (e: 'change', key: string, item: CwChatShellTabItem): void
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwChatShellNavEmits {

@@ -1,74 +1,17 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 import type { ChatMessage } from '@zengchaowu/shared/types/im-chat'
-import type {
-  CwChatAssistantMessageFeedbackVote,
-  CwChatDownloadByUrlFn,
-  CwChatFileDownloadProgressResolver,
-  CwChatAttachmentPreviewOpenPayload,
-  CwChatMessageCellTexts,
-  CwChatMessageLayoutVariant,
-  CwChatMessageMarkdownCodeBlockCopyPayload,
-  CwChatMessageMarkdownImageContextMenuPayload,
-  CwChatOwnMessageEditSubmitPayload,
-  CwChatRevealLocalFileFn,
-} from '../CwChatMessageCell/types'
+import type { CwChatMessageMarkdownCodeBlockCopyPayload, CwChatMessageMarkdownImageContextMenuPayload, CwChatOwnMessageEditSubmitPayload } from '../CwChatMessageCell/types'
+import type { CwChatAssistantMessageFeedbackVote, CwChatDownloadByUrlFn, CwChatFileDownloadProgressResolver, CwChatAttachmentPreviewOpenPayload, CwChatMessageCellTexts, CwChatMessageLayoutVariant, CwChatRevealLocalFileFn } from '@zengchaowu/ui-shared/components/CwChatMessageCell/types'
 import type { CwChatMessageBubbleAppearance } from '../CwChatMessageCell/chatMessageBubbleSurface'
-import type { CwChatMessageRedEnvelopeTexts } from '../CwChatMessageCell/redEnvelopeTexts'
-import type { CwChatMessageTransferTexts } from '../CwChatMessageCell/transferTexts'
+import type { CwChatMessageRedEnvelopeTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/redEnvelopeTexts'
+import type { CwChatMessageTransferTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/transferTexts'
 import type {
   CwImMentionProfileClickPayload,
   CwImMentionProfileResolver,
   CwMessageInputMentionItem,
 } from '../CwChatMessageCell/mentionProfile.types'
-import type { CwChatMessageForwardBundleTexts } from '../CwChatMessageForwardBundle/texts'
-
-export interface CwChatMessageListStyles {
-  root: string
-  scrollRoot: string
-  content: string
-  /** Cursor / workspace 列表：更大左右内边距（覆盖宿主 `px-*`） */
-  contentWorkspace: string
-  emptyState: string
-  emptyHint: string
-  messagesColumn: string
-  /** 列表顶部（加载更早消息等） */
-  prepend?: string
-  /** 消息列末尾追加内容 */
-  append?: string
-  /** workspace：列表底部留白（与输入框拉开距离） */
-  bottomSpacerWorkspace: string
-  messageRow: string
-  /** Cursor / workspace 列表：更大行距 */
-  messageRowWorkspace: string
-  /** workspace：一轮对话容器（己方 sticky 的边界） */
-  messageTurnWorkspace: string
-  /** workspace：己方消息吸顶 */
-  messageRowStickyOwn: string
-  /** 多选已开启：整行可点击（含 `messageRow` 顶部 pt 行距区） */
-  messageRowSelectionClickable: string
-  /** 多选已开启但该行不可选：禁用 pointer 手势 */
-  messageRowSelectionDisabled: string
-  /** 多选时整行作为定位层（仅承载 absolute 子节点，不改变消息区文档流） */
-  messageRowSelectionHost: string
-  /** 多选选中行：整行底色层（absolute + pointer-events-none，不占流、不挤压气泡） */
-  messageRowSelectedScrim: string
-  /** 多选：悬浮勾选框容器（绝对定位） */
-  selectionCheckboxAbs: string
-  /** 多选：消息区包裹层（`flex min-w-0 w-full justify-start` + 左侧 padding），为绝对定位勾选框让位且不改变气泡相对本层的百分比逻辑 */
-  messageRowSelectionInner: string
-  loadingOverlay: string
-  /** 多选且该行被勾选时：整行背景（placeholder 色系） */
-  messageRowSelectedBg: string
-  /** 点击引用条定位到目标消息时的短暂高亮 */
-  messageRowQuoteHighlight: string
-  /** 拖选进入多选前的蓝色框（滚动内容坐标 absolute，视口 overflow 裁剪） */
-  lassoBox: string
-}
-
-export interface CwChatMessageListTexts {
-  /** 无消息时在列表区展示的提示 */
-  empty: string
-}
+import type { CwChatMessageForwardBundleTexts } from '@zengchaowu/ui-shared/components/CwChatMessageForwardBundle/texts'
+import type { CwChatMessageListTexts } from '@zengchaowu/ui-shared/components/CwChatMessageList/types'
 
 /** 长按消息气泡payload（等价 Vue `longpress` 事件参数） */
 export interface CwChatMessageListLongPressPayload {

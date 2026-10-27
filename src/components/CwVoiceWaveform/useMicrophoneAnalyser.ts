@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { bucketFrequencyLevels } from './bucketFrequencyLevels'
+import { bucketFrequencyLevels } from '@zengchaowu/ui-shared/components/CwVoiceWaveform/bucketFrequencyLevels'
 
 export interface UseMicrophoneAnalyserOptions {
   barCount?: number

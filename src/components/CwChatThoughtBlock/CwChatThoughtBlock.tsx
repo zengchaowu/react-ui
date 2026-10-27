@@ -8,11 +8,11 @@ import {
   AGENT_TOOL_CHEVRON_SIZE,
   agentToolHeaderChevronClass,
   agentToolHeaderChevronExpandedClass,
-} from '../CwChatAgentToolStep/chrome'
+} from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/chrome'
 import {
   chatAgentAuxiliaryBodyTextClass,
   chatAgentAuxiliaryLabelTextClass,
-} from '../CwChatMessageCell/chatMessageTypography'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageTypography'
 import type { CwChatThoughtBlockProps } from './types'
 
 export function CwChatThoughtBlock({

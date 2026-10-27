@@ -5,11 +5,11 @@ import {
   Group,
   type FabricObject,
 } from 'fabric'
-import { tokenSolidColors } from '../../../assets/tokens/tokenSolidColors'
-import { resolveFabricCanvasBackgroundColor } from '../document/fabricEditorBackground.pure'
-import { isFabricArtboardGuide } from '../document/fabricArtboard'
-import { clearFabricEditorClipboard, fabricEditorCopySelection, fabricEditorPasteClipboard } from '../document/fabricEditorClipboard'
-import type { FabricEditorDocumentContext } from '../document/fabricEditorDocument.types'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
+import { resolveFabricCanvasBackgroundColor } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorBackground.pure'
+import { isFabricArtboardGuide } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricArtboard'
+import { clearFabricEditorClipboard, fabricEditorCopySelection, fabricEditorPasteClipboard } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorClipboard'
+import type { FabricEditorDocumentContext } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorDocument.types'
 import {
   addFabricPrimitiveToCanvas,
   createFabricEditorCircle,
@@ -17,16 +17,16 @@ import {
   createFabricEditorRectangle,
   createFabricEditorText,
   createFabricEditorTriangle,
-} from '../document/fabricEditorDocumentPrimitives.pure'
-import { syncGroupsInteractionFromCanvasSelection } from '../layers/fabricGroupPointerPolicy.pure'
-import { frameFabricCanvasSelection } from '../layers/fabricEditorFrameSelection.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorDocumentPrimitives.pure'
+import { syncGroupsInteractionFromCanvasSelection } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricGroupPointerPolicy.pure'
+import { frameFabricCanvasSelection } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricEditorFrameSelection.pure'
 import {
   fabricEditorDeselectAll,
   fabricEditorDuplicateSelection,
   fabricEditorNudgeSelection,
   fabricEditorSelectAll,
-} from '../selection/fabricEditorSelectionActions'
-import { assignDefaultFabricLayerName } from '../layers/fabricLayerNaming.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/selection/fabricEditorSelectionActions'
+import { assignDefaultFabricLayerName } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricLayerNaming.pure'
 import type { TpFabricDesignEditorTool } from '../types'
 
 export function useFabricEditorDocumentSelection(options: {

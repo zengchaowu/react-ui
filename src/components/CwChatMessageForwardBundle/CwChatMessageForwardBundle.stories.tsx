@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwChatMessageForwardBundle } from './CwChatMessageForwardBundle'
-import { defaultCwChatMessageForwardBundleTexts } from './texts'
+import { defaultCwChatMessageForwardBundleTexts } from '@zengchaowu/ui-shared/components/CwChatMessageForwardBundle/texts'
 
 const meta: Meta<typeof CwChatMessageForwardBundle> = {
   title: '1. Components/Chat/CwChatMessageForwardBundle',

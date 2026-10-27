@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CwBadge } from './CwBadge'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwBadge/texts'
 
 const meta: Meta<typeof CwBadge> = {
   title: '1. Components/Display/CwBadge',

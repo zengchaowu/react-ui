@@ -19,7 +19,7 @@ import { infiniteScrollBase } from './styles'
 import {
   CW_INFINITE_SCROLL_DEFAULT_CLIENT_HEIGHT_TRIGGER,
   CW_INFINITE_SCROLL_DEFAULT_SCROLL_TOP_TRIGGER,
-} from './constants'
+} from '@zengchaowu/ui-shared/components/CwInfiniteScroll/constants'
 import { useCwInfiniteScrollPull } from './useCwInfiniteScrollPull'
 import { scrollViewportToBottom } from './scrollViewport'
 

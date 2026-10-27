@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
 import './cw-row-col.css'
-import type { CwRowProps } from './types'
-import { rowBase } from './styles'
+import type { CwRowProps } from '@zengchaowu/ui-shared/components/CwRow/types'
+import { rowBase } from '@zengchaowu/ui-shared/components/CwRow/styles'
 import { CwRowGutterContext, useCwGridMeasuredLayout } from './keys'
 
 export interface CwRowComponentProps

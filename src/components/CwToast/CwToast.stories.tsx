@@ -2,7 +2,8 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwToast } from './CwToast'
 import { showCwToast } from './showCwToast'
-import type { CwRichTextNode, CwToastType } from './types'
+import type { CwRichTextNode } from './types'
+import type { CwToastType } from '@zengchaowu/ui-shared/components/CwToast/types'
 
 const meta: Meta<typeof CwToast> = {
   title: '1. Components/Overlay/CwToast',

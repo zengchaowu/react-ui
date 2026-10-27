@@ -1,12 +1,12 @@
 import type { KeyboardEvent, ReactNode } from 'react'
 import type { ChatMessage } from '@zengchaowu/shared/types/im-chat'
 import CwIcon from '../CwIcon/CwIcon'
-import type { CwChatAssistantMessageFeedbackVote } from './types'
+import type { CwChatAssistantMessageFeedbackVote } from '@zengchaowu/ui-shared/components/CwChatMessageCell/types'
 import {
   assistantActionsBase,
   cwChatMessageAssistantActionIconStyles,
 } from './assistantActionsStyles'
-import { defaultCwChatMessageAssistantActionsTexts } from './assistantActionsTexts'
+import { defaultCwChatMessageAssistantActionsTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/assistantActionsTexts'
 import { useChatVoiceIconFrame } from './useChatVoiceIconFrame'
 
 export interface CwChatMessageCellAssistantActionsProps {

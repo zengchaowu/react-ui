@@ -2,7 +2,7 @@
 import {
   chatMessageAssistantBodyTextClass,
   chatMessageBodyTextClass,
-} from './chatMessageTypography'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageTypography'
 import {
   CW_WORKSPACE_CHAT_INSET_PAD,
   CW_WORKSPACE_CHAT_RADIUS,

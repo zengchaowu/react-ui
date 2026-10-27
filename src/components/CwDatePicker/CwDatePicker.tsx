@@ -8,10 +8,10 @@ import { CwPopup } from '../CwPopup/CwPopup'
 import { CwInput } from '../CwInput/CwInput'
 import { CwIcon } from '../CwIcon/CwIcon'
 import CwDatePickerContent from './CwDatePickerContent'
-import { createDimensions } from '../CwPopup/plugins/dimensions'
-import { createPosition } from '../CwPopup/plugins/position'
-import { createOffset } from '../CwPopup/plugins/offset'
-import { createFlip } from '../CwPopup/plugins/flip'
+import { createDimensions } from '@zengchaowu/ui-shared/components/CwPopup/plugins/dimensions'
+import { createPosition } from '@zengchaowu/ui-shared/components/CwPopup/plugins/position'
+import { createOffset } from '@zengchaowu/ui-shared/components/CwPopup/plugins/offset'
+import { createFlip } from '@zengchaowu/ui-shared/components/CwPopup/plugins/flip'
 import type {
   CwDatePickerModelValue,
   CwDatePickerProps,
@@ -21,8 +21,8 @@ import {
   CW_DATE_PICKER_POPUP_SHELL_CLASS,
   CW_DATE_PICKER_POPUP_TRIGGER_CLASS,
 } from './styles'
-import { defaultTexts } from './texts'
-import { formatDate, parseModelValue } from './functions'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDatePicker/texts'
+import { formatDate, parseModelValue } from '@zengchaowu/ui-shared/components/CwDatePicker/functions'
 import { cwClearIconSize } from '@zengchaowu/ui-shared/functions/ui/cwClearIconSize'
 
 const popupPlugins = [

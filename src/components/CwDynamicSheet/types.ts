@@ -1,9 +1,5 @@
 import type { ReactNode } from 'react'
-
-export type CwDynamicSheetDirection = 'top' | 'bottom' | 'left' | 'right'
-
-/** 预设内容壳（方向须匹配：fullscreenBottom→bottom，rightPanel→right） */
-export type CwDynamicSheetContentShell = 'default' | 'fullscreenBottom' | 'rightPanel'
+import type { CwDynamicSheetDirection, CwDynamicSheetContentShell, CwDynamicSheetInnerTexts } from '@zengchaowu/ui-shared/components/CwDynamicSheet/types'
 
 export interface CwDynamicSheetConfig {
   header?: ReactNode
@@ -79,37 +75,6 @@ export interface CwDynamicSheetInnerProps {
   texts?: Partial<CwDynamicSheetInnerTexts>
   onClose?: (id: string) => void
   className?: string
-}
-
-export interface CwDynamicSheetInnerStyles {
-  overlay: string
-  overlayBottom: string
-  overlayTop: string
-  overlayLeft: string
-  overlayRight: string
-  backdrop: string
-  backdropDefault: string
-  content: string
-  contentBottom: string
-  contentTop: string
-  contentLeft: string
-  contentRight: string
-  header: string
-  closeButton: string
-  closeButtonNormal: string
-  closeButtonHover: string
-  closeButtonFocused: string
-  closeIcon: string
-  bodyWithHeader: string
-  bodyWithoutHeader: string
-  bodyAboveFooter: string
-  footer: string
-  dragHandleContainer: string
-  dragHandle: string
-}
-
-export interface CwDynamicSheetInnerTexts {
-  closeText: string
 }
 
 export interface CwDynamicSheetInnerEmits {

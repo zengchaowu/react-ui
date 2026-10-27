@@ -45,29 +45,6 @@ export interface CwStackProps {
   onComponentPop?: (item: CwStackItem | undefined) => void
 }
 
-/** @internal */
-export interface CwStackStyles {
-  root: string
-  layerHost: string
-  layer: string
-  layerIdleUnder: string
-  layerIdleTop: string
-  layerEnterFwd: string
-  layerEnterFwdRoot: string
-  layerLeaveFwd: string
-  layerEnterBack: string
-  layerLeaveBack: string
-  /** 被新页盖住时的下层遮罩 */
-  layerScrim: string
-  layerScrimIdle: string
-  layerScrimEnter: string
-  layerScrimLeave: string
-}
-
-export interface CwStackTexts {
-  // 当前组件不需要文本
-}
-
 export interface CwStackEmits {
   /**
    * 栈变化事件

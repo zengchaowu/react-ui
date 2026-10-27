@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
+import type { CwSwitchTexts } from '@zengchaowu/ui-shared/components/CwSwitch/types'
 
 export interface CwSwitchProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'className' | 'children' | 'onChange'> {
@@ -11,36 +12,6 @@ export interface CwSwitchProps
   className?: string
   onChange?: (value: boolean) => void
 }
-
-export interface CwSwitchStyles {
-  root: string
-  rootNormal: string
-  rootDisabled: string
-  rootReadonly?: string
-
-  track: string
-  trackNormal: string
-  trackChecked: string
-  trackDisabled: string
-  trackReadonlyNormal?: string
-  trackReadonlyChecked?: string
-  trackFocused: string
-
-  thumb: string
-  thumbOff: string
-  thumbOn: string
-  thumbNormal: string
-  thumbDisabled: string
-
-  label: string
-  labelNormal: string
-  labelDisabled: string
-  sizeSmall: string
-  sizeMedium: string
-  sizeLarge: string
-}
-
-export interface CwSwitchTexts {}
 
 export interface CwSwitchEmits {
   onChange?: (value: boolean) => void

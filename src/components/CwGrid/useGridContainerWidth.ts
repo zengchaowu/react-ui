@@ -1,6 +1,6 @@
 import { useEffect, useState, type RefObject } from 'react'
 import type { CwGridBreakpointConfig } from './types'
-import { resolveGridColumnsFromContainerWidth } from './gridBreakpoint'
+import { resolveGridColumnsFromContainerWidth } from '@zengchaowu/ui-shared/components/CwGrid/gridBreakpoint'
 
 export interface UseGridContainerWidthOptions {
   /** 响应式断点配置；存在时强制测量 */

@@ -1,7 +1,7 @@
 import { useState, type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwIconPicker } from './index'
-import type { IconCategory } from './types'
+import type { IconCategory } from '@zengchaowu/ui-shared/components/CwIconPicker/types'
 
 const meta: Meta<typeof CwIconPicker> = {
   title: '1. Components/Form/CwIconPicker',

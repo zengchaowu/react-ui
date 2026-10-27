@@ -14,16 +14,13 @@ import { CwPopup } from '../CwPopup'
 import { CwButton } from '../CwButton/CwButton'
 import { CwIcon } from '../CwIcon/CwIcon'
 import { CwDiv } from '../CwDiv/CwDiv'
-import { createDimensions } from '../CwPopup/plugins/dimensions'
-import { createPosition } from '../CwPopup/plugins/position'
-import { createOffset } from '../CwPopup/plugins/offset'
-import { createFlip } from '../CwPopup/plugins/flip'
-import { createAdaptiveHeight } from '../CwPopup/plugins/adaptive-height'
-import type {
-  CwDropdownItem,
-  CwDropdownProps,
-  CwDropdownTriggerSlotScope,
-} from './types'
+import { createDimensions } from '@zengchaowu/ui-shared/components/CwPopup/plugins/dimensions'
+import { createPosition } from '@zengchaowu/ui-shared/components/CwPopup/plugins/position'
+import { createOffset } from '@zengchaowu/ui-shared/components/CwPopup/plugins/offset'
+import { createFlip } from '@zengchaowu/ui-shared/components/CwPopup/plugins/flip'
+import { createAdaptiveHeight } from '@zengchaowu/ui-shared/components/CwPopup/plugins/adaptive-height'
+import type { CwDropdownProps, CwDropdownTriggerSlotScope } from './types'
+import type { CwDropdownItem } from '@zengchaowu/ui-shared/components/CwDropdown/types'
 import {
   dropdownBase,
   CW_DROPDOWN_POPUP_SHELL_CLASS,
@@ -31,7 +28,7 @@ import {
   CW_DROPDOWN_SIDEBAR_POPUP_TRIGGER_CLASS,
   cwDropdownAppearanceLayout,
 } from './styles'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDropdown/texts'
 
 export interface CwDropdownComponentProps
   extends CwDropdownProps,

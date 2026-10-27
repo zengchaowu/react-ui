@@ -1,6 +1,4 @@
-export interface CwInlineRenameLabelTexts {
-  renamePrefix: string
-}
+import type { CwInlineRenameLabelTexts } from '@zengchaowu/ui-shared/components/CwInlineRenameLabel/types'
 
 export interface CwInlineRenameLabelProps {
   name: string

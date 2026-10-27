@@ -1,13 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
-import type {
-  CwIconPickerProps,
-  IconCategory,
-  IconItem,
-  IconPickerType,
-} from './types'
-import { iconPickerBase } from './styles'
-import { defaultTexts } from './texts'
-import { fetchAllEmojiData, buildAllEmojiCategories } from './emojiData'
+import type { CwIconPickerProps } from './types'
+import type { IconCategory, IconItem, IconPickerType } from '@zengchaowu/ui-shared/components/CwIconPicker/types'
+import { iconPickerBase } from '@zengchaowu/ui-shared/components/CwIconPicker/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwIconPicker/texts'
+import { fetchAllEmojiData, buildAllEmojiCategories } from '@zengchaowu/ui-shared/components/CwIconPicker/emojiData'
 import CwTabsStrip from '../CwTabsStrip/CwTabsStrip'
 import CwButton from '../CwButton/CwButton'
 import CwInput from '../CwInput/CwInput'

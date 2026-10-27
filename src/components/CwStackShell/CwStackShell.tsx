@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, type HTMLAttributes } from 're
 import { CwStack } from '../CwStack'
 import type { CwStackComponent, CwStackHandle } from '../CwStack'
 import type { CwStackShellProps } from './types'
-import { stackShellBase } from './styles'
+import { stackShellBase } from '@zengchaowu/ui-shared/components/CwStackShell/styles'
 
 export interface CwStackShellComponentProps
   extends CwStackShellProps,

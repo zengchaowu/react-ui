@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import type { CwSlotProps } from './types'
-import { slotBase } from './styles'
-import { defaultTexts } from './texts'
+import { slotBase } from '@zengchaowu/ui-shared/components/CwSlot/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwSlot/texts'
 
 export function CwSlot({
   block = false,

@@ -1,87 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-
-export interface CwFileUploadStyles {
-  /** 根容器：基础样式 */
-  root: string
-  /** 根容器：状态（互斥） */
-  rootNormal: string
-  rootDisabled: string
-  rootReadonly: string
-
-  /** 上传区域：基础样式 */
-  uploadArea: string
-  /** 上传区域：状态（互斥） */
-  uploadAreaNormal: string
-  uploadAreaDisabled: string
-  uploadAreaReadonly: string
-  /** 上传区域：聚焦环 */
-  uploadAreaFocused: string
-
-  /** 文件项：基础样式 */
-  fileItem: string
-  /** 文件项：状态 */
-  fileItemReady: string
-  fileItemError: string
-  fileItemUploading: string
-  fileItemSuccess: string
-  /** 文件项：组件状态 */
-  fileItemNormal: string
-  fileItemDisabled: string
-  fileItemReadonly: string
-
-  /** 文件信息 */
-  fileInfo: string
-  /** 文件预览容器（图片） */
-  filePreview: string
-  /** 文件预览图片 */
-  filePreviewImage: string
-  /** 非图片文件预览（图标 + 文件名） */
-  fileDocPreview: string
-  /** 状态覆盖层 */
-  fileStatusOverlay: string
-  /** 操作按钮容器（完全由外部控制样式） */
-  fileActionsContainer: string
-  /** 文件名 */
-  fileName: string
-  /** 加载动画 */
-  spinner: string
-  /** 删除按钮 */
-  deleteButton: string
-  /** 删除按钮背景（四分之一圆） */
-  deleteButtonBg: string
-  /** 删除按钮图标 */
-  deleteButtonIcon: string
-
-  /** 错误状态图标样式 */
-  errorIcon: string
-  /** 删除按钮图标样式 */
-  deleteButtonIconStyle: string
-  /** 上传图标样式（正常状态） */
-  uploadIcon: string
-  /** 上传图标样式（禁用状态） */
-  uploadIconDisabled: string
-
-  /** 隐藏的文件输入 */
-  fileInput: string
-}
-
-export interface CwFileUploadTexts {
-  delete: string
-}
-
-export interface UploadFile {
-  uid: string
-  name: string
-  size: number
-  type: string
-  status: 'ready' | 'uploading' | 'success' | 'failed'
-  progress?: number
-  url?: string
-  error?: string
-  file: File
-}
-
-export type CwFileUploadAppearance = 'default' | 'dashed' | 'profile'
+import type { UploadFile, CwFileUploadAppearance, CwFileUploadTexts } from '@zengchaowu/ui-shared/components/CwFileUpload/types'
 
 export interface CwFileUploadProps
   extends Omit<
@@ -160,7 +78,6 @@ export interface CwFileUploadHandle {
   /** 重试上传 */
   retry: (file: UploadFile) => void
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwFileUploadEmits {

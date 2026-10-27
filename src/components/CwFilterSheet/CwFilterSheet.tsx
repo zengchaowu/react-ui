@@ -9,10 +9,10 @@ import {
 import { showDynamicSheet } from '../CwDynamicSheet/showDynamicSheet'
 import type { ShowDynamicSheetReturn } from '../CwDynamicSheet/showDynamicSheet'
 import type { CwDynamicSheetConfig } from '../CwDynamicSheet/types'
-import { defaultTexts as defaultSheetTexts } from '../CwDynamicSheet/texts'
+import { defaultTexts as defaultSheetTexts } from '@zengchaowu/ui-shared/components/CwDynamicSheet/texts'
 import { CW_OVERLAY_SHEET_BOTTOM_ROUNDED_CONTENT_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
 import CwButtonGroup from '../CwButtonGroup/CwButtonGroup'
-import type { CwButtonGroupButton } from '../CwButtonGroup/types'
+import type { CwButtonGroupButton } from '@zengchaowu/ui-shared/components/CwButtonGroup/types'
 import CwFilterSheetContent from './CwFilterSheetContent'
 import type { CwFilterSheetController } from './CwFilterSheetContent'
 import type {
@@ -24,8 +24,8 @@ import {
   filterSheetBase,
   FILTER_SHEET_BODY_CLASS,
   FILTER_SHEET_FOOTER_BAR_CLASS,
-} from './styles'
-import { defaultTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwFilterSheet/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwFilterSheet/texts'
 
 export interface CwFilterSheetComponentProps extends CwFilterSheetProps {}
 

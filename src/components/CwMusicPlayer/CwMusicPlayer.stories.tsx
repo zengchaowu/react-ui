@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { storybookPlaceholderImage } from '../../storybook/placeholderImage'
 import { CwMusicPlayer } from './CwMusicPlayer'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwMusicPlayer/texts'
 
 const demoSrc = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
 

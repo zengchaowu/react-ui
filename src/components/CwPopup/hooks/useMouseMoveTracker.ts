@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-import type { PopupState } from '../types/state'
-import { DEFAULT_CONFIG } from '../constants'
+import type { PopupState } from '@zengchaowu/ui-shared/components/CwPopup/types/state'
+import { DEFAULT_CONFIG } from '@zengchaowu/ui-shared/components/CwPopup/constants'
 
 export interface UseMouseMoveTrackerOptions {
   state: PopupState

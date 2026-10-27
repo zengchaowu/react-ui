@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import CwIcon from '../../CwIcon/CwIcon'
 import CwPopup from '../../CwPopup/CwPopup'
-import { createDimensions } from '../../CwPopup/plugins/dimensions'
-import { createFlip } from '../../CwPopup/plugins/flip'
-import { createOffset } from '../../CwPopup/plugins/offset'
-import { createPosition } from '../../CwPopup/plugins/position'
+import { createDimensions } from '@zengchaowu/ui-shared/components/CwPopup/plugins/dimensions'
+import { createFlip } from '@zengchaowu/ui-shared/components/CwPopup/plugins/flip'
+import { createOffset } from '@zengchaowu/ui-shared/components/CwPopup/plugins/offset'
+import { createPosition } from '@zengchaowu/ui-shared/components/CwPopup/plugins/position'
 import { FOCUS_VISIBLE_INTERACTIVE_CLASS } from '@zengchaowu/ui-shared/functions/ui/focusStyles'
 import type { TpFabricViewportTool } from '../types'
 import {
   FABRIC_EDITOR_ICON_BTN_ACTIVE_CLASS,
   FABRIC_EDITOR_ICON_BTN_CLASS,
   FABRIC_EDITOR_TOOLBAR_DIVIDER_CLASS,
-} from '../document/fabricDesignEditorUi'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricDesignEditorUi'
 
 export interface TpFabricViewportToolbarProps {
   viewportTool: TpFabricViewportTool

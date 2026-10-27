@@ -4,7 +4,8 @@ import { CW_OVERLAY_HEADER_TITLE_CLASS } from '@zengchaowu/ui-shared/constants/c
 import { CwButton } from '../CwButton'
 import { CwDynamicSheet } from './CwDynamicSheet'
 import { showDynamicSheet } from './showDynamicSheet'
-import type { CwDynamicSheetConfig, CwDynamicSheetDirection } from './types'
+import type { CwDynamicSheetConfig } from './types'
+import type { CwDynamicSheetDirection } from '@zengchaowu/ui-shared/components/CwDynamicSheet/types'
 
 type DynamicSheetStoryArgs = {
   headerTitle: string

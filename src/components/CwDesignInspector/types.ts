@@ -1,30 +1,5 @@
 import type { ReactNode } from 'react'
-
-export interface CwDesignInspectorSectionConfig {
-  id: string
-  label: string
-  visible?: boolean
-  defaultExpanded?: boolean
-}
-
-export interface CwDesignInspectorStyles {
-  root: string
-  header: string
-  headerTitle: string
-  body: string
-  section: string
-  sectionHeader: string
-  sectionHeaderActive: string
-  sectionLabel: string
-  sectionChevron: string
-  sectionBody: string
-  empty: string
-}
-
-export interface CwDesignInspectorTexts {
-  title: string
-  empty: string
-}
+import type { CwDesignInspectorSectionConfig, CwDesignInspectorTexts } from '@zengchaowu/ui-shared/components/CwDesignInspector/types'
 
 export interface CwDesignInspectorSectionTogglePayload {
   id: string
@@ -50,9 +25,7 @@ export interface CwDesignInspectorProps {
   className?: string
 }
 
-
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwDesignInspectorEmits {
   'section-toggle': [payload: { id: string; expanded: boolean }]
 }
-

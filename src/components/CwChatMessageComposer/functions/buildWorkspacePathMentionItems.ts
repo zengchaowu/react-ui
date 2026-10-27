@@ -1,6 +1,6 @@
-import type { CwMessageInputMentionItem } from '../../CwMessageInput/types'
+import type { CwMessageInputMentionItem } from '@zengchaowu/ui-shared/components/CwMessageInput/types'
 import { basenameFromFilePath } from '../../CwChatMessageCell/chatInlineContentClip'
-import { absolutePathFromTreeDrop } from './absolutePathFromTreeDrop'
+import { absolutePathFromTreeDrop } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/functions/absolutePathFromTreeDrop'
 
 export type WorkspacePathMentionMember = {
   id: string

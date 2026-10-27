@@ -16,7 +16,7 @@ import type {
   CwStackPopProps,
   CwStackPopStepConfig,
 } from './types'
-import { defaultTexts as defaultSheetTexts } from '../CwDynamicSheet/texts'
+import { defaultTexts as defaultSheetTexts } from '@zengchaowu/ui-shared/components/CwDynamicSheet/texts'
 import { CW_OVERLAY_CONTENT_BODY_NO_PADDING_FLEX_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
 
 /** bottom sheet 需有明确 min-height，否则 CwStack 绝对定位层在 flex 布局下高度为 0 */

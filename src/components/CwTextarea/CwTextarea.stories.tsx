@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwTextarea } from './CwTextarea'
-import type { CwTextareaProps, CwTextareaTexts } from './types'
+import type { CwTextareaProps } from './types'
+import type { CwTextareaTexts } from '@zengchaowu/ui-shared/components/CwTextarea/types'
 
 const meta: Meta<typeof CwTextarea> = {
   title: '1. Components/Form/CwTextarea',

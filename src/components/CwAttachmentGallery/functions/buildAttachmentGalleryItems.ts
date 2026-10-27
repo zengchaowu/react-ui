@@ -11,4 +11,4 @@ export function buildAttachmentGalleryItems(files: File[]): CwAttachmentGalleryI
   }))
 }
 
-export { buildImageAttachmentItems } from './buildImageAttachmentItems'
+export { buildImageAttachmentItems } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/functions/buildImageAttachmentItems'

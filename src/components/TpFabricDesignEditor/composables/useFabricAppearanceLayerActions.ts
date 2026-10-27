@@ -8,13 +8,13 @@ import {
   type FabricFillPaintLayer,
   type FabricStrokeAlign,
   type FabricStrokePaintLayer,
-} from '../appearance/fabricEditorPaintLayers.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/appearance/fabricEditorPaintLayers.pure'
 import {
   parseFabricEditorHexInput,
   parseFabricEditorOpacityPercentInput,
   parseFabricEditorStrokeAlignInput,
   parseFabricEditorStrokeWidthInput,
-} from '../appearance/fabricEditorAppearanceInput.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/appearance/fabricEditorAppearanceInput.pure'
 
 type AppearanceEmit = {
   (e: 'object-modified', obj: import('fabric').FabricObject): void

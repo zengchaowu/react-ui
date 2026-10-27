@@ -1,5 +1,5 @@
-import type { CwInputTexts } from '../CwInput/types'
-import type { CwIconEmbed } from '../CwIcon/types'
+import type { CwInputTexts } from '@zengchaowu/ui-shared/components/CwInput/types'
+import type { CwIconEmbed } from '@zengchaowu/ui-shared/components/CwIcon/types'
 import type {
   CwCascaderPanelOption,
   CwCascaderPanelValue,

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { PopupState } from '../types/state'
+import type { PopupState } from '@zengchaowu/ui-shared/components/CwPopup/types/state'
 import { scheduleBringOverlayHostToFront } from '../../../constants/cwOverlayStack'
-import { DEFAULT_CONFIG } from '../constants'
+import { DEFAULT_CONFIG } from '@zengchaowu/ui-shared/components/CwPopup/constants'
 import { nextAnimationFrame } from '../utils/popupStateHelpers'
 
 export interface UsePopupContainerOptions {

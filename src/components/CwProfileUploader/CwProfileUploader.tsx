@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { getFileExtension } from '@zengchaowu/shared/functions/file/getFileExtension'
 import CwFileUpload from '../CwFileUpload/CwFileUpload'
-import type { UploadFile } from '../CwFileUpload/types'
+import type { UploadFile } from '@zengchaowu/ui-shared/components/CwFileUpload/types'
 import type { CwProfileUploaderProps } from './types'
-import { profileUploaderBase } from './styles'
-import { defaultCwProfileUploaderTexts } from './texts'
+import { profileUploaderBase } from '@zengchaowu/ui-shared/components/CwProfileUploader/styles'
+import { defaultCwProfileUploaderTexts } from '@zengchaowu/ui-shared/components/CwProfileUploader/texts'
 
 interface ProfileFileItem {
   uid: string

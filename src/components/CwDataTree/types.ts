@@ -1,4 +1,5 @@
-import type { CwIconEmbed } from '../CwIcon/types'
+
+import type { CwDataTreeTexts } from '@zengchaowu/ui-shared/components/CwDataTree/types'
 
 export interface CwDataTreeNode {
   id: string | number
@@ -27,42 +28,6 @@ export interface CwDataTreeProps {
    * 自定义文本对象
    */
   texts?: Partial<CwDataTreeTexts>
-}
-
-/** @internal */
-export interface CwDataTreeStyles {
-  root: string
-  container: string
-  svg: string
-  node: string
-  nodePosition: string
-  nodeWrapper: string
-  nodeContent: string
-  nodeContentFocused: string
-  nodeContentDisabled: string
-  nodeInner: string
-  nodeText: string
-  line: string
-  buttonWrapper: string
-  button: string
-  buttonFocused: string
-  buttonDisabled: string
-  iconCollapsed: string
-  iconExpanded: string
-  /** CwIcon 样式配置（展开/折叠图标） */
-  iconStyles?: CwIconEmbed
-}
-
-export interface CwDataTreeTexts {
-  addNode: string
-  removeNode: string
-  addChild: string
-  removeChild: string
-  status: string
-  nodes: string
-  operations: string
-  expand: string
-  collapse: string
 }
 
 export interface CwDataTreeEmits {

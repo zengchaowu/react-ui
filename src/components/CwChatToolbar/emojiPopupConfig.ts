@@ -10,7 +10,7 @@ import { getEmojiCategoryOrder, type EmojiItem } from '../../utils/emojioneEmoji
 import {
   CW_GLASS_FROSTED_MENU_ITEM_HOVER_CLASS,
   CW_GLASS_FROSTED_MENU_ITEM_SELECTED_CLASS,
-} from '../CwContextMenu/styles'
+} from '@zengchaowu/ui-shared/components/CwContextMenu/styles'
 
 export const EMOJI_PICKER_GRID_COLUMNS = 8
 

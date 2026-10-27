@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { calculateVelocity, updateVelocityHistory } from '../functions'
 import { isEventFromZoomedImagePreview } from './imagePreviewGesture'
-import { createSyntheticClickSuppressor } from './suppressSyntheticClickAfterDrag'
+import { createSyntheticClickSuppressor } from '@zengchaowu/ui-shared/components/CwVirtualScroll/hooks/suppressSyntheticClickAfterDrag'
 import type { UpdateScrollPositionDirect } from './useMomentum'
 
 export type DragScrollNormalize = (

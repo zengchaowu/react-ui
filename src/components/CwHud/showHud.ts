@@ -7,9 +7,10 @@ import { scheduleBringOverlayHostToFront } from '../../constants/cwOverlayStack'
 import {
   acquireOverlayBodyScrollLock,
   releaseOverlayBodyScrollLock,
-} from '../../constants/overlayBodyScrollLock'
+} from '@zengchaowu/ui-shared/constants/overlayBodyScrollLock'
 import CwHud from './CwHud'
-import type { CwHudProps, CwHudTexts } from './types'
+import type { CwHudProps } from './types'
+import type { CwHudTexts } from '@zengchaowu/ui-shared/components/CwHud/types'
 
 export interface ShowHudOptions {
   /**

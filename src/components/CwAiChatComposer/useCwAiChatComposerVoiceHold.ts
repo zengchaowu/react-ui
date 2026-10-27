@@ -4,7 +4,7 @@ import type {
   VoiceHoldGestureZone,
   VoiceHoldInteractionMode,
   VoiceRecordEndPayload,
-} from './voiceHoldTypes'
+} from '@zengchaowu/ui-shared/components/CwAiChatComposer/voiceHoldTypes'
 
 /** swipe-up 模式：上滑超过该像素视为取消 */
 const VOICE_SWIPE_CANCEL_PX = 40

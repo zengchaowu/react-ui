@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwRichText } from './CwRichText'
-import type { CwRichTextNode } from './types'
+import type { CwRichTextNode } from '@zengchaowu/ui-shared/components/CwRichText/types'
 
 const meta: Meta<typeof CwRichText> = {
   title: '1. Components/Display/CwRichText',

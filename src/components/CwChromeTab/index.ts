@@ -1,17 +1,10 @@
 export { default as CwChromeTab } from './CwChromeTab'
-export { defaultTexts as defaultCwChromeTabTexts } from './texts'
+export { defaultTexts as defaultCwChromeTabTexts } from '@zengchaowu/ui-shared/components/CwChromeTab/texts'
 export {
   buildChromeTabContextMenuItems,
   isChromeTabClosable,
   resolveChromeTabCloseTargetIds,
 } from './chromeTabContextMenu'
 export type { ChromeTabContextAction, ChromeTabContextMenuItem } from './chromeTabContextMenu'
-export type {
-  CwChromeTabItem,
-  CwChromeTabAppearance,
-  CwChromeTabEmits,
-  CwChromeTabIconScope,
-  CwChromeTabProps,
-  CwChromeTabStyles,
-  CwChromeTabTexts,
-} from './types'
+export type { CwChromeTabEmits, CwChromeTabIconScope, CwChromeTabProps } from './types'
+export type { CwChromeTabItem, CwChromeTabAppearance, CwChromeTabStyles, CwChromeTabTexts } from '@zengchaowu/ui-shared/components/CwChromeTab/types'

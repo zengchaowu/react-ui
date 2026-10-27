@@ -1,4 +1,4 @@
 export { default as CwMoney } from './CwMoney'
-export { defaultCwMoneyTexts } from './texts'
-export * from './types'
-export { formatAmount } from './functions'
+export { defaultCwMoneyTexts } from '@zengchaowu/ui-shared/components/CwMoney/texts'
+export * from '@zengchaowu/ui-shared/components/CwMoney/types'
+export { formatAmount } from '@zengchaowu/ui-shared/components/CwMoney/functions/index'

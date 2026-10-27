@@ -15,7 +15,7 @@ import type {
   CwDatePickerValue,
 } from './types'
 import { datePickerBase } from './styles'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDatePicker/texts'
 import { INTERACTIVE_FOCUS_CLASS } from '@zengchaowu/ui-shared/functions/ui/focusStyles'
 import {
   addDays,
@@ -34,7 +34,7 @@ import {
   parseModelValue,
   serializeDate,
   toStartOfDay,
-} from './functions'
+} from '@zengchaowu/ui-shared/components/CwDatePicker/functions'
 
 export function CwDatePickerContent({
   value = null,

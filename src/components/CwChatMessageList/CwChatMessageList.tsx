@@ -24,16 +24,16 @@ import {
   scrollViewportToBottom,
 } from '../CwInfiniteScroll/scrollViewport'
 import CwLoading from '../CwLoading/CwLoading'
-import { CW_CHAT_MESSAGE_LIST_SCROLL_TOP_TRIGGER } from './constants'
-import { defaultCwChatMessageCellTexts } from '../CwChatMessageCell/texts'
+import { CW_CHAT_MESSAGE_LIST_SCROLL_TOP_TRIGGER } from '@zengchaowu/ui-shared/components/CwChatMessageList/constants'
+import { defaultCwChatMessageCellTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/texts'
 import type { CwChatOwnMessageEditSubmitPayload } from '../CwChatMessageCell/types'
 import type { CwChatMessageListProps } from './types'
 import { useChatMessageListLasso } from './lassoSelection'
 import { messageListBase } from './styles'
-import { defaultCwChatMessageListTexts } from './texts'
+import { defaultCwChatMessageListTexts } from '@zengchaowu/ui-shared/components/CwChatMessageList/texts'
 import { useDelayedTrue } from '../../utils/appThemeDom'
 import { useChatMessageTouchLongPress } from './useChatMessageTouchLongPress'
-import { buildWorkspaceMessageTurns } from './workspaceMessageTurns'
+import { buildWorkspaceMessageTurns } from '@zengchaowu/ui-shared/components/CwChatMessageList/workspaceMessageTurns'
 import { isFinePointerPrimaryInput } from '../../utils/appThemeDom'
 import {
   CwPublicAssetBaseUrlContext,

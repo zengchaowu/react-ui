@@ -16,8 +16,8 @@ import type {
   CwImageFitHandle,
   CwImageFitProps,
 } from './types'
-import { resolveImageFitStyles } from './styles'
-import { defaultTexts } from './texts'
+import { resolveImageFitStyles } from '@zengchaowu/ui-shared/components/CwImageFit/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwImageFit/texts'
 import { CwLoading } from '../CwLoading'
 import { CwIcon } from '../CwIcon'
 import { createImageUrl, revokeImageUrl } from './functions/fileUtils'
@@ -26,7 +26,7 @@ import {
   calculateImageSize,
   calculateImageStyle,
   preloadRasterImageUrl,
-} from './functions'
+} from '@zengchaowu/ui-shared/components/CwImageFit/functions/index'
 import { useContainerSize, useImageSize } from './hooks'
 
 export interface CwImageFitComponentProps

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import CwLoginPhoneDialogContent from '../CwLoginPhoneDialog/CwLoginPhoneDialogContent'
 import type { CwLoginPhoneSheetProps } from './types'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwLoginPhoneSheet/texts'
 
 /**
  * 手机号登录 Sheet 内容（Vue 侧为 showLoginPhoneSheet 内部的 CwLoginPhoneDialogContent VNode）。

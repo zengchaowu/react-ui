@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
-
-export type CwSplitDirection = 'horizontal' | 'vertical'
+import type { CwSplitDirection, CwSplitTexts } from '@zengchaowu/ui-shared/components/CwSplit/types'
 
 export interface CwSplitProps {
   /**
@@ -57,34 +56,6 @@ export interface CwSplitProps {
   onDragStart?: () => void
   /** 拖拽结束事件 */
   onDragEnd?: () => void
-}
-
-/** @internal */
-export interface CwSplitStyles {
-  // 根容器
-  root: string
-
-  // 第一个面板
-  first: string
-
-  // 分隔条
-  divider: string
-  dividerDragging: string
-
-  // 分隔条拖拽手柄
-  dividerHandle: string
-  /** 常态发丝线（horizontal: 左缘 / vertical: 上缘） */
-  dividerHandleLine: string
-  /** hover / 拖拽：1px 品牌色（须盖过 hairline 的 width !important） */
-  dividerHandleLineActive: string
-
-  // 第二个面板
-  second: string
-}
-
-export interface CwSplitTexts {
-  // 分隔条的 aria-label
-  dividerLabel: string
 }
 
 export interface CwSplitEmits {

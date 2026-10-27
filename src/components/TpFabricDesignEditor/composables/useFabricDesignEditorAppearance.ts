@@ -1,16 +1,16 @@
 ﻿import { useReactiveRef, type ReactiveRef } from './reactivity'
 import type { Canvas } from 'fabric'
-import { readFabricAppearanceSelectionSnapshot } from '../appearance/fabricEditorAppearanceSync.pure'
+import { readFabricAppearanceSelectionSnapshot } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/appearance/fabricEditorAppearanceSync.pure'
 import { useFabricAppearanceLayerActions } from './useFabricAppearanceLayerActions'
 import type {
   FabricFillPaintLayer,
   FabricStrokeAlign,
   FabricStrokePaintLayer,
-} from '../appearance/fabricEditorPaintLayers.pure'
-import { defaultStrokeLayer } from '../appearance/fabricEditorPaintLayers.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/appearance/fabricEditorPaintLayers.pure'
+import { defaultStrokeLayer } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/appearance/fabricEditorPaintLayers.pure'
 import type { FabricBrushStyle } from './useFabricEditorToolMode'
 import type { TpFabricDesignEditorProps } from '../types'
-import { tokenSolidColors } from '../../../assets/tokens/tokenSolidColors'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 
 type EmitFn = {
   (e: 'object-modified', obj: import('fabric').FabricObject): void

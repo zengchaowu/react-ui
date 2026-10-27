@@ -3,8 +3,8 @@ import { useReactiveComputed, useReactiveRef, useStableBox, type ReactiveRef } f
 import type { ChatMessage } from '@zengchaowu/shared/types/im-chat'
 import { extractDesignPlanFromAiResponse } from '@zengchaowu/shared/design-document/designPlan'
 import type { FabricDesignPlanV1 } from '@zengchaowu/shared/design-document/designPlan'
-import { extractDesignDocumentFromAiResponse } from '../document/fabricDesignDocument.pure'
-import type { FabricDesignDocumentV1 } from '../document/fabricDesignDocument.types'
+import { extractDesignDocumentFromAiResponse } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricDesignDocument.pure'
+import type { FabricDesignDocumentV1 } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricDesignDocument.types'
 import type {
   FabricDesignEditorEmitFn,
   TpFabricDesignEditorAiOptions,

@@ -3,8 +3,8 @@ import CwDiv from '../CwDiv/CwDiv'
 import type { CwDivHandle } from '../CwDiv/CwDiv'
 import CwLoading from '../CwLoading/CwLoading'
 import CwEmptyState from '../CwEmptyState/CwEmptyState'
-import type { CwDataTableStyles } from './types'
-import { dataTableBodyCwDivContentClass } from './styles'
+import type { CwDataTableStyles } from '@zengchaowu/ui-shared/components/CwDataTable/types'
+import { dataTableBodyCwDivContentClass } from '@zengchaowu/ui-shared/components/CwDataTable/styles'
 
 export interface CwDataTableBodyPanelProps {
   bodyShellClass: string

@@ -1,5 +1,6 @@
 import type { HTMLAttributes } from 'react'
-import type { CwIconEmbed } from '../CwIcon/types'
+
+import type { CwMusicPlayerTexts } from '@zengchaowu/ui-shared/components/CwMusicPlayer/types'
 
 export interface CwMusicPlayerProps
   extends Omit<
@@ -55,62 +56,6 @@ export interface CwMusicPlayerProps
   className?: string
   /** 自定义文本 */
   texts?: Partial<CwMusicPlayerTexts>
-}
-
-export interface CwMusicPlayerStyles {
-  container: string
-  containerFocused: string
-  coverWrap: string
-  cover: string
-  coverPlaceholder: string
-  meta: string
-  title: string
-  artist: string
-  lyricsWrap: string
-  lyrics: string
-  overlayLoading: string
-  overlayPlayButton: string
-  playButtonLarge: string
-  controls: string
-  progressBarContainer: string
-  progressBarTrack: string
-  progressFill: string
-  progressThumb: string
-  timeDisplay: string
-  transportRow: string
-  transportButton: string
-  transportButtonActive: string
-  transportButtonDisabled: string
-  transportPlayButton: string
-  volumeRow: string
-  volumeButton: string
-  volumeGroup: string
-  volumeSlider: string
-  volumeSliderFill: string
-  playButton: string
-  loadingIconStyles?: CwIconEmbed
-  playButtonIconStyles?: CwIconEmbed
-  playIconStyles?: CwIconEmbed
-  transportIconStyles?: CwIconEmbed
-  transportPlayIconStyles?: CwIconEmbed
-  volumeIconStyles?: CwIconEmbed
-}
-
-export interface CwMusicPlayerTexts {
-  player: string
-  play: string
-  pause: string
-  mute: string
-  unmute: string
-  prev: string
-  next: string
-  shuffle: string
-  repeat: string
-  playlist: string
-  loading: string
-  error: string
-  unknownTitle: string
-  unknownArtist: string
 }
 
 export interface CwMusicPlayerEmits {

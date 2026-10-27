@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
-import type { Breakpoint } from '../CwRow/utils/breakpoint'
+import type { Breakpoint } from '@zengchaowu/ui-shared/components/CwRow/utils/breakpoint'
+import type { CwWaterfallTexts } from '@zengchaowu/ui-shared/components/CwWaterfall/types'
 
 /** 瀑布流数据项：默认按 id / height / content 计算布局 */
 export interface CwWaterfallItem {
@@ -61,32 +62,6 @@ export interface CwWaterfallProps {
   /** 点击项目事件 */
   onItemClick?: (item: CwWaterfallItem, index: number) => void
 }
-
-export interface CwWaterfallStyles {
-  root: string
-  rootLoading: string
-  inner: string
-  container: string
-  column: string
-  item: string
-  loading: string
-  loadingContent: string
-  loadingText: string
-  empty: string
-  emptyContent: string
-  emptyIcon: string
-  emptyText: string
-  finished: string
-  finishedContent: string
-  finishedText: string
-}
-
-export interface CwWaterfallTexts {
-  loading: string
-  empty: string
-  finished: string
-}
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwWaterfallEmits {

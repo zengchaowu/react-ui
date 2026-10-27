@@ -2,12 +2,12 @@ import CwGrid from '../../CwGrid/CwGrid'
 import CwIcon from '../../CwIcon/CwIcon'
 import { CwNumberInput } from '../../CwNumberInput'
 import TpFabricTransformSectionIcon from './TpFabricTransformSectionIcon'
-import type { FabricAlignMode } from '../selection/fabricEditorAlign.pure'
+import type { FabricAlignMode } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/selection/fabricEditorAlign.pure'
 import {
   FABRIC_EDITOR_ICON_BTN_ACTIVE_CLASS,
   FABRIC_EDITOR_ICON_BTN_CLASS,
   FABRIC_EDITOR_INSPECTOR_NUMBER_ROOT_CLASS,
-} from '../document/fabricDesignEditorUi'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricDesignEditorUi'
 
 export interface TpFabricDesignEditorTransformSectionProps {
   transformX: number

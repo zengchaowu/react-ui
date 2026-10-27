@@ -13,14 +13,10 @@ import type {
   MouseEvent as ReactMouseEvent,
   TouchEvent as ReactTouchEvent,
 } from 'react'
-import type {
-  CwImageCropExportRequest,
-  CwImageCropperHandle,
-  CwImageCropperProps,
-  CwImageCropperTexts,
-} from './types'
-import { cropperBase } from './styles'
-import { defaultCwImageCropperTexts } from './texts'
+import type { CwImageCropExportRequest, CwImageCropperHandle, CwImageCropperProps } from './types'
+import type { CwImageCropperTexts } from '@zengchaowu/ui-shared/components/CwImageCropper/types'
+import { cropperBase } from '@zengchaowu/ui-shared/components/CwImageCropper/styles'
+import { defaultCwImageCropperTexts } from '@zengchaowu/ui-shared/components/CwImageCropper/texts'
 import CwIcon from '../CwIcon/CwIcon'
 import CwImageFit from '../CwImageFit/CwImageFit'
 import type { CwImageFitHandle } from '../CwImageFit/types'
@@ -35,8 +31,8 @@ import {
   cropImageToBlob,
   createImageUrl,
   revokeImageUrl,
-} from './functions'
-import type { CropBox, ImageBounds } from './functions'
+} from '@zengchaowu/ui-shared/components/CwImageCropper/functions/index'
+import type { CropBox, ImageBounds } from '@zengchaowu/ui-shared/components/CwImageCropper/functions/index'
 
 interface DragState {
   type: 'cropBox' | 'handle'

@@ -1,32 +1,5 @@
-/** 登录方式类型 */
-export type LoginMethodType = 'qrcode' | 'phone'
+import type { LoginMethodType, CwLoginMethodSwitchOption, CwLoginMethodSwitchTexts } from '@zengchaowu/ui-shared/components/CwLoginMethodSwitch/types'
 
-/** 登录方式选项 */
-export interface CwLoginMethodSwitchOption {
-  /** 显示标签 */
-  label: string
-  /** 选项值 */
-  value: LoginMethodType
-  /** 是否禁用 */
-  disabled?: boolean
-}
-
-export interface CwLoginMethodSwitchStyles {
-  root: string
-  rootDisabled: string
-  badge: string
-  toggleHit: string
-  toggleHitDisabled: string
-  toggleHitEnabled: string
-  clipWrap: string
-  clipInner: string
-  iconWrap: string
-}
-
-export interface CwLoginMethodSwitchTexts {
-  qrcodeOptionLabel: string
-  phoneOptionLabel: string
-}
 
 export interface CwLoginMethodSwitchProps {
   /** 当前选中值 */
@@ -42,7 +15,6 @@ export interface CwLoginMethodSwitchProps {
   onChange?: (value: LoginMethodType) => void
   className?: string
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwLoginMethodSwitchEmits {

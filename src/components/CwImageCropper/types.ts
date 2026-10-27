@@ -1,9 +1,5 @@
-import type { CropCoordinates } from './functions/cropCoordinates'
-
-export interface CwImageCropperTexts {
-  cancelAriaLabel: string
-  confirmAriaLabel: string
-}
+import type { CropCoordinates } from '@zengchaowu/ui-shared/components/CwImageCropper/functions/cropCoordinates'
+import type { CwImageCropperTexts } from '@zengchaowu/ui-shared/components/CwImageCropper/types'
 
 /** 用户已确认裁剪框；Blob 可稍后导出 */
 export interface CwImageCropExportRequest {
@@ -46,38 +42,6 @@ export interface CwImageCropperProps {
   onCancel?: () => void
   /** 错误（对应 Vue `@error`） */
   onError?: (error: Error) => void
-}
-
-export interface CwImageCropperStyles {
-  root: string
-  rootNormal?: string
-  rootDisabled?: string
-  rootReadonly?: string
-  container: string
-  containerNormal?: string
-  containerDisabled?: string
-  containerReadonly?: string
-  imageWrapper: string
-  image: string
-  imageFitRoot: string
-  cropBox: string
-  cropBoxNormal?: string
-  cropBoxDisabled?: string
-  cropBoxReadonly?: string
-  cropHandle: string
-  cropHandleNormal?: string
-  cropHandleDisabled?: string
-  cropHandleReadonly?: string
-  cropHandleInner?: string
-  confirmButton: string
-  confirmButtonNormal?: string
-  confirmButtonDisabled?: string
-  confirmButtonReadonly?: string
-  cancelButton: string
-  cancelButtonNormal?: string
-  cancelButtonDisabled?: string
-  cancelButtonReadonly?: string
-  overlay: string
 }
 
 export interface CwImageCropperEmits {

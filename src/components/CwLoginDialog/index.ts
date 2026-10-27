@@ -1,5 +1,6 @@
 export { default as CwLoginDialog } from './CwLoginDialog'
 export { default as CwLoginDialogContent } from './CwLoginDialogContent'
 export { showLoginDialog } from './showLoginDialog'
-export { buildLoginAgreementDsl } from './functions/buildAgreementDsl'
+export { buildLoginAgreementDsl } from '@zengchaowu/ui-shared/components/CwLoginDialog/functions/buildAgreementDsl'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwLoginDialog/types'

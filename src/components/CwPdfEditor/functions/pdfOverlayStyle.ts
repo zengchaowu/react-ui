@@ -1,4 +1,4 @@
-import type { CwPdfNote, CwPdfTextRun } from '../types'
+import type { CwPdfNote, CwPdfTextRun } from '@zengchaowu/ui-shared/components/CwPdfEditor/types'
 import {
   cssFontStackForOverlay,
   cssFontStyle,

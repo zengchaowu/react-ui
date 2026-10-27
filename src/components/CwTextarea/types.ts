@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from 'react'
+import type { CwTextareaTexts } from '@zengchaowu/ui-shared/components/CwTextarea/types'
 
 export interface CwTextareaProps
   extends Omit<
@@ -39,45 +40,6 @@ export interface CwTextareaProps
   onFocus?: (event: FocusEvent) => void
   /** 失焦事件 */
   onBlur?: (event: FocusEvent) => void
-}
-
-export interface CwTextareaStyles {
-  root: string
-  rootNormal: string
-  rootDisabled: string
-  rootReadonly: string
-  label: string
-  labelNormal: string
-  labelDisabled: string
-  textareaWrapper: string
-  textareaWrapperNormal: string
-  textareaWrapperReadonly: string
-  textareaWrapperDisabled: string
-  textareaWrapperFocus: string
-  textarea: string
-  textareaNormal: string
-  textareaReadonly: string
-  textareaDisabled: string
-  counter: string
-  counterNormal: string
-  counterDisabled: string
-  /** 尺寸样式：小 */
-  sizeSmall: string
-  /** 尺寸样式：中 */
-  sizeMedium: string
-  /** 尺寸样式：大 */
-  sizeLarge: string
-}
-
-export interface CwTextareaTexts {
-  placeholder?: string
-  label?: string
-  /**
-   * 计数文本模板
-   * - {{length}}：当前字符数
-   * - {{maxlength}}：最大字符数（无上限时为空字符串）
-   */
-  counter?: string
 }
 
 /** 组件暴露的 imperative 方法（对应 Vue defineExpose） */

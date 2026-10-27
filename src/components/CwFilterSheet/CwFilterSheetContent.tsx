@@ -8,13 +8,9 @@ import {
 import CwGrid from '../CwGrid/CwGrid'
 import CwIcon from '../CwIcon/CwIcon'
 import { shouldShowFocus } from '../../hooks/useBrowserFocusVisible'
-import { filterSheetBase } from './styles'
-import type {
-  CwFilterSheetOption,
-  CwFilterSheetSection,
-  CwFilterSheetValue,
-  CwFilterSheetValues,
-} from './types'
+import { filterSheetBase } from '@zengchaowu/ui-shared/components/CwFilterSheet/styles'
+import type { CwFilterSheetSection, CwFilterSheetValue, CwFilterSheetValues } from './types'
+import type { CwFilterSheetOption } from '@zengchaowu/ui-shared/components/CwFilterSheet/types'
 
 /** 供底部按钮栏读取/重置筛选值（Sheet footer 与 body 分属不同节点） */
 export interface CwFilterSheetController {

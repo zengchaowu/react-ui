@@ -1,18 +1,5 @@
+import type { CwBreadcrumbItem, CwBreadcrumbAppearance, CwBreadcrumbTexts } from '@zengchaowu/ui-shared/components/CwBreadcrumb/types'
 ﻿import type { HTMLAttributes } from 'react'
-
-/** 面包屑单项 */
-export interface CwBreadcrumbItem {
-  /** 显示文本 */
-  label: string
-  /** 路由路径（与 href 二选一，优先 to） */
-  to?: string
-  /** 外链地址 */
-  href?: string
-  /** 是否禁用点击 */
-  disabled?: boolean
-}
-
-export type CwBreadcrumbAppearance = 'default' | 'inline-compact'
 
 export interface CwBreadcrumbProps
   extends Omit<HTMLAttributes<HTMLElement>, 'children' | 'onSelect'> {
@@ -27,11 +14,6 @@ export interface CwBreadcrumbProps
   className?: string
   /** 点击某一项时触发（Vue `select`） */
   onSelect?: (item: CwBreadcrumbItem, index: number) => void
-}
-
-export interface CwBreadcrumbTexts {
-  /** 导航的 aria-label */
-  ariaLabel?: string
 }
 
 export interface CwBreadcrumbEmits {

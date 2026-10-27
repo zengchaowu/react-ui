@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 import type { CwTwoToneIconProps } from './types'
-import { twoToneIconBase } from './styles'
+import { twoToneIconBase } from '@zengchaowu/ui-shared/components/CwTwoToneIcon/styles'
 
 /** 额外透传的 svg 属性（Vue 侧未关闭 inheritAttrs，等同 attrs 落到 svg 根节点） */
 export type CwTwoToneIconAttrs = Omit<

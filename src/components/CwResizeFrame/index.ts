@@ -1,5 +1,6 @@
 export { CwResizeFrame } from './CwResizeFrame'
 export type { CwResizeFrameComponentProps } from './CwResizeFrame'
 export * from './types'
-export * from './styles'
-export * from './texts'
+export type * from '@zengchaowu/ui-shared/components/CwResizeFrame/types'
+export * from '@zengchaowu/ui-shared/components/CwResizeFrame/styles'
+export * from '@zengchaowu/ui-shared/components/CwResizeFrame/texts'

@@ -1,9 +1,6 @@
 import { useCallback } from 'react'
-import type {
-  CwDataTableColumn,
-  CwDataTableSortConfig,
-  CwDataTableSortState,
-} from '../types'
+import type { CwDataTableColumn } from '../types'
+import type { CwDataTableSortConfig, CwDataTableSortState } from '@zengchaowu/ui-shared/components/CwDataTable/types'
 import { calculateNextSortOrder, isSortedAsc, isSortedDesc } from '../functions'
 
 export interface UseTableSortOptions {

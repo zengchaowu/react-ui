@@ -1,11 +1,7 @@
 import CwDocxParagraphBlock from './CwDocxParagraphBlock'
-import { docxEditorBase } from './styles'
-import type {
-  CwDocxInlineParagraph,
-  CwDocxRun,
-  CwDocxTableBlockProps,
-  CwDocxTableCell,
-} from './types'
+import { docxEditorBase } from '@zengchaowu/ui-shared/components/CwDocxEditor/styles'
+import type { CwDocxTableBlockProps } from './types'
+import type { CwDocxInlineParagraph, CwDocxRun, CwDocxTableCell } from '@zengchaowu/ui-shared/components/CwDocxEditor/types'
 
 export function CwDocxTableBlock({ block, editable, onChange }: CwDocxTableBlockProps) {
   function paragraphClass(paragraph: CwDocxInlineParagraph) {

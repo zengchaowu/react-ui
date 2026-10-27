@@ -5,92 +5,15 @@ import type {
 } from 'react'
 import type { ChatMessage, ChatMessageKnowledgeSource } from '@zengchaowu/shared/types/im-chat'
 import type { CwChatMessageBubbleAppearance } from './chatMessageBubbleSurface'
-import type { CwChatMessageRedEnvelopeTexts } from './redEnvelopeTexts'
-import type { CwChatMessageTransferTexts } from './transferTexts'
+import type { CwChatMessageRedEnvelopeTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/redEnvelopeTexts'
+import type { CwChatMessageTransferTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/transferTexts'
 import type { CwChatMessageForwardBundleTexts } from '../CwChatMessageForwardBundle/types'
 import type {
   CwImMentionProfileClickPayload,
   CwImMentionProfileResolver,
   CwMessageInputMentionItem,
 } from './mentionProfile.types'
-
-export type CwChatAssistantMessageFeedbackVote = 'up' | 'down'
-
-/** 消息列表排版：`workspace` 为 Cursor 风格（己方透明描边全宽、无头像昵称） */
-export type CwChatMessageLayoutVariant = 'default' | 'workspace'
-
-/** 下载时关联的气泡（用于展示文件消息下载进度） */
-export type CwChatDownloadByUrlContext = {
-  chatMessageId?: string
-}
-
-/** 由宿主传入：按 URL 触发下载（实现由应用负责，如 Electron 另存为或浏览器新开窗口） */
-export type CwChatDownloadByUrlFn = (
-  url: string,
-  suggestedFileName?: string,
-  context?: CwChatDownloadByUrlContext,
-) => void
-
-/** 文件气泡下载进度（宿主解析，通常仅 Electron） */
-export type CwChatFileDownloadProgress = {
-  isDownloading?: boolean
-  /** 0–100；总量未知时为 null */
-  progress?: number | null
-  /** 已落盘本地路径（存在则气泡展示「文件」操作，否则为下载） */
-  localFilePath?: string | null
-}
-
-/** 点击已下载文件的「在文件夹中显示」 */
-export type CwChatRevealLocalFileFn = (
-  filePath: string,
-  context?: CwChatDownloadByUrlContext,
-) => void | Promise<void>
-
-export type CwChatFileDownloadProgressResolver = (
-  chatMessageId: string,
-) => CwChatFileDownloadProgress | null | undefined
-
-/** 聊天气泡内打开全屏图片预览时的数据（可监听 `attachmentPreviewOpen`） */
-export interface CwChatAttachmentPreviewOpenPayload {
-  items: Array<{ key: string | number; src: string; alt?: string }>
-  initialIndex?: number
-  /** 关联消息 id，供预览内下载进度与完成提示 */
-  chatMessageId?: string
-}
-
-export interface CwChatMessageCellStyles {
-  row: string
-  /** 己方：发送态图标 + 气泡（同一 flex 行） */
-  ownOutboundRow: string
-  ownOutboundStatusSlot: string
-  meta: string
-  metaOwn: string
-  metaPeer: string
-  /** 元信息区「内联附件」图标与数量 */
-  inlineAttachmentMetaBtn: string
-}
-
-export interface CwChatMessageCellTexts {
-  clientTimeLocalPrefix: string
-  clientTimeLocalSuffix: string
-  /** 无障碍：发送中（延迟 loading 出现后） */
-  sendingLabel: string
-  /** 无障碍：发送失败图标 */
-  sendFailedLabel: string
-  /** 出站发送失败且无具体错误时的 Tooltip 说明 */
-  outboundFailedHint: string
-  /** 出站发送失败：点击重发 */
-  retryOutboundLabel: string
-  /** 智能体未回复时的简短说明（无服务端 error 时） */
-  agentProxyFailedHint: string
-  retryAgentProxyLabel: string
-  /** workspace 己方消息：进入编辑 */
-  editOwnMessageLabel: string
-  /** workspace 己方消息编辑：Esc 取消提示 */
-  editOwnMessageCancelHint: string
-  /** workspace 己方消息：停止进行中的回复 */
-  stopOwnMessageReplyLabel: string
-}
+import type { CwChatMessageCellTexts, CwChatDownloadByUrlFn, CwChatFileDownloadProgressResolver, CwChatRevealLocalFileFn, CwChatMessageLayoutVariant, CwChatAssistantMessageFeedbackVote, CwChatAttachmentPreviewOpenPayload } from '@zengchaowu/ui-shared/components/CwChatMessageCell/types'
 
 /** 具名插槽 `assistantShare` 的作用域插槽参数 */
 export interface CwChatMessageCellAssistantShareSlotScope {

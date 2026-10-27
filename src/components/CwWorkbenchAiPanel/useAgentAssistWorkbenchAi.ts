@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { materializeImRichHtmlToPlainText } from '@zengchaowu/shared/functions/im/imRichContentHtml'
-import { defaultCwWorkbenchAiPanelTexts } from './texts'
-import type { CwWorkbenchAiMessage } from './types'
-import { newWorkbenchAiMessageId } from './functions/workbenchAiChatHistory'
-import { workbenchAiMessagesToChatList } from './functions/workbenchAiMessagesToChatList'
+import { defaultCwWorkbenchAiPanelTexts } from '@zengchaowu/ui-shared/components/CwWorkbenchAiPanel/texts'
+import type { CwWorkbenchAiMessage } from '@zengchaowu/ui-shared/components/CwWorkbenchAiPanel/types'
+import { newWorkbenchAiMessageId } from '@zengchaowu/ui-shared/components/CwWorkbenchAiPanel/functions/workbenchAiChatHistory'
+import { workbenchAiMessagesToChatList } from '@zengchaowu/ui-shared/components/CwWorkbenchAiPanel/functions/workbenchAiMessagesToChatList'
 
 export type AgentAssistAiConfig = {
   configured: boolean

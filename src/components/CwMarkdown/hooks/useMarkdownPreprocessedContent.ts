@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react'
-import { applyCwMarkdownContentPreprocessors } from '../functions/applyCwMarkdownContentPreprocessors'
+import { applyCwMarkdownContentPreprocessors } from '@zengchaowu/ui-shared/components/CwMarkdown/functions/applyCwMarkdownContentPreprocessors'
 import { CwMarkdownContentPreprocessorsContext } from '../context'
 
 /** 合并应用级注入的预处理链，供 CwMarkdown / CwChatMessageMarkdown 共用 */

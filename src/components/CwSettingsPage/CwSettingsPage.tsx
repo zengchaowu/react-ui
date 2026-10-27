@@ -1,8 +1,8 @@
 import { CwButton } from '../CwButton'
 import { CwIcon } from '../CwIcon'
 import type { CwSettingsPageProps } from './types'
-import { settingsPageBase } from './styles'
-import { defaultCwSettingsPageTexts } from './texts'
+import { settingsPageBase } from '@zengchaowu/ui-shared/components/CwSettingsPage/styles'
+import { defaultCwSettingsPageTexts } from '@zengchaowu/ui-shared/components/CwSettingsPage/texts'
 
 export function CwSettingsPage({
   title,

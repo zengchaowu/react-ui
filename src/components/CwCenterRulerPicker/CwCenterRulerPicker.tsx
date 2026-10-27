@@ -2,17 +2,15 @@ import {
   useMemo,
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react'
-import type {
-  CwCenterRulerPickerProps,
-  CwCenterRulerPickerValue,
-} from './types'
+import type { CwCenterRulerPickerProps } from './types'
+import type { CwCenterRulerPickerValue } from '@zengchaowu/ui-shared/components/CwCenterRulerPicker/types'
 import {
   buildNumericPickerOptions,
   resolveAutoLabelInterval,
   shouldShowCenterRulerTickLabel,
-} from './functions'
-import { centerRulerPickerBase } from './styles'
-import { defaultTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwCenterRulerPicker/functions'
+import { centerRulerPickerBase } from '@zengchaowu/ui-shared/components/CwCenterRulerPicker/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwCenterRulerPicker/texts'
 import { useCwCenterRulerPicker } from './useCwCenterRulerPicker'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 

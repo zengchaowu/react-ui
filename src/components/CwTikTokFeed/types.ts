@@ -1,56 +1,9 @@
 import type { HTMLAttributes } from 'react'
 import type { CwAvatarProps } from '../CwAvatar/types'
 import type { CwVideoPlayerProps } from '../CwVideoPlayer/types'
+import type { SocialAction, VideoItem, CwTikTokFeedTexts, UserInfo, VideoInfo } from '@zengchaowu/ui-shared/components/CwTikTokFeed/types'
 
 // CwTikTokFeed 主组件类型定义
-export interface VideoInfo {
-  /** 视频ID */
-  id: string
-  /** 视频标题 */
-  title?: string
-  /** 视频描述 */
-  description?: string
-  /** 视频标签 */
-  tags?: string[]
-  /** 视频时长（秒） */
-  duration?: number
-  /** 视频创建时间 */
-  createdAt?: string
-  /** 视频封面图 */
-  poster?: string
-}
-
-export interface UserInfo {
-  /** 用户ID */
-  id: string
-  /** 用户名 */
-  username: string
-  /** 用户昵称 */
-  nickname?: string
-  /** 用户头像 */
-  avatar?: string
-  /** 是否已关注 */
-  isFollowed?: boolean
-  /** 是否认证用户 */
-  isVerified?: boolean
-}
-
-export interface SocialAction {
-  /** 动作唯一标识 */
-  key: string
-  /** 显示的图标 SVG 内容 */
-  icon: string
-  /** 显示的数量 */
-  count?: number
-  /** 显示的文本 */
-  text?: string
-  /** 是否激活状态 */
-  active?: boolean
-  /** 激活状态下的图标颜色类名 */
-  activeColor?: string
-  /** 是否可点击 */
-  clickable?: boolean
-}
 
 /** 社交动作点击时翻转出的新状态（如点赞/收藏 active 切换） */
 export interface CwSocialActionState {
@@ -61,17 +14,6 @@ export interface CwSocialActionEvent {
   key: string
   action: SocialAction
   newState?: CwSocialActionState
-}
-
-export interface VideoItem {
-  /** 视频项唯一标识 */
-  id?: string
-  /** 视频信息 */
-  video: VideoInfo
-  /** 用户信息 */
-  user: UserInfo
-  /** 社交动作配置列表 */
-  socialActions?: SocialAction[]
 }
 
 export interface CwTikTokFeedProps
@@ -105,43 +47,6 @@ export interface CwTikTokFeedProps
   texts?: Partial<CwTikTokFeedTexts>
   /** 根容器额外 class（对应 Vue attrs.class） */
   className?: string
-}
-
-export interface CwTikTokFeedStyles {
-  root: string
-  container: string
-  item: string
-  player: string
-  overlay: string
-  controls: string
-  leftControls: string
-  rightControls: string
-  avatar: string
-  username: string
-  description: string
-  actionButton: string
-  actionIcon: string
-  actionText: string
-  progressBar: string
-  progressFill: string
-  loading: string
-  loadingSpinner: string
-  loadingText: string
-}
-
-export interface CwTikTokFeedTexts {
-  loading: string
-  like: string
-  comment: string
-  share: string
-  follow: string
-  unfollow: string
-  play: string
-  pause: string
-  mute: string
-  unmute: string
-  fullscreen: string
-  exitFullscreen: string
 }
 
 export interface CwTikTokFeedEmits {
@@ -249,32 +154,6 @@ export interface CwTikTokPlayerHandle {
 }
 
 // 虚拟滚动相关类型
-export interface VirtualItem {
-  /** 索引 */
-  index: number
-  /** 数据 */
-  data: VideoItem
-  /** 高度 */
-  height: number
-  /** 顶部位置 */
-  top: number
-}
-
-export interface ScrollState {
-  /** 滚动位置 */
-  scrollTop: number
-  /** 是否正在滚动 */
-  isScrolling: boolean
-}
-
-export interface PreloadState {
-  /** 是否正在加载 */
-  isLoading: boolean
-  /** 是否还有更多数据 */
-  hasMore: boolean
-  /** 已加载数量 */
-  loadedCount: number
-}
 
 // CwSocialSidebar 子组件类型定义
 export interface CwSocialSidebarProps {
@@ -284,13 +163,11 @@ export interface CwSocialSidebarProps {
   onAction?: (data: CwSocialActionEvent) => void
 }
 
-
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwSocialSidebarEmits {
   /** 动作点击事件 */
   action: [data: { key: string; action: SocialAction; newState?: any }]
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwTikTokFeedExpose {
@@ -311,7 +188,6 @@ export interface CwTikTokFeedExpose {
   /** 刷新虚拟滚动 */
   refreshVirtualScroll: () => void
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwTikTokPlayerExpose {

@@ -1,10 +1,6 @@
 import { createContext, useContext } from 'react'
-import type {
-  CwMarkdownCodeBlockExtension,
-  CwMarkdownContentPreprocessor,
-  CwMarkdownContextValue,
-  CwMarkdownInlineImageExtension,
-} from './types'
+import type { CwMarkdownCodeBlockExtension, CwMarkdownContextValue, CwMarkdownInlineImageExtension } from './types'
+import type { CwMarkdownContentPreprocessor } from '@zengchaowu/ui-shared/components/CwMarkdown/types'
 
 /** 供子组件消费的 Markdown 上下文（等价 Vue provide/inject） */
 export const CwMarkdownContext = createContext<CwMarkdownContextValue | null>(

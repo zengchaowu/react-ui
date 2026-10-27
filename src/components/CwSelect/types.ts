@@ -1,6 +1,6 @@
 ﻿import type { ReactNode } from 'react'
-import type { CwInputAppearance, CwInputTexts } from '../CwInput/types'
-import type { CwIconEmbed } from '../CwIcon/types'
+import type { CwInputAppearance, CwInputTexts } from '@zengchaowu/ui-shared/components/CwInput/types'
+import type { CwIconEmbed } from '@zengchaowu/ui-shared/components/CwIcon/types'
 
 export type CwSelectValue = string | number
 

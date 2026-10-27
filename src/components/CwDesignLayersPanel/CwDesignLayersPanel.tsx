@@ -16,9 +16,9 @@ import type { CwDesignLayersPanelProps } from './types'
 import {
   designLayersPanelBase,
   designLayersPanelEmbeddedPatch,
-} from './styles'
-import { defaultCwDesignLayersPanelTexts } from './texts'
-import { filterDesignLayerTree } from './filterDesignLayerTree'
+} from '@zengchaowu/ui-shared/components/CwDesignLayersPanel/styles'
+import { defaultCwDesignLayersPanelTexts } from '@zengchaowu/ui-shared/components/CwDesignLayersPanel/texts'
+import { filterDesignLayerTree } from '@zengchaowu/ui-shared/components/CwDesignLayersPanel/filterDesignLayerTree'
 
 function collectExpandableKeys(nodes: CwTreeNode[]): (string | number)[] {
   const keys: (string | number)[] = []

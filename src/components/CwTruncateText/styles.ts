@@ -1,4 +1,4 @@
-import type { CwTruncateTextAppearance, CwTruncateTextStyles } from './types'
+import type { CwTruncateTextAppearance, CwTruncateTextStyles } from '@zengchaowu/ui-shared/components/CwTruncateText/types'
 
 const FILE_CHIP_LABEL_CLASS =
   'cw-file-ref-label cw-inline-chip-label min-w-0 shrink max-w-[11.25rem]'

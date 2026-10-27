@@ -1,9 +1,9 @@
 import { useLayoutEffect, useRef } from 'react'
 import type { CSSProperties } from 'react'
-import { docxEditorBase } from './styles'
+import { docxEditorBase } from '@zengchaowu/ui-shared/components/CwDocxEditor/styles'
 import type { CwDocxParagraphBlockProps } from './types'
-import { paragraphLayoutStyle, runLayoutStyle } from './functions/paragraphDisplay'
-import { runsFromEditableRoot } from './functions/editableRuns'
+import { paragraphLayoutStyle, runLayoutStyle } from '@zengchaowu/ui-shared/components/CwDocxEditor/functions/paragraphDisplay'
+import { runsFromEditableRoot } from '@zengchaowu/ui-shared/components/CwDocxEditor/functions/editableRuns'
 
 export function CwDocxParagraphBlock({
   block,

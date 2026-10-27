@@ -1,4 +1,4 @@
-import type { CwPdfTextRun } from '../types'
+import type { CwPdfTextRun } from '@zengchaowu/ui-shared/components/CwPdfEditor/types'
 import { readRunEditorText } from './pdfDocument'
 
 export function queryRunEditor(stage: ParentNode | null | undefined, runId: string) {

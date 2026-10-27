@@ -3,7 +3,7 @@ import type {
   FabricDesignEditorEmitFn,
   TpFabricDesignEditorComponentProps,
 } from './types'
-import { runFabricEditorContextMenuAction } from './document/fabricEditorContextMenuActions.pure'
+import { runFabricEditorContextMenuAction } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorContextMenuActions.pure'
 import { useFabricEditorDocument } from './composables/useFabricEditorDocument'
 import { useFabricEditorInspectorState } from './composables/useFabricEditorInspectorState'
 import { useFabricEditorLayerPanel } from './composables/useFabricEditorLayerPanel'
@@ -24,8 +24,8 @@ import {
   useStableBox,
   useWatch,
 } from './composables/reactivity'
-import { tpFabricEditorStageClass } from './styles'
-import { resolveFabricCanvasBackgroundColor } from './document/fabricEditorBackground.pure'
+import { tpFabricEditorStageClass } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/styles'
+import { resolveFabricCanvasBackgroundColor } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorBackground.pure'
 
 export function useTpFabricDesignEditor(
   props: TpFabricDesignEditorComponentProps,

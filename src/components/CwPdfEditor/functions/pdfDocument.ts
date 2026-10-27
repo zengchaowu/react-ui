@@ -1,6 +1,6 @@
 import type { Color, PDFDocument, PDFFont, PDFPage } from 'pdf-lib'
-import { tokenSolidColors } from '../../../assets/tokens/tokenSolidColors'
-import type { CwPdfDocument, CwPdfNote, CwPdfPage, CwPdfRotation, CwPdfSource, CwPdfTextRun } from '../types'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
+import type { CwPdfDocument, CwPdfNote, CwPdfPage, CwPdfRotation, CwPdfSource, CwPdfTextRun } from '@zengchaowu/ui-shared/components/CwPdfEditor/types'
 
 const A4_WIDTH = 595.28
 const A4_HEIGHT = 841.89

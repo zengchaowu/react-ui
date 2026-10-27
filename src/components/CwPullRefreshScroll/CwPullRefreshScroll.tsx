@@ -11,19 +11,16 @@ import {
 import CwDiv, { type CwDivHandle } from '../CwDiv/CwDiv'
 import { resolveCwDivViewport } from '../CwDiv/resolveCwDivViewport'
 import CwLoading from '../CwLoading/CwLoading'
-import type {
-  CwPullRefreshScrollComponentProps,
-  CwPullRefreshScrollHandle,
-  CwPullRefreshScrollTexts,
-} from './types'
-import { pullRefreshScrollBase } from './styles'
-import { defaultCwPullRefreshScrollTexts } from './texts'
+import type { CwPullRefreshScrollComponentProps, CwPullRefreshScrollHandle } from './types'
+import type { CwPullRefreshScrollTexts } from '@zengchaowu/ui-shared/components/CwPullRefreshScroll/types'
+import { pullRefreshScrollBase } from '@zengchaowu/ui-shared/components/CwPullRefreshScroll/styles'
+import { defaultCwPullRefreshScrollTexts } from '@zengchaowu/ui-shared/components/CwPullRefreshScroll/texts'
 import {
   dampPullDistance,
   pullIndicatorHeight,
   resolvePullPhase,
   shouldTriggerLoadMore,
-} from './functions'
+} from '@zengchaowu/ui-shared/components/CwPullRefreshScroll/functions'
 
 export const CwPullRefreshScroll = forwardRef<
   CwPullRefreshScrollHandle,

@@ -9,8 +9,8 @@ import type { CwProgressProps } from './types'
 import {
   defaultCwProgressStyles,
   horizontalCwProgressSizeStyles,
-} from './styles'
-import { defaultCwProgressTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwProgress/styles'
+import { defaultCwProgressTexts } from '@zengchaowu/ui-shared/components/CwProgress/texts'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 
 function clamp(value: number, min: number, max: number): number {

@@ -1,4 +1,5 @@
 import type { MouseEvent as ReactMouseEvent } from 'react'
+import type { CwHashMapTexts } from '@zengchaowu/ui-shared/components/CwHashMap/types'
 
 export interface CwHashMapEntry {
   key: string | number
@@ -32,41 +33,6 @@ export interface CwHashMapProps {
    * 自定义文本对象
    */
   texts?: Partial<CwHashMapTexts>
-}
-
-export interface CwHashMapStyles {
-  root: string
-  container: string
-  svg: string
-  bucket: string
-  bucketActive: string
-  bucketLabel: string
-  entry: string
-  entryActive: string
-  entryKey: string
-  entryValue: string
-  controls: string
-  button: string
-  buttonPrimary: string
-  buttonSecondary: string
-  buttonDanger: string
-  input: string
-  status: string
-  line: string
-}
-
-export interface CwHashMapTexts {
-  put: string
-  get: string
-  remove: string
-  clear: string
-  addEntry: string
-  removeEntry: string
-  findEntry: string
-  status: string
-  entries: string
-  buckets: string
-  operations: string
 }
 
 /** Emits（Vue defineEmits 的 React 回调等价） */

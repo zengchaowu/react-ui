@@ -1,5 +1,5 @@
 import type { CwDividerProps } from './types'
-import { dividerBase } from './styles'
+import { dividerBase } from '@zengchaowu/ui-shared/components/CwDivider/styles'
 
 export function CwDivider({
   vertical = false,

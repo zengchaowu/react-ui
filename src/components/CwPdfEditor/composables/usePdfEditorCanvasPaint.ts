@@ -1,13 +1,13 @@
 import { useRef } from 'react'
-import { tokenSolidColors } from '../../../assets/tokens/tokenSolidColors'
-import type { CwPdfDocument, CwPdfRotation } from '../types'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
+import type { CwPdfDocument, CwPdfRotation } from '@zengchaowu/ui-shared/components/CwPdfEditor/types'
 import {
   openPdfDocument,
   paintEditedRunsOnCanvas,
   paintPdfRunEditBackdrop,
   type CwPdfViewport,
 } from '../functions/pdfDocument'
-import { pageEditSignature, type PdfPageSlot } from '../functions/pdfPageLayout'
+import { pageEditSignature, type PdfPageSlot } from '@zengchaowu/ui-shared/components/CwPdfEditor/functions/pdfPageLayout'
 
 type PdfJsDoc = Awaited<ReturnType<typeof openPdfDocument>>
 

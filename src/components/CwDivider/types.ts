@@ -1,8 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-
-export type CwDividerLayout = 'standalone' | 'embedded'
-
-export type CwDividerContentPosition = 'left' | 'center' | 'right'
+import type { CwDividerLayout, CwDividerContentPosition, CwDividerTexts } from '@zengchaowu/ui-shared/components/CwDivider/types'
 
 export interface CwDividerProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -50,29 +47,3 @@ export interface CwDividerProps
   /** 默认插槽：自定义文案节点，优先于 `content` / `text` / `label` */
   children?: ReactNode
 }
-
-export interface CwDividerStyles {
-  root: string
-  rootDisabled: string
-  withContent: string
-  withContentDense: string
-  horizontal: string
-  vertical: string
-  hairlineHorizontal: string
-  hairlineVertical: string
-  line: string
-  lineGrow: string
-  lineShort: string
-  lineHairline: string
-  lineThick: string
-  lineDashed: string
-  lineDashedVertical: string
-  label: string
-  labelNormal: string
-  labelDisabled: string
-  labelBold: string
-}
-
-export interface CwDividerTexts {}
-
-export interface CwDividerEmits {}

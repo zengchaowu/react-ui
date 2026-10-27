@@ -2,22 +2,18 @@ import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState }
 import type { HTMLAttributes, PointerEvent as ReactPointerEvent } from 'react'
 import { CwDataTable } from '../CwDataTable'
 import ExcelMergeOverlay from './ExcelMergeOverlay'
-import { excelEditorBase } from './styles'
-import { defaultTexts } from './texts'
-import type {
-  CwExcelEditorEmits,
-  CwExcelEditorHandle,
-  CwExcelEditorProps,
-  CwExcelWorkbook,
-} from './types'
+import { excelEditorBase } from '@zengchaowu/ui-shared/components/CwExcelEditor/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwExcelEditor/texts'
+import type { CwExcelEditorEmits, CwExcelEditorHandle } from './types'
+import type { CwExcelEditorProps, CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
 import { buildSheetRows, buildSheetTable } from './functions/buildExcelTable'
-import { writeCellDraft } from './functions/sheetEdits'
+import { writeCellDraft } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/sheetEdits'
 import {
   anchorCell,
   guessColumnRenderCount,
   planColumnWindow,
   selectionLabel as formatSelectionLabel,
-} from './functions/sheetMetrics'
+} from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/sheetMetrics'
 import { isHistoryKey, useExcelHistory } from './hooks/useExcelHistory'
 import { useExcelFormulaBar } from './hooks/useExcelFormulaBar'
 import { useExcelGridKeyboard } from './hooks/useExcelGridKeyboard'
@@ -39,7 +35,7 @@ import {
   mergeCovering,
   normalizeWorkbook,
   stepFromMerge,
-} from './functions/workbook'
+} from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/workbook'
 import {
   attachExcelSource,
   parseExcelSource,

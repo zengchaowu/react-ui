@@ -10,16 +10,9 @@ import {
   type ReactNode,
 } from 'react'
 import type { Placement } from '@zengchaowu/shared/types/placement'
-import type { PopupTrigger } from '../CwPopup/types/state'
-import type {
-  CwTabbarEmits,
-  CwTabbarItem,
-  CwTabbarItemIconSlotScope,
-  CwTabbarItemLabelSlotScope,
-  CwTabbarProps,
-  CwTabbarStyles,
-  CwTabbarTexts,
-} from './types'
+import type { PopupTrigger } from '@zengchaowu/ui-shared/components/CwPopup/types/state'
+import type { CwTabbarEmits, CwTabbarItem, CwTabbarItemIconSlotScope, CwTabbarItemLabelSlotScope, CwTabbarProps, CwTabbarTexts } from './types'
+import type { CwTabbarStyles } from '@zengchaowu/ui-shared/components/CwTabbar/types'
 import {
   tabbarBase,
   horizontalRootWithoutTopDivider,
@@ -29,7 +22,7 @@ import {
   verticalTabbarRootWithSideDivider,
   verticalTabbarRootWithoutSideDivider,
   tabbarSizeLgStyles,
-} from './styles'
+} from '@zengchaowu/ui-shared/components/CwTabbar/styles'
 import { defaultTexts } from './texts'
 import CwIcon from '../CwIcon/CwIcon'
 import CwTooltip from '../CwTooltip/CwTooltip'

@@ -32,78 +32,7 @@ import type {
   CwMarkdownCodeBlock,
   InlineImageNode,
 } from '@zengchaowu/shared/functions/markdown/cwMarkdownAst'
-
-/** 样式（仅 class 名称） */
-export interface CwMarkdownStyles {
-  root: string
-  rootNormal: string
-  heading: string
-  heading1: string
-  heading2: string
-  heading3: string
-  heading4: string
-  heading5: string
-  heading6: string
-  paragraph: string
-  codeBlock: string
-  /** 代码块顶栏（语言、操作；不含下边线） */
-  codeBlockToolbar: string
-  /** 展开时顶栏与正文之间的分隔线；收起时不要 */
-  codeBlockToolbarDivider: string
-  codeBlockLang: string
-  /** 顶栏箭头图标占位（小号圆角触控区样式） */
-  codeBlockToggleBtn: string
-  codeBlockCopyBtn: string
-  codeBlockInner: string
-  /** 代码块正文折叠容器（grid 0fr/1fr 过渡） */
-  codeBlockExpand: string
-  codeBlockExpandOpen: string
-  codeBlockExpandClosed: string
-  /** 展开后正文：限制最大高度，过长在卡片内滚动 */
-  codeBlockExpandInner: string
-  /** 扩展代码块正文容器（如 Mermaid 图表；由使用方扩展组件使用） */
-  codeBlockExtensionBody: string
-  blockquote: string
-  blockquoteBorder: string
-  list: string
-  listOrdered: string
-  listUnordered: string
-  listItem: string
-  hr: string
-  tableWrapper: string
-  table: string
-  tableTh: string
-  tableTd: string
-  /** 行内 */
-  inlineText: string
-  inlineBold: string
-  inlineItalic: string
-  inlineCode: string
-  link: string
-  linkNormal: string
-  linkFocused: string
-  image: string
-  sizeSmall: string
-  sizeMedium: string
-  sizeLarge: string
-}
-
-export interface CwMarkdownTexts {
-  linkAriaLabelPrefix: string
-  imageAriaLabelPrefix: string
-  /** 代码块复制按钮 */
-  codeBlockCopyAriaLabel: string
-  /** 代码块执行/预览按钮 */
-  codeBlockPreviewAriaLabel: string
-  /** 代码块展开（当前为收起态） */
-  codeBlockExpandAriaLabel: string
-  /** 代码块收起（当前为展开态） */
-  codeBlockCollapseAriaLabel: string
-  /** 表格折叠：表头在表体已收起时可展开 */
-  tableBodyExpandAriaLabel: string
-  /** 表格折叠：表头在表体已展开时可收起 */
-  tableBodyCollapseAriaLabel: string
-}
+import type { CwMarkdownTexts, CwMarkdownStyles } from '@zengchaowu/ui-shared/components/CwMarkdown/types'
 
 /** 扩展代码块组件接收的 props */
 export interface CwMarkdownCodeBlockExtensionProps {
@@ -251,6 +180,3 @@ export interface CwMarkdownContextValue {
   /** 围栏代码块初始是否展开 */
   codeBlockDefaultExpanded: boolean
 }
-
-/** 渲染前对 Markdown 源文本做规范化（如 HTML `<video>` → `![](url)`） */
-export type CwMarkdownContentPreprocessor = (content: string) => string

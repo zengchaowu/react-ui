@@ -1,7 +1,7 @@
-import type { CwPptDeck, CwPptSlide } from '../../types'
-import { tokenSolidColors } from '../../../../assets/tokens/tokenSolidColors'
-import { custGeomPolyline100, isAxisAlignedStrokeBox } from '../connectorGeometry'
-import type { PptxArchivePayload } from '../archiveEntries'
+import type { CwPptDeck, CwPptSlide } from '@zengchaowu/ui-shared/components/CwPptEditor/types'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
+import { custGeomPolyline100, isAxisAlignedStrokeBox } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/connectorGeometry'
+import type { PptxArchivePayload } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/archiveEntries'
 import {
   A,
   EMU_CX,
@@ -14,10 +14,10 @@ import {
   type Space,
   type ThemeColors,
   type ZipRel,
-} from './shared'
-import { childEl, parseXml, readRels, relByType, resolveTarget, shapeXfrm, spPrHasNoFill } from './xml'
-import { enterGroup, frameOfBox, frameOfLine, frameRaw } from './geometry'
-import { blankSlide, createId, slideSizePt } from './model'
+} from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx/shared'
+import { childEl, parseXml, readRels, relByType, resolveTarget, shapeXfrm, spPrHasNoFill } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx/xml'
+import { enterGroup, frameOfBox, frameOfLine, frameRaw } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx/geometry'
+import { blankSlide, createId, slideSizePt } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx/model'
 import {
   defaultClrMap,
   loadTheme,
@@ -28,9 +28,9 @@ import {
   readMasterTextStyles,
   readPresentationTextStyles,
   resolveShapeFill,
-} from './color'
-import { readTextBodyMeta, shapeText, textAlign, textColor } from './text'
-import { walkTable } from './table'
+} from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx/color'
+import { readTextBodyMeta, shapeText, textAlign, textColor } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx/text'
+import { walkTable } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx/table'
 import {
   barFillPaint,
   connectorStrokePaint,
@@ -44,10 +44,10 @@ import {
   pushThinBarBox,
   shapeBorderFields,
   shapeStroke,
-} from './shapes'
-import { boxGeomFromSp, lineGeomPreset, lnDashStyle, presetName, xfrmFlip, xfrmRotDeg } from './shapeGeom'
-import { blipEmbed, blipFillOn, pushBackgroundBlip, pushPicture, readImage, readSrcRectCrop } from './images'
-import { collectUsedFontFamilies, readEmbeddedFonts } from './fonts'
+} from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx/shapes'
+import { boxGeomFromSp, lineGeomPreset, lnDashStyle, presetName, xfrmFlip, xfrmRotDeg } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx/shapeGeom'
+import { blipEmbed, blipFillOn, pushBackgroundBlip, pushPicture, readImage, readSrcRectCrop } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx/images'
+import { collectUsedFontFamilies, readEmbeddedFonts } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx/fonts'
 import { loadPptxArchive } from './unzip'
 
 export async function walk(

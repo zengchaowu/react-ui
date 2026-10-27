@@ -1,11 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTurnstile } from './composables/useTurnstile'
-import { turnstileCaptchaDialogBase } from './styles'
-import { defaultTexts } from './texts'
-import type {
-  CwTurnstileCaptchaDialogTexts,
-  TurnstileWidgetSize,
-} from './types'
+import { turnstileCaptchaDialogBase } from '@zengchaowu/ui-shared/components/CwTurnstileCaptchaDialog/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwTurnstileCaptchaDialog/texts'
+import type { CwTurnstileCaptchaDialogTexts, TurnstileWidgetSize } from '@zengchaowu/ui-shared/components/CwTurnstileCaptchaDialog/types'
 
 export interface CwTurnstileCaptchaDialogContentProps {
   siteKey: string

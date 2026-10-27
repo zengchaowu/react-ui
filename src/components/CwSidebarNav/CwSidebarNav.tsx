@@ -1,12 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
-import type {
-  CwSidebarNavItem,
-  CwSidebarNavItemKey,
-  CwSidebarNavProps,
-  CwSidebarNavSection,
-} from './types'
-import { resolveSidebarNavStyles } from './styles'
-import { defaultCwSidebarNavTexts } from './texts'
+import type { CwSidebarNavItem, CwSidebarNavProps, CwSidebarNavSection } from './types'
+import type { CwSidebarNavItemKey } from '@zengchaowu/ui-shared/components/CwSidebarNav/types'
+import { resolveSidebarNavStyles } from '@zengchaowu/ui-shared/components/CwSidebarNav/styles'
+import { defaultCwSidebarNavTexts } from '@zengchaowu/ui-shared/components/CwSidebarNav/texts'
 import CwButton from '../CwButton/CwButton'
 import CwDiv from '../CwDiv/CwDiv'
 import CwIcon from '../CwIcon/CwIcon'

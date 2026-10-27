@@ -2,7 +2,7 @@ import type { ImWalletTransferExtra } from '@zengchaowu/shared/types/im-wallet-m
 import {
   CHAT_WALLET_BUBBLE_WRAPPER_CLASS,
   chatWalletBubbleSizeStyle,
-} from './chatMessageBubbleLayout'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
 import {
   chatWalletCardBodyClasses,
   chatWalletCardContentClasses,
@@ -12,11 +12,11 @@ import {
   chatWalletTransferRootClasses,
   chatWalletTransferSublineClasses,
   chatWalletTransferTitleClasses,
-} from './chatMessageWalletBubbleSurface'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageWalletBubbleSurface'
 import {
   defaultCwChatMessageTransferTexts,
   type CwChatMessageTransferTexts,
-} from './transferTexts'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/transferTexts'
 
 export interface CwChatMessageTransferProps {
   chatMessageId: string

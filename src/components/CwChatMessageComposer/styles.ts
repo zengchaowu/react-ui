@@ -1,7 +1,5 @@
-import type {
-  CwChatMessageComposerRootLayout,
-  CwChatMessageComposerStyles,
-} from './types'
+import type { CwChatMessageComposerRootLayout } from './types'
+import type { CwChatMessageComposerStyles } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/types'
 import { APP_PAGE_CHROME_SAFE_BOTTOM_CLASS } from '@zengchaowu/ui-shared/constants/appSafeAreaClasses'
 import { CW_WORKSPACE_CHAT_RADIUS, CW_WORKSPACE_CHAT_INSET_PAD_X } from '../CwChatMessageCell/chatWorkspaceSurface'
 

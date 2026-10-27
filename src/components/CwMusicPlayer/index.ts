@@ -1,3 +1,5 @@
 export { default as CwMusicPlayer } from './CwMusicPlayer'
 export { default as CwMusicPlayerControls } from './CwMusicPlayerControls'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwMusicPlayer/types'
+export type * from '@zengchaowu/ui-shared/components/CwMusicPlayer/types'

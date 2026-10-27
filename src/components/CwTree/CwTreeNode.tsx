@@ -6,24 +6,15 @@ import type {
   MouseEvent as ReactMouseEvent,
   ReactNode,
 } from 'react'
-import type {
-  CwTreeCheckInfo,
-  CwTreeExpandInfo,
-  CwTreeInteractionEvent,
-  CwTreeNode as TreeNode,
-  CwTreeReorderPayload,
-  CwTreeSelectInfo,
-  CwTreeSize,
-  CwTreeStyles,
-  CwTreeTexts,
-} from './types'
+import type { CwTreeCheckInfo, CwTreeExpandInfo, CwTreeInteractionEvent, CwTreeNode as TreeNode, CwTreeReorderPayload, CwTreeSelectInfo, CwTreeSize, CwTreeStyles } from './types'
+import type { CwTreeTexts } from '@zengchaowu/ui-shared/components/CwTree/types'
 import CwIcon from '../CwIcon/CwIcon'
 import CwCheckbox from '../CwCheckbox/CwCheckbox'
 import CwLoading from '../CwLoading/CwLoading'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 import { isExpandable, useCwTreeLazyContext } from './cwTreeLazyContext'
 import { CW_TREE_REORDER_CONTEXT } from './cwTreeReorderContext'
-import { CW_TREE_NODE_DRAG_MIME } from './treeDragMime'
+import { CW_TREE_NODE_DRAG_MIME } from '@zengchaowu/ui-shared/components/CwTree/treeDragMime'
 
 export interface CwTreeNodeComponentProps {
   node: TreeNode

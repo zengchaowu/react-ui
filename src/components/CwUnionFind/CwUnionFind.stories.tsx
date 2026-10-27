@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwUnionFind } from './CwUnionFind'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwUnionFind/texts'
 import type { CwUnionFindElement, CwUnionFindProps } from './types'
 
 const meta: Meta<typeof CwUnionFind> = {

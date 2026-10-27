@@ -9,7 +9,7 @@ import { flattenSlotNodes, gridSlotNodeKey } from './flattenSlotNodes'
 import {
   resolveGridColContentAlign,
   resolveGridColFlushPaddingStyle,
-} from './gridColFlush'
+} from '@zengchaowu/ui-shared/components/CwGrid/gridColFlush'
 
 export interface CwGridComponentProps
   extends CwGridProps,

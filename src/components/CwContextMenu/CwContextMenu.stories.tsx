@@ -8,7 +8,7 @@ import {
   openContextMenuStoryDemo,
 } from '../../storybook/contextMenuStoryDemo'
 import { showCwContextMenu } from './showCwContextMenu'
-import type { CwContextMenuAppearance } from './types'
+import type { CwContextMenuAppearance } from '@zengchaowu/ui-shared/components/CwContextMenu/types'
 
 type ContextMenuPlaygroundArgs = {
   appearance: CwContextMenuAppearance

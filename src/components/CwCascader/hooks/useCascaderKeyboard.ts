@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import type { MutableRefObject } from 'react'
-import { scrollElementIntoCwDivViewport } from '../../CwDiv/scrollElementIntoCwDivViewport'
+import { scrollElementIntoCwDivViewport } from '@zengchaowu/ui-shared/components/CwDiv/scrollElementIntoCwDivViewport'
 import type {
   CwCascaderPanelOption,
   CwCascaderPanelValue,

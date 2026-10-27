@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react'
 import type { CwChatMessageStickerProps } from './messageParts.types'
 import {
   computeImageOrVideoBubbleSizeStyle,
-} from './chatMessageBubbleLayout'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
 import { chatOwnMediaBubbleRingClasses } from './chatMessageBubbleSurface'
 
 export function CwChatMessageSticker({

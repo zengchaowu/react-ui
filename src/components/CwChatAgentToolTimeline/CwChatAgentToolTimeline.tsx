@@ -6,9 +6,9 @@ import {
 import { CwIcon } from '../CwIcon'
 import CwChatAgentToolStep from '../CwChatAgentToolStep/CwChatAgentToolStep'
 import CwAgentToolShimmerLabel from '../CwChatAgentToolStep/CwAgentToolShimmerLabel'
-import { AGENT_TOOL_CHEVRON_SIZE } from '../CwChatAgentToolStep/chrome'
-import { agentToolTimelineBase } from './styles'
-import type { CwChatAgentToolTimelineProps } from './types'
+import { AGENT_TOOL_CHEVRON_SIZE } from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/chrome'
+import { agentToolTimelineBase } from '@zengchaowu/ui-shared/components/CwChatAgentToolTimeline/styles'
+import type { CwChatAgentToolTimelineProps } from '@zengchaowu/ui-shared/components/CwChatAgentToolTimeline/types'
 
 export interface CwChatAgentToolTimelineComponentProps
   extends CwChatAgentToolTimelineProps,

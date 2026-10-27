@@ -3,12 +3,9 @@ import { createRoot, type Root } from 'react-dom/client'
 import { CW_OVERLAY_LEAVE_MS } from '@zengchaowu/ui-shared/constants/cwOverlayZIndex'
 import { scheduleBringOverlayHostToFront } from '../../constants/cwOverlayStack'
 import CwDynamicDialog from './CwDynamicDialog'
-import type {
-  CwDynamicDialogConfig,
-  CwDynamicDialogHandle,
-  CwDynamicDialogTexts,
-} from './types'
-import { defaultTexts } from './texts'
+import type { CwDynamicDialogConfig, CwDynamicDialogHandle } from './types'
+import type { CwDynamicDialogTexts } from '@zengchaowu/ui-shared/components/CwDynamicDialog/types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDynamicDialog/texts'
 
 export type ShowDynamicDialogResult = 'close' | 'cancel'
 

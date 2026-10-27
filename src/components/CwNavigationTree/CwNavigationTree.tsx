@@ -8,7 +8,7 @@ import {
   resolveNavigationTreeIconEmbed,
   resolveNavigationTreeSwitcherIconEmbed,
   resolveNavigationTreeTreeOverride,
-} from './navigationTreeAppearance'
+} from '@zengchaowu/ui-shared/components/CwNavigationTree/navigationTreeAppearance'
 
 const EMPTY_TREE_DATA: CwTreeNode[] = []
 const EMPTY_KEYS: (string | number)[] = []

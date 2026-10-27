@@ -1,7 +1,7 @@
-﻿import type { ElementType } from 'react'
-import type { CwRichTextNode } from '../CwRichText/types'
-import type { CwRichTextTexts } from '../CwRichText/types'
-import type { CwIconEmbed } from '../CwIcon/types'
+import type { ElementType } from 'react'
+import type { CwRichTextNode } from '@zengchaowu/ui-shared/components/CwRichText/types'
+
+import type { CwConfigCardTexts } from '@zengchaowu/ui-shared/components/CwConfigCard/types'
 
 /** 配置项中可渲染的组件（等价于 Vue `Component`） */
 export type ConfigCardComponent = ElementType
@@ -32,24 +32,6 @@ export interface CwConfigCardItem {
   valueColor?: string
   /** 是否禁用 */
   disabled?: boolean
-}
-
-/** @internal */
-export interface CwConfigCardStyles {
-  headerInner: string
-  title: string
-  collapseIcon: string
-  collapseIconStyles?: CwIconEmbed
-  item: string
-  itemLabel: string
-  itemValue: string
-  itemValueRichText: string
-  itemValueComponent: string
-}
-
-/** 文案（含子组件 CwRichText 的独立 texts 配置） */
-export interface CwConfigCardTexts {
-  richTextTexts?: Partial<CwRichTextTexts>
 }
 
 /** Props */

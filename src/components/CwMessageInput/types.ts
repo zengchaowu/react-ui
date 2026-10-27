@@ -1,41 +1,10 @@
-export interface CwMessageInputMentionItem {
-  id: string
-  label: string
-  /** 头像 URL；缺省或加载失败时由 `mentionAvatarFallbackSrc` 作为占位图（与 `CwAvatar` 一致） */
-  avatar?: string
-  /**
-   * 候选类型。缺省 / `user`：插入 @ 提及；
-   * `file` / `folder`：插入文件引用 chip（须带 `path`）。
-   */
-  kind?: 'user' | 'file' | 'folder'
-  /** `file` / `folder` 时的路径（建议绝对路径或项目内相对路径） */
-  path?: string
-}
-
-export interface CwMessageInputFileRef {
-  /** 唯一标识，用于删除/去重 */
-  id: string
-  /** 绝对路径或相对路径 */
-  path: string
-  /** 可选的行号范围，如 "10-25" */
-  lines?: string
-  /** 显示名（默认取文件名） */
-  label?: string
-}
+import type { CwMessageInputMentionItem, CwMessageInputTexts } from '@zengchaowu/ui-shared/components/CwMessageInput/types'
 
 export type CwMessageInputFieldLayout =
   | 'default'
   | 'mobileCompact'
   | 'workspace'
   | 'workspaceInline'
-
-export interface CwMessageInputTexts {
-  placeholder: string
-  mentionNoMatch: string
-  /** 仍供 `CwChatMessageComposer` 工具栏「添加附件」等文案覆盖 */
-  addAttachmentAriaLabel: string
-  fileRefDeleteTitle: string
-}
 
 /** 内联图片预览项（对应 Vue `CwAttachmentGalleryItem` 的图片子集） */
 export interface CwMessageInputAttachmentPreviewItem {

@@ -5,7 +5,7 @@ import {
   SHEET_COL_CHUNK,
   SHEET_ROW_CHUNK,
   SHEET_ROW_HEIGHT,
-} from '../functions/sheetMetrics'
+} from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/sheetMetrics'
 
 /**
  * 表格滚动域：列窗同步、滚到边缘按块放大可视行列数，并保持横向停在增长后的右端。

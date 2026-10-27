@@ -5,7 +5,7 @@ import type {
 } from 'react'
 import CwGrid from '../CwGrid/CwGrid'
 import type { CwGridBreakpointConfig } from '../CwGrid/types'
-import { scrollElementIntoCwDivViewport } from '../CwDiv/scrollElementIntoCwDivViewport'
+import { scrollElementIntoCwDivViewport } from '@zengchaowu/ui-shared/components/CwDiv/scrollElementIntoCwDivViewport'
 import { shouldShowFocus } from '../../hooks/useBrowserFocusVisible'
 import { selectSheetBase } from './styles'
 import type { CwSelectSheetOption } from './types'

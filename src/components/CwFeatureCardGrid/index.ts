@@ -1,3 +1,5 @@
 export { default as CwFeatureCardGrid } from './CwFeatureCardGrid'
-export { defaultCwFeatureCardGridTexts } from './texts'
+export { defaultCwFeatureCardGridTexts } from '@zengchaowu/ui-shared/components/CwFeatureCardGrid/texts'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwFeatureCardGrid/types'
+export type * from '@zengchaowu/ui-shared/components/CwFeatureCardGrid/types'

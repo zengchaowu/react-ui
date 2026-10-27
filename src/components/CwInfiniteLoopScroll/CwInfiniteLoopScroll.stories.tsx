@@ -3,7 +3,7 @@ import {
   CwInfiniteLoopScroll,
   type CwInfiniteLoopScrollComponentProps,
 } from './CwInfiniteLoopScroll'
-import type { CwInfiniteLoopScrollItem } from './types'
+import type { CwInfiniteLoopScrollItem } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/types'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 import { numberControlArgType } from '../../storybook/argTypes'

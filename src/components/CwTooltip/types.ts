@@ -3,29 +3,8 @@ import type {
   PopupPluginFunction,
   PopupState,
   PopupTrigger,
-} from '../CwPopup/types/state'
-
-/** 内部结构 class 槽位 */
-export interface CwTooltipStyles {
-  root: string
-  fallbackTrigger: string
-  popup: string
-  content: string
-  arrow: string
-}
-
-/**
- * 外观变体：
- * - `default`：块级/列宽触发（含 `w-full`）
- * - `inline`：行内触发（芯片、工具条图标、状态点）
- * - `mention`：@人 chip（行内 + 更紧凑弹出层）
- */
-export type CwTooltipAppearance = 'default' | 'inline' | 'mention'
-
-export interface CwTooltipTexts {
-  trigger: string
-  content: string
-}
+} from '@zengchaowu/ui-shared/components/CwPopup/types/state'
+import type { CwTooltipAppearance, CwTooltipTexts } from '@zengchaowu/ui-shared/components/CwTooltip/types'
 
 /** 作用域插槽参数（默认插槽 / trigger 插槽） */
 export interface CwTooltipSlotScope {

@@ -1,3 +1,5 @@
 export { default as CwCellForm } from './CwCellForm'
-export { defaultCwCellFormTexts } from './texts'
+export { defaultCwCellFormTexts } from '@zengchaowu/ui-shared/components/CwCellForm/texts'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwCellForm/types'
+export type * from '@zengchaowu/ui-shared/components/CwCellForm/types'

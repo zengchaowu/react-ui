@@ -4,10 +4,11 @@ import type { CwDynamicDialogConfig } from '../CwDynamicDialog/types'
 import CwIcon from '../CwIcon/CwIcon'
 import CwLoading from '../CwLoading/CwLoading'
 import CwRichText from '../CwRichText/CwRichText'
-import { cwToastContentStyles } from './styles'
-import { defaultCwToastTexts } from './texts'
+import { cwToastContentStyles } from '@zengchaowu/ui-shared/components/CwToast/styles'
+import { defaultCwToastTexts } from '@zengchaowu/ui-shared/components/CwToast/texts'
 import { useCwToastDrag } from './useCwToastDrag'
-import type { CwToastProps, CwToastType } from './types'
+import type { CwToastProps } from './types'
+import type { CwToastType } from '@zengchaowu/ui-shared/components/CwToast/types'
 
 const ICON_TYPES: CwToastType[] = ['success', 'fail', 'loading']
 

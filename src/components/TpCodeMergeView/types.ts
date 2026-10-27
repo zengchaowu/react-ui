@@ -1,4 +1,4 @@
-﻿import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes } from 'react'
 import type { MergeView } from '@codemirror/merge'
 
 export interface TpCodeMergeViewProps
@@ -21,10 +21,6 @@ export interface TpCodeMergeViewProps
   height?: string | number
   /** 宽度 */
   width?: string | number
-}
-
-export interface TpCodeMergeViewStyles {
-  root: string
 }
 
 /** defineExpose 等价物：通过 ref 取到当前 MergeView 实例 */

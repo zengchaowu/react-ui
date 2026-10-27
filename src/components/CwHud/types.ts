@@ -1,15 +1,6 @@
-import type { CwLoadingProps, CwLoadingTexts } from '../CwLoading/types'
+import type { CwLoadingProps } from '../CwLoading/types'
 
-export interface CwHudStyles {
-  root: string
-  mask: string
-  panel: string
-  text: string
-}
-
-export interface CwHudTexts {
-  loadingTexts?: Partial<CwLoadingTexts>
-}
+import type { CwHudTexts } from '@zengchaowu/ui-shared/components/CwHud/types'
 
 export interface CwHudProps {
   /** 是否展示 */

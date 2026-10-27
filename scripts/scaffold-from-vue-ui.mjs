@@ -25,38 +25,11 @@ const reactComponents = join(reactRoot, 'src/components')
 const IMPLEMENTATIONS = new Set([])
 
 /**
- * 生成骨架时只保留 Vue 侧的“公开契约”文件；框架无关辅助逻辑后续按批次
- * 从 vue-ui 抽取到 @zengchaowu/shared，再由两端共享。
+ * 生成骨架时只保留 Vue 侧的“公开契约”文件；框架无关的 styles/texts/materialMeta
+ * 与纯逻辑函数统一放在 @zengchaowu/ui-shared/components/<组件名>/ 下，两端直接 import，
+ * 不得再复制到任一组件库。
  */
 const COPY_FILES = []
-
-const SKIP_FILE_RE = /\.(vue|spec|test)\.[^.]+$/
-
-function importsVue(file) {
-  if (!/\.(ts|tsx|js)$/.test(file)) return false
-  const code = readFileSync(file, 'utf8')
-  return /from\s+['"]vue['"]|@vue\//.test(code)
-}
-
-/** 递归复制组件目录内的辅助 ts/json/css（保留 types/、functions/、chips/ 等子目录） */
-function copyComponentFiles(srcDir, destDir) {
-  for (const entry of readdirSync(srcDir, { withFileTypes: true })) {
-    if (entry.name === 'index.ts') continue
-    if (SKIP_FILE_RE.test(entry.name)) continue
-    const src = join(srcDir, entry.name)
-    const dest = join(destDir, entry.name)
-    if (entry.isDirectory()) {
-      if (entry.name === 'composables') continue
-      ensureDir(dest)
-      copyComponentFiles(src, dest)
-      continue
-    }
-    if (!/\.(ts|tsx|js|json|css|d\.ts)$/.test(entry.name)) continue
-    // Vue 专属 composable / 注入逻辑不进 React 侧
-    if (importsVue(src)) continue
-    copyFileSync(src, dest)
-  }
-}
 
 function listVueComponents() {
   return readdirSync(vueComponents, { withFileTypes: true })
@@ -173,7 +146,7 @@ function scaffoldOne(name) {
 function writeMainIndex(names) {
   const cwAndPage = names.filter((n) => n.startsWith('Cw') || n.startsWith('Page'))
   const lines = [
-    `export type { CwComponentMaterialMeta, CwComponentMaterialType } from './component-material'`,
+    `export type { CwComponentMaterialMeta, CwComponentMaterialType } from '@zengchaowu/ui-shared/component-material/index'`,
     '',
     '// ==================== Cw / Page（主入口；Tp 仅子路径） ====================',
     ...cwAndPage.map((n) => `export * from './components/${n}'`),
@@ -229,7 +202,7 @@ function writeMainIndex(names) {
     `export {`,
     `  acquireOverlayBodyScrollLock,`,
     `  releaseOverlayBodyScrollLock,`,
-    `} from './constants/overlayBodyScrollLock'`,
+    `} from '@zengchaowu/ui-shared/constants/overlayBodyScrollLock'`,
     '',
   ]
   writeFileSync(join(reactRoot, 'src/index.ts'), `${lines.join('\n')}\n`, 'utf8')

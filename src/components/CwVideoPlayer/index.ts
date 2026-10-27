@@ -1,3 +1,5 @@
 export { default as CwVideoPlayer } from './CwVideoPlayer'
 export { default as CwVideoPlayerControls } from './CwVideoPlayerControls'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwVideoPlayer/types'
+export type * from '@zengchaowu/ui-shared/components/CwVideoPlayer/types'

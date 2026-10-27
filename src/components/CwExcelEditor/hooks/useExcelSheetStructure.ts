@@ -7,8 +7,8 @@ import {
   insertSheetColumn,
   insertSheetRow,
   mergeCovering,
-} from '../functions/workbook'
-import type { CwExcelMerge, CwExcelSheet, CwExcelWorkbook } from '../types'
+} from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/workbook'
+import type { CwExcelMerge, CwExcelSheet, CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
 
 /**
  * 行列结构域：插入/删除行列。

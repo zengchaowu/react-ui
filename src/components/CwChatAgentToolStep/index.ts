@@ -1,4 +1,5 @@
 export { default as CwChatAgentToolStep } from './CwChatAgentToolStep'
-export { defaultCwChatAgentToolStepTexts } from './texts'
-export type { CwChatAgentToolStepLayout } from './styles'
+export { defaultCwChatAgentToolStepTexts } from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/texts'
+export type { CwChatAgentToolStepLayout } from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/styles'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/types'

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwFlex } from './CwFlex'
-import type { CwFlexAlign, CwFlexJustify, CwFlexProps } from './types'
+import type { CwFlexProps } from './types'
+import type { CwFlexAlign, CwFlexJustify } from '@zengchaowu/ui-shared/components/CwFlex/types'
 
 const frameClass =
   'min-h-36 w-full max-w-[36rem] rounded-lg border border-dashed border-[var(--border-color)] bg-[var(--bg-color-container)]'

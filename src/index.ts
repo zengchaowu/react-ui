@@ -1,4 +1,4 @@
-export type { CwComponentMaterialMeta, CwComponentMaterialType } from './component-material'
+export type { CwComponentMaterialMeta, CwComponentMaterialType } from '@zengchaowu/ui-shared/component-material/index'
 
 // ==================== Cw / Page（主入口；Tp 仅子路径） ====================
 export * from './components/CwAiChatComposer'
@@ -237,7 +237,7 @@ export {
   buildOverlayDialogContentClass,
   resolveResponsiveOverlayDialogConfig,
   type OverlayDialogChrome,
-} from './constants/cwOverlayDialogShell'
+} from '@zengchaowu/ui-shared/constants/cwOverlayDialogShell'
 export {
   CW_ADMIN_OVERLAY_DIALOG_CONTENT_BY_PRESET,
   type CwAdminOverlayDialogSizePreset,
@@ -275,7 +275,7 @@ export {
   resolveAttachmentPreviewDownloadUrl,
   suggestImageDownloadFilename,
   type AttachmentPreviewActionSource,
-} from './utils/attachmentPreviewActions'
+} from '@zengchaowu/ui-shared/utils/attachmentPreviewActions'
 export {
   resolveAttachmentGalleryDownloadSource,
   resolveAttachmentGallerySourceIndex,
@@ -326,5 +326,5 @@ export {
 export {
   acquireOverlayBodyScrollLock,
   releaseOverlayBodyScrollLock,
-} from './constants/overlayBodyScrollLock'
+} from '@zengchaowu/ui-shared/constants/overlayBodyScrollLock'
 

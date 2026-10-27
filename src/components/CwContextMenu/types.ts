@@ -1,23 +1,7 @@
 import type { Placement } from '@zengchaowu/shared/types/placement'
+import type { CwContextMenuAppearance } from '@zengchaowu/ui-shared/components/CwContextMenu/types'
 
 export type CwContextMenuLayout = 'list' | 'toolbar'
-
-/**
- * 外观变体：
- * - `glass-frosted`：纵向列表默认（毛玻璃）
- * - `compact`：同 `glass-frosted`（历史别名）
- * - `default`：实心列表基线
- * - `toolbar`：移动端消息工具条（通常配合 `layout: 'toolbar'`）
- * - `plain`：Cursor 式纯文本（圆角项悬停、右侧快捷键；渲染时隐藏图标）
- * - `checklist`：设计工具栏下拉（勾选列 + 快捷键列 + 可选子菜单）
- */
-export type CwContextMenuAppearance =
-  | 'default'
-  | 'compact'
-  | 'toolbar'
-  | 'glass-frosted'
-  | 'plain'
-  | 'checklist'
 
 export interface CwContextMenuItem {
   /** `select` 事件载荷，需唯一 */
@@ -45,24 +29,6 @@ export interface CwContextMenuItem {
   dividerAfter?: boolean
   /** 子菜单；有值时右侧显示 `>`，悬停/点击侧向展开（主菜单保持打开） */
   children?: CwContextMenuItem[]
-}
-
-/** 内部结构类（不对外暴露 styles 覆盖） */
-export interface CwContextMenuStyles {
-  root: string
-  panel: string
-  item: string
-  itemDanger: string
-  itemDisabled: string
-  /** 未选中项 hover；毛玻璃挂 6% tint，其它外观 hover 已写在 item 上则为空 */
-  itemHover: string
-  itemSelected: string
-  divider: string
-}
-
-export interface CwContextMenuTexts {
-  /** 无 `items` 时的空状态（开发提示，正常不应可见） */
-  emptyMenu: string
 }
 
 /** 菜单相对锚点矩形定位时的矩形（与 DOMRect 对应字段一致） */

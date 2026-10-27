@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
+import type { CwRadioTexts } from '@zengchaowu/ui-shared/components/CwRadio/types'
 
 export interface CwRadioProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'className' | 'children' | 'onChange'> {
@@ -19,45 +20,6 @@ export interface CwRadioProps
   children?: ReactNode | ((scope: { disabled: boolean; readonly: boolean }) => ReactNode)
   className?: string
   onChange?: (value: boolean) => void
-}
-
-export interface CwRadioStyles {
-  root: string
-  rootNormal: string
-  rootDisabled: string
-  rootReadonly: string
-  rootBorder: string
-  rootBorderNormal: string
-  rootBorderDisabled: string
-  rootBorderReadonly: string
-  rootBorderChecked: string
-
-  radio: string
-  radioNormal: string
-  radioChecked: string
-  radioDisabled: string
-  radioReadonlyNormal: string
-  radioReadonlyChecked: string
-  radioFocused: string
-
-  icon: string
-  iconNormal: string
-  iconDisabled: string
-
-  label: string
-  labelNormal: string
-  labelChecked: string
-  labelDisabled: string
-  /** 尺寸样式：小 */
-  sizeSmall: string
-  /** 尺寸样式：中 */
-  sizeMedium: string
-  /** 尺寸样式：大 */
-  sizeLarge: string
-}
-
-export interface CwRadioTexts {
-  // 当前组件无硬编码文本，保留此接口以符合规范
 }
 
 export interface CwRadioEmits {

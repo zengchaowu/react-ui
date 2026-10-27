@@ -2,8 +2,8 @@ import type { Canvas } from 'fabric'
 import type { TpFabricDesignEditorProps } from '../types'
 import type { useFabricStage } from './useFabricStage'
 import type { FabricEditorToolMode } from './useFabricEditorToolMode'
-import { tokenSolidColors } from '../../../assets/tokens/tokenSolidColors'
-import { resolveFabricCanvasBackgroundColor } from '../document/fabricEditorBackground.pure'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
+import { resolveFabricCanvasBackgroundColor } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorBackground.pure'
 import { nextTick, useWatch, type ReactiveRef } from './reactivity'
 
 type Stage = ReturnType<typeof useFabricStage>

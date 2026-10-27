@@ -2,36 +2,7 @@ import type {
   PointerEvent as ReactPointerEvent,
   ReactNode,
 } from 'react'
-
-/**
- * 窗口顶栏组件（支持 macOS / Windows 风格）
- */
-export type WindowTitleBarMode = 'mac' | 'windows'
-
-export type CwWindowTitleBarAppearance = 'default' | 'fixed-height' | 'flex-fill'
-
-/** 顶栏背景：container 默认；secondarycontainer 与侧栏/左侧工作区一致 */
-export type CwWindowTitleBarBackground = 'container' | 'secondarycontainer'
-
-/** 居中标题字号：md 为 14px；sm 为 caption（12px） */
-export type CwWindowTitleBarTitleSize = 'md' | 'sm'
-
-export interface CwWindowTitleBarTexts {
-  /** macOS 关闭按钮无障碍标签 */
-  closeMacLabel: string
-  /** macOS 最小化按钮无障碍标签 */
-  minimizeMacLabel: string
-  /** macOS 最大化按钮无障碍标签 */
-  maximizeMacLabel: string
-  /** Windows 关闭按钮无障碍标签 */
-  closeWinLabel: string
-  /** Windows 最小化按钮无障碍标签 */
-  minimizeWinLabel: string
-  /** Windows 最大化按钮无障碍标签 */
-  maximizeWinLabel: string
-  /** Windows 还原按钮无障碍标签（已最大化时） */
-  restoreWinLabel: string
-}
+import type { WindowTitleBarMode, CwWindowTitleBarAppearance, CwWindowTitleBarBackground, CwWindowTitleBarTitleSize, CwWindowTitleBarTexts } from '@zengchaowu/ui-shared/components/CwWindowTitleBar/types'
 
 export interface CwWindowTitleBarProps {
   /** 操作系统风格：mac | windows */

@@ -7,7 +7,7 @@ import type {
   CwFilterSheetSection,
   CwFilterSheetValues,
 } from './types'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwFilterSheet/texts'
 
 export type ShowFilterSheetResult = 'confirm' | 'reset' | 'close'
 

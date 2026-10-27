@@ -1,5 +1,6 @@
 import type { CwStackComponent, CwStackHandle } from '../CwStack'
-import type { CwDynamicSheetInnerTexts } from '../CwDynamicSheet/types'
+
+import type { CwStackPopTexts } from '@zengchaowu/ui-shared/components/CwStackPop/types'
 
 /** 步骤配置（用于 push 或线性模式 steps） */
 export interface CwStackPopStepConfig {
@@ -28,8 +29,6 @@ export interface CwStackPopProps {
   /** 完成事件 */
   onComplete?: () => void
 }
-
-export type CwStackPopTexts = Partial<CwDynamicSheetInnerTexts>
 
 export interface CwStackPopEmits {
   (e: 'update:show', value: boolean): void

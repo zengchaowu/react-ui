@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { CwAvatar } from '../CwAvatar/CwAvatar'
-import { CW_CHAT_AVATAR_PROPS } from '../CwAvatar/cwAvatarPresets'
+import { CW_CHAT_AVATAR_PROPS } from '@zengchaowu/ui-shared/components/CwAvatar/cwAvatarPresets'
 import type { CwAvatarProps } from '../CwAvatar/types'
 import { CwSearchBar } from '../CwSearchBar/CwSearchBar'
 import { CW_OVERLAY_LEAVE_MS } from '@zengchaowu/ui-shared/constants/cwOverlayZIndex'
@@ -9,10 +9,10 @@ import { scheduleOverlayEnterVisible } from '../../constants/cwOverlayStack'
 import {
   acquireOverlayBodyScrollLock,
   releaseOverlayBodyScrollLock,
-} from '../../constants/overlayBodyScrollLock'
+} from '@zengchaowu/ui-shared/constants/overlayBodyScrollLock'
 import { mentionSheetBase } from './styles'
 import { defaultCwMessageInputMentionSheetTexts } from './texts'
-import type { CwMessageInputMentionItem } from '../CwMessageInput/types'
+import type { CwMessageInputMentionItem } from '@zengchaowu/ui-shared/components/CwMessageInput/types'
 import type {
   CwMessageInputMentionSheetComponentProps,
   CwMessageInputMentionSheetTexts,

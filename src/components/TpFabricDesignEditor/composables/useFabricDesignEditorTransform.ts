@@ -1,6 +1,6 @@
 ﻿import { useReactiveRef, type ReactiveRef } from './reactivity'
 import type { Canvas } from 'fabric'
-import { readFabricTransformSelectionSnapshot } from '../transform/fabricEditorTransformSync.pure'
+import { readFabricTransformSelectionSnapshot } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/transform/fabricEditorTransformSync.pure'
 import { useFabricTransformMutations } from './useFabricTransformMutations'
 import type { TpFabricDesignEditorProps } from '../types'
 

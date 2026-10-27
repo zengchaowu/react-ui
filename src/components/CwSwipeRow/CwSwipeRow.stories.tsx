@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwSwipeRow } from './CwSwipeRow'
-import type { CwSwipeRowAction, CwSwipeRowProps } from './types'
+import type { CwSwipeRowProps } from './types'
+import type { CwSwipeRowAction } from '@zengchaowu/ui-shared/components/CwSwipeRow/types'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 

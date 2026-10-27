@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import type { CwSocialActionState, CwSocialSidebarProps, SocialAction } from './types'
+import type { CwSocialActionState, CwSocialSidebarProps } from './types'
+import type { SocialAction } from '@zengchaowu/ui-shared/components/CwTikTokFeed/types'
 
 export function CwSocialSidebar({ actions = [], onAction }: CwSocialSidebarProps) {
   // 内部状态管理

@@ -1,17 +1,9 @@
 export { CwAttachmentGallery } from './CwAttachmentGallery'
 export { CwAttachmentGallerySlide } from './CwAttachmentGallerySlide'
 export { buildAttachmentGalleryItems } from './functions/buildAttachmentGalleryItems'
-export { buildImageAttachmentItems } from './functions/buildImageAttachmentItems'
-export { defaultCwAttachmentGalleryTexts } from './texts'
+export { buildImageAttachmentItems } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/functions/buildImageAttachmentItems'
+export { defaultCwAttachmentGalleryTexts } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/texts'
 export type { CwAttachmentGalleryComponentProps } from './CwAttachmentGallery'
 export type { CwAttachmentGallerySlideProps } from './CwAttachmentGallerySlide'
-export type {
-  CwAttachmentGalleryEmits,
-  CwAttachmentGalleryImagePreviewConfig,
-  CwAttachmentGalleryIndicatorConfig,
-  CwAttachmentGalleryItem,
-  CwAttachmentGalleryProps,
-  CwAttachmentGalleryScrollItemData,
-  CwAttachmentGalleryStyles,
-  CwAttachmentGalleryTexts,
-} from './types'
+export type { CwAttachmentGalleryImagePreviewConfig, CwAttachmentGalleryIndicatorConfig, CwAttachmentGalleryItem, CwAttachmentGalleryProps, CwAttachmentGalleryScrollItemData } from './types'
+export type { CwAttachmentGalleryEmits, CwAttachmentGalleryStyles, CwAttachmentGalleryTexts } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/types'

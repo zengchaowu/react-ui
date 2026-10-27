@@ -1,3 +1,5 @@
 export { default as CwConfigCard } from './CwConfigCard'
-export { defaultCwConfigCardTexts } from './texts'
+export { defaultCwConfigCardTexts } from '@zengchaowu/ui-shared/components/CwConfigCard/texts'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwConfigCard/types'
+export type * from '@zengchaowu/ui-shared/components/CwConfigCard/types'

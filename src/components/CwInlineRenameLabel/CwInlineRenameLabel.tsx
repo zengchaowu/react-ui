@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import type { MouseEvent as ReactMouseEvent } from 'react'
 import { CwEditableText } from '../CwEditableText'
 import type { CwInlineRenameLabelProps } from './types'
-import { defaultCwInlineRenameLabelTexts } from './texts'
+import { defaultCwInlineRenameLabelTexts } from '@zengchaowu/ui-shared/components/CwInlineRenameLabel/texts'
 import './cw-inline-rename-label.css'
 
 export function CwInlineRenameLabel({

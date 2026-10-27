@@ -4,8 +4,8 @@ import '@xyflow/react/dist/style.css'
 
 import { nodeTypes as defaultNodeTypes } from './nodes'
 import type { TpVueFlowProps } from './types'
-import { vueFlowBase } from './styles'
-import { defaultTexts } from './texts'
+import { vueFlowBase } from '@zengchaowu/ui-shared/components/TpVueFlow/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/TpVueFlow/texts'
 
 export function TpVueFlow({
   nodes,

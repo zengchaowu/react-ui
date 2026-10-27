@@ -5,18 +5,16 @@ import type {
   PointerEvent as ReactPointerEvent,
 } from 'react'
 import CwWindowTitleBarControls from './CwWindowTitleBarControls'
-import { isCwWindowTitleBarDragTarget } from './dragTarget'
+import { isCwWindowTitleBarDragTarget } from '@zengchaowu/ui-shared/components/CwWindowTitleBar/dragTarget'
 import {
   appearanceRootClass,
   backgroundRootClass,
   titleBarBase,
   titleSizeClass,
-} from './styles'
-import { defaultTexts } from './texts'
-import type {
-  CwWindowTitleBarProps,
-  CwWindowTitleBarTexts,
-} from './types'
+} from '@zengchaowu/ui-shared/components/CwWindowTitleBar/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwWindowTitleBar/texts'
+import type { CwWindowTitleBarProps } from './types'
+import type { CwWindowTitleBarTexts } from '@zengchaowu/ui-shared/components/CwWindowTitleBar/types'
 
 export interface CwWindowTitleBarComponentProps
   extends CwWindowTitleBarProps,

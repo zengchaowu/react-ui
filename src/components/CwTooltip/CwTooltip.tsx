@@ -11,17 +11,11 @@ import type { HTMLAttributes, ReactNode } from 'react'
 import { CwPopup } from '../CwPopup'
 import type { CwPopupInstance } from '../CwPopup'
 import { resolveHoverCloseOnClickOutside } from '../CwPopup'
-import { buildTooltipPopupPlugins } from './buildTooltipPlugins'
-import { appearanceStyles, tooltipBase } from './styles'
-import { defaultTexts } from './texts'
-import type {
-  CwTooltipEmits,
-  CwTooltipInstance,
-  CwTooltipProps,
-  CwTooltipSlotScope,
-  CwTooltipStyles,
-  CwTooltipTexts,
-} from './types'
+import { buildTooltipPopupPlugins } from '@zengchaowu/ui-shared/components/CwTooltip/buildTooltipPlugins'
+import { appearanceStyles, tooltipBase } from '@zengchaowu/ui-shared/components/CwTooltip/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwTooltip/texts'
+import type { CwTooltipEmits, CwTooltipInstance, CwTooltipProps, CwTooltipSlotScope } from './types'
+import type { CwTooltipStyles, CwTooltipTexts } from '@zengchaowu/ui-shared/components/CwTooltip/types'
 
 export interface CwTooltipComponentProps
   extends CwTooltipProps,

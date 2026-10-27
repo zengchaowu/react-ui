@@ -1,10 +1,8 @@
 import type { ReactNode } from 'react'
-import type {
-  CwButtonAppearance,
-  CwButtonTexts,
-  CwButtonType,
-  CwButtonVariant,
-} from '../CwButton/types'
+import type { CwButtonType, CwButtonVariant } from '../CwButton/types'
+
+import type { CwButtonAppearance } from '@zengchaowu/ui-shared/components/CwButton/types'
+import type { CwCountDownButtonTexts } from '@zengchaowu/ui-shared/components/CwCountDownButton/types'
 
 export type CwCountDownButtonStatus = 'idle' | 'pending' | 'counting' | 'finished'
 
@@ -115,33 +113,6 @@ export interface CwCountDownButtonProps {
    * 手动重置倒计时
    */
   onReset?: () => void
-}
-
-export interface CwCountDownButtonTexts {
-  /**
-   * 初始文案
-   */
-  idle: string
-  /**
-   * beforeStart 校验中的文案
-   */
-  pending: string
-  /**
-   * 倒计时过程中的文案，支持 {{remaining}}、{{duration}}、{{elapsed}} 占位符
-   */
-  counting: string
-  /**
-   * 倒计时完成后的文案
-   */
-  finished: string
-  /**
-   * 无障碍标签
-   */
-  ariaLabel?: string
-  /**
-   * 透传给内部 CwButton 的文本
-   */
-  buttonTexts?: Partial<CwButtonTexts>
 }
 
 export interface CwCountDownButtonEmits {

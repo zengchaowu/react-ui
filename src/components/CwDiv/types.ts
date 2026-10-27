@@ -1,34 +1,5 @@
 import type { CSSProperties, ReactNode, UIEventHandler } from 'react'
-
-export interface CwDivTexts {}
-
-export interface CwDivStyles {
-  root: string
-  viewport: string
-  content: string
-  scrollbarHidden: string
-  scrollbarShown: string
-  scrollbarVertical: string
-  scrollbarVerticalHasHorizontal: string
-  scrollbarHorizontal: string
-  scrollbarHorizontalHasVertical: string
-  thumbBase: string
-  thumbVertical: string
-  thumbHorizontal: string
-}
-
-/** 滑块按这一份内容定位，而不是按视口的整段 scrollHeight。 */
-export interface CwDivScrollbarSpan {
-  /** 一份内容的尺寸 */
-  extent: number
-  /** 当前滚动在这一份里的偏移，可以超过可视范围，组件会把滑块停在末端 */
-  offset: number
-}
-
-export interface CwDivScrollbarMap {
-  vertical?: CwDivScrollbarSpan
-  horizontal?: CwDivScrollbarSpan
-}
+import type { CwDivScrollbarMap, CwDivTexts } from '@zengchaowu/ui-shared/components/CwDiv/types'
 
 export interface CwDivProps {
   /** 为 true 时完全隐藏自定义滚动条（仅隐藏滚动条轨道与滑块，视口仍可滚动） */

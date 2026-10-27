@@ -1,9 +1,9 @@
 export { default as CwGrid } from './CwGrid'
 export * from './types'
-export * from './gridBreakpoint'
+export * from '@zengchaowu/ui-shared/components/CwGrid/gridBreakpoint'
 export { flattenSlotNodes, gridSlotNodeKey } from './flattenSlotNodes'
 export {
   resolveGridColContentAlign,
   resolveGridColFlushPaddingStyle,
-} from './gridColFlush'
-export type { GridColFlushOptions } from './gridColFlush'
+} from '@zengchaowu/ui-shared/components/CwGrid/gridColFlush'
+export type { GridColFlushOptions } from '@zengchaowu/ui-shared/components/CwGrid/gridColFlush'

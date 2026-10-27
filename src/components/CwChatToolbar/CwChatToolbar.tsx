@@ -14,8 +14,8 @@ import type {
   CwChatToolbarItemSlotProps,
   CwChatToolbarProps,
 } from './types'
-import { defaultCwChatToolbarTexts } from './texts'
-import { chatToolbarBase } from './styles'
+import { defaultCwChatToolbarTexts } from '@zengchaowu/ui-shared/components/CwChatToolbar/texts'
+import { chatToolbarBase } from '@zengchaowu/ui-shared/components/CwChatToolbar/styles'
 
 export interface CwChatToolbarComponentProps
   extends CwChatToolbarProps,

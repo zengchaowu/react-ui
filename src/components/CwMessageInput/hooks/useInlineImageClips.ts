@@ -2,9 +2,9 @@ import { useCallback } from 'react'
 import type { Editor } from '@tiptap/core'
 import { isRasterImageFile } from '@zengchaowu/shared/functions/file/isRasterImageFile'
 import { clampIndex } from '@zengchaowu/shared/functions/number/clampIndex'
-import { resolveDroppedFilePath } from '../functions/resolveDroppedFilePath'
-import { readRasterFileDimensions } from '../functions/readRasterFileDimensions'
-import { fileToDataUrl } from '../functions/fileToDataUrl'
+import { resolveDroppedFilePath } from '@zengchaowu/ui-shared/components/CwMessageInput/functions/resolveDroppedFilePath'
+import { readRasterFileDimensions } from '@zengchaowu/ui-shared/components/CwMessageInput/functions/readRasterFileDimensions'
+import { fileToDataUrl } from '@zengchaowu/ui-shared/components/CwMessageInput/functions/fileToDataUrl'
 import type {
   CwMessageInputAttachmentPreviewItem,
   CwMessageInputAttachmentPreviewContextMenuEvent,

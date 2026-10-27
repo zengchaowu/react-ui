@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react'
-import { stepLoopPageByDragDistance } from '../functions/stepLoopPage'
-import { resolveScrollLeftForPage } from '../functions/resolveScrollLeftForPage'
+import { stepLoopPageByDragDistance } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/functions/stepLoopPage'
+import { resolveScrollLeftForPage } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/functions/resolveScrollLeftForPage'
 import { usePagedLoopPage } from './usePagedLoopPage'
 
 type MiddleCopyInfo = {

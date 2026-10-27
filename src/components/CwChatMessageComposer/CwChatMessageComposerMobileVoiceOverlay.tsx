@@ -1,8 +1,8 @@
 import { createPortal } from 'react-dom'
 import { APP_PAGE_CHROME_SAFE_BOTTOM_CLASS } from '@zengchaowu/ui-shared/constants/appSafeAreaClasses'
 import CwVoiceWaveform from '../CwVoiceWaveform/CwVoiceWaveform'
-import type { VoiceHoldGestureZone } from '../CwAiChatComposer/voiceHoldTypes'
-import type { CwChatMessageComposerMobileShellTexts } from './types'
+import type { VoiceHoldGestureZone } from '@zengchaowu/ui-shared/components/CwAiChatComposer/voiceHoldTypes'
+import type { CwChatMessageComposerMobileShellTexts } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/types'
 
 export interface CwChatMessageComposerMobileVoiceOverlayProps {
   gestureZone: VoiceHoldGestureZone

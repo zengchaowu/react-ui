@@ -1,7 +1,7 @@
 import CwGrid from '../CwGrid/CwGrid'
 import CwIcon from '../CwIcon/CwIcon'
-import type { CwChatMessageComposerMobileMoreItem } from './types'
-import { mobileMorePanelBase } from './mobileMorePanelStyles'
+import type { CwChatMessageComposerMobileMoreItem } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/types'
+import { mobileMorePanelBase } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/mobileMorePanelStyles'
 
 export interface CwChatMessageComposerMobileMorePanelProps {
   items: CwChatMessageComposerMobileMoreItem[]

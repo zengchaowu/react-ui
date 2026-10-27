@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
 import type { RefObject } from 'react'
-import type { PopupState, PopupContext, PopupPluginFunction } from '../types/state'
+import type { PopupState, PopupContext, PopupPluginFunction } from '@zengchaowu/ui-shared/components/CwPopup/types/state'
 import type { VirtualElement } from '../types'
 import createSyncPluginSystem from '@zengchaowu/shared/functions/patterns/usePluginSystem'
 import { getBasePlacement } from '@zengchaowu/shared/functions/dom/getBasePlacement'
@@ -8,7 +8,7 @@ import { calculateBridgeDimensions } from '../functions/calculateBridgeDimension
 import { usePopupResizeObserver } from './usePopupResizeObserver'
 import { useMouseMoveTracker } from './useMouseMoveTracker'
 import { isRealElement } from '../utils/getElement'
-import { DEFAULT_CONFIG } from '../constants'
+import { DEFAULT_CONFIG } from '@zengchaowu/ui-shared/components/CwPopup/constants'
 
 interface PluginSystem {
   addPlugin: (plugin: PopupPluginFunction) => void

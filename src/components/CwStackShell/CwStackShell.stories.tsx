@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwNavBar } from '../CwNavBar/CwNavBar'
-import { CW_NAV_BAR_ICON_BUTTON_CLASS } from '../CwNavBar/styles'
+import { CW_NAV_BAR_ICON_BUTTON_CLASS } from '@zengchaowu/ui-shared/components/CwNavBar/styles'
 import { CwButton } from '../CwButton/CwButton'
 import { CwStackShell } from './CwStackShell'
-import type { CwStackShellMode } from './types'
+import type { CwStackShellMode } from '@zengchaowu/ui-shared/components/CwStackShell/types'
 
 const phoneFrameClass =
   'mx-auto flex h-[32rem] w-[24rem] max-w-[min(100%,24rem)] flex-col overflow-hidden rounded-xl border border-[var(--border-color)] bg-[var(--bg-color-page)]'

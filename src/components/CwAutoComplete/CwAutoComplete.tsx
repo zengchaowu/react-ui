@@ -13,20 +13,15 @@ import { CwInput } from '../CwInput/CwInput'
 import { CwIcon } from '../CwIcon/CwIcon'
 import { CwDiv } from '../CwDiv/CwDiv'
 import { CwTruncateText } from '../CwTruncateText/CwTruncateText'
-import { createDimensions } from '../CwPopup/plugins/dimensions'
-import { createPosition } from '../CwPopup/plugins/position'
-import { createOffset } from '../CwPopup/plugins/offset'
-import { createFlip } from '../CwPopup/plugins/flip'
-import { createAdaptiveHeight } from '../CwPopup/plugins/adaptive-height'
+import { createDimensions } from '@zengchaowu/ui-shared/components/CwPopup/plugins/dimensions'
+import { createPosition } from '@zengchaowu/ui-shared/components/CwPopup/plugins/position'
+import { createOffset } from '@zengchaowu/ui-shared/components/CwPopup/plugins/offset'
+import { createFlip } from '@zengchaowu/ui-shared/components/CwPopup/plugins/flip'
+import { createAdaptiveHeight } from '@zengchaowu/ui-shared/components/CwPopup/plugins/adaptive-height'
 import { cwClearIconSize } from '@zengchaowu/ui-shared/functions/ui/cwClearIconSize'
-import { scrollElementIntoCwDivViewport } from '../CwDiv/scrollElementIntoCwDivViewport'
-import type {
-  CwAutoCompleteHandle,
-  CwAutoCompleteOption,
-  CwAutoCompleteOptionInput,
-  CwAutoCompleteProps,
-  CwAutoCompleteStyles,
-} from './types'
+import { scrollElementIntoCwDivViewport } from '@zengchaowu/ui-shared/components/CwDiv/scrollElementIntoCwDivViewport'
+import type { CwAutoCompleteHandle, CwAutoCompleteOption, CwAutoCompleteOptionInput, CwAutoCompleteProps } from './types'
+import type { CwAutoCompleteStyles } from '@zengchaowu/ui-shared/components/CwAutoComplete/types'
 import {
   autoCompleteBase,
   CW_AUTOCOMPLETE_POPUP_SHELL_CLASS,
@@ -35,7 +30,7 @@ import {
   CW_AUTOCOMPLETE_PLAIN_ROOT_CLASS,
   CW_AUTOCOMPLETE_PLAIN_TRIGGER_CLASS,
   CW_AUTOCOMPLETE_PLAIN_SUFFIX_CLASS,
-} from './styles'
+} from '@zengchaowu/ui-shared/components/CwAutoComplete/styles'
 import { defaultTexts } from './texts'
 import { useAutoCompleteKeyboard } from './hooks/useAutoCompleteKeyboard'
 

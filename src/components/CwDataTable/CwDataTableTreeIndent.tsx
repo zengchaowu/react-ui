@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 import CwIcon from '../CwIcon/CwIcon'
-import type { CwDataTableStyles, CwDataTableTexts, CwDataTableTreeRowMeta } from './types'
-import { defaultTexts } from './texts'
+import type { CwDataTableStyles } from '@zengchaowu/ui-shared/components/CwDataTable/types'
+import type { CwDataTableTexts, CwDataTableTreeRowMeta } from '@zengchaowu/ui-shared/components/CwDataTable/types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDataTable/texts'
 
 export interface CwDataTableTreeIndentProps {
   meta: CwDataTableTreeRowMeta

@@ -16,7 +16,7 @@ import type {
   CwStackItem,
   CwStackProps,
 } from './types'
-import { stackBase } from './styles'
+import { stackBase } from '@zengchaowu/ui-shared/components/CwStack/styles'
 
 type LayerMotion =
   | 'idle-top'

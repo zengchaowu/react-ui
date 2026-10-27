@@ -3,8 +3,8 @@ import { useRef, useState } from 'react'
 import type { ChangeEvent } from 'react'
 import CwExcelEditor from './CwExcelEditor'
 import type { CwExcelEditorHandle } from './types'
-import { defaultTexts } from './texts'
-import type { CwExcelCellValue, CwExcelSource, CwExcelWorkbook } from './types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwExcelEditor/texts'
+import type { CwExcelCellValue, CwExcelSource, CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
 import sampleDataCsv from '../../storybook/assets/cw-excel-editor/sample-data.csv?url'
 
 const meta: Meta<typeof CwExcelEditor> = {

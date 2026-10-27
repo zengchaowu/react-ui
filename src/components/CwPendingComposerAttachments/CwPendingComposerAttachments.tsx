@@ -12,7 +12,7 @@ import { clampIndex } from '@zengchaowu/shared/functions/number/clampIndex'
 import { CW_FILE_ICON_SIZE_COMPOSER_PENDING } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
 import CwCornerClosableWrap from '../CwCornerClosableWrap/CwCornerClosableWrap'
 import CwFileIcon from '../CwFileIcon/CwFileIcon'
-import { pendingComposerAttachmentStyles as styles } from './styles'
+import { pendingComposerAttachmentStyles as styles } from '@zengchaowu/ui-shared/components/CwPendingComposerAttachments/styles'
 import type {
   CwPendingAttachmentPreviewItem,
   CwPendingComposerAttachmentKind,

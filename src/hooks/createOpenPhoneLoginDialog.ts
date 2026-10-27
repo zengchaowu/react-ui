@@ -9,14 +9,8 @@ import type {
 import { readIsBelowMdViewport } from '@zengchaowu/shared/functions/browser/readLayoutViewportSignals'
 import { showCwToast } from '../components/CwToast/showCwToast'
 import { showLoginDialog } from '../components/CwLoginDialog/showLoginDialog'
-import type {
-  CwLoginDialogAgreementLink,
-  CwLoginDialogCarrierOneTap,
-  CwLoginDialogCarrierOneTapRef,
-  CwLoginDialogTexts,
-  ShowLoginDialogOptions,
-  ShowLoginDialogResult,
-} from '../components/CwLoginDialog/types'
+import type { CwLoginDialogCarrierOneTap, CwLoginDialogCarrierOneTapRef, CwLoginDialogTexts, ShowLoginDialogOptions, ShowLoginDialogResult } from '../components/CwLoginDialog/types'
+import type { CwLoginDialogAgreementLink } from '@zengchaowu/ui-shared/components/CwLoginDialog/types'
 import type {
   CaptchaVerifyDialogApi,
   OpenCaptchaVerifyDialogOptions,

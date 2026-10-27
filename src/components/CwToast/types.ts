@@ -1,39 +1,9 @@
-import type { CwLoadingTexts } from '../CwLoading/types'
-import type { CwRichTextNode } from '../CwRichText/types'
 
-export type { CwRichTextNode } from '../CwRichText/types'
+import type { CwRichTextNode } from '@zengchaowu/ui-shared/components/CwRichText/types'
+import type { CwToastType, CwToastPosition } from '@zengchaowu/ui-shared/components/CwToast/types'
+import type { CwToastTexts } from '@zengchaowu/ui-shared/components/CwToast/types'
 
-export type CwToastType = 'text' | 'success' | 'fail' | 'loading'
-
-export type CwToastPosition = 'top' | 'middle' | 'bottom'
-
-/** 多次调用时的行为：replace=覆盖当前，queue=排队依次显示 */
-export type CwToastMode = 'replace' | 'queue'
-
-/** Toast 内容区结构 class（壳层由 CwDynamicDialog toast variant 提供） */
-export interface CwToastStyles {
-  /** 根容器（固定定位的包裹层） */
-  root: string
-  /** 位置：顶部 */
-  positionTop: string
-  /** 位置：居中 */
-  positionMiddle: string
-  /** 位置：底部 */
-  positionBottom: string
-  /** 内容盒子 */
-  box: string
-  /** 图标容器（success/fail/loading 时） */
-  iconWrap: string
-  /** 文案区（flex 子项，负责截断溢出） */
-  messageWrap: string
-  /** 纯文案（无 dsl 时） */
-  message: string
-}
-
-export interface CwToastTexts {
-  /** 内嵌 {@link CwLoading} */
-  loadingTexts?: Partial<CwLoadingTexts>
-}
+export type { CwRichTextNode } from '@zengchaowu/ui-shared/components/CwRichText/types'
 
 export interface CwToastEmits {
   /** 关闭时触发（动画结束后） */

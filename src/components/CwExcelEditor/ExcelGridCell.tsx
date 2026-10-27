@@ -6,7 +6,7 @@ import type {
   HTMLAttributes,
   KeyboardEvent as ReactKeyboardEvent,
 } from 'react'
-import { excelEditorBase } from './styles'
+import { excelEditorBase } from '@zengchaowu/ui-shared/components/CwExcelEditor/styles'
 
 export type ExcelCommitMoveDirection = 'stay' | 'down' | 'up' | 'left' | 'right'
 

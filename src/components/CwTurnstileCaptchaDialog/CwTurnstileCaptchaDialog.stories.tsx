@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import CwButton from '../CwButton/CwButton'
 import { showTurnstileCaptchaDialog } from './showTurnstileCaptchaDialog'
-import type { ShowTurnstileCaptchaDialogOptions } from './types'
+import type { ShowTurnstileCaptchaDialogOptions } from '@zengchaowu/ui-shared/components/CwTurnstileCaptchaDialog/types'
 
 const meta: Meta<ShowTurnstileCaptchaDialogOptions> = {
   title: '1. Components/Overlay/CwTurnstileCaptchaDialog',

@@ -1,11 +1,11 @@
 ﻿import type { ReactiveRef } from './reactivity'
 import type { Canvas } from 'fabric'
-import { resolveArtboardSize } from '../document/fabricArtboard'
+import { resolveArtboardSize } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricArtboard'
 import {
   alignCanvasSelection,
   type FabricAlignMode,
-} from '../selection/fabricEditorAlign.pure'
-import { parseTransformAngleFromUi } from '../transform/fabricEditorTransformSync.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/selection/fabricEditorAlign.pure'
+import { parseTransformAngleFromUi } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/transform/fabricEditorTransformSync.pure'
 import {
   applyFabricCornerRadius,
   moveFabricObjectsBy,
@@ -13,7 +13,7 @@ import {
   resizeFabricObjectHeight,
   resizeFabricObjectWidth,
   roundTransformMetric,
-} from '../transform/fabricEditorTransformMetrics.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/transform/fabricEditorTransformMetrics.pure'
 import type { TpFabricDesignEditorProps } from '../types'
 
 type TransformEmit = {

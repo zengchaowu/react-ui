@@ -1,8 +1,8 @@
 import type { PointerEvent as ReactPointerEvent } from 'react'
 import { CwIcon } from '../CwIcon/CwIcon'
 import type { CwMusicPlayerControlsProps } from './types'
-import { musicPlayerBase } from './styles'
-import { defaultTexts } from './texts'
+import { musicPlayerBase } from '@zengchaowu/ui-shared/components/CwMusicPlayer/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwMusicPlayer/texts'
 
 export function CwMusicPlayerControls({
   isPlaying,

@@ -1,5 +1,5 @@
 import type { RefObject } from 'react'
-import type { PopupTrigger } from '../types/state'
+import type { PopupTrigger } from '@zengchaowu/ui-shared/components/CwPopup/types/state'
 
 export interface UseHoverEventsOptions {
   triggerType: PopupTrigger

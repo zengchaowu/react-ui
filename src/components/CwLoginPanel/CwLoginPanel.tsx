@@ -2,9 +2,9 @@ import { useMemo } from 'react'
 import CwLoginMethodSwitch from '../CwLoginMethodSwitch/CwLoginMethodSwitch'
 import CwLoginForm from '../CwLoginForm/CwLoginForm'
 import CwButton from '../CwButton/CwButton'
-import type { LoginMethodType } from '../CwLoginMethodSwitch/types'
+import type { LoginMethodType } from '@zengchaowu/ui-shared/components/CwLoginMethodSwitch/types'
 import type { CwLoginPanelProps } from './types'
-import { cwLoginPanelBase } from './styles'
+import { cwLoginPanelBase } from '@zengchaowu/ui-shared/components/CwLoginPanel/styles'
 
 export function CwLoginPanel({
   view = 'form',

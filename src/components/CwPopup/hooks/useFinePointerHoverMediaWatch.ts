@@ -1,4 +1,4 @@
-import { FINE_POINTER_HOVER_MEDIA } from '../utils/finePointerHoverMedia'
+import { FINE_POINTER_HOVER_MEDIA } from '@zengchaowu/ui-shared/components/CwPopup/utils/finePointerHoverMedia'
 
 export interface FinePointerHoverMediaWatch {
   attach: () => void

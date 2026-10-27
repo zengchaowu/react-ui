@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwHashMap } from './CwHashMap'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwHashMap/texts'
 import type { CwHashMapBucket, CwHashMapProps } from './types'
 
 const meta: Meta<typeof CwHashMap> = {

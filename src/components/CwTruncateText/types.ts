@@ -1,21 +1,5 @@
 import type { HTMLAttributes } from 'react'
-
-export type CwTruncateTextPlacement = 'start' | 'end' | 'filename' | 'middle'
-
-/**
- * 外观变体：
- * - `default`：通用截断
- * - `filenameLabel`：附件格文件名 caption 排版
- * - `chipLabel`：行内文件 chip 标签
- * - `fileInfoTitle`：附件预览面板主文件名
- */
-export type CwTruncateTextAppearance =
-  | 'default'
-  | 'filename'
-  | 'chip'
-  | 'title-line'
-
-export interface CwTruncateTextTexts {}
+import type { CwTruncateTextPlacement, CwTruncateTextAppearance, CwTruncateTextTexts } from '@zengchaowu/ui-shared/components/CwTruncateText/types'
 
 export interface CwTruncateTextProps
   extends Omit<HTMLAttributes<HTMLElement>, 'title' | 'children'> {
@@ -45,11 +29,4 @@ export interface CwTruncateTextProps
   /** 场景外观；布局用原生 class */
   appearance?: CwTruncateTextAppearance
   texts?: Partial<CwTruncateTextTexts>
-}
-
-/** 内部结构类 */
-export interface CwTruncateTextStyles {
-  root: string
-  /** `placement="end"` 或文件名 tailRtl 时内层（dir=ltr） */
-  inner: string
 }

@@ -1,7 +1,7 @@
 import type { ChatMessage } from '@zengchaowu/shared/types/im-chat'
 import { imMessageAllowsSocialActions } from '@zengchaowu/shared/functions/im/imMessageSocialActions'
 import { IM_MESSAGE_VIEW_NARROW_LAYOUT_BREAKPOINT_PX } from '@zengchaowu/shared/functions/im/imMessageViewLayout'
-import type { CwChatDownloadByUrlFn } from '../components/CwChatMessageCell/types'
+import type { CwChatDownloadByUrlFn } from '@zengchaowu/ui-shared/components/CwChatMessageCell/types'
 import { showCwContextMenu } from '../components/CwContextMenu/showCwContextMenu'
 import type { CwContextMenuItem } from '../components/CwContextMenu/types'
 import {

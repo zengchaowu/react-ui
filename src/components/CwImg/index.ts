@@ -1,3 +1,5 @@
 export { default as CwImg } from './CwImg'
-export { defaultCwImgTexts } from './texts'
+export { defaultCwImgTexts } from '@zengchaowu/ui-shared/components/CwImg/texts'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwImg/types'
+export type * from '@zengchaowu/ui-shared/components/CwImg/types'

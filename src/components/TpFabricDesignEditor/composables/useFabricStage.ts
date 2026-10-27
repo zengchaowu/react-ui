@@ -5,8 +5,8 @@ import {
   measureFabricSceneBounds,
   resolveFabricViewportPanForSceneCenter,
   resolveFabricZoomToFitLevel,
-} from '../transform/fabricStageZoomFit.pure'
-import { detachArtboardEditingArtifacts } from '../document/fabricArtboard'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/transform/fabricStageZoomFit.pure'
+import { detachArtboardEditingArtifacts } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricArtboard'
 
 export type FabricStageMountOptions = {
   /** 外层可视区域（flex 子节点），用于测量像素尺寸；必须与实际展示区域一致 */

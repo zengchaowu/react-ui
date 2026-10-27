@@ -5,7 +5,7 @@ import type {
   showLoginPhoneSheetResult,
 } from './types'
 import { CW_OVERLAY_HEADER_TITLE_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
-import { defaultTexts } from '../CwLoginPhoneDialog/texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwLoginPhoneDialog/texts'
 
 /**
  * 显示手机号登录 Sheet（底部弹出）

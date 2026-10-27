@@ -1,3 +1,5 @@
 export { default as CwFileDownloadCell } from './CwFileDownloadCell'
-export { defaultCwFileDownloadCellTexts } from './texts'
+export { defaultCwFileDownloadCellTexts } from '@zengchaowu/ui-shared/components/CwFileDownloadCell/texts'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwFileDownloadCell/types'
+export type * from '@zengchaowu/ui-shared/components/CwFileDownloadCell/types'

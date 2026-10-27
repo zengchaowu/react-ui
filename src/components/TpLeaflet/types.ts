@@ -40,28 +40,6 @@ export interface TpLeafletProps
   onError?: (error: unknown) => void
 }
 
-export interface TpLeafletTexts {
-  loading?: string
-  error?: string
-  retry?: string
-  zoomIn?: string
-  zoomOut?: string
-  reset?: string
-  fullscreen?: string
-  locate?: string
-  layer?: string
-  satellite?: string
-  street?: string
-  terrain?: string
-  marker?: string
-  popup?: string
-  tooltip?: string
-  coordinates?: string
-  address?: string
-  distance?: string
-  area?: string
-}
-
 /** `defineExpose` 等价物：通过 ref 调用 */
 export interface TpLeafletHandle {
   getMap: () => LeafletMap | null

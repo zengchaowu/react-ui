@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwLoginForm } from './CwLoginForm'
-import type { CwLoginFormTexts } from './types'
+import type { CwLoginFormTexts } from '@zengchaowu/ui-shared/components/CwLoginForm/types'
 
 const demoTexts: CwLoginFormTexts = {
   segmentSms: '短信登录',

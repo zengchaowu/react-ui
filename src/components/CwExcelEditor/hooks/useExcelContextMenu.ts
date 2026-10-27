@@ -1,8 +1,8 @@
 import type { MouseEvent as ReactMouseEvent, MutableRefObject, RefObject } from 'react'
 import { showCwContextMenu } from '../../CwContextMenu'
 import type { CwContextMenuItem } from '../../CwContextMenu'
-import { mergeCovering } from '../functions/workbook'
-import type { CwExcelEditorTexts, CwExcelWorkbook } from '../types'
+import { mergeCovering } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/workbook'
+import type { CwExcelEditorTexts, CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
 import type { CellPosition } from './useExcelGridLayout'
 
 type CommitMove = 'stay' | 'down' | 'up' | 'left' | 'right'

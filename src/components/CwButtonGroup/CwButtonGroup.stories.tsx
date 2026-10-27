@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { numberControlArgType, type NumberOnlyProps } from '../../storybook/argTypes'
 import { CwButtonGroup } from './CwButtonGroup'
-import type { CwButtonGroupButton, CwButtonGroupProps } from './types'
+import type { CwButtonGroupProps } from './types'
+import type { CwButtonGroupButton } from '@zengchaowu/ui-shared/components/CwButtonGroup/types'
 
 type CwButtonGroupStoryArgs = NumberOnlyProps<CwButtonGroupProps, 'gap'>
 

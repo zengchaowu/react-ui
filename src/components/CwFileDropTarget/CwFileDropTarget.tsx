@@ -8,9 +8,10 @@ import {
 } from 'react'
 import { hasExternalFileDrag } from '@zengchaowu/shared/functions/dom/fileDrag'
 import { CwIcon } from '../CwIcon'
-import { fileDropTargetBase } from './styles'
-import { defaultCwFileDropTargetTexts } from './texts'
-import type { CwFileDropTargetProps, CwFileDropTargetTexts } from './types'
+import { fileDropTargetBase } from '@zengchaowu/ui-shared/components/CwFileDropTarget/styles'
+import { defaultCwFileDropTargetTexts } from '@zengchaowu/ui-shared/components/CwFileDropTarget/texts'
+import type { CwFileDropTargetProps } from './types'
+import type { CwFileDropTargetTexts } from '@zengchaowu/ui-shared/components/CwFileDropTarget/types'
 
 export interface CwFileDropTargetComponentProps
   extends CwFileDropTargetProps,

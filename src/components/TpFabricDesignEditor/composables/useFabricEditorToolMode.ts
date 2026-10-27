@@ -1,15 +1,15 @@
 ﻿import { useReactiveComputed, useReactiveRef, type ReactiveRef } from './reactivity'
 import { PencilBrush } from 'fabric'
 import type { Canvas } from 'fabric'
-import { attachFabricShapeTool, notifyFabricShapeToolChange } from '../attach/attachFabricShapeTool'
+import { attachFabricShapeTool, notifyFabricShapeToolChange } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/attach/attachFabricShapeTool'
 import {
   fabricContainerPresetKey,
   resolveFabricContainerPreset,
-} from '../tools/fabricContainerPresets.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/fabricContainerPresets.pure'
 import { isTpFabricShapeTool, type TpFabricDesignEditorTool, type TpFabricViewportTool } from '../types'
-import { notifyFabricPenToolChange, hasFabricPathEditSession } from '../tools/penTool'
-import { tokenSolidColors } from '../../../assets/tokens/tokenSolidColors'
-import { createFabricBrushCursor } from '../layers/fabricLayerThumbnail.pure'
+import { notifyFabricPenToolChange, hasFabricPathEditSession } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/penTool'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
+import { createFabricBrushCursor } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricLayerThumbnail.pure'
 
 /** 路径编辑顶栏子工具：编辑锚点 / 抓手平移 */
 export type TpFabricPathEditTool = 'node' | 'hand'

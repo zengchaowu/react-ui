@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import type { TouchEvent as ReactTouchEvent } from 'react'
 import CwAvatar from '../CwAvatar/CwAvatar'
-import { CW_CHAT_AVATAR_PROPS } from '../CwAvatar/cwAvatarPresets'
+import { CW_CHAT_AVATAR_PROPS } from '@zengchaowu/ui-shared/components/CwAvatar/cwAvatarPresets'
 import CwTooltip from '../CwTooltip/CwTooltip'
 import type { CwTooltipInstance } from '../CwTooltip/types'
 import CwLoading from '../CwLoading/CwLoading'
@@ -12,7 +12,7 @@ import {
   CW_CHAT_SHELL_MINE_AVATAR_SIZE,
   CW_CHAT_SHELL_NAV_MINE_FOOTER_TOOLTIP_OFFSET,
   CW_CHAT_SHELL_TOOLTIP_SHOW_DELAY_MS,
-} from './constants'
+} from '@zengchaowu/ui-shared/components/CwChatShell/constants'
 import { createTooltipLongPressHandlers } from '@zengchaowu/shared/functions/dom/createTooltipLongPressHandlers'
 
 export function CwChatShellNavMineFooter({

@@ -6,13 +6,9 @@ import {
   type CSSProperties,
   type HTMLAttributes,
 } from 'react'
-import type {
-  CwSplitDirection,
-  CwSplitProps,
-  CwSplitStyles,
-  CwSplitTexts,
-} from './types'
-import { resolveSplitStyles } from './styles'
+import type { CwSplitProps } from './types'
+import type { CwSplitDirection, CwSplitStyles, CwSplitTexts } from '@zengchaowu/ui-shared/components/CwSplit/types'
+import { resolveSplitStyles } from '@zengchaowu/ui-shared/components/CwSplit/styles'
 import { defaultTexts } from './texts'
 
 export interface CwSplitComponentProps

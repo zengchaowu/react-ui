@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import type { CwColProps } from '../types'
+import type { CwColProps } from '@zengchaowu/ui-shared/components/CwRow/types'
 
 /**
  * CwWrapRow `#controls` 贴行末的特殊布局适配。

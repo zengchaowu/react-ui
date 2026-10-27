@@ -9,7 +9,7 @@ import {
 } from 'react'
 import type * as Monaco from 'monaco-editor'
 import type { TpMonacoEditorHandle, TpMonacoEditorProps } from './types'
-import { monacoEditorBase } from './styles'
+import { monacoEditorBase } from '@zengchaowu/ui-shared/components/TpMonacoEditor/styles'
 import { resolveDesignCssSize } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
 
 // 配置Monaco Editor的Web Worker

@@ -1,8 +1,8 @@
 import type { HTMLAttributes } from 'react'
 import type { ChatForwardBundleItem } from '@zengchaowu/shared/types/im-chat'
-import type { CwChatMessageForwardBundleTexts } from './texts'
+import type { CwChatMessageForwardBundleTexts } from '@zengchaowu/ui-shared/components/CwChatMessageForwardBundle/texts'
 
-export type { CwChatMessageForwardBundleTexts } from './texts'
+export type { CwChatMessageForwardBundleTexts } from '@zengchaowu/ui-shared/components/CwChatMessageForwardBundle/texts'
 
 export interface CwChatMessageForwardBundleProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {

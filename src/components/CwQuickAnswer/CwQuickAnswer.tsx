@@ -2,9 +2,10 @@ import type {
   HTMLAttributes,
   KeyboardEvent as ReactKeyboardEvent,
 } from 'react'
-import type { CwQuickAnswerProps, CwQuickAnswerTexts } from './types'
-import { quickAnswerBase } from './styles'
-import { defaultTexts } from './texts'
+import type { CwQuickAnswerProps } from './types'
+import type { CwQuickAnswerTexts } from '@zengchaowu/ui-shared/components/CwQuickAnswer/types'
+import { quickAnswerBase } from '@zengchaowu/ui-shared/components/CwQuickAnswer/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwQuickAnswer/texts'
 
 export interface CwQuickAnswerComponentProps
   extends CwQuickAnswerProps,

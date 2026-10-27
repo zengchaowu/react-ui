@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import CwButton from '../CwButton/CwButton'
 import { showNameConfirmDialog } from './showNameConfirmDialog'
-import type { CwNameConfirmDialogOptions } from './types'
+import type { CwNameConfirmDialogOptions } from '@zengchaowu/ui-shared/components/CwNameConfirmDialog/types'
 
 const meta: Meta<CwNameConfirmDialogOptions> = {
   title: '1. Components/Overlay/CwNameConfirmDialog',

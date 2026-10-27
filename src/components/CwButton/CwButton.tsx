@@ -5,12 +5,8 @@ import type {
   ReactElement,
   ReactNode,
 } from 'react'
-import type {
-  CwButtonAppearance,
-  CwButtonProps,
-  CwButtonType,
-  CwButtonVariant,
-} from './types'
+import type { CwButtonProps, CwButtonType, CwButtonVariant } from './types'
+import type { CwButtonAppearance } from '@zengchaowu/ui-shared/components/CwButton/types'
 import {
   appearanceContentClass,
   appearanceFocusRootClass,
@@ -21,8 +17,8 @@ import {
   appearanceSkipsVariantColor,
   appearanceUnselectedRootClass,
   buttonBase,
-} from './styles'
-import { defaultTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwButton/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwButton/texts'
 import CwLoading from '../CwLoading/CwLoading'
 import CwTooltip from '../CwTooltip/CwTooltip'
 

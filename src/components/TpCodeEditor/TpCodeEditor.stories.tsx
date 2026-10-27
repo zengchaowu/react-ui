@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { TpCodeEditor } from './TpCodeEditor'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/TpCodeEditor/texts'
 
 const meta: Meta<typeof TpCodeEditor> = {
   title: '2. Third Party/Editor/TpCodeEditor',

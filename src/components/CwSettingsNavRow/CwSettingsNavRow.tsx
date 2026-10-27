@@ -1,7 +1,7 @@
 import { CwCell } from '../CwCell'
 import { CwIcon } from '../CwIcon'
 import type { CwSettingsNavRowProps } from './types'
-import { settingsNavRowBase } from './styles'
+import { settingsNavRowBase } from '@zengchaowu/ui-shared/components/CwSettingsNavRow/styles'
 
 export function CwSettingsNavRow({
   title,

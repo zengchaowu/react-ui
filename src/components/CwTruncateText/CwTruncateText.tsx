@@ -6,10 +6,8 @@ import {
   type CSSProperties,
 } from 'react'
 import CwTooltip from '../CwTooltip/CwTooltip'
-import type {
-  CwTruncateTextAppearance,
-  CwTruncateTextProps,
-} from './types'
+import type { CwTruncateTextProps } from './types'
+import type { CwTruncateTextAppearance } from '@zengchaowu/ui-shared/components/CwTruncateText/types'
 import { appearanceStyles, truncateTextBase } from './styles'
 import { useFilenameTruncateLayout } from './hooks/useFilenameTruncateLayout'
 import { useMiddleEllipsisLayout } from './hooks/useMiddleEllipsisLayout'

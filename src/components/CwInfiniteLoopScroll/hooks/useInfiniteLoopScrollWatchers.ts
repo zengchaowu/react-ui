@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react'
-import type { CwInfiniteLoopScrollItem } from '../types'
+import type { CwInfiniteLoopScrollItem } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/types'
 import { calculateVisibleRangeFromLoopItems } from '../functions'
 import type { LoopItem, VisibleItem } from './useVisibleRange'
 import type { MiddleCopyInfo } from './useInfiniteLoop'

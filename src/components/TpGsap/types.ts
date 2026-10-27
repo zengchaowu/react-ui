@@ -34,28 +34,3 @@ export interface TpGsapProps {
   onUpdate?: () => void
 }
 
-export interface TpGsapTexts {
-  play?: string
-  pause?: string
-  stop?: string
-  restart?: string
-  reverse?: string
-  speed?: string
-  timeline?: string
-  duration?: string
-  progress?: string
-  loading?: string
-  error?: string
-  retry?: string
-  playSuccess?: string
-  pauseSuccess?: string
-  stopSuccess?: string
-  restartSuccess?: string
-  reverseSuccess?: string
-  speedChanged?: string
-  timelineUpdated?: string
-  animationComplete?: string
-  animationError?: string
-  invalidTimeline?: string
-  unsupportedFeature?: string
-}

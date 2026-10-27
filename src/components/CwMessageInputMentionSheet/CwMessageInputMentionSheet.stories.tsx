@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '../../storybook/chatDefaultAvatar'
 import { CwButton } from '../CwButton'
 import { CwMessageInputMentionSheet } from './CwMessageInputMentionSheet'
-import type { CwMessageInputMentionItem } from '../CwMessageInput/types'
+import type { CwMessageInputMentionItem } from '@zengchaowu/ui-shared/components/CwMessageInput/types'
 
 const items: CwMessageInputMentionItem[] = [
   { id: 'u1', label: 'Alice', avatar: chatDefaultAvatar },

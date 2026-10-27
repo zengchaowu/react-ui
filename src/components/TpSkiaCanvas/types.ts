@@ -105,26 +105,6 @@ export interface TpSkiaCanvasProps {
   onAnimationPause?: () => void
 }
 
-export interface TpSkiaCanvasTexts {
-  loading?: string
-  error?: string
-  retry?: string
-  clear?: string
-  undo?: string
-  redo?: string
-  save?: string
-  export?: string
-  brush?: string
-  eraser?: string
-  line?: string
-  rectangle?: string
-  circle?: string
-  text?: string
-  color?: string
-  size?: string
-  opacity?: string
-}
-
 // 画布配置接口
 export interface SkiaCanvasConfig {
   width: number

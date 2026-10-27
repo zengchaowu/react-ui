@@ -1,16 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
-
-/** 无限循环滚动数据项 */
-export interface CwInfiniteLoopScrollItem {
-  /** 唯一标识 */
-  key: string | number
-  /** 数据项 */
-  data: unknown
-  /** 高度（像素），如果不提供则使用默认高度 */
-  height?: number
-  /** 宽度（像素），横向滚动时使用，如果不提供则使用默认宽度 */
-  width?: number
-}
+import type { CwInfiniteLoopScrollTexts } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/types'
+import type { CwInfiniteLoopScrollItem } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/types'
 
 /** 默认作用域插槽参数 */
 export interface CwInfiniteLoopScrollItemSlotProps {
@@ -76,24 +66,6 @@ export interface CwInfiniteLoopScrollProps {
   ) => void
 }
 
-export interface CwInfiniteLoopScrollStyles {
-  root: string
-  rootSnap: string
-  rootNormal: string
-  rootDisabled: string
-  rootReadonly: string
-  container: string
-  content: string
-  item: string
-  empty: string
-  emptyContent: string
-  emptyText: string
-}
-
-export interface CwInfiniteLoopScrollTexts {
-  empty: string
-}
-
 /** 对外暴露的命令式方法 */
 export interface CwInfiniteLoopScrollExpose {
   /** 滚动到指定位置 */
@@ -109,7 +81,6 @@ export interface CwInfiniteLoopScrollExpose {
   /** 获取可见范围 */
   getVisibleRange: () => { startIndex: number; endIndex: number }
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwInfiniteLoopScrollEmits {

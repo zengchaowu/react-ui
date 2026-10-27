@@ -10,8 +10,9 @@ import type {
   CSSProperties,
   KeyboardEvent as ReactKeyboardEvent,
 } from 'react'
-import type { CwSegmentOption, CwSegmentProps } from './types'
-import { resolveSegmentStyles } from './styles'
+import type { CwSegmentProps } from './types'
+import type { CwSegmentOption } from '@zengchaowu/ui-shared/components/CwSegment/types'
+import { resolveSegmentStyles } from '@zengchaowu/ui-shared/components/CwSegment/styles'
 import { CwIcon } from '../CwIcon'
 
 const EMPTY_SLIDER_STYLE: CSSProperties = {

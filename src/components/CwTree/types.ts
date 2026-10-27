@@ -1,9 +1,12 @@
+import type { CwTreeStyles as CwTreeStylesBase } from '@zengchaowu/ui-shared/components/CwTree/types'
+
 import type {
   HTMLAttributes,
   KeyboardEvent as ReactKeyboardEvent,
   MouseEvent as ReactMouseEvent,
   ReactNode,
 } from 'react'
+import type { CwTreeTexts } from '@zengchaowu/ui-shared/components/CwTree/types'
 
 export interface CwTreeNode {
   key: string | number
@@ -207,51 +210,7 @@ export interface CwTreeProps
 }
 
 /** @internal */
-export interface CwTreeStyles {
-  root: string
-  node: string
-  nodeContent: string
-  nodeContentSelected: string
-  nodeContentHighlighted: string
-  nodeContentDisabled: string
-  nodeContentFocused: string
-  nodeLabel: string
-  /** 与 `CwTreeNode.labelStrong` 对应：稍小字号 + 大写加粗 */
-  nodeLabelStrong: string
-  nodeIcon: string
-  nodeExtra: string
-  nodeSwitcher: string
-  /** 懒加载时 switcher 附加样式 */
-  nodeSwitcherLazyLoading: string
-  nodeSwitcherHighlighted: string
-  nodeSwitcherIcon: string
-  nodeSwitcherExpanded: string
-  nodeSwitcherCollapsed: string
-  nodeCheckbox: string
-  nodeChildren: string
-  nodeChildrenOpen: string
-  nodeChildrenContent: string
-  line: string
-  lineHorizontal: string
-  lineVertical: string
-  nodeDropBefore: string
-  nodeDropAfter: string
-  /** 拖入节点内部（如容器） */
-  nodeDropInside: string
-  /** 尺寸样式：小 */
-  sizeSmall: string
-  /** 尺寸样式：中 */
-  sizeMedium: string
-  /** 尺寸样式：大 */
-  sizeLarge: string
-}
-
-export interface CwTreeTexts {
-  expand: string
-  collapse: string
-  select: string
-  unselect: string
-}
+export type CwTreeStyles = CwTreeStylesBase
 
 export interface CwTreeEmits {
   onNodeClick?: (node: CwTreeNode, event: CwTreeInteractionEvent) => void

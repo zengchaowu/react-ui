@@ -1,8 +1,5 @@
 import type { HTMLAttributes } from 'react'
-
-export type CwIndicatorVariant = 'dots' | 'numbered'
-
-export type CwIndicatorScrollable = boolean | 'auto'
+import type { CwIndicatorVariant, CwIndicatorScrollable, CwIndicatorTexts } from '@zengchaowu/ui-shared/components/CwIndicator/types'
 
 export interface CwIndicatorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -32,35 +29,4 @@ export interface CwIndicatorProps
   inactiveColor?: string
   /** 连接线的颜色 */
   lineColor?: string
-}
-
-export interface CwIndicatorStyles {
-  root: string
-  container: string
-  dot: string
-  dotActive: string
-  line: string
-  spacer: string
-  highlight: string
-  highlightDot: string
-  highlightLine: string
-  numberedRoot: string
-  numberedViewport: string
-  numberedViewportScroll: string
-  numberedViewportStatic: string
-  numberChip: string
-  numberChipActive: string
-  numberChipInactive: string
-}
-
-export interface CwIndicatorTexts {
-  // 当前组件不需要文本
-}
-
-export interface CwIndicatorEmits {
-  // 当前组件不需要事件
-}
-
-export interface CwIndicatorExposed {
-  // 当前组件不需要暴露方法
 }

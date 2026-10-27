@@ -3,8 +3,8 @@ import CwDynamicDialogLayer from '../CwDynamicDialog/CwDynamicDialogLayer'
 import type { CwDynamicDialogConfig } from '../CwDynamicDialog/types'
 import CwLoading from '../CwLoading/CwLoading'
 import type { CwHudProps } from './types'
-import { hudBase } from './styles'
-import { defaultCwHudTexts } from './texts'
+import { hudBase } from '@zengchaowu/ui-shared/components/CwHud/styles'
+import { defaultCwHudTexts } from '@zengchaowu/ui-shared/components/CwHud/texts'
 
 export function CwHud({
   visible = false,

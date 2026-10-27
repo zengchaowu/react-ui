@@ -30,19 +30,19 @@ import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 import {
   createCwContextMenuPopupPlugins,
   CW_CONTEXT_MENU_DISMISS_GRACE_MS,
-} from './contextMenuPopupPlugins'
+} from '@zengchaowu/ui-shared/components/CwContextMenu/contextMenuPopupPlugins'
 import {
   CW_CHAT_MESSAGE_TOOLBAR_CELL_WIDTH_REM,
   CW_CHAT_MESSAGE_TOOLBAR_MAX_COLUMNS,
   defaultCwChatMessageToolbarMenuArrowClass,
-} from './toolbarStyles'
+} from '@zengchaowu/ui-shared/components/CwContextMenu/toolbarStyles'
 import type {
   CwContextMenuHandle,
   CwContextMenuItem,
   CwContextMenuProps,
 } from './types'
-import { resolveCwContextMenuStyles } from './styles'
-import { defaultCwContextMenuTexts } from './texts'
+import { resolveCwContextMenuStyles } from '@zengchaowu/ui-shared/components/CwContextMenu/styles'
+import { defaultCwContextMenuTexts } from '@zengchaowu/ui-shared/components/CwContextMenu/texts'
 
 const SUBMENU_OPEN_ATTR = 'data-cw-context-submenu-open'
 const SUBMENU_PANEL_ATTR = 'data-cw-context-menu-submenu'

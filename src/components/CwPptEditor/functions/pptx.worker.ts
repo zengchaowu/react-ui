@@ -1,5 +1,5 @@
 import JSZip from 'jszip'
-import { buildArchivePayload, type PptxArchivePayload } from './archiveEntries'
+import { buildArchivePayload, type PptxArchivePayload } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/archiveEntries'
 
 interface PptxUnzipRequest {
   id: number

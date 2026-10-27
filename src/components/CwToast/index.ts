@@ -1,5 +1,7 @@
 export { CwToast } from './CwToast'
 export * from './types'
-export { defaultCwToastTexts } from './texts'
+export type * from '@zengchaowu/ui-shared/components/CwToast/types'
+export type * from '@zengchaowu/ui-shared/components/CwToast/types'
+export { defaultCwToastTexts } from '@zengchaowu/ui-shared/components/CwToast/texts'
 export { showCwToast } from './showCwToast'
 export type { ShowCwToastOptions, ShowCwToastReturn } from './showCwToast'

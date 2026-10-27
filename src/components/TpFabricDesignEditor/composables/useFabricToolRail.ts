@@ -1,7 +1,7 @@
 ﻿import { useReactiveComputed } from './reactivity'
 import type { CwDesignToolRailItemConfig } from '../../CwDesignToolRail/types'
-import { parseFabricContainerPresetKey } from '../tools/fabricContainerPresets.pure'
-import { defaultTpFabricToolRailGroups } from '../config/defaultToolRail'
+import { parseFabricContainerPresetKey } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/fabricContainerPresets.pure'
+import { defaultTpFabricToolRailGroups } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/config/defaultToolRail'
 import type { TpFabricDesignEditorImportMode, TpFabricDesignEditorTool } from '../types'
 
 export function useFabricToolRail(options: {

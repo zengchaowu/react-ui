@@ -1,114 +1,12 @@
 import type { HTMLAttributes } from 'react'
-import type { CwInputTexts } from '../CwInput/types'
-import type { CwButtonTexts } from '../CwButton/types'
-import type { CwCountDownButtonTexts } from '../CwCountDownButton/types'
-import type { LoginMethodType } from '../CwLoginMethodSwitch/types'
+
+import type { LoginMethodType } from '@zengchaowu/ui-shared/components/CwLoginMethodSwitch/types'
 import type {
   WechatPcQrcodeGenerateResult,
   WechatPcQrcodeLoginStatus,
 } from '@zengchaowu/shared/functions/wechat/openPlatform/resolveWechatPcQrcodeLoginSession'
 import type { TokenPair } from '@zengchaowu/shared/types/auth'
-
-export interface CwLoginPhoneDialogStyles {
-  /**
-   * 内容区域样式
-   */
-  content: string
-  /**
-   * 输入组样式
-   */
-  inputGroup: string
-  /**
-   * 错误消息样式
-   */
-  errorMessage: string
-  /**
-   * 全局错误样式
-   */
-  globalError: string
-  /**
-   * 按钮组容器样式
-   */
-  buttonGroup: string
-  /**
-   * 登录按钮样式
-   */
-  loginButton: string
-  /**
-   * Input 组件样式
-   */
-}
-
-export interface CwLoginPhoneDialogTexts {
-  /**
-   * 弹窗标题
-   */
-  title: string
-  /**
-   * 微信扫码时的弹窗标题
-   */
-  wechatTitle: string
-  /**
-   * 手机号标签
-   */
-  phoneLabel: string
-  /**
-   * 手机号占位符
-   */
-  phonePlaceholder: string
-  /**
-   * 验证码标签
-   */
-  codeLabel: string
-  /**
-   * 验证码占位符
-   */
-  codePlaceholder: string
-  /**
-   * 发送验证码按钮文本
-   */
-  sendCodeButton: string
-  /**
-   * 倒计时文本模板（{seconds} 会被替换为秒数）
-   */
-  countdownText: string
-  /**
-   * 登录按钮文本
-   */
-  loginButton: string
-  /**
-   * 登录中文本
-   */
-  loggingIn: string
-  /**
-   * 发送验证码错误提示
-   */
-  sendCodeError: string
-  /**
-   * 登录错误提示
-   */
-  loginError: string
-  /**
-   * 登录通用错误提示
-   */
-  loginErrorGeneral: string
-  wechatLoginTitle: string
-  wechatLoginHint: string
-  qrcodePlaceholder: string
-  qrcodeImageAlt: string
-  /**
-   * Input 组件文本
-   */
-  inputTexts?: Partial<CwInputTexts>
-  /**
-   * Button 组件文本
-   */
-  buttonTexts?: Partial<CwButtonTexts>
-  /**
-   * CountDownButton 组件文本
-   */
-  countDownButtonTexts?: Partial<CwCountDownButtonTexts>
-}
+import type { CwLoginPhoneDialogTexts } from '@zengchaowu/ui-shared/components/CwLoginPhoneDialog/types'
 
 export interface CwLoginPhoneDialogContentProps
   extends HTMLAttributes<HTMLDivElement> {
@@ -198,7 +96,6 @@ export interface ShowLoginPhoneDialogResult {
    */
   token: string
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwLoginPhoneDialogContentEmits {

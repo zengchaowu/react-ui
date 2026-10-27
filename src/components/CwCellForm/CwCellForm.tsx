@@ -8,8 +8,8 @@ import type {
   CwCellFormProps,
 } from './types'
 import type { CwFormItemComponent } from '../CwFormItem/types'
-import { cellFormBase } from './styles'
-import { defaultCwCellFormTexts } from './texts'
+import { cellFormBase } from '@zengchaowu/ui-shared/components/CwCellForm/styles'
+import { defaultCwCellFormTexts } from '@zengchaowu/ui-shared/components/CwCellForm/texts'
 
 export interface CwCellFormComponentProps
   extends CwCellFormProps,

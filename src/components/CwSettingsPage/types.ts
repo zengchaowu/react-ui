@@ -1,8 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-
-export interface CwSettingsPageTexts {
-  backLabel: string
-}
+import type { CwSettingsPageTexts } from '@zengchaowu/ui-shared/components/CwSettingsPage/types'
 
 export interface CwSettingsPageProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -12,14 +9,6 @@ export interface CwSettingsPageProps
   children?: ReactNode
   onBack?: () => void
 }
-
-export interface CwSettingsPageStyles {
-  root: string
-  header: string
-  title: string
-  body: string
-}
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwSettingsPageEmits {

@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { HTMLAttributes } from 'react'
 import type { CwImgProps } from './types'
-import { imgBase } from './styles'
-import { defaultCwImgTexts } from './texts'
+import { imgBase } from '@zengchaowu/ui-shared/components/CwImg/styles'
+import { defaultCwImgTexts } from '@zengchaowu/ui-shared/components/CwImg/texts'
 import { CwLoading } from '../CwLoading'
 import { CwIcon } from '../CwIcon'
 

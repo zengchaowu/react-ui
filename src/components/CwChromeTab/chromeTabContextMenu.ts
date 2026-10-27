@@ -1,4 +1,4 @@
-import type { CwChromeTabItem, CwChromeTabTexts } from './types'
+import type { CwChromeTabItem, CwChromeTabTexts } from '@zengchaowu/ui-shared/components/CwChromeTab/types'
 
 export type ChromeTabContextAction =
   | 'close'

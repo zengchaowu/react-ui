@@ -7,13 +7,13 @@ import {
 } from 'react'
 import type { CSSProperties, HTMLAttributes } from 'react'
 import type { CwWaterfallItem, CwWaterfallProps } from './types'
-import { waterfallBase } from './styles'
-import { defaultTexts } from './texts'
+import { waterfallBase } from '@zengchaowu/ui-shared/components/CwWaterfall/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwWaterfall/texts'
 import { CwDiv } from '../CwDiv'
 import type { CwDivHandle } from '../CwDiv'
 import { CwLoading } from '../CwLoading'
 import { resolveCwDivViewport } from '../CwDiv/resolveCwDivViewport'
-import { getCurrentBreakpoint, type Breakpoint } from '../CwRow/utils/breakpoint'
+import { getCurrentBreakpoint, type Breakpoint } from '@zengchaowu/ui-shared/components/CwRow/utils/breakpoint'
 
 export interface CwWaterfallComponentProps
   extends CwWaterfallProps,

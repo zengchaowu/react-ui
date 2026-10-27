@@ -1,4 +1,5 @@
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
+import type { CwVirtualScrollTexts, CwVirtualScrollExpose } from '@zengchaowu/ui-shared/components/CwVirtualScroll/types'
 
 export interface CwVirtualScrollItem<TData = unknown> {
   /** 唯一标识 */
@@ -64,56 +65,11 @@ export type CwVirtualScrollComponentProps<TData = unknown> = CwVirtualScrollProp
     'children' | 'className' | 'style' | 'onScroll' | 'items'
   >
 
-/** @internal */
-export interface CwVirtualScrollStyles {
-  root: string
-  rootNormal: string
-  rootDisabled: string
-  rootReadonly: string
-  container: string
-  content: string
-  contentRow: string
-  itemFlow: string
-  spacer: string
-  item: string
-  empty: string
-  emptyContent: string
-  emptyText: string
-  scrollbar: string
-  scrollbarTrack: string
-  scrollbarThumb: string
-  scrollbarThumbNormal: string
-  scrollbarThumbHover: string
-  scrollbarThumbDragging: string
-  scrollbarVisible: string
-  scrollbarVertical: string
-  scrollbarHorizontal: string
-}
-
-export interface CwVirtualScrollTexts {
-  empty: string
-}
-
 export interface CwVirtualScrollEmits {
   /** 滚动事件 */
   scroll: [scrollTop: number, scrollLeft: number]
   /** 可见范围变化事件 */
   'visible-change': [startIndex: number, endIndex: number, visibleItems: CwVirtualScrollItem[]]
-}
-
-export interface CwVirtualScrollExpose {
-  /** 滚动到指定位置 */
-  scrollTo: (scrollTop: number, scrollLeft?: number) => void
-  /** 直接设置滚动偏移量 */
-  setScrollOffset: (scrollTop: number, scrollLeft?: number) => void
-  /** 滚动到指定索引 */
-  scrollToIndex: (index: number) => void
-  /** 获取当前滚动位置 */
-  getScrollTop: () => number
-  /** 获取当前滚动左侧位置 */
-  getScrollLeft: () => number
-  /** 获取可见范围 */
-  getVisibleRange: () => { startIndex: number; endIndex: number }
 }
 
 export interface CwVirtualScrollHandle extends CwVirtualScrollExpose {

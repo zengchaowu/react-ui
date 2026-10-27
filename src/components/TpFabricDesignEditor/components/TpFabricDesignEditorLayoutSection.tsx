@@ -7,11 +7,11 @@ import type {
   FabricContainerLayoutAlign,
   FabricContainerLayoutJustify,
   FabricContainerLayoutMode,
-} from '../tools/fabricContainerTool.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/fabricContainerTool.pure'
 import {
   FABRIC_EDITOR_INSPECTOR_NUMBER_ROOT_CLASS,
   FABRIC_EDITOR_INSPECTOR_SELECT_ROOT_CLASS,
-} from '../document/fabricDesignEditorUi'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricDesignEditorUi'
 
 export interface TpFabricDesignEditorLayoutSectionProps {
   layoutMode: FabricContainerLayoutMode

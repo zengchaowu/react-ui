@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { HTMLAttributes, ReactNode } from 'react'
 import CwSplit from '../CwSplit/CwSplit'
-import type { CwDesignEditorShellProps } from './types'
-import { designEditorShellBase } from './styles'
+import type { CwDesignEditorShellProps } from '@zengchaowu/ui-shared/components/CwDesignEditorShell/types'
+import { designEditorShellBase } from '@zengchaowu/ui-shared/components/CwDesignEditorShell/styles'
 import {
   DESIGN_EDITOR_ASSISTANT_PANEL_MAX_SIZE,
   DESIGN_EDITOR_ASSISTANT_PANEL_MIN_SIZE,
@@ -14,7 +14,7 @@ import {
   DESIGN_EDITOR_LEFT_PANEL_MAX_SIZE,
   DESIGN_EDITOR_LEFT_PANEL_MIN_SIZE,
   DESIGN_EDITOR_LEFT_PANEL_SIZE,
-} from './panelSizeDefaults'
+} from '@zengchaowu/ui-shared/components/CwDesignEditorShell/panelSizeDefaults'
 
 export interface CwDesignEditorShellComponentProps
   extends CwDesignEditorShellProps,

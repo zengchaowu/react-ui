@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { tokenSolidColors } from '../../assets/tokens/tokenSolidColors'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 import { CwGlsl } from './CwGlsl'
 
 const meta: Meta<typeof CwGlsl> = {

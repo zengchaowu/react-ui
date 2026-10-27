@@ -1,34 +1,5 @@
-﻿/**
- * 预设变体，对应设计稿中的按钮样式
- * - default: 白底灰边，深色文字
- * - secondary: 灰色底（写记录样式），无边框
- * - brand: 品牌浅底 + 品牌色文字（微信/电话/详情样式）
- * - brandOutline: 白底 + 品牌色边框 + 品牌色文字（保单列表「一键续保」样式）
- */
-export type CwButtonGroupButtonVariant =
-  | 'default'
-  | 'secondary'
-  | 'brand'
-  | 'brandOutline'
-
-export interface CwButtonGroupButton {
-  id: string | number
-  label: string
-  onClick: () => void
-  /** 预设变体，对应 CwButton 的 type + variant */
-  variant?: CwButtonGroupButtonVariant
-}
-
-export interface CwButtonGroupStyles {
-  /** 根容器 */
-  root: string
-  /** 单个按钮项 */
-  buttonItem: string
-}
-
-export interface CwButtonGroupTexts {
-  // 按钮组文案由 buttons[].label 提供，此处预留
-}
+import type { CwButtonGroupButton, CwButtonGroupTexts } from '@zengchaowu/ui-shared/components/CwButtonGroup/types'
+﻿
 
 export interface CwButtonGroupProps {
   buttons?: CwButtonGroupButton[]

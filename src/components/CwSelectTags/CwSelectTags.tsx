@@ -13,13 +13,10 @@ import type {
 } from 'react'
 import { CwTag } from '../CwTag/CwTag'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
-import { selectTagsBase } from './styles'
-import { defaultTexts } from './texts'
-import type {
-  CwSelectTagsProps,
-  CwSelectTagsTag,
-  CwSelectTagsTexts,
-} from './types'
+import { selectTagsBase } from '@zengchaowu/ui-shared/components/CwSelectTags/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwSelectTags/texts'
+import type { CwSelectTagsProps, CwSelectTagsTag } from './types'
+import type { CwSelectTagsTexts } from '@zengchaowu/ui-shared/components/CwSelectTags/types'
 
 export interface CwSelectTagsComponentProps
   extends CwSelectTagsProps,

@@ -1,6 +1,7 @@
 import type { HTMLAttributes } from 'react'
 import type { Extension } from '@codemirror/state'
 import type { EditorView } from '@codemirror/view'
+import type { TpCodeEditorTexts } from '@zengchaowu/ui-shared/components/TpCodeEditor/types'
 
 export interface TpCodeEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'onFocus' | 'onBlur'> {
@@ -50,15 +51,6 @@ export interface TpCodeEditorProps
   onBlur?: (event: FocusEvent, editor: EditorView) => void
   /** 选择变化（对应 Vue `selectionChange` 事件） */
   onSelectionChange?: (editor: EditorView) => void
-}
-
-export interface TpCodeEditorStyles {
-  root: string
-  rootDisabled: string
-}
-
-export interface TpCodeEditorTexts {
-  // TpCodeEditor组件本身没有硬编码文本
 }
 
 /** 当前选区（无选区或折叠时返回 null） */

@@ -9,8 +9,8 @@ import {
 } from 'react'
 import CwDiv from '../CwDiv/CwDiv'
 import type { CwTextareaHandle, CwTextareaProps } from './types'
-import { textareaBase } from './styles'
-import { defaultTexts } from './texts'
+import { textareaBase } from '@zengchaowu/ui-shared/components/CwTextarea/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwTextarea/texts'
 import { useTextareaAutosize } from './useTextareaAutosize'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 

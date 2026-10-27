@@ -4,8 +4,9 @@ import { CwDiv } from '../CwDiv'
 import type { CwDivHandle } from '../CwDiv'
 import { CwLoading } from '../CwLoading'
 import { useCwPdfEditor } from './composables/useCwPdfEditor'
-import { pdfEditorBase } from './styles'
-import type { CwPdfEditorEmits, CwPdfEditorHandle, CwPdfEditorProps } from './types'
+import { pdfEditorBase } from '@zengchaowu/ui-shared/components/CwPdfEditor/styles'
+import type { CwPdfEditorEmits, CwPdfEditorHandle } from './types'
+import type { CwPdfEditorProps } from '@zengchaowu/ui-shared/components/CwPdfEditor/types'
 
 export interface CwPdfEditorComponentProps
   extends CwPdfEditorProps,

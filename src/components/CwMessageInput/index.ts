@@ -1,15 +1,16 @@
 export { default as CwMessageInput } from './CwMessageInput'
 export type { CwMessageInputComponentProps } from './CwMessageInput'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwMessageInput/types'
 export type {
   CwImMentionProfile,
   CwImMentionProfileResolver,
   CwImMentionProfileClickPayload,
-} from './chips/mentionProfile.types'
+} from '@zengchaowu/ui-shared/components/CwMessageInput/chips/mentionProfile.types'
 export { FileRefNode, type FileRefNodeOptions } from './extensions/FileRefNode'
 export { ImageClipNode, type ImageClipNodeOptions } from './extensions/ImageClipNode'
 export { ImMentionNode, type ImMentionNodeOptions } from './extensions/ImMentionNode'
-export { resolveDroppedFilePath } from './functions/resolveDroppedFilePath'
+export { resolveDroppedFilePath } from '@zengchaowu/ui-shared/components/CwMessageInput/functions/resolveDroppedFilePath'
 export {
   CwMessageInputInlineChip,
   fileRefExtensionFromPath,

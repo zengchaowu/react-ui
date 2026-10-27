@@ -1,4 +1,5 @@
 export { default as CwFileDropTarget } from './CwFileDropTarget'
 export { default } from './CwFileDropTarget'
-export { defaultCwFileDropTargetTexts } from './texts'
+export { defaultCwFileDropTargetTexts } from '@zengchaowu/ui-shared/components/CwFileDropTarget/texts'
 export type * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwFileDropTarget/types'

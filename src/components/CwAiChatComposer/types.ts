@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from 'react'
-import type { VoiceRecordEndPayload } from './voiceHoldTypes'
+import type { VoiceRecordEndPayload } from '@zengchaowu/ui-shared/components/CwAiChatComposer/voiceHoldTypes'
 
 export type CwAiChatComposerLayout = 'wide' | 'narrow'
 
@@ -105,5 +105,5 @@ export interface CwAiChatComposerEmits {
   (e: 'attach-click'): void
   (e: 'voice-mode-change', active: boolean): void
   (e: 'voice-record-start'): void
-  (e: 'voice-record-end', payload: import('./voiceHoldTypes').VoiceRecordEndPayload): void
+  (e: 'voice-record-end', payload: import('@zengchaowu/ui-shared/components/CwAiChatComposer/voiceHoldTypes').VoiceRecordEndPayload): void
 }

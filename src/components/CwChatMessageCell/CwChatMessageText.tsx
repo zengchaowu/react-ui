@@ -18,8 +18,8 @@ import {
   READONLY_BUBBLE_EMOJI_OVERLAY_IMG_CLASS,
   READONLY_BUBBLE_EMOJI_WRAP_CLASS,
 } from './chipStyles'
-import { CHAT_BUBBLE_MAX_WIDTH_CLASS } from './chatMessageBubbleLayout'
-import { chatMessageOwnLeadingActionClass } from './chatMessageOwnLeadingAction'
+import { CHAT_BUBBLE_MAX_WIDTH_CLASS } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
+import { chatMessageOwnLeadingActionClass } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageOwnLeadingAction'
 import {
   chatBubbleTextContentClasses,
   chatBubbleTextSelectionClasses,

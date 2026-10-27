@@ -7,7 +7,7 @@ import type {
 } from 'react'
 import CwIcon from '../CwIcon/CwIcon'
 import type { CwSearchBarProps } from './types'
-import { searchBarBase } from './styles'
+import { searchBarBase } from '@zengchaowu/ui-shared/components/CwSearchBar/styles'
 import { defaultTexts } from './texts'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 

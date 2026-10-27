@@ -2,8 +2,9 @@ import { useRef, useState } from 'react'
 import type { ChangeEvent } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwDocxEditor } from './CwDocxEditor'
-import type { CwDocxEditorHandle, CwDocxEditorProps, CwDocxSource } from './types'
-import { defaultTexts } from './texts'
+import type { CwDocxEditorHandle, CwDocxEditorProps } from './types'
+import type { CwDocxSource } from '@zengchaowu/ui-shared/components/CwDocxEditor/types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDocxEditor/texts'
 
 const meta: Meta<typeof CwDocxEditor> = {
   title: '1. Components/Display/CwDocxEditor',

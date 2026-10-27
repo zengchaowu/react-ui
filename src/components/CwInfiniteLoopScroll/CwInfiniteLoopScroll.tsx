@@ -12,8 +12,8 @@ import type {
   CwInfiniteLoopScrollExpose,
   CwInfiniteLoopScrollProps,
 } from './types'
-import { infiniteLoopScrollBase } from './styles'
-import { defaultTexts } from './texts'
+import { infiniteLoopScrollBase } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/texts'
 import { CwDiv } from '../CwDiv'
 import type { CwDivHandle } from '../CwDiv'
 import { resolveCwDivViewport } from '../CwDiv/resolveCwDivViewport'
@@ -24,7 +24,7 @@ import {
   checkAndJumpToMiddle as checkAndJumpToMiddleFn,
   calculateCenterIndex,
 } from './functions'
-import { loopScrollbarSpan } from './functions/loopScrollbarSpan'
+import { loopScrollbarSpan } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/functions/loopScrollbarSpan'
 import { useInfiniteLoop } from './hooks/useInfiniteLoop'
 import { useScrollPosition } from './hooks/useScrollPosition'
 import { useContainerSize } from './hooks/useContainerSize'

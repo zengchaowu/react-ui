@@ -15,15 +15,15 @@ import {
   CW_OVERLAY_RIGHT_PANEL_SHEET_CONTENT_RIGHT_CLASS,
 } from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
 import type { CwDynamicSheetInnerProps } from './types'
-import { sheetBase } from './styles'
-import { defaultTexts } from './texts'
+import { sheetBase } from '@zengchaowu/ui-shared/components/CwDynamicSheet/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDynamicSheet/texts'
 import { mergeOverlayTailwindClass } from '@zengchaowu/ui-shared/functions/ui/mergeOverlayTailwindClass'
 import { CW_OVERLAY_LEAVE_MS } from '@zengchaowu/ui-shared/constants/cwOverlayZIndex'
 import { scheduleOverlayEnterVisible } from '../../constants/cwOverlayStack'
 import {
   acquireOverlayBodyScrollLock,
   releaseOverlayBodyScrollLock,
-} from '../../constants/overlayBodyScrollLock'
+} from '@zengchaowu/ui-shared/constants/overlayBodyScrollLock'
 import { useCwOverlayLayer } from '../CwDynamicDialog/composables/useCwOverlayLayer'
 import { focusOverlayFirstField } from '../CwDynamicDialog/utils/focusOverlayFirstField'
 import { useCwDynamicSheetDrag } from './useCwDynamicSheetDrag'

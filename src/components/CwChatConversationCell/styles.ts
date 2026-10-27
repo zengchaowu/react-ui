@@ -1,4 +1,4 @@
-import type { CwChatConversationCellStyles } from './types'
+import type { CwChatConversationCellStyles } from '@zengchaowu/ui-shared/components/CwChatConversationCell/types'
 
 /** 与 CwSwipeRow/styles 的 `CW_SWIPE_ROW_CHAT_CONVERSATION_DIVIDER_INSET_CLASS` 一致 */
 const CW_SWIPE_ROW_CHAT_CONVERSATION_DIVIDER_INSET_CLASS =

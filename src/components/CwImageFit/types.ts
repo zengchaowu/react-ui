@@ -1,6 +1,5 @@
-import type { CwIconEmbed } from '../CwIcon/types'
 
-export type CwImageFitAppearance = 'default' | 'inline-chip'
+import type { CwImageFitTexts, CwImageFitAppearance } from '@zengchaowu/ui-shared/components/CwImageFit/types'
 
 export interface CwImageFitProps {
   /** 图片源：可以是 URL 字符串、File 对象或 Blob 对象 */
@@ -40,22 +39,6 @@ export interface CwImageFitProps {
   onLoad?: (event: Event) => void
   /** 图片加载失败事件（对应 Vue `@error`） */
   onError?: (event: Event) => void
-}
-
-export interface CwImageFitStyles {
-  root: string
-  rootNormal?: string
-  rootDisabled?: string
-  rootReadonly?: string
-  imageWrapper: string
-  image: string
-  loadingContainer: string
-  errorContainer: string
-  errorIconStyles?: CwIconEmbed
-}
-
-export interface CwImageFitTexts {
-  alt: string
 }
 
 export interface CwImageFitEmits {

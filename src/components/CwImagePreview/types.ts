@@ -1,3 +1,4 @@
+import type { CwImagePreviewTexts } from '@zengchaowu/ui-shared/components/CwImagePreview/types'
 export interface CwImagePreviewProps {
   /** 图片源：可以是 URL 字符串、File 对象或 Blob 对象 */
   src?: string | File | Blob
@@ -55,28 +56,6 @@ export interface CwImagePreviewProps {
   onUpdateRotation?: (rotation: number) => void
   /** 平移变化事件（等价 Vue `@update:offset`） */
   onUpdateOffset?: (offset: { x: number; y: number }) => void
-}
-
-export interface CwImagePreviewStyles {
-  // 根容器：基础 + 状态
-  root: string
-  /** 嵌入画廊未放大：不抢占 touch-action，便于父级 CwInfiniteLoopScroll 接管滑动 */
-  rootPanDelegated?: string
-  rootNormal?: string
-  rootDisabled?: string
-  rootReadonly?: string
-
-  // 交互容器（用于承载 CwImageFit 和交互事件）
-  viewport: string
-  viewportFocused?: string
-
-  // 控件容器（可选：顶部/底部工具栏）
-  controls?: string
-}
-
-export interface CwImagePreviewTexts {
-  /** 图片 alt 文本 */
-  alt: string
 }
 
 /** 等价 Vue `CwImagePreviewEmits` 的回调集合 */

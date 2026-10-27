@@ -6,8 +6,8 @@ import {
   buildEditorContentFromImRichPlainText,
   type ImRichEditorContentNode,
 } from '../functions/buildEditorContentFromImRichPlain'
-import { hasEditorClipboardHtmlMarkers } from '../functions/imRichEditorClipboard'
-import { backfillInlineImageDimensions } from '../functions/backfillInlineImageDimensions'
+import { hasEditorClipboardHtmlMarkers } from '@zengchaowu/ui-shared/components/CwMessageInput/functions/imRichEditorClipboard'
+import { backfillInlineImageDimensions } from '@zengchaowu/ui-shared/components/CwMessageInput/functions/backfillInlineImageDimensions'
 
 /** IM 富文本剪贴板粘贴：HTML wire format 与纯文本 marker 两种来源 */
 export function useImRichPaste(options: {

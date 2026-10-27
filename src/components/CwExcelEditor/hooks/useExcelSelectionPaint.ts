@@ -1,8 +1,8 @@
 import { type MutableRefObject, type RefObject } from 'react'
-import { GUTTER_WIDTH, scrollSpanIntoView, sumWidths } from '../functions/sheetMetrics'
-import { mergeCovering } from '../functions/workbook'
-import { excelEditorBase } from '../styles'
-import type { CwExcelWorkbook } from '../types'
+import { GUTTER_WIDTH, scrollSpanIntoView, sumWidths } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/sheetMetrics'
+import { mergeCovering } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/workbook'
+import { excelEditorBase } from '@zengchaowu/ui-shared/components/CwExcelEditor/styles'
+import type { CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
 import type { CellPosition } from './useExcelGridLayout'
 
 const CELL_ON = excelEditorBase.cellSelected.split(/\s+/).filter(Boolean)

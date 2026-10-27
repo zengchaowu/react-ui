@@ -6,7 +6,7 @@ import {
   IM_RICH_USER_ID_ATTR,
 } from '@zengchaowu/shared/functions/im/imRichContentHtml'
 import { INLINE_CHIP_REACT_RENDERER_CLASS } from '../chips/chipStyles'
-import type { CwImMentionProfileResolver } from '../chips/mentionProfile.types'
+import type { CwImMentionProfileResolver } from '@zengchaowu/ui-shared/components/CwMessageInput/chips/mentionProfile.types'
 import { ImMentionNodeView } from './ImMentionNodeView'
 
 export interface ImMentionNodeOptions {

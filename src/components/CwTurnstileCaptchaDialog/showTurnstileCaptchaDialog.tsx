@@ -1,14 +1,12 @@
 import type { ReactNode } from 'react'
 import { CW_OVERLAY_HEADER_TITLE_IN_BAR_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
 import { showDynamicDialog } from '../CwDynamicDialog'
-import { buildDialogModalContentClass } from '../CwDynamicDialog/styles'
+import type { CwDynamicDialogConfig } from '../CwDynamicDialog/types'
+import { buildDialogModalContentClass } from '@zengchaowu/ui-shared/components/CwDynamicDialog/styles'
 import CwTurnstileCaptchaDialogContent from './CwTurnstileCaptchaDialogContent'
-import { defaultTexts } from './texts'
-import type {
-  CwTurnstileCaptchaDialogTexts,
-  ShowTurnstileCaptchaDialogOptions,
-  ShowTurnstileCaptchaDialogResult,
-} from './types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwTurnstileCaptchaDialog/texts'
+import type { ShowTurnstileCaptchaDialogOptions } from '@zengchaowu/ui-shared/components/CwTurnstileCaptchaDialog/types'
+import type { CwTurnstileCaptchaDialogTexts, ShowTurnstileCaptchaDialogResult } from '@zengchaowu/ui-shared/components/CwTurnstileCaptchaDialog/types'
 
 /**
  * 显示 Cloudflare Turnstile 安全验证弹窗。
@@ -24,9 +22,9 @@ export function showTurnstileCaptchaDialog(
       preloadPromise,
       widgetSize,
       dialogContentClass,
-      dialogConfig,
       onSuccess,
     } = options
+    const dialogConfig: Partial<CwDynamicDialogConfig> = options.dialogConfig ?? {}
 
     if (!siteKey?.trim()) {
       resolve('cancel')

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { defaultParticleColorList } from '../../assets/tokens/tokenSolidColors'
+import { defaultParticleColorList } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 import type { CwParticleBackgroundProps } from './types'
 
 const DEFAULT_COLORS: string[] = [...defaultParticleColorList]

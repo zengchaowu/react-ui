@@ -21,7 +21,7 @@ import CwRichText from '../CwRichText/CwRichText'
 import CwCountDownButton from '../CwCountDownButton/CwCountDownButton'
 import CwIcon from '../CwIcon/CwIcon'
 import CwNavBar from '../CwNavBar/CwNavBar'
-import { CW_NAV_BAR_ICON_BUTTON_CLASS } from '../CwNavBar/styles'
+import { CW_NAV_BAR_ICON_BUTTON_CLASS } from '@zengchaowu/ui-shared/components/CwNavBar/styles'
 import { isPhone } from '@zengchaowu/shared/functions/validation/isPhone'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 import { useWechatQrcodeLogin } from '../../hooks/useWechatQrcodeLogin'
@@ -31,8 +31,8 @@ import type {
 } from './types'
 
 import { cwLoginDialogBase } from './styles'
-import { formatOtpSentHint, buildLoginAgreementDsl } from './functions'
-import type { CwIconEmbed } from '../CwIcon/types'
+import { formatOtpSentHint, buildLoginAgreementDsl } from '@zengchaowu/ui-shared/components/CwLoginDialog/functions'
+import type { CwIconEmbed } from '@zengchaowu/ui-shared/components/CwIcon/types'
 import type { CwCountDownButtonExpose } from '../CwCountDownButton/types'
 
 const NOOP_SUBSCRIBE = () => () => {}

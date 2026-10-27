@@ -1,10 +1,11 @@
-﻿import type { CwCardTexts } from '../CwCard/types'
+
 import type { CwFormItemConfig as CwFormItemConfigBase } from '../CwFormItem/types'
 import type {
   CwFormItemComponent,
   ComponentConfig,
   ValidationResult,
 } from '../CwFormItem/types'
+import type { CwCellFormTexts } from '@zengchaowu/ui-shared/components/CwCellForm/types'
 
 /** CwCellForm 表单项：左标签 / 右控件的 Cell 行 */
 export interface CwCellFormItemConfig extends CwFormItemConfigBase {
@@ -20,19 +21,6 @@ export interface CwCellFormItemConfig extends CwFormItemConfigBase {
     | { component: CwFormItemComponent; props?: Record<string, unknown> }
   /** 是否显示底部分隔线（默认 true） */
   showDivider?: boolean
-}
-
-/** @internal */
-export interface CwCellFormStyles {
-  title: string
-  itemLabelRequired: string
-  itemContentInner: string
-  rightDivider: string
-}
-
-export interface CwCellFormTexts {
-  /** 内嵌 {@link CwCard} */
-  cardTexts?: Partial<CwCardTexts>
 }
 
 export interface CwCellFormProps {

@@ -1,4 +1,5 @@
 export { default as CwCornerClosableWrap } from './CwCornerClosableWrap'
-export { CW_CORNER_CLOSABLE_WRAP_CLOSE_ICON_STYLES } from './styles'
-export { defaultCwCornerClosableWrapTexts } from './texts'
+export { CW_CORNER_CLOSABLE_WRAP_CLOSE_ICON_STYLES } from '@zengchaowu/ui-shared/components/CwCornerClosableWrap/styles'
+export { defaultCwCornerClosableWrapTexts } from '@zengchaowu/ui-shared/components/CwCornerClosableWrap/texts'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwCornerClosableWrap/types'

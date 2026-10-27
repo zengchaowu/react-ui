@@ -8,19 +8,10 @@ import {
 } from 'react'
 import type { TouchEvent as ReactTouchEvent } from 'react'
 import CwTikTokPlayer from './CwTikTokPlayer'
-import type {
-  CwSocialActionEvent,
-  CwTikTokFeedHandle,
-  CwTikTokFeedProps,
-  CwTikTokPlayerHandle,
-  PreloadState,
-  UserInfo,
-  VideoInfo,
-  VideoItem,
-  VirtualItem,
-} from './types'
-import { tikTokFeedBase } from './styles'
-import { defaultTexts } from './texts'
+import type { CwSocialActionEvent, CwTikTokFeedHandle, CwTikTokFeedProps, CwTikTokPlayerHandle } from './types'
+import type { PreloadState, UserInfo, VideoInfo, VideoItem, VirtualItem } from '@zengchaowu/ui-shared/components/CwTikTokFeed/types'
+import { tikTokFeedBase } from '@zengchaowu/ui-shared/components/CwTikTokFeed/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwTikTokFeed/texts'
 
 /**
  * 触控板 / 高分鼠标一次轻扫会连续触发大量 wheel。

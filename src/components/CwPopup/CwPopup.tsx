@@ -17,7 +17,7 @@ import type {
   VirtualElement,
 } from './types'
 import { resolveCwPopupShellClass, resolveCwPopupTriggerClass } from './styles'
-import { DEFAULT_CONFIG } from './constants'
+import { DEFAULT_CONFIG } from '@zengchaowu/ui-shared/components/CwPopup/constants'
 
 const EMPTY_PLUGINS: PopupPluginFunction[] = []
 

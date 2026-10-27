@@ -1,4 +1,5 @@
 export { CwImageCropper } from './CwImageCropper'
-export { defaultCwImageCropperTexts } from './texts'
+export { defaultCwImageCropperTexts } from '@zengchaowu/ui-shared/components/CwImageCropper/texts'
 export type { CwImageCropperComponentProps } from './CwImageCropper'
 export * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwImageCropper/types'

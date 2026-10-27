@@ -1,21 +1,11 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import CwCalculateGrid from './CwCalculateGrid'
-import type { CwCalculateGridColumn } from './types'
-import type {
-  DisplayRow,
-  FormulaField,
-  GlobalScope,
-  KeyPathDepsMap,
-  KeyPathFuncStrMap,
-  NumberField,
-  ScopeDisplayRowMap,
-  SourceRow,
-  TextField,
-} from './types'
-import { defaultTexts } from './texts'
-import type { CalculateEditTiming, CalculateLoadTiming } from './functions/editTiming'
-import type { CalculateIdleTiming } from './functions/formulaScheduler'
+import type { CwCalculateGridColumn } from '@zengchaowu/ui-shared/components/CwCalculateGrid/types'
+import type { DisplayRow, FormulaField, GlobalScope, KeyPathDepsMap, KeyPathFuncStrMap, NumberField, ScopeDisplayRowMap, SourceRow, TextField } from '@zengchaowu/ui-shared/components/CwCalculateGrid/types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwCalculateGrid/texts'
+import type { CalculateEditTiming, CalculateLoadTiming } from '@zengchaowu/ui-shared/components/CwCalculateGrid/functions/editTiming'
+import type { CalculateIdleTiming } from '@zengchaowu/ui-shared/components/CwCalculateGrid/functions/formulaScheduler'
 
 function text(value: string): TextField {
   return { type: 'text', value }

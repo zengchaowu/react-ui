@@ -1,4 +1,4 @@
-import type { PopupState } from '../types/state'
+import type { PopupState } from '@zengchaowu/ui-shared/components/CwPopup/types/state'
 
 export function clearPopupPosition(state: PopupState): void {
   delete state.position

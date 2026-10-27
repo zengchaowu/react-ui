@@ -4,9 +4,9 @@ import type {
   CwNavBarProps,
   CwNavBarStyles,
   CwNavBarTexts,
-} from './types'
-import { appearanceStyles, navBarBase, navBarInnerStructure } from './styles'
-import { defaultTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwNavBar/types'
+import { appearanceStyles, navBarBase, navBarInnerStructure } from '@zengchaowu/ui-shared/components/CwNavBar/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwNavBar/texts'
 
 export interface CwNavBarComponentProps
   extends CwNavBarProps,

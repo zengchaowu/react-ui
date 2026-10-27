@@ -28,24 +28,6 @@ export interface CwGlslUniformControl {
   step?: number
 }
 
-export interface CwGlslTexts {
-  shaderEditor?: string
-  vertexShader?: string
-  fragmentShader?: string
-  compile?: string
-  reset?: string
-  play?: string
-  pause?: string
-  fullscreen?: string
-  loading?: string
-  error?: string
-  retry?: string
-  compileSuccess?: string
-  compileError?: string
-  invalidShader?: string
-  unsupportedFeature?: string
-}
-
 export interface CwGlslEmits {
   /** 着色器编译成功时触发 */
   onCompiled?: () => void

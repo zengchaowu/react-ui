@@ -9,14 +9,14 @@ import {
 import { showDynamicSheet } from '../CwDynamicSheet/showDynamicSheet'
 import type { ShowDynamicSheetReturn } from '../CwDynamicSheet/showDynamicSheet'
 import type { CwDynamicSheetConfig } from '../CwDynamicSheet/types'
-import { defaultTexts as defaultSheetTexts } from '../CwDynamicSheet/texts'
+import { defaultTexts as defaultSheetTexts } from '@zengchaowu/ui-shared/components/CwDynamicSheet/texts'
 import CwCascaderSheetContent from './CwCascaderSheetContent'
 import type {
   CwCascaderSheetHandle,
   CwCascaderSheetOption,
   CwCascaderSheetProps,
 } from './types'
-import { cascaderSheetBase, CASCADER_SHEET_BODY_CLASS } from './styles'
+import { cascaderSheetBase, CASCADER_SHEET_BODY_CLASS } from '@zengchaowu/ui-shared/components/CwCascaderSheet/styles'
 import { defaultTexts } from './texts'
 import { CW_OVERLAY_SHEET_BOTTOM_ROUNDED_CONTENT_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
 

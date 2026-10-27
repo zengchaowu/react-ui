@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from 'react'
+import type { CwSkeletonTexts } from '@zengchaowu/ui-shared/components/CwSkeleton/types'
 
 export interface CwSkeletonProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   /** 骨架屏形状 */
@@ -12,25 +13,6 @@ export interface CwSkeletonProps extends Omit<HTMLAttributes<HTMLDivElement>, 'c
   /** 自定义文本对象 */
   texts?: Partial<CwSkeletonTexts>
 }
-
-export interface CwSkeletonStyles {
-  /** 根容器基础样式 */
-  root: string
-  /** 圆形样式 */
-  circle: string
-  /** 矩形样式 */
-  rect: string
-  /** 圆角矩形样式 */
-  rounded: string
-  /** 动画样式 */
-  animated: string
-}
-
-export interface CwSkeletonTexts {
-  /** 骨架屏 aria-label */
-  label: string
-}
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwSkeletonEmits {

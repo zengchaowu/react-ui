@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 import { CwChromeTab } from './CwChromeTab'
-import type { CwChromeTabItem } from './types'
+import type { CwChromeTabItem } from '@zengchaowu/ui-shared/components/CwChromeTab/types'
 
 const meta: Meta<typeof CwChromeTab> = {
   title: '1. Components/Navigation/CwChromeTab',

@@ -1,26 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-
-/**
- * 外观变体：
- * - `default`：标准角标（叠在插槽内容右上角）
- * - `avatarUnread`：头像角未读（略内收 + 更小红点）
- */
-export type CwBadgeAppearance = 'default' | 'corner-dot'
-
-export interface CwBadgeStyles {
-  root: string
-  rootWithSlot: string
-  badgeOverlay: string
-  content: string
-  text: string
-  dot: string
-  xsmall: string
-  small: string
-  medium: string
-  large: string
-}
-
-export interface CwBadgeTexts {}
+import type { CwBadgeAppearance, CwBadgeTexts } from '@zengchaowu/ui-shared/components/CwBadge/types'
 
 export interface CwBadgeProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'size' | 'content'> {
@@ -35,8 +14,6 @@ export interface CwBadgeProps
   /** 默认插槽：角标叠放的内容 */
   children?: ReactNode
 }
-
-export interface CwBadgeEmits {}
 
 /** Tabs 等场景可传的 Badge 配置（不含 styles） */
 export type CwBadgeOptions = Pick<

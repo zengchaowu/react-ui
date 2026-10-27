@@ -5,7 +5,7 @@ import {
   removeFabricEditorComponent,
   renameFabricEditorComponent,
   type FabricEditorComponent,
-} from '../document/fabricEditorPages.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorPages.pure'
 
 export function useFabricEditorComponents(options: {
   getReadonly: () => boolean

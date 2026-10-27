@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { resolveCwBoxSizeStyle } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
-import type { CwAvatarAppearance, CwAvatarProps } from './types'
+import type { CwAvatarProps } from './types'
+import type { CwAvatarAppearance } from '@zengchaowu/ui-shared/components/CwAvatar/types'
 import {
   appearanceRootClass,
   appearanceShapeExtraClass,
   avatarBase,
   ringLightElevationRootClass,
-} from './styles'
-import { defaultTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwAvatar/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwAvatar/texts'
 
 export function CwAvatar({
   src,

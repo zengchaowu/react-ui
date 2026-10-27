@@ -1,31 +1,6 @@
 import type { AgentToolStep } from '@zengchaowu/shared/types/im-chat'
-import type { CwChatAgentToolStepLayout } from './styles'
-
-export interface CwChatAgentToolStepStyles {
-  root: string
-  header: string
-  headerStatic: string
-  headerChevron: string
-  headerChevronExpanded: string
-  stepIcon: string
-  stepIconRunning: string
-  stepIconDone: string
-  stepIconError: string
-  stepName: string
-  stepStatus: string
-  stepDetail: string
-  stepDetailPre: string
-}
-
-export interface CwChatAgentToolStepTexts {
-  runningLabel: string
-  doneLabel: string
-  errorLabel: string
-  argsHeading: string
-  resultHeading: string
-  expandLabel: string
-  collapseLabel: string
-}
+import type { CwChatAgentToolStepLayout } from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/styles'
+import type { CwChatAgentToolStepTexts } from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/types'
 
 export type { CwChatAgentToolStepLayout }
 
@@ -43,8 +18,4 @@ export interface CwChatAgentToolStepProps {
   texts?: Partial<CwChatAgentToolStepTexts>
   /** 等价 Vue `@update:detailExpanded` */
   onUpdateDetailExpanded?: (value: boolean) => void
-}
-
-export interface CwChatAgentToolStepEmits {
-  (e: 'update:detailExpanded', value: boolean): void
 }

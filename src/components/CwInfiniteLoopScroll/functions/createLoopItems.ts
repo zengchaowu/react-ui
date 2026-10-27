@@ -1,4 +1,4 @@
-import type { CwInfiniteLoopScrollItem } from '../types'
+import type { CwInfiniteLoopScrollItem } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/types'
 
 /**
  * 创建循环项目列表

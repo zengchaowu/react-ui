@@ -3,11 +3,11 @@ import { CwAvatar } from '../CwAvatar'
 import {
   CW_CHAT_AVATAR_PROPS,
   CW_CHAT_CONVERSATION_AVATAR_DEFAULT_SIZE,
-} from '../CwAvatar/cwAvatarPresets'
+} from '@zengchaowu/ui-shared/components/CwAvatar/cwAvatarPresets'
 import { CwBadge } from '../CwBadge'
 import { CwSwipeRow } from '../CwSwipeRow'
 import { conversationCellBase } from './styles'
-import { defaultCwChatConversationCellTexts } from './texts'
+import { defaultCwChatConversationCellTexts } from '@zengchaowu/ui-shared/components/CwChatConversationCell/texts'
 import { bindDeferredEmojiImages } from './bindDeferredEmojiImages'
 import type { CwChatConversationCellProps } from './types'
 

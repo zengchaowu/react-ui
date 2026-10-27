@@ -1,6 +1,6 @@
 import CwIcon from '../CwIcon/CwIcon'
 import CwLoading from '../CwLoading/CwLoading'
-import { AGENT_TOOL_STATUS_ICON_SIZE } from './chrome'
+import { AGENT_TOOL_STATUS_ICON_SIZE } from '@zengchaowu/ui-shared/components/CwChatAgentToolStep/chrome'
 
 export interface CwChatAgentToolStatusIconProps {
   status: string

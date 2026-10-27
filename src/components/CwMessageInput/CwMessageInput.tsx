@@ -32,7 +32,7 @@ import {
   hasEditorClipboardHtmlMarkers,
   restorablePlainFromEditorSlice,
   writeImRichClipboardData,
-} from './functions/imRichEditorClipboard'
+} from '@zengchaowu/ui-shared/components/CwMessageInput/functions/imRichEditorClipboard'
 import {
   focusEditorWithKeyboardPolicy,
   syncEditorVirtualKeyboardPolicy,

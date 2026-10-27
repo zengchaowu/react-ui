@@ -24,11 +24,11 @@ import type {
   CwVirtualScrollHandle,
   CwVirtualScrollItem,
 } from '../CwVirtualScroll'
-import type { CwChatToolbarTexts } from './types'
+import type { CwChatToolbarTexts } from '@zengchaowu/ui-shared/components/CwChatToolbar/types'
 import {
   defaultCwChatToolbarTexts,
   resolveCwChatToolbarEmojiCategoryLabel,
-} from './texts'
+} from '@zengchaowu/ui-shared/components/CwChatToolbar/texts'
 import {
   EMOJI_PICKER_GRID_COLUMNS,
   EMOJI_PICKER_MOBILE_GRID_COLUMNS,

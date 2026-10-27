@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwCenterRulerPicker } from './CwCenterRulerPicker'
-import type { CwCenterRulerPickerProps, CwCenterRulerPickerValue } from './types'
+import type { CwCenterRulerPickerProps } from './types'
+import type { CwCenterRulerPickerValue } from '@zengchaowu/ui-shared/components/CwCenterRulerPicker/types'
 
 const meta: Meta<typeof CwCenterRulerPicker> = {
   title: '1. Components/Form/CwCenterRulerPicker',

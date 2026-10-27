@@ -1,8 +1,9 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-import type { CwInputTexts } from '../CwInput/types'
-import type { CwIconEmbed } from '../CwIcon/types'
 
-export type CwDatePickerValueType = 'string' | 'date' | 'timestamp'
+import type { CwIconEmbed } from '@zengchaowu/ui-shared/components/CwIcon/types'
+import type { CwDatePickerTexts } from '@zengchaowu/ui-shared/components/CwDatePicker/types'
+import type { CwDatePickerValueType } from '@zengchaowu/ui-shared/components/CwDatePicker/types'
+
 export type CwDatePickerValue = string | Date | number | null
 export type CwDatePickerRangeValue = [CwDatePickerValue, CwDatePickerValue]
 export type CwDatePickerModelValue = CwDatePickerValue | CwDatePickerRangeValue
@@ -10,12 +11,6 @@ export type CwDatePickerModelValue = CwDatePickerValue | CwDatePickerRangeValue
 export interface CwDatePickerShortcut {
   label: string
   value: Date | string | number | (() => Date | string | number)
-}
-
-export interface CwDatePickerCellData {
-  date: Date
-  iso: string
-  isCurrentMonth: boolean
 }
 
 export interface CwDatePickerProps
@@ -141,24 +136,6 @@ export interface CwDatePickerStyles {
   nextIconStyles?: CwIconEmbed
 }
 
-export interface CwDatePickerTexts {
-  placeholder: string
-  rangePlaceholderStart: string
-  rangePlaceholderEnd: string
-  rangeSeparator: string
-  clear: string
-  today: string
-  thisMonthStart: string
-  thisMonthEnd: string
-  prevMonth: string
-  nextMonth: string
-  prevYear: string
-  nextYear: string
-  openPanel: string
-  weekdays: string[]
-  inputTexts?: Partial<CwInputTexts>
-}
-
 /** 默认底部快捷项（用于 CwDatePickerContentFooter） */
 export interface CwDatePickerContentFooterShortcut {
   label: string
@@ -190,7 +167,6 @@ export type CwDatePickerContentFooterSlot =
   | ReactNode
   | ((slotProps: CwDatePickerContentFooterSlotProps) => ReactNode)
 
-
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwDatePickerContentEmits {
   'update:modelValue': [value: CwDatePickerModelValue]
@@ -198,13 +174,11 @@ export interface CwDatePickerContentEmits {
   'requestClose': []
 }
 
-
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwDatePickerContentFooterEmits {
   today: []
   shortcut: [date: Date]
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwDatePickerEmits {

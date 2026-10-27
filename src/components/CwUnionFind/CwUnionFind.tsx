@@ -1,14 +1,10 @@
 import { useMemo } from 'react'
 import type { HTMLAttributes, MouseEvent as ReactMouseEvent } from 'react'
-import { tokenSolidColors, unionFindSetPalette } from '../../assets/tokens/tokenSolidColors'
-import { unionFindBase } from './styles'
-import { defaultTexts } from './texts'
-import type {
-  CwUnionFindElement,
-  CwUnionFindEmits,
-  CwUnionFindProps,
-  CwUnionFindSet,
-} from './types'
+import { tokenSolidColors, unionFindSetPalette } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
+import { unionFindBase } from '@zengchaowu/ui-shared/components/CwUnionFind/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwUnionFind/texts'
+import type { CwUnionFindElement, CwUnionFindEmits, CwUnionFindProps } from './types'
+import type { CwUnionFindSet } from '@zengchaowu/ui-shared/components/CwUnionFind/types'
 
 export interface CwUnionFindComponentProps
   extends CwUnionFindProps,

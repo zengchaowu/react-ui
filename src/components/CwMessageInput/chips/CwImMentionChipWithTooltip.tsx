@@ -2,7 +2,7 @@ import type { KeyboardEvent, MouseEvent, ReactNode } from 'react'
 import CwTooltip from '../../CwTooltip/CwTooltip'
 import CwImMentionChipTooltipContent from './CwImMentionChipTooltipContent'
 import { USER_MENTION_CHIP_HOVER_WRAP_CLASS } from './chipStyles'
-import type { CwImMentionProfileClickPayload } from './mentionProfile.types'
+import type { CwImMentionProfileClickPayload } from '@zengchaowu/ui-shared/components/CwMessageInput/chips/mentionProfile.types'
 
 export interface CwImMentionChipWithTooltipProps {
   userId: string

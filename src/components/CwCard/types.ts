@@ -1,7 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-
-/** 卡片场景外观（表单壳 / 功能网格 / 文档首页区块等） */
-export type CwCardAppearance = 'default' | 'form' | 'grid-cards' | 'section' | 'config'
+import type { CwCardAppearance, CwCardTexts } from '@zengchaowu/ui-shared/components/CwCard/types'
 
 export interface CwCardProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'className'> {
@@ -24,21 +22,6 @@ export interface CwCardProps
   className?: string
   /** 展开状态变化（Vue `expand-change`） */
   onExpandChange?: (expanded: boolean) => void
-}
-
-/** @internal */
-export interface CwCardStyles {
-  root: string
-  header: string
-  headerDivider?: string
-  headerClickable?: string
-  headerLeft: string
-  headerRight: string
-  body: string
-}
-
-export interface CwCardTexts {
-  expandAriaLabel?: (expanded: boolean) => string
 }
 
 export interface CwCardEmits {

@@ -1,4 +1,5 @@
 export { default as CwStackShell } from './CwStackShell'
 export type { CwStackShellComponentProps } from './CwStackShell'
-export { defaultCwStackShellTexts } from './texts'
+export { defaultCwStackShellTexts } from '@zengchaowu/ui-shared/components/CwStackShell/texts'
 export type * from './types'
+export type * from '@zengchaowu/ui-shared/components/CwStackShell/types'

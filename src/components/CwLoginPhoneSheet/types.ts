@@ -1,9 +1,6 @@
-import type {
-  CwLoginPhoneDialogContentProps,
-  CwLoginPhoneDialogTexts,
-} from '../CwLoginPhoneDialog/types'
+import type { CwLoginPhoneDialogContentProps } from '../CwLoginPhoneDialog/types'
 
-export type CwLoginPhoneSheetTexts = CwLoginPhoneDialogTexts
+import type { CwLoginPhoneSheetTexts } from '@zengchaowu/ui-shared/components/CwLoginPhoneSheet/types'
 
 /** Sheet 内容的 React 组件 props（Vue 侧由 h(CwLoginPhoneDialogContent) 传入） */
 export interface CwLoginPhoneSheetProps

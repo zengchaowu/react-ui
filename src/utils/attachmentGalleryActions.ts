@@ -2,7 +2,7 @@ import {
   resolveAttachmentPreviewActionSource,
   resolveAttachmentPreviewDownloadUrl,
   suggestImageDownloadFilename,
-} from './attachmentPreviewActions'
+} from '@zengchaowu/ui-shared/utils/attachmentPreviewActions'
 
 export type AttachmentGalleryDownloadSource = {
   url: string

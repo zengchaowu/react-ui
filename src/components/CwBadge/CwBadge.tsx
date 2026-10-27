@@ -1,5 +1,6 @@
-import type { CwBadgeAppearance, CwBadgeProps } from './types'
-import { appearanceStyles, badgeBase } from './styles'
+import type { CwBadgeProps } from './types'
+import type { CwBadgeAppearance } from '@zengchaowu/ui-shared/components/CwBadge/types'
+import { appearanceStyles, badgeBase } from '@zengchaowu/ui-shared/components/CwBadge/styles'
 
 const DEFAULT_BACKGROUND = 'var(--error-color-6)'
 

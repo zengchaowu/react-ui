@@ -1,4 +1,5 @@
-import type { CwDataTableRow, CwDataTableTreeRowMeta } from '../types'
+import type { CwDataTableRow } from '../types'
+import type { CwDataTableTreeRowMeta } from '@zengchaowu/ui-shared/components/CwDataTable/types'
 
 /** 树形行元数据在 row 对象上的键（不可枚举，避免污染遍历） */
 export const CW_DATA_TABLE_TREE_META_KEY = '__cwTableTreeMeta__'

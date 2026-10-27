@@ -15,7 +15,7 @@ import type {
   CwMarkdownImageContextMenuPayload,
 } from '../CwMarkdown/types'
 import type { CwChatMessageMarkdownProps } from './messageParts.types'
-import { CHAT_BUBBLE_MAX_WIDTH_CLASS } from './chatMessageBubbleLayout'
+import { CHAT_BUBBLE_MAX_WIDTH_CLASS } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
 import {
   isAssistantBubbleAppearance,
   resolveChatBubbleContentPaddingClass,
@@ -26,7 +26,7 @@ import {
 import {
   chatMessageAssistantBodyTextClass,
   chatMessageBodyTextClass,
-} from './chatMessageTypography'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageTypography'
 
 export function CwChatMessageMarkdown({
   content,

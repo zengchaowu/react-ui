@@ -21,7 +21,7 @@ import TpFabricDesignEditorInspectorPanel from './components/TpFabricDesignEdito
 import TpFabricDesignLeftPanel from './components/TpFabricDesignLeftPanel'
 import TpFabricPathEditToolbar from './components/TpFabricPathEditToolbar'
 import TpFabricViewportToolbar from './components/TpFabricViewportToolbar'
-import { defaultTpFabricDesignEditorRootClass } from './styles'
+import { defaultTpFabricDesignEditorRootClass } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/styles'
 import { useTpFabricDesignEditor } from './useTpFabricDesignEditor'
 import './tp-fabric-editor-stage.css'
 

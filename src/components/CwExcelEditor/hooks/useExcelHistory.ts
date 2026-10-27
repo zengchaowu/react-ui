@@ -1,7 +1,7 @@
 import { useRef } from 'react'
-import type { CwExcelWorkbook } from '../types'
+import type { CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
 import { carryExcelSource } from '../functions/workbookIo'
-import { cloneWorkbook } from '../functions/workbook'
+import { cloneWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/workbook'
 
 const HISTORY_LIMIT = 100
 

@@ -13,21 +13,14 @@ import type {
   KeyboardEvent as ReactKeyboardEvent,
   MouseEvent as ReactMouseEvent,
 } from 'react'
-import type {
-  CwDataTableColumn,
-  CwDataTableEmits,
-  CwDataTableExternalRowScope,
-  CwDataTableHandle,
-  CwDataTableProps,
-  CwDataTableSlots,
-  CwDataTableStyles,
-} from './types'
+import type { CwDataTableColumn, CwDataTableEmits, CwDataTableExternalRowScope, CwDataTableHandle, CwDataTableProps, CwDataTableSlots } from './types'
+import type { CwDataTableStyles } from '@zengchaowu/ui-shared/components/CwDataTable/types'
 import {
   getDataTableBodyCwDivViewportClass,
   getDataTableContentBodyViewportClass,
   resolveDataTableStyles,
-} from './styles'
-import { defaultTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwDataTable/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDataTable/texts'
 import { useContainerSize } from '../CwVirtualScroll/hooks/useContainerSize'
 import CwDiv from '../CwDiv/CwDiv'
 import type { CwDivHandle } from '../CwDiv/CwDiv'

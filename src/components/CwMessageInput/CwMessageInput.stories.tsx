@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '../../storybook/chatDefaultAvatar'
 import { CwMessageInput } from './index'
-import type { CwMessageInputMentionItem } from './types'
+import type { CwMessageInputMentionItem } from '@zengchaowu/ui-shared/components/CwMessageInput/types'
 
 const meta: Meta<typeof CwMessageInput> = {
   title: '1. Components/Chat/CwMessageInput',

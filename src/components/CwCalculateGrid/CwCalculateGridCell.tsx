@@ -4,8 +4,8 @@ import type {
   KeyboardEvent as ReactKeyboardEvent,
   RefObject,
 } from 'react'
-import type { DisplayRow, SourceRowField } from './types'
-import { recordFlash } from './functions/editTiming'
+import type { DisplayRow, SourceRowField } from '@zengchaowu/ui-shared/components/CwCalculateGrid/types'
+import { recordFlash } from '@zengchaowu/ui-shared/components/CwCalculateGrid/functions/editTiming'
 
 export interface CwCalculateGridCellProps {
   row: DisplayRow

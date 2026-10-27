@@ -6,12 +6,8 @@ import {
   useRef,
   type CSSProperties,
 } from 'react'
-import type {
-  TpCherryMarkdownHandle,
-  TpCherryMarkdownInstance,
-  TpCherryMarkdownProps,
-  TpCherryMarkdownThemeSettings,
-} from './types'
+import type { TpCherryMarkdownHandle, TpCherryMarkdownInstance, TpCherryMarkdownProps } from './types'
+import type { TpCherryMarkdownThemeSettings } from '@zengchaowu/ui-shared/components/TpCherryMarkdown/types'
 import { resolveDesignCssSize } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
 import 'cherry-markdown/dist/cherry-markdown.css'
 import './tp-cherry-markdown.css'

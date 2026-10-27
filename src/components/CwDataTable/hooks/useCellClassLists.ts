@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react'
-import type { CwDataTableColumn, CwDataTableStyles } from '../types'
+import type { CwDataTableColumn } from '../types'
+import type { CwDataTableStyles } from '@zengchaowu/ui-shared/components/CwDataTable/types'
 import { getBodyCellClasses, getHeaderCellClasses } from '../functions'
 
 type ClassVariants = {

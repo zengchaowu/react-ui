@@ -5,12 +5,12 @@ import type {
   CwChatShellNavProps,
   CwChatShellTabItem,
 } from './types'
-import { chatShellNavBase } from './styles'
-import { defaultCwChatShellNavTexts } from './texts'
+import { chatShellNavBase } from '@zengchaowu/ui-shared/components/CwChatShell/styles'
+import { defaultCwChatShellNavTexts } from '@zengchaowu/ui-shared/components/CwChatShell/texts'
 import {
   CW_CHAT_SHELL_NAV_TABBAR_TOOLTIP_OFFSET,
   CW_CHAT_SHELL_TOOLTIP_SHOW_DELAY_MS,
-} from './constants'
+} from '@zengchaowu/ui-shared/components/CwChatShell/constants'
 
 export function CwChatShellNav({
   value,

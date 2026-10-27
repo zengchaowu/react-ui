@@ -1,12 +1,9 @@
 import { useMemo } from 'react'
 import type { CSSProperties } from 'react'
-import type {
-  CwMessageInputFieldLayout,
-  CwMessageInputProps,
-  CwMessageInputTexts,
-} from '../types'
+import type { CwMessageInputFieldLayout, CwMessageInputProps } from '../types'
+import type { CwMessageInputTexts } from '@zengchaowu/ui-shared/components/CwMessageInput/types'
 import { resolveMessageInputLayoutClasses } from '../styles'
-import { defaultCwMessageInputTexts } from '../texts'
+import { defaultCwMessageInputTexts } from '@zengchaowu/ui-shared/components/CwMessageInput/texts'
 
 const COMPOSER_LINE_HEIGHT_REM = 1.5
 

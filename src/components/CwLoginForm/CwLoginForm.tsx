@@ -11,12 +11,9 @@ import CwCheckbox from '../CwCheckbox/CwCheckbox'
 import CwCountDownButton from '../CwCountDownButton/CwCountDownButton'
 import { isPhone } from '@zengchaowu/shared/functions/validation/isPhone'
 import { isEmail } from '@zengchaowu/shared/functions/validation/isEmail'
-import type {
-  CwLoginFormHandle,
-  CwLoginFormProps,
-  CwLoginMethod,
-} from './types'
-import { cwLoginFormBase } from './styles'
+import type { CwLoginFormHandle, CwLoginFormProps } from './types'
+import type { CwLoginMethod } from '@zengchaowu/ui-shared/components/CwLoginForm/types'
+import { cwLoginFormBase } from '@zengchaowu/ui-shared/components/CwLoginForm/styles'
 
 export const CwLoginForm = forwardRef<CwLoginFormHandle, CwLoginFormProps>(
   function CwLoginForm(

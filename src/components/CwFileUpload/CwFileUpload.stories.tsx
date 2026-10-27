@@ -4,7 +4,8 @@ import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 import { storybookPlaceholderImage } from '../../storybook/placeholderImage'
 import { CwFileUpload } from './CwFileUpload'
-import type { CwFileUploadProps, UploadFile } from './types'
+import type { CwFileUploadProps } from './types'
+import type { UploadFile } from '@zengchaowu/ui-shared/components/CwFileUpload/types'
 
 const meta: Meta<typeof CwFileUpload> = {
   title: '1. Components/Form/CwFileUpload',

@@ -9,8 +9,8 @@ import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
 import type { CwMusicPlayerExpose, CwMusicPlayerProps } from './types'
 import { CwMusicPlayerControls } from './CwMusicPlayerControls'
 import { CwIcon } from '../CwIcon/CwIcon'
-import { musicPlayerBase } from './styles'
-import { defaultTexts } from './texts'
+import { musicPlayerBase } from '@zengchaowu/ui-shared/components/CwMusicPlayer/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwMusicPlayer/texts'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 
 export const CwMusicPlayer = forwardRef<CwMusicPlayerExpose, CwMusicPlayerProps>(

@@ -10,8 +10,8 @@ import type {
   CwFeatureCardGridProps,
   CwFeatureCardItem,
 } from './types'
-import { resolveFeatureCardGridStyles } from './featureCardGridAppearance'
-import { defaultCwFeatureCardGridTexts } from './texts'
+import { resolveFeatureCardGridStyles } from '@zengchaowu/ui-shared/components/CwFeatureCardGrid/featureCardGridAppearance'
+import { defaultCwFeatureCardGridTexts } from '@zengchaowu/ui-shared/components/CwFeatureCardGrid/texts'
 import CwCard from '../CwCard/CwCard'
 import CwIcon from '../CwIcon/CwIcon'
 import CwGrid from '../CwGrid/CwGrid'

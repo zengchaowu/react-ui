@@ -4,7 +4,7 @@ import {
   APP_OVERLAY_SAFE_TOP_CLASS,
 } from '@zengchaowu/ui-shared/constants/appSafeAreaClasses'
 import { showDynamicDialog } from '../CwDynamicDialog'
-import { buildDialogModalContentClass } from '../CwDynamicDialog/styles'
+import { buildDialogModalContentClass } from '@zengchaowu/ui-shared/components/CwDynamicDialog/styles'
 import CwLoginDialogContent from './CwLoginDialogContent'
 import CwLoginDialogMobileStack from './CwLoginDialogMobileStack'
 import type {

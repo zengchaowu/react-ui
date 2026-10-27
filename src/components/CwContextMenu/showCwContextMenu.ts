@@ -4,18 +4,13 @@ import { CW_OVERLAY_LEAVE_MS } from '@zengchaowu/ui-shared/constants/cwOverlayZI
 import type { Placement } from '@zengchaowu/shared/types/placement'
 import { scheduleBringOverlayHostToFront } from '../../constants/cwOverlayStack'
 import CwContextMenu from './CwContextMenu'
-import type {
-  CwContextMenuAnchorRect,
-  CwContextMenuAppearance,
-  CwContextMenuHandle,
-  CwContextMenuItem,
-  CwContextMenuLayout,
-} from './types'
+import type { CwContextMenuAnchorRect, CwContextMenuHandle, CwContextMenuItem, CwContextMenuLayout } from './types'
+import type { CwContextMenuAppearance } from '@zengchaowu/ui-shared/components/CwContextMenu/types'
 import {
   applyCwContextMenuAnchorHighlight,
   CW_CONTEXT_MENU_ANCHOR_ACTIVE_CLASS,
-} from './contextMenuAnchorHighlight'
-import { resolveCwContextMenuAnchorElements } from './resolveCwContextMenuAnchorElements'
+} from '@zengchaowu/ui-shared/components/CwContextMenu/contextMenuAnchorHighlight'
+import { resolveCwContextMenuAnchorElements } from '@zengchaowu/ui-shared/components/CwContextMenu/resolveCwContextMenuAnchorElements'
 
 export interface ShowCwContextMenuOptions {
   x: number

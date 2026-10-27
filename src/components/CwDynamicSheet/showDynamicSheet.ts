@@ -3,12 +3,9 @@ import { createRoot, type Root } from 'react-dom/client'
 import { CW_OVERLAY_LEAVE_MS } from '@zengchaowu/ui-shared/constants/cwOverlayZIndex'
 import { scheduleBringOverlayHostToFront } from '../../constants/cwOverlayStack'
 import CwDynamicSheet from './CwDynamicSheet'
-import type {
-  CwDynamicSheetConfig,
-  CwDynamicSheetHandle,
-  CwDynamicSheetInnerTexts,
-} from './types'
-import { defaultTexts } from './texts'
+import type { CwDynamicSheetConfig, CwDynamicSheetHandle } from './types'
+import type { CwDynamicSheetInnerTexts } from '@zengchaowu/ui-shared/components/CwDynamicSheet/types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDynamicSheet/texts'
 
 export type ShowDynamicSheetResult = 'close' | 'cancel'
 

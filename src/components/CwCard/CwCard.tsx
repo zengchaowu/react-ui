@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
 import type { CwCardProps } from './types'
-import { resolveCardStyles } from './cardAppearance'
+import { resolveCardStyles } from '@zengchaowu/ui-shared/components/CwCard/cardAppearance'
 import { defaultTexts } from './texts'
 
 export function CwCard({

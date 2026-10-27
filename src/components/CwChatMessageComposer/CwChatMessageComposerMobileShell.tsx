@@ -25,13 +25,9 @@ import {
   toAbsoluteStyle,
 } from '../CwAiChatComposer/layoutGeometry'
 import { useCwAiChatComposerContentRows } from '../CwAiChatComposer/useCwAiChatComposerContentRows'
-import type {
-  CwChatMessageComposerMobileShellEmits,
-  CwChatMessageComposerMobileShellHandle,
-  CwChatMessageComposerMobileShellProps,
-  CwChatMessageComposerMobileShellTexts,
-} from './types'
-import { defaultCwChatMessageComposerMobileShellTexts } from './mobileShellTexts'
+import type { CwChatMessageComposerMobileShellEmits, CwChatMessageComposerMobileShellHandle, CwChatMessageComposerMobileShellProps } from './types'
+import type { CwChatMessageComposerMobileShellTexts } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/types'
+import { defaultCwChatMessageComposerMobileShellTexts } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/mobileShellTexts'
 import { mobileComposerInputSurfaceClass, composerBase } from './styles'
 import CwChatMessageComposerMobileVoiceOverlay from './CwChatMessageComposerMobileVoiceOverlay'
 

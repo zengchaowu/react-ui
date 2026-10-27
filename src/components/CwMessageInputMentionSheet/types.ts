@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from 'react'
-import type { CwMessageInputMentionItem } from '../CwMessageInput/types'
+import type { CwMessageInputMentionItem } from '@zengchaowu/ui-shared/components/CwMessageInput/types'
 
 export interface CwMessageInputMentionSheetStyles {
   overlay: string

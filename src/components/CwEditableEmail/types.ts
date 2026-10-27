@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react'
 import type { CwEditableTextAppearance } from '../CwEditableText/types'
-import type { CwIconEmbed } from '../CwIcon/types'
+import type { CwIconEmbed } from '@zengchaowu/ui-shared/components/CwIcon/types'
 import type { CwAutoCompleteEmailTexts } from '../CwAutoCompleteEmail/types'
 
 export type CwEditableEmailAppearance = CwEditableTextAppearance

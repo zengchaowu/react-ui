@@ -9,21 +9,13 @@ export {
   applyCwContextMenuAnchorHighlight,
   queryCwContextMenuAnchorsByIds,
   resolveCwContextMenuAnchorFromEvent,
-} from './contextMenuAnchorHighlight'
-export { resolveCwContextMenuAnchorElements } from './resolveCwContextMenuAnchorElements'
-export type { ResolveCwContextMenuAnchorElementsOptions } from './resolveCwContextMenuAnchorElements'
-export type {
-  CwContextMenuItem,
-  CwContextMenuAppearance,
-  CwContextMenuLayout,
-  CwContextMenuStyles,
-  CwContextMenuTexts,
-  CwContextMenuProps,
-  CwContextMenuEmits,
-  CwContextMenuAnchorRect,
-  CwContextMenuHandle,
-} from './types'
-export { defaultCwContextMenuTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwContextMenu/contextMenuAnchorHighlight'
+export { resolveCwContextMenuAnchorElements } from '@zengchaowu/ui-shared/components/CwContextMenu/resolveCwContextMenuAnchorElements'
+export type { ResolveCwContextMenuAnchorElementsOptions } from '@zengchaowu/ui-shared/components/CwContextMenu/resolveCwContextMenuAnchorElements'
+export type { CwContextMenuItem, CwContextMenuLayout, CwContextMenuProps, CwContextMenuEmits, CwContextMenuAnchorRect, CwContextMenuHandle } from './types'
+export type { CwContextMenuTexts } from '@zengchaowu/ui-shared/components/CwContextMenu/types'
+export type { CwContextMenuAppearance, CwContextMenuStyles } from '@zengchaowu/ui-shared/components/CwContextMenu/types'
+export { defaultCwContextMenuTexts } from '@zengchaowu/ui-shared/components/CwContextMenu/texts'
 export {
   resolveCwContextMenuStyles,
   CW_GLASS_FROSTED_MENU_CHROME_CLASS,
@@ -43,17 +35,17 @@ export {
   plainCwContextMenuStyles,
   toolRailCwContextMenuStyles,
   appearanceStyles,
-} from './styles'
+} from '@zengchaowu/ui-shared/components/CwContextMenu/styles'
 export {
   createCwContextMenuPopupPlugins,
   CW_CONTEXT_MENU_DISMISS_GRACE_MS,
-} from './contextMenuPopupPlugins'
+} from '@zengchaowu/ui-shared/components/CwContextMenu/contextMenuPopupPlugins'
 export type {
   CwContextMenuPopupPluginsOptions,
   CwContextMenuPopupArrowOptions,
-} from './contextMenuPopupPlugins'
+} from '@zengchaowu/ui-shared/components/CwContextMenu/contextMenuPopupPlugins'
 export {
   CW_CHAT_MESSAGE_TOOLBAR_CELL_WIDTH_REM,
   CW_CHAT_MESSAGE_TOOLBAR_MAX_COLUMNS,
   defaultCwChatMessageToolbarMenuArrowClass,
-} from './toolbarStyles'
+} from '@zengchaowu/ui-shared/components/CwContextMenu/toolbarStyles'

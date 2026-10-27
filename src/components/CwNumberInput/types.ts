@@ -1,9 +1,7 @@
 import type { HTMLAttributes } from 'react'
-import type {
-  CwInputAppearance,
-  CwInputSlotContent,
-  CwInputTexts,
-} from '../CwInput/types'
+import type { CwInputSlotContent } from '../CwInput/types'
+import type { CwInputAppearance } from '@zengchaowu/ui-shared/components/CwInput/types'
+import type { CwNumberInputTexts } from '@zengchaowu/ui-shared/components/CwNumberInput/types'
 
 export interface CwNumberInputProps
   extends Omit<
@@ -57,52 +55,6 @@ export interface CwNumberInputProps
   /** 清除事件 */
   onClear?: () => void
 }
-
-export interface CwNumberInputStyles {
-  root: string
-  rootNormal: string
-  rootDisabled: string
-  rootReadonly: string
-  icon: string
-  iconNormal: string
-  iconDisabled: string
-  label: string
-  labelNormal: string
-  labelDisabled: string
-  inputMain: string
-  inputMainAlignLeft: string
-  inputMainAlignRight: string
-  inputMainAlignCenter: string
-  inputMainPadStart: string
-  inputWithDisplayPrefix: string
-  inputWrapper: string
-  inputWrapperNormal: string
-  inputWrapperReadonly: string
-  inputWrapperFocus: string
-  inputWrapperDisabled: string
-  input: string
-  inputNormal: string
-  inputDisabled: string
-  inputReadonly: string
-  inputLeft: string
-  inputRight: string
-  inputCenter: string
-  suffix: string
-  clearButton: string
-  clearButtonOverlay?: string
-  clearButtonVisible?: string
-  clearButtonHidden?: string
-  inputClearReserve?: string
-  inputClearReserveCompact?: string
-  sizeSmall: string
-  sizeMedium: string
-  sizeLarge: string
-  clearIconClass?: string
-  clearIconStyles?: { class?: string; size?: number; root?: string }
-}
-
-export interface CwNumberInputTexts extends CwInputTexts {}
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwNumberInputEmits {

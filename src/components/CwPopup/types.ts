@@ -5,7 +5,8 @@ import type {
   PopupPluginFunction,
   PopupState,
   VirtualElement,
-} from './types/state'
+} from '@zengchaowu/ui-shared/components/CwPopup/types/state'
+import type { CwPopupAppearance, CwPopupTexts } from '@zengchaowu/ui-shared/components/CwPopup/types'
 
 /**
  * CwPopup 基础配置选项（共享字段）
@@ -81,12 +82,6 @@ export interface CwPopupOptions extends CwPopupBaseOptions {
   onMaxHeightChange?: (maxHeight: number | null) => void
 }
 
-/**
- * CwPopup 组件 Props
- */
-/** 预设浮层壳样式（业务勿传 styles，用 appearance + popupClass / triggerClass） */
-export type CwPopupAppearance = 'default' | 'panel-emoji' | 'panel-mention'
-
 export interface CwPopupProps extends CwPopupBaseOptions {
   /**
    * 是否默认显示（仅对 trigger='manual' 有效）
@@ -144,17 +139,6 @@ export interface CwPopupProps extends CwPopupBaseOptions {
    * 弹出层 maxHeight 约束变化回调
    */
   onMaxHeightChange?: (maxHeight: number | null) => void
-}
-
-/** 浮层根节点 class 表（库内） */
-export interface CwPopupStyleSlots {
-  /** 勿包含 relative/absolute/fixed 等定位类，根节点由内部固定为 `fixed top-0 left-0` */
-  popup: string
-  trigger: string
-}
-
-export interface CwPopupTexts {
-  // CwPopup组件本身没有硬编码文本
 }
 
 /**
@@ -224,4 +208,4 @@ export type {
   PopupContext,
   PopupTrigger,
   PopupPluginFunction,
-} from './types/state'
+} from '@zengchaowu/ui-shared/components/CwPopup/types/state'

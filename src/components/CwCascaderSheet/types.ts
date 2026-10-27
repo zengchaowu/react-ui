@@ -33,13 +33,6 @@ export interface CwCascaderSheetEmits {
   close: []
 }
 
-export interface CwCascaderSheetStyles {
-  /** 头部容器 */
-  headerContainer?: string
-  /** 头部标题 */
-  headerTitle?: string
-}
-
 export interface CwCascaderSheetTexts {
   /** 标题文本 */
   title: string

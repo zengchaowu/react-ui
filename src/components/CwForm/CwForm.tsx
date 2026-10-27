@@ -22,28 +22,24 @@ import {
 import {
   GRID_SPAN_TOTAL,
   resolveColSpanFromContainerWidth,
-} from '../CwRow/layout'
+} from '@zengchaowu/ui-shared/components/CwRow/layout'
 import {
   findBreakpointConfig,
   getCurrentBreakpoint,
   type Breakpoint,
-} from '../CwRow/utils/breakpoint'
+} from '@zengchaowu/ui-shared/components/CwRow/utils/breakpoint'
 import {
   resolveItemsPerRowFromColProps,
   resolveMaxVisibleItems,
   slotHasContent,
 } from '../CwRow/functions/wrapRowSlotUtils'
-import type { CwColProps, CwWrapRowProps } from '../CwRow/types'
-import type {
-  CwFormItemConfigInForm,
-  CwFormContextValue,
-  CwFormExposed,
-  CwFormProps,
-  CwFormTexts,
-} from './types'
+import type { CwWrapRowProps } from '../CwRow/types'
+import type { CwColProps } from '@zengchaowu/ui-shared/components/CwRow/types'
+import type { CwFormItemConfigInForm, CwFormContextValue, CwFormExposed, CwFormProps } from './types'
+import type { CwFormTexts } from '@zengchaowu/ui-shared/components/CwForm/types'
 import type { ValidationResult } from '../CwFormItem/types'
-import { formBase } from './styles'
-import { defaultTexts } from './texts'
+import { formBase } from '@zengchaowu/ui-shared/components/CwForm/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwForm/texts'
 
 /** CwForm → CwFormItem 的上下文（对应 Vue provide/inject） */
 export const CwFormContext = createContext<CwFormContextValue | null>(null)

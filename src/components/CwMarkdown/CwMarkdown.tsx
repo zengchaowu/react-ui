@@ -1,15 +1,9 @@
 import { useContext, useMemo } from 'react'
 import type { MouseEvent as ReactMouseEvent } from 'react'
-import type {
-  CwMarkdownCodeBlockCopyPayload,
-  CwMarkdownCodeBlockPreviewPayload,
-  CwMarkdownImageContextMenuPayload,
-  CwMarkdownProps,
-  CwMarkdownStyles,
-  CwMarkdownTexts,
-} from './types'
+import type { CwMarkdownCodeBlockCopyPayload, CwMarkdownCodeBlockPreviewPayload, CwMarkdownImageContextMenuPayload, CwMarkdownProps } from './types'
+import type { CwMarkdownStyles, CwMarkdownTexts } from '@zengchaowu/ui-shared/components/CwMarkdown/types'
 import { markdownBase } from './styles'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwMarkdown/texts'
 import {
   CwMarkdownCodeBlockExtensionsContext,
   CwMarkdownContext,

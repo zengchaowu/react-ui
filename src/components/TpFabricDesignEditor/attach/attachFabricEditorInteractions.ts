@@ -3,16 +3,16 @@ import { IText, type Canvas } from 'fabric'
 import {
   syncGroupsInteractionFromCanvasSelection,
   tryDrillIntoGroupOnDoubleClick,
-} from '../layers/fabricGroupPointerPolicy.pure'
-import { tokenSolidColors } from '../../../assets/tokens/tokenSolidColors'
-import { applyFabricEditorObjectControlStyle } from '../selection/fabricEditorSelectionStyle'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricGroupPointerPolicy.pure'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
+import { applyFabricEditorObjectControlStyle } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/selection/fabricEditorSelectionStyle'
 import {
   removePaintClonesForObject,
   syncPaintCloneTransforms,
-} from '../appearance/fabricEditorPaintLayers.pure'
-import { assignDefaultFabricLayerName } from '../layers/fabricLayerNaming.pure'
-import { hasFabricPathEditSession } from '../tools/penTool'
-import { isFabricLayerRefreshSuspended } from '../layers/fabricLayerRefreshGate.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/appearance/fabricEditorPaintLayers.pure'
+import { assignDefaultFabricLayerName } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricLayerNaming.pure'
+import { hasFabricPathEditSession } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/penTool'
+import { isFabricLayerRefreshSuspended } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricLayerRefreshGate.pure'
 import type { TpFabricDesignEditorTool } from '../types'
 
 type EditorEmit = (

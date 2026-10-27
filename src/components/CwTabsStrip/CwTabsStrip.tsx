@@ -10,15 +10,11 @@ import {
 } from 'react'
 import CwBadge from '../CwBadge/CwBadge'
 import { shouldShowFocus } from '../../hooks/useBrowserFocusVisible'
-import type {
-  CwTabsStripItem,
-  CwTabsStripProps,
-  CwTabsStripTabScope,
-  CwTabsStripValue,
-} from './types'
+import type { CwTabsStripItem, CwTabsStripProps, CwTabsStripTabScope } from './types'
+import type { CwTabsStripValue } from '@zengchaowu/ui-shared/components/CwTabsStrip/types'
 import { resolveTabsStripItemValue, tabsStripItemToBadge } from './types'
-import { resolveTabsStripStyles } from './styles'
-import { defaultTexts } from './texts'
+import { resolveTabsStripStyles } from '@zengchaowu/ui-shared/components/CwTabsStrip/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwTabsStrip/texts'
 
 const INDICATOR_MOTION_MS = 220
 

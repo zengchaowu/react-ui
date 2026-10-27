@@ -1,8 +1,7 @@
-﻿import type { MouseEvent as ReactMouseEvent, ReactNode } from 'react'
-import type { CwCardTexts } from '../CwCard/types'
-import type { CwIconEmbed } from '../CwIcon/types'
+import type { MouseEvent as ReactMouseEvent, ReactNode } from 'react'
 
-export type CwFeatureCardGridAppearance = 'default' | 'home'
+import type { CwFeatureCardGridAppearance, CwFeatureCardGridTexts } from '@zengchaowu/ui-shared/components/CwFeatureCardGrid/types'
+export type { CwFeatureCardGridAppearance }
 
 export interface CwFeatureCardItem {
   /** 唯一键值 */
@@ -33,21 +32,6 @@ export interface CwFeatureCardItem {
    * - 如果存在，则优先调用
    */
   onClick?: (item: CwFeatureCardItem, event: ReactMouseEvent<HTMLDivElement>) => void
-}
-
-/** @internal */
-export interface CwFeatureCardGridStyles {
-  title: string
-  item: string
-  itemDisabled: string
-  iconBox: string
-  label: string
-  description: string
-  iconStyles?: CwIconEmbed
-}
-
-export interface CwFeatureCardGridTexts {
-  cardTexts?: Partial<CwCardTexts>
 }
 
 export interface CwFeatureCardGridProps {

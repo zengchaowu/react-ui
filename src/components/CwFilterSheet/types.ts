@@ -1,4 +1,5 @@
 import type { CwGridBreakpointConfig } from '../CwGrid/types'
+import type { CwFilterSheetOption, CwFilterSheetTexts } from '@zengchaowu/ui-shared/components/CwFilterSheet/types'
 
 /** 单个 section 的选中值（单选可为 null） */
 export type CwFilterSheetValue =
@@ -9,15 +10,6 @@ export type CwFilterSheetValue =
 
 /** 所有 section 的选中值，key 为 section.key */
 export type CwFilterSheetValues = Record<string, CwFilterSheetValue>
-
-export interface CwFilterSheetOption {
-  /** 选项值 */
-  value: string | number
-  /** 选项标签 */
-  label: string
-  /** 是否禁用 */
-  disabled?: boolean
-}
 
 export interface CwFilterSheetSection {
   /** Section 的唯一标识 */
@@ -85,42 +77,6 @@ export interface CwFilterSheetEmits {
   reset: []
   /** 关闭事件 */
   close: []
-}
-
-export interface CwFilterSheetStyles {
-  /** 根容器 */
-  root: string
-  /** Sheet 顶栏标题 */
-  headerTitle: string
-  /** Section 容器 */
-  section: string
-  /** Section 标题 */
-  sectionTitle: string
-  /** 选项容器 */
-  option: string
-  /** 选项正常状态 */
-  optionNormal: string
-  /** 选项选中状态 */
-  optionSelected: string
-  /** 选项禁用状态 */
-  optionDisabled: string
-  /** 选项聚焦状态 */
-  optionFocused: string
-  /** 选项悬停状态 */
-  optionHover: string
-  /** 选中标记容器 */
-  checkmark: string
-  /** 底部按钮区域 */
-  footer: string
-}
-
-export interface CwFilterSheetTexts {
-  /** 标题文本 */
-  title: string
-  /** 重置按钮文本 */
-  resetText: string
-  /** 确认按钮文本 */
-  confirmText: string
 }
 
 /** 组件暴露的 imperative 方法（对应 Vue defineExpose） */

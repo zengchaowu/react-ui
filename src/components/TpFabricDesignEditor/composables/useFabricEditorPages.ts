@@ -7,7 +7,7 @@ import {
   renameFabricEditorPage,
   snapshotPageSvg,
   type FabricEditorPage,
-} from '../document/fabricEditorPages.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorPages.pure'
 
 export function useFabricEditorPages(options: {
   getReadonly: () => boolean

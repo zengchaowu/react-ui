@@ -1,11 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import CwButton from '../CwButton/CwButton'
 import { showSliderCaptchaDialog } from './showSliderCaptchaDialog'
-import { defaultTexts } from './texts'
-import type {
-  CwSliderCaptchaChallenge,
-  ShowSliderCaptchaDialogOptions,
-} from './types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwSliderCaptchaDialog/texts'
+import type { CwSliderCaptchaChallenge, ShowSliderCaptchaDialogOptions } from '@zengchaowu/ui-shared/components/CwSliderCaptchaDialog/types'
 
 const meta: Meta<ShowSliderCaptchaDialogOptions> = {
   title: '1. Components/Overlay/CwSliderCaptchaDialog',

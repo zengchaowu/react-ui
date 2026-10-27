@@ -1,12 +1,7 @@
 import type { ReactNode } from 'react'
-import type {
-  CwDataTableCellRenderContext,
-  CwDataTableColumn,
-  CwDataTableLifecycle,
-  CwDataTableRow,
-  CwDataTableTreeRowMeta,
-} from './types'
-import { isColumnOverflowTooltipEnabled } from './functions/overflowTooltip'
+import type { CwDataTableCellRenderContext, CwDataTableColumn, CwDataTableLifecycle, CwDataTableRow } from './types'
+import type { CwDataTableTreeRowMeta } from '@zengchaowu/ui-shared/components/CwDataTable/types'
+import { isColumnOverflowTooltipEnabled } from '@zengchaowu/ui-shared/components/CwDataTable/functions/overflowTooltip'
 import CwDataTableCellOverflow from './CwDataTableCellOverflow'
 
 export interface CwDataTableCellRendererProps {

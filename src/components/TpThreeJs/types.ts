@@ -1,4 +1,5 @@
 import type * as THREE from 'three'
+import type { TpThreeJsTexts } from '@zengchaowu/ui-shared/components/TpThreeJs/types'
 
 export interface TpThreeJsReadyPayload {
   scene: THREE.Scene
@@ -51,39 +52,4 @@ export interface TpThreeJsProps {
   onModelLoaded?: (model: THREE.Group) => void
   /** 模型加载失败（对应 Vue `modelError`） */
   onModelError?: (error: unknown) => void
-}
-
-export interface TpThreeJsStyles {
-  root: string
-  loadingOverlay: string
-  loadingContent: string
-  loadingSpinner: string
-  loadingText: string
-  loadingSubtext: string
-  errorOverlay: string
-  errorContent: string
-  errorIcon: string
-  errorIconSvg: string
-  errorTitle: string
-  errorMessage: string
-  retryButton: string
-  controlsOverlay: string
-  controlsButton: string
-  controlsButtonActive: string
-  statsContainer: string
-  statsPanel: string
-}
-
-export interface TpThreeJsTexts {
-  loadingMain: string
-  loadingSub: string
-  errorTitle: string
-  retryText: string
-  playText: string
-  pauseText: string
-  resetText: string
-  fullscreenText: string
-  exitFullscreenText: string
-  wireframeText: string
-  statsText: string
 }

@@ -33,28 +33,3 @@ export interface CwCalendarEmits {
   onUpdateCollapsed?: (value: boolean) => void
   onSelect?: (value: Date) => void
 }
-
-export interface CwCalendarStyles {
-  root: string
-  header: string
-  heading: string
-  date: string
-  lunar: string
-  calendarWrap: string
-  calendarWrapCollapsed: string
-  calendar: string
-  monthBar: string
-  monthLabel: string
-  monthNav: string
-  weekdays: string
-  weekday: string
-  grid: string
-  cell: string
-  cellMuted: string
-  cellSelected: string
-  cellDay: string
-  cellSub: string
-  cellMark: string
-  cellMarkRest: string
-  cellMarkWork: string
-}

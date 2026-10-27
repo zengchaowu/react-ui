@@ -8,15 +8,11 @@ import { useSliderCaptchaSession } from './composables/useSliderCaptchaSession'
 import {
   clampSliderOffset,
   mapHandleOffsetToApiOffset,
-} from './functions'
-import { sliderCaptchaDialogBase } from './styles'
-import { defaultTexts } from './texts'
-import {
-  CW_SLIDER_CAPTCHA_WIDTH_REM,
-  type CwSliderCaptchaDialogTexts,
-  type GenerateSliderCaptchaChallenge,
-  type VerifySliderCaptchaOffset,
-} from './types'
+} from '@zengchaowu/ui-shared/components/CwSliderCaptchaDialog/functions/index'
+import { sliderCaptchaDialogBase } from '@zengchaowu/ui-shared/components/CwSliderCaptchaDialog/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwSliderCaptchaDialog/texts'
+import { CW_SLIDER_CAPTCHA_WIDTH_REM } from '@zengchaowu/ui-shared/components/CwSliderCaptchaDialog/types'
+import { type CwSliderCaptchaDialogTexts, type GenerateSliderCaptchaChallenge, type VerifySliderCaptchaOffset } from '@zengchaowu/ui-shared/components/CwSliderCaptchaDialog/types'
 
 export interface CwSliderCaptchaDialogContentProps {
   texts?: Partial<CwSliderCaptchaDialogTexts>

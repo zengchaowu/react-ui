@@ -1,5 +1,6 @@
 import type { HTMLAttributes } from 'react'
 import type * as Monaco from 'monaco-editor'
+import type { TpMonacoEditorTexts } from '@zengchaowu/ui-shared/components/TpMonacoEditor/types'
 
 export interface TpMonacoEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'onFocus' | 'onBlur' | 'autoSave'> {
@@ -109,15 +110,6 @@ export interface TpMonacoEditorProps
   onLanguageChange?: (language: string, editor: Monaco.editor.IStandaloneCodeEditor) => void
   /** 主题变化（对应 Vue `themeChange` 事件） */
   onThemeChange?: (theme: string, editor: Monaco.editor.IStandaloneCodeEditor) => void
-}
-
-export interface TpMonacoEditorStyles {
-  root: string
-  disabled: string
-}
-
-export interface TpMonacoEditorTexts {
-  // TpMonacoEditor组件本身没有硬编码文本
 }
 
 /** `defineExpose` 等价物：通过 ref 调用 */

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwInput } from './CwInput'
-import type { CwInputAppearance, CwInputProps } from './types'
+import type { CwInputProps } from './types'
+import type { CwInputAppearance } from '@zengchaowu/ui-shared/components/CwInput/types'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 

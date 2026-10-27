@@ -5,7 +5,7 @@ import {
   IM_RICH_USER_ID_ATTR,
 } from '@zengchaowu/shared/functions/im/imRichContentHtml'
 import CwAvatar from '../CwAvatar/CwAvatar'
-import { CW_CHAT_AVATAR_PROPS } from '../CwAvatar/cwAvatarPresets'
+import { CW_CHAT_AVATAR_PROPS } from '@zengchaowu/ui-shared/components/CwAvatar/cwAvatarPresets'
 import CwTooltip from '../CwTooltip/CwTooltip'
 import {
   READONLY_BUBBLE_MENTION_CHIP_INNER_CLASS,

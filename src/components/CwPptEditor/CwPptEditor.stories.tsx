@@ -2,8 +2,9 @@ import { useRef, useState } from 'react'
 import type { ChangeEvent } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwPptEditor } from './CwPptEditor'
-import type { CwPptEditorHandle, CwPptEditorProps, CwPptSource } from './types'
-import { defaultTexts } from './texts'
+import type { CwPptEditorHandle, CwPptEditorProps } from './types'
+import type { CwPptSource } from '@zengchaowu/ui-shared/components/CwPptEditor/types'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwPptEditor/texts'
 
 const meta: Meta<typeof CwPptEditor> = {
   title: '1. Components/Display/CwPptEditor',

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwLoginMethodSwitch } from './CwLoginMethodSwitch'
-import type { LoginMethodType } from './types'
+import type { LoginMethodType } from '@zengchaowu/ui-shared/components/CwLoginMethodSwitch/types'
 
 const meta: Meta<typeof CwLoginMethodSwitch> = {
   title: '1. Components/Form/CwLoginMethodSwitch',

@@ -13,13 +13,13 @@ import { searchKeymap } from '@codemirror/search'
 import { keymap } from '@codemirror/view'
 import { indentWithTab } from '@codemirror/commands'
 import type { TpCodeEditorHandle, TpCodeEditorProps, TpCodeEditorSelection } from './types'
-import { codeEditorBase } from './styles'
+import { codeEditorBase } from '@zengchaowu/ui-shared/components/TpCodeEditor/styles'
 import {
   createTpCodeEditorBaseExtensions,
   tpCodeEditorGutterTheme,
-} from './createTpCodeEditorBaseExtensions'
+} from '@zengchaowu/ui-shared/components/TpCodeEditor/createTpCodeEditorBaseExtensions'
 import { createTpCodeEditorHighlightTheme } from './tpCodeEditorHighlightTheme'
-import { loadCodeMirrorLanguage } from './loadCodeMirrorLanguage'
+import { loadCodeMirrorLanguage } from '@zengchaowu/ui-shared/components/TpCodeEditor/loadCodeMirrorLanguage'
 import { resolveDesignCssSize } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
 import { readAppTheme, useAppThemeTick } from '../../utils/appThemeDom'
 import '../../assets/asset/asset.css'

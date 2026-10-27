@@ -5,17 +5,13 @@ import type { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 import Image from '@tiptap/extension-image'
-import { Video } from './extensions/Video'
+import { Video } from '@zengchaowu/ui-shared/components/TpTipTapEditor/extensions/Video'
 import { CwIcon } from '../CwIcon'
-import type {
-  TpTipTapEditorProps,
-  TpTipTapEditorEmits,
-  TpTipTapEditorTexts,
-  TpTipTapEditorHandle,
-} from './types'
-import { tipTapEditorBase } from './styles'
-import { defaultTexts } from './texts'
-import { defaultToolbarIcons } from './defaultToolbarIcons'
+import type { TpTipTapEditorProps, TpTipTapEditorEmits, TpTipTapEditorHandle } from './types'
+import type { TpTipTapEditorTexts } from '@zengchaowu/ui-shared/components/TpTipTapEditor/types'
+import { tipTapEditorBase } from '@zengchaowu/ui-shared/components/TpTipTapEditor/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/TpTipTapEditor/texts'
+import { defaultToolbarIcons } from '@zengchaowu/ui-shared/components/TpTipTapEditor/defaultToolbarIcons'
 import { resolveDesignCssSize } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
 
 export interface TpTipTapEditorComponentProps

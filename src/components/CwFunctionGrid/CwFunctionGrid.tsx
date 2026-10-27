@@ -5,13 +5,10 @@ import type {
   KeyboardEvent as ReactKeyboardEvent,
   MouseEvent as ReactMouseEvent,
 } from 'react'
-import type {
-  CwFunctionGridItem,
-  CwFunctionGridProps,
-  CwFunctionGridTexts,
-} from './types'
-import { functionGridBase } from './styles'
-import { defaultTexts } from './texts'
+import type { CwFunctionGridItem, CwFunctionGridProps } from './types'
+import type { CwFunctionGridTexts } from '@zengchaowu/ui-shared/components/CwFunctionGrid/types'
+import { functionGridBase } from '@zengchaowu/ui-shared/components/CwFunctionGrid/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwFunctionGrid/texts'
 import CwGrid from '../CwGrid/CwGrid'
 import CwIcon from '../CwIcon/CwIcon'
 import { shouldShowFocus, useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'

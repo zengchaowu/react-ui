@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CwParticleBackground } from './CwParticleBackground'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
-import { defaultParticleColorList } from '../../assets/tokens/tokenSolidColors'
+import { defaultParticleColorList } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 
 const meta: Meta<typeof CwParticleBackground> = {
   title: '1. Components/Visualization/CwParticleBackground',

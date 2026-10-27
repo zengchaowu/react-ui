@@ -1,10 +1,8 @@
 import type { CSSProperties, HTMLAttributes } from 'react'
-import type {
-  CwButtonGroupButton,
-  CwButtonGroupProps,
-} from './types'
+import type { CwButtonGroupProps } from './types'
+import type { CwButtonGroupButton } from '@zengchaowu/ui-shared/components/CwButtonGroup/types'
 import type { CwButtonType, CwButtonVariant } from '../CwButton/types'
-import { buttonGroupBase } from './styles'
+import { buttonGroupBase } from '@zengchaowu/ui-shared/components/CwButtonGroup/styles'
 import CwButton from '../CwButton/CwButton'
 
 export interface CwButtonGroupComponentProps

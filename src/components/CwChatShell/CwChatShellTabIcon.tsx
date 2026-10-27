@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import CwIcon from '../CwIcon/CwIcon'
 import CwAvatar from '../CwAvatar/CwAvatar'
-import { CW_CHAT_AVATAR_PROPS } from '../CwAvatar/cwAvatarPresets'
+import { CW_CHAT_AVATAR_PROPS } from '@zengchaowu/ui-shared/components/CwAvatar/cwAvatarPresets'
 import type { CwChatShellTabIconProps } from './types'
-import { CW_CHAT_SHELL_MINE_AVATAR_SIZE } from './constants'
+import { CW_CHAT_SHELL_MINE_AVATAR_SIZE } from '@zengchaowu/ui-shared/components/CwChatShell/constants'
 
 export function CwChatShellTabIcon({
   item,

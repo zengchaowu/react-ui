@@ -4,7 +4,8 @@ import type {
   JSXElementConstructor,
   ReactNode,
 } from 'react'
-import type { CwColProps } from '../CwRow/types'
+import type { CwColProps } from '@zengchaowu/ui-shared/components/CwRow/types'
+import type { CwFormItemAppearance, CwFormItemTexts } from '@zengchaowu/ui-shared/components/CwFormItem/types'
 
 /** 动态组件类型（兼容函数组件、forwardRef 组件与类组件） */
 export type CwFormItemComponent =
@@ -26,8 +27,6 @@ export interface ValidationResult {
   /** 错误信息 */
   message?: string
 }
-
-export type CwFormItemAppearance = 'default' | 'filter-row' | 'dialog-row' | 'field-compact'
 
 // 基础表单项配置
 export type CwFormItemBaseConfig = {
@@ -98,45 +97,6 @@ export interface CwFormItemProps {
   /** Vue `#error` 插槽 */
   errorSlot?: CwFormItemSlotContent<CwFormItemErrorSlotScope>
   className?: string
-}
-
-/** @internal */
-export interface CwFormItemStyles {
-  // 根容器：基础样式 + 状态样式
-  root: string
-  rootNormal: string
-  rootReadonly: string
-  rootDisabled: string
-
-  // 标签：基础样式 + 状态样式
-  label: string
-  labelNormal: string
-  labelReadonly: string
-  labelDisabled: string
-  // 标签文本节点（用于挂载伪元素），基础样式
-  labelText: string
-  /** 标签旁 tip 图标按钮 */
-  labelTipTrigger: string
-
-  // 必填标记
-  labelRequired: string
-  labelRequiredNormal: string
-  labelRequiredReadonly: string
-  labelRequiredDisabled: string
-
-  // 内容容器：基础样式
-  content: string
-
-  // 组件容器：基础样式
-  component: string
-
-  // 错误信息：基础样式
-  error: string
-}
-
-export interface CwFormItemTexts {
-  /** 必填提示文案 */
-  requiredMessage?: string
 }
 
 // 组件事件（React 回调等价物）

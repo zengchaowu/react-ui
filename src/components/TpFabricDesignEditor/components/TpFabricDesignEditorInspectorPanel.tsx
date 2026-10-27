@@ -1,16 +1,16 @@
 import type { ReactNode } from 'react'
 import CwDesignInspector from '../../CwDesignInspector/CwDesignInspector'
-import type { FabricAlignMode } from '../selection/fabricEditorAlign.pure'
+import type { FabricAlignMode } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/selection/fabricEditorAlign.pure'
 import type {
   FabricFillPaintLayer,
   FabricStrokeAlign,
   FabricStrokePaintLayer,
-} from '../appearance/fabricEditorPaintLayers.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/appearance/fabricEditorPaintLayers.pure'
 import type {
   FabricContainerLayoutAlign,
   FabricContainerLayoutJustify,
   FabricContainerLayoutMode,
-} from '../tools/fabricContainerTool.pure'
+} from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/fabricContainerTool.pure'
 import TpFabricDesignEditorAppearanceSection from './TpFabricDesignEditorAppearanceSection'
 import TpFabricDesignEditorLayoutSection from './TpFabricDesignEditorLayoutSection'
 import TpFabricDesignEditorTransformSection from './TpFabricDesignEditorTransformSection'

@@ -1,7 +1,4 @@
-export interface CwResizeFrameSize {
-  width: number
-  height: number
-}
+import type { CwResizeFrameTexts, CwResizeFrameSize } from '@zengchaowu/ui-shared/components/CwResizeFrame/types'
 
 export interface CwResizeFrameProps {
   width: number
@@ -28,28 +25,4 @@ export interface CwResizeFrameEmits {
   'update:width': (value: number) => void
   'update:height': (value: number) => void
   resize: (payload: CwResizeFrameSize) => void
-}
-
-export interface CwResizeFrameStyles {
-  root: string
-  sizeLabel: string
-  chrome: string
-  chromeResizeWidth: string
-  chromeResizeHeight: string
-  frameBody: string
-  content: string
-  handleBase: string
-  handleEast: string
-  handleSouth: string
-  handleSouthEast: string
-  gripVertical: string
-  gripHorizontal: string
-  gripCorner: string
-}
-
-export interface CwResizeFrameTexts {
-  sizeLabel: string
-  handleEastAriaLabel: string
-  handleSouthAriaLabel: string
-  handleSouthEastAriaLabel: string
 }

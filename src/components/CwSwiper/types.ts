@@ -1,16 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
-import type { CwInfiniteLoopScrollStyles } from '../CwInfiniteLoopScroll/types'
-
-export interface CwSwiperItem {
-  /** 唯一标识 */
-  key: string | number
-  /** 数据项 */
-  data: unknown
-  /** 图片 URL */
-  image?: string
-  /** 宽度（像素），如果不提供则使用默认宽度 */
-  width?: number
-}
+import type { CwInfiniteLoopScrollStyles } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/types'
+import type { CwSwiperTexts } from '@zengchaowu/ui-shared/components/CwSwiper/types'
+import type { CwSwiperItem } from '@zengchaowu/ui-shared/components/CwSwiper/types'
 
 /** 默认作用域插槽参数 */
 export interface CwSwiperItemSlotProps {
@@ -49,22 +40,7 @@ export interface CwSwiperProps {
   onVisibleChange?: (startIndex: number, endIndex: number) => void
 }
 
-export interface CwSwiperStyles {
-  root: string
-  rootNormal: string
-  rootDisabled: string
-  rootReadonly: string
-  item: string
-  itemImage: string
-  itemContent: string
-}
-
-export interface CwSwiperTexts {
-  empty: string
-}
-
 export type { CwInfiniteLoopScrollStyles }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwSwiperEmits {

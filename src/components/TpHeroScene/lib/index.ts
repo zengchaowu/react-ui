@@ -7,13 +7,13 @@
 export { initScene, cleanupScene, type SceneState, type InitSceneConfig } from './scene'
 
 // 动画更新
-export { updateAllAnimations, type AnimationState } from './animation'
+export { updateAllAnimations, type AnimationState } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/animation'
 
 // 资源加载
-export { loadThreeJS, type LoadersResult } from './loaders'
+export { loadThreeJS, type LoadersResult } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/loaders'
 
 // 噪声生成
-export { perlinNoise, multiOctaveNoise, fade, lerp, grad } from './noise'
+export { perlinNoise, multiOctaveNoise, fade, lerp, grad } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/noise'
 
 // 纹理生成
 export {
@@ -29,13 +29,13 @@ export {
   createLeavesTexture,
   createLeavesNormalMap,
   createGrassTexture
-} from './textures'
+} from '@zengchaowu/ui-shared/components/TpHeroScene/lib/textures'
 
 // 地形
-export { createTerrain, type TerrainConfig } from './terrain'
+export { createTerrain, type TerrainConfig } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/terrain'
 
 // 水体
-export { createWater, updateWaterAnimation, type WaterConfig } from './water'
+export { createWater, updateWaterAnimation, type WaterConfig } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/water'
 
 // 天空和星空
 export {
@@ -48,7 +48,7 @@ export {
   updateCloudsAnimation,
   type SkySystem,
   type TrisolarisSystem
-} from './sky'
+} from '@zengchaowu/ui-shared/components/TpHeroScene/lib/sky'
 
 // 三体系统
 export {
@@ -57,20 +57,20 @@ export {
   getTrisolarisStatus,
   getTrisolarisEra,
   type Sun
-} from './trisolaris'
+} from '@zengchaowu/ui-shared/components/TpHeroScene/lib/trisolaris'
 
 // 光照
-export { setupLights, type LightsSystem } from './lights'
+export { setupLights, type LightsSystem } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/lights'
 
 // 粒子系统
 export {
   createFireflies,
   updateFirefliesAnimation,
   type ParticleVelocity
-} from './particles'
+} from '@zengchaowu/ui-shared/components/TpHeroScene/lib/particles'
 
 // 环境对象
-export { addEnvironmentObjects } from './environment'
+export { addEnvironmentObjects } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/environment'
 
 // 篝火
 export {
@@ -78,7 +78,7 @@ export {
   updateCampfireAnimation,
   type CampfireSystem,
   type ParticleVelocityWithLife
-} from './fire'
+} from '@zengchaowu/ui-shared/components/TpHeroScene/lib/fire'
 
 // 舞者
 export {
@@ -86,14 +86,14 @@ export {
   createDancerModel,
   updateDancersAnimation,
   type DancerConfig
-} from './dancers'
+} from '@zengchaowu/ui-shared/components/TpHeroScene/lib/dancers'
 
 // 后期处理
 export {
   setupPostProcessing,
   type PostProcessingConfig
-} from './postprocessing'
+} from '@zengchaowu/ui-shared/components/TpHeroScene/lib/postprocessing'
 
 // 工具函数
-export { formatTime, getTimeOfDay, getTimeEmoji } from './utils'
+export { formatTime, getTimeOfDay, getTimeEmoji } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/utils'
 

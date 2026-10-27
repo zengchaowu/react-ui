@@ -8,13 +8,7 @@ export {
   openCloudDiskNodeAttachmentPreview,
   type OpenCloudDiskNodeAttachmentPreviewOptions,
 } from './openCloudDiskNodeAttachmentPreview'
-export { defaultCwAttachmentPreviewTexts } from './texts'
+export { defaultCwAttachmentPreviewTexts } from '@zengchaowu/ui-shared/components/CwAttachmentPreview/texts'
 export type { CwAttachmentPreviewComponentProps } from './CwAttachmentPreview'
-export type {
-  CwAttachmentPreviewEmits,
-  CwAttachmentPreviewProps,
-  CwAttachmentPreviewStyles,
-  CwAttachmentPreviewTexts,
-  ShowCwAttachmentPreviewOptions,
-  ShowCwAttachmentPreviewReturn,
-} from './types'
+export type { CwAttachmentPreviewProps, ShowCwAttachmentPreviewOptions } from './types'
+export type { CwAttachmentPreviewEmits, CwAttachmentPreviewStyles, CwAttachmentPreviewTexts, ShowCwAttachmentPreviewReturn } from '@zengchaowu/ui-shared/components/CwAttachmentPreview/types'

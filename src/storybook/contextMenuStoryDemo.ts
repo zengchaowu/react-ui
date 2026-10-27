@@ -1,9 +1,6 @@
 import { showCwContextMenu } from '../components/CwContextMenu/showCwContextMenu'
-import type {
-  CwContextMenuAppearance,
-  CwContextMenuItem,
-  CwContextMenuLayout,
-} from '../components/CwContextMenu/types'
+import type { CwContextMenuItem, CwContextMenuLayout } from '../components/CwContextMenu/types'
+import type { CwContextMenuAppearance } from '@zengchaowu/ui-shared/components/CwContextMenu/types'
 import type { Placement } from '@zengchaowu/shared/types/placement'
 
 export interface OpenContextMenuStoryOptions {

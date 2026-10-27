@@ -12,7 +12,7 @@ import {
   findBreakpointConfig,
   getCurrentBreakpoint,
   type Breakpoint,
-} from './utils/breakpoint'
+} from '@zengchaowu/ui-shared/components/CwRow/utils/breakpoint'
 import { useCwGridMeasuredLayout } from './keys'
 import { buildWrapRowControlsColProps } from './functions/wrapRowControls'
 import {

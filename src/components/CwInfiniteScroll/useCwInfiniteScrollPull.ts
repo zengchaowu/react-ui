@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, type MutableRefObject 
 import {
   CW_INFINITE_SCROLL_DEFAULT_CLIENT_HEIGHT_TRIGGER,
   CW_INFINITE_SCROLL_DEFAULT_SCROLL_TOP_TRIGGER,
-} from './constants'
+} from '@zengchaowu/ui-shared/components/CwInfiniteScroll/constants'
 
 export interface UseCwInfiniteScrollPullOptions {
   getContainer: () => HTMLElement | null

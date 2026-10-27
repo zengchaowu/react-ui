@@ -1,5 +1,4 @@
-import type { CwInputAppearance, CwInputTexts } from '../CwInput/types'
-import type { CwIconEmbed } from '../CwIcon/types'
+import type { CwInputAppearance, CwInputTexts } from '@zengchaowu/ui-shared/components/CwInput/types'
 
 export interface CwAutoCompleteOption {
   /** 写入输入框 / 参与过滤的文案；value 与此项一致 */
@@ -54,36 +53,6 @@ export interface CwAutoCompleteProps {
   onFocus?: (event: FocusEvent) => void
   /** 失焦事件 */
   onBlur?: (event: FocusEvent) => void
-}
-
-export interface CwAutoCompleteStyles {
-  root: string
-  rootNormal?: string
-  rootDisabled: string
-  rootReadonly: string
-  dropdown: string
-  list: string
-  /** CwDiv content 等宽留白（壳无 padding，滚动条贴边） */
-  listContent?: string
-  option: string
-  optionNormal: string
-  optionSelected: string
-  optionDisabled: string
-  /** 未选中项 hover（6%）；勿与 optionSelected 同挂 */
-  optionHover: string
-  optionFocus: string
-  /** 键盘焦点落在已选中项上 */
-  optionFocusOnSelected: string
-  suffix: string
-  clearButton: string
-  /** CwIcon 样式配置（清除图标） */
-  clearIconStyles?: CwIconEmbed
-  /** 尺寸样式：小（选项列表） */
-  sizeSmall?: string
-  /** 尺寸样式：中（选项列表） */
-  sizeMedium?: string
-  /** 尺寸样式：大（选项列表） */
-  sizeLarge?: string
 }
 
 export interface CwAutoCompleteTexts {

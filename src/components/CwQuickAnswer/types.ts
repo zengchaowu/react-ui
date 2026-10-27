@@ -1,3 +1,4 @@
+import type { CwQuickAnswerTexts } from '@zengchaowu/ui-shared/components/CwQuickAnswer/types'
 export interface CwQuickAnswerProps {
   /**
    * 标签文本（如"肺结节"）
@@ -31,25 +32,6 @@ export interface CwQuickAnswerProps {
    * 选择事件（Vue `change`，仅在选中时触发）
    */
   onSelect?: (value: 'yes' | 'no') => void
-}
-
-export interface CwQuickAnswerStyles {
-  root: string
-  label: string
-  content: string
-  description: string
-  conditions: string
-  conditionItem: string
-  buttons: string
-  buttonYes: string
-  buttonNo: string
-  buttonYesActive: string
-  buttonNoActive: string
-}
-
-export interface CwQuickAnswerTexts {
-  yes: string
-  no: string
 }
 
 export interface CwQuickAnswerEmits {

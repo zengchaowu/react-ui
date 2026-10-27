@@ -1,13 +1,10 @@
 import { useMemo } from 'react'
 import type { HTMLAttributes } from 'react'
 import CwIcon from '../CwIcon/CwIcon'
-import type {
-  CwLoginMethodSwitchOption,
-  CwLoginMethodSwitchProps,
-  LoginMethodType,
-} from './types'
-import { loginMethodSwitchBase } from './styles'
-import { defaultCwLoginMethodSwitchTexts } from './texts'
+import type { CwLoginMethodSwitchProps } from './types'
+import type { CwLoginMethodSwitchOption, LoginMethodType } from '@zengchaowu/ui-shared/components/CwLoginMethodSwitch/types'
+import { loginMethodSwitchBase } from '@zengchaowu/ui-shared/components/CwLoginMethodSwitch/styles'
+import { defaultCwLoginMethodSwitchTexts } from '@zengchaowu/ui-shared/components/CwLoginMethodSwitch/texts'
 
 export function CwLoginMethodSwitch({
   value = 'qrcode',

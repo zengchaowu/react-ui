@@ -1,6 +1,6 @@
 import type { CSSProperties, HTMLAttributes } from 'react'
 import type { CwFlexProps } from './types'
-import { flexBase } from './styles'
+import { flexBase } from '@zengchaowu/ui-shared/components/CwFlex/styles'
 
 export function CwFlex({
   direction = 'column',

@@ -1,5 +1,5 @@
 import CwAvatar from '../../CwAvatar/CwAvatar'
-import { CW_CHAT_AVATAR_PROPS } from '../../CwAvatar/cwAvatarPresets'
+import { CW_CHAT_AVATAR_PROPS } from '@zengchaowu/ui-shared/components/CwAvatar/cwAvatarPresets'
 
 export interface CwImMentionChipTooltipContentProps {
   label: string

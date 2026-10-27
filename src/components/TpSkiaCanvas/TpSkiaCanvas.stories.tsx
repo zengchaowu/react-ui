@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { tokenSolidColors } from '../../assets/tokens/tokenSolidColors'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 import { TpSkiaCanvas } from './TpSkiaCanvas'
 
 const meta: Meta<typeof TpSkiaCanvas> = {

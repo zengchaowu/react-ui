@@ -6,6 +6,7 @@ import type {
   EdgeChange,
   NodeTypes,
 } from '@xyflow/react'
+import type { TpVueFlowTexts } from '@zengchaowu/ui-shared/components/TpVueFlow/types'
 
 export type {
   Node as TpVueFlowNode,
@@ -43,13 +44,4 @@ export interface TpVueFlowProps {
   onEdgesChange?: (changes: EdgeChange[]) => void
   /** 连接事件（对应 Vue `connect`） */
   onConnect?: (connection: Connection) => void
-}
-
-export interface TpVueFlowStyles {
-  root: string
-  rootDisabled: string
-}
-
-export interface TpVueFlowTexts {
-  // TpVueFlow组件本身没有硬编码文本
 }

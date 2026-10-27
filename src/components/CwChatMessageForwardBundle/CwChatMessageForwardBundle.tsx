@@ -8,16 +8,16 @@ import {
 } from '../../utils/emojioneEmoji'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import CwViewportImg from '../CwViewportImg/CwViewportImg'
-import { chatCardBubbleWrapperMaxWidthStyle } from '../CwChatMessageCell/chatMessageBubbleLayout'
+import { chatCardBubbleWrapperMaxWidthStyle } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
 import {
   chatForwardBundleCardBodyClasses,
   chatOwnForwardBundleCardBodyClasses,
 } from '../CwChatMessageCell/chatMessageBubbleSurface'
-import { forwardBundleBase } from './styles'
+import { forwardBundleBase } from '@zengchaowu/ui-shared/components/CwChatMessageForwardBundle/styles'
 import {
   buildCwChatMessageForwardBundleTitle,
   defaultCwChatMessageForwardBundleTexts,
-} from './texts'
+} from '@zengchaowu/ui-shared/components/CwChatMessageForwardBundle/texts'
 import type { CwChatMessageForwardBundleProps } from './types'
 
 const PREVIEW_LINE_MAX = 4

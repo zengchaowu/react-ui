@@ -1,12 +1,9 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-import type {
-  CwCellAppearance,
-  CwCellProps,
-  CwCellStyles,
-  CwCellTexts,
-} from './types'
-import { cellAppearanceStyles, cellBase } from './styles'
-import { defaultCellTexts } from './texts'
+import type { CwCellProps } from './types'
+import type { CwCellTexts } from '@zengchaowu/ui-shared/components/CwCell/types'
+import type { CwCellAppearance, CwCellStyles } from '@zengchaowu/ui-shared/components/CwCell/types'
+import { cellAppearanceStyles, cellBase } from '@zengchaowu/ui-shared/components/CwCell/styles'
+import { defaultCellTexts } from '@zengchaowu/ui-shared/components/CwCell/texts'
 import { useCwCellGroupContext } from './CwCellGroup'
 import { CwIcon } from '../CwIcon'
 import { CwDivider } from '../CwDivider'

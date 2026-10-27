@@ -1,4 +1,5 @@
-import type { CwDataTableColumn, CwDataTableSortState } from '../types'
+import type { CwDataTableColumn } from '../types'
+import type { CwDataTableSortState } from '@zengchaowu/ui-shared/components/CwDataTable/types'
 
 /**
  * 计算表头 props

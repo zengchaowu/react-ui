@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { CwDataTableColumn, CwDataTableRow, CwDataTableTreeConfig } from '../types'
+import type { CwDataTableColumn, CwDataTableRow } from '../types'
+import type { CwDataTableTreeConfig } from '@zengchaowu/ui-shared/components/CwDataTable/types'
 import {
   collectExpandableTreeKeys,
   flattenTreeRows,

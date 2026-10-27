@@ -6,16 +6,10 @@ import {
   type HTMLAttributes,
   type ReactNode,
 } from 'react'
-import type {
-  CwFormItemErrorSlotScope,
-  CwFormItemLabelSlotScope,
-  CwFormItemProps,
-  CwFormItemSlotContent,
-  CwFormItemTexts,
-  ValidationResult,
-} from './types'
-import { resolveFormItemStyles } from './formItemAppearance'
-import { defaultTexts } from './texts'
+import type { CwFormItemErrorSlotScope, CwFormItemLabelSlotScope, CwFormItemProps, CwFormItemSlotContent, ValidationResult } from './types'
+import type { CwFormItemTexts } from '@zengchaowu/ui-shared/components/CwFormItem/types'
+import { resolveFormItemStyles } from '@zengchaowu/ui-shared/components/CwFormItem/formItemAppearance'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwFormItem/texts'
 import CwTooltip from '../CwTooltip/CwTooltip'
 import { CwIcon } from '../CwIcon'
 

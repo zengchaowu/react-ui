@@ -18,7 +18,7 @@ import {
   type CalendarCell,
 } from '@zengchaowu/shared/functions/date/win11Calendar'
 import type { CwCalendarEmits, CwCalendarProps } from './types'
-import { calendarBase } from './styles'
+import { calendarBase } from '@zengchaowu/ui-shared/components/CwCalendar/styles'
 import './cw-calendar.css'
 
 export interface CwCalendarComponentProps

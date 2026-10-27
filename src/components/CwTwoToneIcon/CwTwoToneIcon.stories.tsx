@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { tokenSolidColors } from '../../assets/tokens/tokenSolidColors'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 import { CwTwoToneIcon } from './CwTwoToneIcon'
 
 /** Story 内使用的两个示例 symbol id（见下方 defs），与 iconfont 无关，仅用于演示双色叠合 */

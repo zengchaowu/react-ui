@@ -6,8 +6,8 @@ import {
   resolveCwIconFontSizeStyle,
 } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
 import type { CwIconProps } from './types'
-import { iconBase } from './styles'
-import { defaultTexts } from './texts'
+import { iconBase } from '@zengchaowu/ui-shared/components/CwIcon/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwIcon/texts'
 import { ensureAssetSymbolSprite } from './ensureAssetSymbolSprite'
 
 export function CwIcon({

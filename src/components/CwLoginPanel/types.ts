@@ -1,9 +1,8 @@
 import type { HTMLAttributes } from 'react'
-import type { CwLoginMethod, CwLoginFormTexts } from '../CwLoginForm/types'
+import type { CwLoginMethod, CwLoginFormTexts } from '@zengchaowu/ui-shared/components/CwLoginForm/types'
+import type { CwLoginPanelView } from '@zengchaowu/ui-shared/components/CwLoginPanel/types'
 
 export type { CwLoginMethod, CwLoginFormTexts }
-
-export type CwLoginPanelView = 'form' | 'qrcode'
 
 /** PC 登录面板文案（表单 + 扫码），均由调用方传入 */
 export interface CwLoginPanelTexts extends CwLoginFormTexts {
@@ -21,15 +20,6 @@ export interface CwLoginPanelTexts extends CwLoginFormTexts {
   switchQrcodeLabel: string
   switchPhoneLabel: string
   qrcodeImageAlt: string
-}
-
-export interface CwLoginPanelStyles {
-  root: string
-  card: string
-  switchSlot: string
-  qrcodeBox: string
-  qrcodeImage: string
-  wechatFooter: string
 }
 
 export interface CwLoginPanelProps
@@ -56,7 +46,6 @@ export interface CwLoginPanelProps
   onAppleLoginClick?: () => void
   className?: string
 }
-
 
 /** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
 export interface CwLoginPanelEmits {

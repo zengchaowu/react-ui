@@ -1,4 +1,5 @@
 export { default as CwChatMessageList } from './CwChatMessageList'
 export * from './types'
-export { defaultCwChatMessageListTexts } from './texts'
-export { CW_CHAT_MESSAGE_LIST_SCROLL_TOP_TRIGGER } from './constants'
+export type * from '@zengchaowu/ui-shared/components/CwChatMessageList/types'
+export { defaultCwChatMessageListTexts } from '@zengchaowu/ui-shared/components/CwChatMessageList/texts'
+export { CW_CHAT_MESSAGE_LIST_SCROLL_TOP_TRIGGER } from '@zengchaowu/ui-shared/components/CwChatMessageList/constants'

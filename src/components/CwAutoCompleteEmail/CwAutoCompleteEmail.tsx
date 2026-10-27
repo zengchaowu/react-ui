@@ -16,7 +16,7 @@ import {
   cwAutoCompleteEmailRootClass,
   cwAutoCompleteEmailRootDisabledClass,
   cwAutoCompleteEmailRootReadonlyClass,
-} from './styles'
+} from '@zengchaowu/ui-shared/components/CwAutoCompleteEmail/styles'
 import { defaultTexts } from './texts'
 
 export interface CwAutoCompleteEmailComponentProps

@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from 'react'
+import type { CwIconTexts } from '@zengchaowu/ui-shared/components/CwIcon/types'
 
 export interface CwIconProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, 'children' | 'size'> {
@@ -21,15 +22,4 @@ export interface CwIconProps
   size?: number
   /** 自定义文本 */
   texts?: Partial<CwIconTexts>
-}
-
-export interface CwIconTexts {
-  /** 图标描述（用于无障碍访问） */
-  label?: string
-}
-
-/** 其它组件内嵌 Icon 时的精简配置 */
-export interface CwIconEmbed {
-  size?: number
-  class?: string
 }

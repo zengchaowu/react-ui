@@ -1,6 +1,5 @@
 import type { HTMLAttributes, ReactNode, UIEventHandler } from 'react'
-
-export type CwPullRefreshScrollPullPhase = 'idle' | 'pulling' | 'ready' | 'refreshing'
+import type { CwPullRefreshScrollTexts, CwPullRefreshScrollExpose } from '@zengchaowu/ui-shared/components/CwPullRefreshScroll/types'
 
 export interface CwPullRefreshScrollProps {
   /** 禁用下拉刷新 */
@@ -41,48 +40,5 @@ export interface CwPullRefreshScrollProps {
 
 export type CwPullRefreshScrollComponentProps = CwPullRefreshScrollProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'className' | 'onScroll'>
-
-/** @internal */
-export interface CwPullRefreshScrollStyles {
-  root: string
-  scroll: string
-  pullIndicator: string
-  pullIndicatorHidden: string
-  pullIndicatorActive: string
-  pullText: string
-  content: string
-  footer: string
-  footerHidden: string
-  footerText: string
-}
-
-export interface CwPullRefreshScrollTexts {
-  pull: string
-  release: string
-  refreshing: string
-  loadingMore: string
-  noMore: string
-}
-
-export interface CwPullRefreshScrollEmits {
-  refresh: []
-  'update:refreshing': [value: boolean]
-  loadMore: []
-  'update:loadingMore': [value: boolean]
-  scroll: [event: Event]
-}
-
-export interface CwPullRefreshScrollExpose {
-  /** CwDiv 根节点 */
-  el: HTMLElement | undefined
-  /** 滚动视口 */
-  viewport: HTMLElement | undefined
-  scrollTo: (options: ScrollToOptions) => void
-  scrollBy: (options: ScrollToOptions) => void
-  scrollToBottom: () => void
-  /** 非受控模式下手动结束刷新/加载 */
-  finishRefresh: () => void
-  finishLoadMore: () => void
-}
 
 export type CwPullRefreshScrollHandle = CwPullRefreshScrollExpose

@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-import type { CwFloatingWindowShellProps } from './types'
+import type { CwFloatingWindowShellProps } from '@zengchaowu/ui-shared/components/CwFloatingWindowShell/types'
 import './cw-floating-window-shell.css'
 
 export interface CwFloatingWindowShellComponentProps

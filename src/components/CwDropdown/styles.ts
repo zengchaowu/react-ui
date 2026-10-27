@@ -1,4 +1,5 @@
-import type { CwDropdownAppearance, CwDropdownStyles } from './types'
+import type { CwDropdownStyles } from './types'
+import type { CwDropdownAppearance } from '@zengchaowu/ui-shared/components/CwDropdown/types'
 import { FOCUS_VISIBLE_INTERACTIVE_CLASS } from '@zengchaowu/ui-shared/functions/ui/focusStyles'
 
 /**

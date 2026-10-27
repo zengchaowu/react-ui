@@ -1,8 +1,9 @@
 export { default as CwChatMessageComposer } from './CwChatMessageComposer'
 export * from './types'
-export { defaultCwChatMessageComposerTexts } from './texts'
+export type * from '@zengchaowu/ui-shared/components/CwChatMessageComposer/types'
+export { defaultCwChatMessageComposerTexts } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/texts'
 export { mobileComposerInputSurfaceClass } from './styles'
-export { absolutePathFromTreeDrop } from './functions/absolutePathFromTreeDrop'
+export { absolutePathFromTreeDrop } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/functions/absolutePathFromTreeDrop'
 export {
   buildWorkspacePathMentionItems,
   collectWorkspaceFolderPrefixes,

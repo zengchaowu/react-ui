@@ -1,6 +1,7 @@
 import type { CwDroppedAttachmentKind } from './functions/attachmentKind'
 import type { CwImagePreviewProps } from '../CwImagePreview/types'
 import type { CwIndicatorProps } from '../CwIndicator/types'
+import type { CwAttachmentGalleryItem, CwAttachmentGalleryTexts } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/types'
 
 export type CwAttachmentGalleryIndicatorConfig = Pick<
   CwIndicatorProps,
@@ -28,20 +29,9 @@ export type CwAttachmentGalleryImagePreviewConfig = Pick<
   | 'enablePinchRotate'
 >
 
-export interface CwAttachmentGalleryItem {
-  key: string | number
-  kind: CwDroppedAttachmentKind
-  /** 本地附件；URL 图片/视频可省略 */
-  file?: File
-  /** 远程或静态资源 URL（图片/视频） */
-  src?: string
-  /** 已知体积（字节）；远程/占位 File 无内容时优先于 file.size */
-  sizeBytes?: number
-  /** 来源列表中的原始下标，供预览右键菜单等业务使用 */
-  sourceIndex?: number
-  /** 图片/视频本地预览 URL（外部传入时画廊不再 createObjectURL） */
-  objectUrl?: string
-}
+export type {
+  CwAttachmentGalleryItem,
+} from '@zengchaowu/ui-shared/components/CwAttachmentGallery/types'
 
 export interface CwAttachmentGalleryProps {
   items: CwAttachmentGalleryItem[]
@@ -60,35 +50,6 @@ export interface CwAttachmentGalleryProps {
   onIndexChange?: (index: number) => void
   /** 当前页缩放比例变化（对应 Vue `@active-scale-change`，仅 active 图片项） */
   onActiveScaleChange?: (scale: number) => void
-}
-
-export interface CwAttachmentGalleryStyles {
-  root: string
-  rootNormal?: string
-  rootDisabled?: string
-  rootReadonly?: string
-  container: string
-  scrollContainer: string
-  slideItem: string
-  videoSlide: string
-  videoInactive: string
-  fileInfoPanel: string
-  fileInfoIconWrap: string
-  fileInfoMeta: string
-  indicator?: string
-}
-
-export interface CwAttachmentGalleryTexts {
-  imageAlt: string
-  empty: string
-  unnamedFile: string
-  videoPlaceholder: string
-}
-
-export interface CwAttachmentGalleryEmits {
-  'index-change': [index: number]
-  /** 当前页缩放比例变化（仅 active 图片项） */
-  'active-scale-change': [scale: number]
 }
 
 /** 滚动项 data：画廊内部附加 originalIndex */

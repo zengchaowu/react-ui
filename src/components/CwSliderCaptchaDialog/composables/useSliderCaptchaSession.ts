@@ -3,12 +3,8 @@ import type { Dispatch, MutableRefObject, SetStateAction } from 'react'
 import {
   preloadSliderCaptchaImage,
   toSliderCaptchaDataUrl,
-} from '../functions'
-import type {
-  CwSliderCaptchaChallenge,
-  GenerateSliderCaptchaChallenge,
-  VerifySliderCaptchaOffset,
-} from '../types'
+} from '@zengchaowu/ui-shared/components/CwSliderCaptchaDialog/functions/index'
+import type { CwSliderCaptchaChallenge, GenerateSliderCaptchaChallenge, VerifySliderCaptchaOffset } from '@zengchaowu/ui-shared/components/CwSliderCaptchaDialog/types'
 
 export interface UseSliderCaptchaSessionOptions {
   onGenerate: GenerateSliderCaptchaChallenge

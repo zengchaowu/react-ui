@@ -1,15 +1,10 @@
-import type {
-  GlobalScope,
-  KeyPathDepsMap,
-  KeyPathFuncStrMap,
-  ScopeDisplayRowMap,
-} from '../types'
-import topoSort from './topoSort'
-import getKeyPathFromScopeAndKey from './getKeyPathFromScopeAndKey'
-import runFormulaKeyPath from './runFormulaKeyPath'
-import updateFormulaDeps from './updateFormulaDeps'
-import updateFormulaFunctionStr from './updateFormulaFunctionStr'
-import { recordTopo } from './editTiming'
+import type { GlobalScope, KeyPathDepsMap, KeyPathFuncStrMap, ScopeDisplayRowMap } from '@zengchaowu/ui-shared/components/CwCalculateGrid/types'
+import topoSort from '@zengchaowu/ui-shared/components/CwCalculateGrid/functions/topoSort'
+import getKeyPathFromScopeAndKey from '@zengchaowu/ui-shared/components/CwCalculateGrid/functions/getKeyPathFromScopeAndKey'
+import runFormulaKeyPath from '@zengchaowu/ui-shared/components/CwCalculateGrid/functions/runFormulaKeyPath'
+import updateFormulaDeps from '@zengchaowu/ui-shared/components/CwCalculateGrid/functions/updateFormulaDeps'
+import updateFormulaFunctionStr from '@zengchaowu/ui-shared/components/CwCalculateGrid/functions/updateFormulaFunctionStr'
+import { recordTopo } from '@zengchaowu/ui-shared/components/CwCalculateGrid/functions/editTiming'
 /**
  * 处理依赖链调用，按依赖顺序执行相关公式。
  * @param scope 作用域

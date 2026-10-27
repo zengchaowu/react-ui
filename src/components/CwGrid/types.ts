@@ -1,79 +1,10 @@
 import type { ReactNode } from 'react'
-import type { CwColProps } from './layout'
+import type { CwGridProps as CwGridPropsBase } from '@zengchaowu/ui-shared/components/CwGrid/types'
 
-/** Grid 布局列配置 */
-export interface CwGridColumnConfig {
-  /** 列数（1-24） */
-  columns: number
-  /** 列配置对象，用于自定义每列的 span、offset 等 */
-  colConfig?: Partial<CwColProps>
-}
+export * from '@zengchaowu/ui-shared/components/CwGrid/types'
 
-/**
- * Grid 响应式断点配置（相对栅格容器实测宽度，CwGrid 内用 ResizeObserver 解析，非视口）
- */
-export interface CwGridBreakpointConfig {
-  /** xs：容器宽 ≥0（默认） */
-  xs?: CwGridColumnConfig
-  /** sm：容器宽 ≥400px（见 CW_GRID_CONTAINER_MIN_WIDTH） */
-  sm?: CwGridColumnConfig
-  /** md：容器宽 ≥480px */
-  md?: CwGridColumnConfig
-  /** lg：容器宽 ≥1024px */
-  lg?: CwGridColumnConfig
-  /** xl：容器宽 ≥1280px */
-  xl?: CwGridColumnConfig
-}
-
-export interface CwGridProps {
-  /** 默认列数（1-24），用于所有断点，除非在 breakpoints 中覆盖 */
-  columns?: number
-  /** 响应式断点配置，优先级高于 columns */
-  breakpoints?: CwGridBreakpointConfig
-  /** 栅格间隔（gutter） */
-  gutter?: number
-  /** 行间距 */
-  rowGap?: number
-  /** 是否换行 */
-  wrap?: boolean
-  /** 垂直对齐方式 */
-  align?: 'top' | 'middle' | 'bottom' | 'stretch'
-  /** 水平排列方式 */
-  justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly'
-  /**
-   * 与 CwTabsStrip `tabFlushStart` 类似：每行首列贴容器左缘（实测布局为列内左对齐；padding 布局下去掉首列左 gutter）
-   */
-  flushStart?: boolean
-  /**
-   * 与 CwTabsStrip `tabFlushEnd` 类似：每行末列或最后一项贴容器右缘
-   */
-  flushEnd?: boolean
-  /**
-   * 是否 ResizeObserver 实测容器宽以计算列宽（默认 true）。
-   * - true：有 gutter 时用 calc 防横向溢出；`breakpoints` 依赖实测宽度
-   * - false：跳过测量，走经典 padding gutter（适合虚拟列表行内高频复用）
-   * 若传入 `breakpoints`，仍会强制测量（否则无法解析断点）。
-   */
-  measure?: boolean
-  /**
-   * 自定义文本对象
-   */
-  texts?: Partial<CwGridTexts>
+export interface CwGridProps extends CwGridPropsBase {
   /** 默认插槽内容，每个子节点自动成为一列 */
   children?: ReactNode
   className?: string
-}
-
-export interface CwGridStyles {
-  root: string
-}
-
-export interface CwGridTexts {
-  // CwGrid 组件本身没有硬编码文本
-}
-
-
-/** Vue 事件签名兼容导出（React 侧以同名 onXxx 回调使用） */
-export interface CwGridEmits {
-  // CwGrid 组件本身不需要事件
 }

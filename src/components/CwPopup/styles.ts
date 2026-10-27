@@ -1,5 +1,5 @@
 import { CW_OVERLAY_MODAL_Z_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayZIndex'
-import type { CwPopupAppearance, CwPopupStyleSlots } from './types'
+import type { CwPopupAppearance, CwPopupStyleSlots } from '@zengchaowu/ui-shared/components/CwPopup/types'
 
 /**
  * 毛玻璃浮层视觉（圆角 / 描边 / 阴影 / 模糊）。

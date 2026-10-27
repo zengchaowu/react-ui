@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { defaultCwChatShellConnDotStyles } from './styles'
+import { defaultCwChatShellConnDotStyles } from '@zengchaowu/ui-shared/components/CwChatShell/styles'
 import type { CwChatShellConnDotProps } from './types'
 
 export function CwChatShellConnDot({

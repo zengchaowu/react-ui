@@ -6,7 +6,7 @@ import {
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
 } from 'react'
-import type { CwCenterRulerPickerValue } from './types'
+import type { CwCenterRulerPickerValue } from '@zengchaowu/ui-shared/components/CwCenterRulerPicker/types'
 import {
   clampOptionIndex,
   clampTrackOffset,
@@ -17,7 +17,7 @@ import {
   resolveTickWidthPx,
   resolveTrackOffsetBounds,
   trackOffsetToIndex,
-} from './functions'
+} from '@zengchaowu/ui-shared/components/CwCenterRulerPicker/functions'
 
 export interface UseCwCenterRulerPickerOptions {
   modelValue: CwCenterRulerPickerValue

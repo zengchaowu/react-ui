@@ -1,10 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react'
-import type {
-  CwAttachmentGalleryImagePreviewConfig,
-  CwAttachmentGalleryItem,
-  CwAttachmentGalleryTexts,
-} from './types'
-import { attachmentGalleryBase } from './styles'
+import type { CwAttachmentGalleryImagePreviewConfig, CwAttachmentGalleryItem } from './types'
+import type { CwAttachmentGalleryTexts } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/types'
+import { attachmentGalleryBase } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/styles'
 import CwFileIcon from '../CwFileIcon/CwFileIcon'
 import CwImagePreview from '../CwImagePreview/CwImagePreview'
 import CwTruncateText from '../CwTruncateText/CwTruncateText'
@@ -13,7 +10,7 @@ import type { CwVideoPlayerExpose } from '../CwVideoPlayer/types'
 import {
   resolveAttachmentDisplayName,
   resolveAttachmentSizeLabel,
-} from './functions/resolveAttachmentSlideMeta'
+} from '@zengchaowu/ui-shared/components/CwAttachmentGallery/functions/resolveAttachmentSlideMeta'
 
 export interface CwAttachmentGallerySlideProps {
   item: CwAttachmentGalleryItem

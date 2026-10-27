@@ -12,9 +12,10 @@ import {
 import CwIcon from '../CwIcon/CwIcon'
 import CwFileIcon from '../CwFileIcon/CwFileIcon'
 import CwLoading from '../CwLoading/CwLoading'
-import type { CwFileUploadHandle, CwFileUploadProps, UploadFile } from './types'
-import { appearanceStyles, fileUploadBase } from './styles'
-import { defaultTexts } from './texts'
+import type { CwFileUploadHandle, CwFileUploadProps } from './types'
+import type { UploadFile } from '@zengchaowu/ui-shared/components/CwFileUpload/types'
+import { appearanceStyles, fileUploadBase } from '@zengchaowu/ui-shared/components/CwFileUpload/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwFileUpload/texts'
 
 const fileUploadOverlaySpinnerClass =
   'border-solid rounded-full border-t-[var(--text-color-anti)] border-r-[var(--text-color-anti)] border-b-transparent border-l-transparent animate-spin'

@@ -1,8 +1,4 @@
-export interface CwTwoToneIconStyles {
-  root: string
-}
-
-export interface CwTwoToneIconTexts {}
+import type { CwTwoToneIconTexts } from '@zengchaowu/ui-shared/components/CwTwoToneIcon/types'
 
 export interface CwTwoToneIconProps {
   /**

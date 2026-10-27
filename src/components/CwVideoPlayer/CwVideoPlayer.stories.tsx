@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwVideoPlayer } from './CwVideoPlayer'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwVideoPlayer/texts'
 // 本地示例视频（原 COS 外链已 404，改为随包内置）
 import demoVideoSrc from '../../storybook/assets/cw-video-player-demo.mp4'
 import demoVideoPoster from '../../storybook/assets/cw-video-player-demo-poster.png'

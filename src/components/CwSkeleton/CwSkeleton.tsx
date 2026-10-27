@@ -1,7 +1,8 @@
 import { useMemo, type CSSProperties } from 'react'
-import type { CwSkeletonProps, CwSkeletonStyles } from './types'
-import { skeletonBase } from './styles'
-import { defaultTexts } from './texts'
+import type { CwSkeletonProps } from './types'
+import type { CwSkeletonStyles } from '@zengchaowu/ui-shared/components/CwSkeleton/types'
+import { skeletonBase } from '@zengchaowu/ui-shared/components/CwSkeleton/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwSkeleton/texts'
 
 export function CwSkeleton({
   shape = 'rect',

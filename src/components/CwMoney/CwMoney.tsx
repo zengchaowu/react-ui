@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import type { HTMLAttributes } from 'react'
-import type { CwMoneyProps } from './types'
-import { resolveMoneyStyles } from './styles'
-import { formatAmount } from './functions'
+import type { CwMoneyProps } from '@zengchaowu/ui-shared/components/CwMoney/types'
+import { resolveMoneyStyles } from '@zengchaowu/ui-shared/components/CwMoney/styles'
+import { formatAmount } from '@zengchaowu/ui-shared/components/CwMoney/functions/index'
 
 export interface CwMoneyComponentProps
   extends CwMoneyProps,

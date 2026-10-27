@@ -2,9 +2,10 @@ import type { ReactNode } from 'react'
 import { CW_OVERLAY_HEADER_TITLE_IN_BAR_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayHeaderTitle'
 import { showDynamicDialog } from '../CwDynamicDialog'
 import CwButton from '../CwButton/CwButton'
-import type { CwConfirmDialogOptions, CwConfirmDialogResult } from './types'
-import { confirmDialogBase } from './styles'
-import { defaultTexts } from './texts'
+import type { CwConfirmDialogOptions } from './types'
+import type { CwConfirmDialogResult } from '@zengchaowu/ui-shared/components/CwConfirmDialog/types'
+import { confirmDialogBase } from '@zengchaowu/ui-shared/components/CwConfirmDialog/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwConfirmDialog/texts'
 
 /**
  * 显示确认对话框

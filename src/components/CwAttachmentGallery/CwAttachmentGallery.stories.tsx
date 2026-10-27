@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwAttachmentGallery } from './CwAttachmentGallery'
-import { defaultCwAttachmentGalleryTexts } from './texts'
+import { defaultCwAttachmentGalleryTexts } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/texts'
 import type {
   CwAttachmentGalleryItem,
   CwAttachmentGalleryProps,

@@ -4,19 +4,14 @@ import type {
   HTMLAttributes,
   ReactNode,
 } from 'react'
-import type {
-  ConfigCardComponent,
-  ConfigCardValue,
-  CwConfigCardItem,
-  CwConfigCardProps,
-  CwConfigCardTexts,
-} from './types'
-import type { CwRichTextNode } from '../CwRichText/types'
+import type { ConfigCardComponent, ConfigCardValue, CwConfigCardItem, CwConfigCardProps } from './types'
+import type { CwConfigCardTexts } from '@zengchaowu/ui-shared/components/CwConfigCard/types'
+import type { CwRichTextNode } from '@zengchaowu/ui-shared/components/CwRichText/types'
 import CwCard from '../CwCard/CwCard'
 import CwIcon from '../CwIcon/CwIcon'
 import { CwRichText } from '../CwRichText/CwRichText'
-import { configCardBase } from './styles'
-import { defaultCwConfigCardTexts } from './texts'
+import { configCardBase } from '@zengchaowu/ui-shared/components/CwConfigCard/styles'
+import { defaultCwConfigCardTexts } from '@zengchaowu/ui-shared/components/CwConfigCard/texts'
 
 export interface CwConfigCardComponentProps
   extends CwConfigCardProps,

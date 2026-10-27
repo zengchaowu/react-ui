@@ -1,4 +1,5 @@
 import type { MouseEvent } from 'react'
+import type { CwSingleDivTexts } from '@zengchaowu/ui-shared/components/CwSingleDiv/types'
 
 export interface CwSingleDivStyle {
   // 基础样式
@@ -69,14 +70,6 @@ export interface CwSingleDivDSL {
   /** 额外的子元素（通过多层嵌套实现更复杂的图案） */
   children?: CwSingleDivDSL[]
 }
-
-export interface CwSingleDivStyles {
-  /** 外层包裹，默认 `contents` 避免影响 DSL 布局 */
-  root: string
-}
-
-/** 预留文案扩展 */
-export interface CwSingleDivTexts {}
 
 export interface CwSingleDivProps {
   /** DSL 配置对象 */

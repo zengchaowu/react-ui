@@ -14,11 +14,11 @@ import {
   defaultHighlightStyle,
   syntaxHighlighting,
 } from '@codemirror/language'
-import { loadCodeMirrorLanguage } from '../TpCodeEditor/loadCodeMirrorLanguage'
+import { loadCodeMirrorLanguage } from '@zengchaowu/ui-shared/components/TpCodeEditor/loadCodeMirrorLanguage'
 import { resolveDesignCssSize } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
 import { readAppTheme, useAppThemeTick } from '../../utils/appThemeDom'
 import type { TpCodeMergeViewHandle, TpCodeMergeViewProps } from './types'
-import { codeMergeViewBase } from './styles'
+import { codeMergeViewBase } from '@zengchaowu/ui-shared/components/TpCodeMergeView/styles'
 import './tp-code-merge-view.css'
 
 export const TpCodeMergeView = forwardRef<TpCodeMergeViewHandle, TpCodeMergeViewProps>(

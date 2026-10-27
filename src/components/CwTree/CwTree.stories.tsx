@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CwTree } from './CwTree'
 import CwIcon from '../CwIcon/CwIcon'
 import type { CwTreeNode } from './types'
-import { tokenSolidColors } from '../../assets/tokens/tokenSolidColors'
+import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 

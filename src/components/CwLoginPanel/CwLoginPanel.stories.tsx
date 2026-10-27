@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwLoginPanel } from './CwLoginPanel'
-import type {
-  CwLoginMethod,
-  CwLoginPanelTexts,
-  CwLoginPanelView,
-} from './types'
+import type { CwLoginMethod, CwLoginPanelTexts } from './types'
+import type { CwLoginPanelView } from '@zengchaowu/ui-shared/components/CwLoginPanel/types'
 
 const demoTexts: CwLoginPanelTexts = {
   welcome: '欢迎使用 Boardmix',

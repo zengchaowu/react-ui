@@ -3,9 +3,9 @@ import type { HTMLAttributes, ReactNode } from 'react'
 import { CW_AI_ASSISTANT_BUBBLE_APPEARANCE } from '../CwChatMessageCell/chatMessageBubbleSurface'
 import CwChatMessageComposer from '../CwChatMessageComposer/CwChatMessageComposer'
 import CwChatMessageList from '../CwChatMessageList/CwChatMessageList'
-import { cwWorkbenchAiPanelStyles } from './styles'
-import { defaultCwWorkbenchAiPanelTexts } from './texts'
-import type { CwWorkbenchAiPanelProps } from './types'
+import { cwWorkbenchAiPanelStyles } from '@zengchaowu/ui-shared/components/CwWorkbenchAiPanel/styles'
+import { defaultCwWorkbenchAiPanelTexts } from '@zengchaowu/ui-shared/components/CwWorkbenchAiPanel/texts'
+import type { CwWorkbenchAiPanelProps } from '@zengchaowu/ui-shared/components/CwWorkbenchAiPanel/types'
 
 export interface CwWorkbenchAiPanelComponentProps
   extends CwWorkbenchAiPanelProps,

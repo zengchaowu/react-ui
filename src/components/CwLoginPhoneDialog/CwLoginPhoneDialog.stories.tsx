@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwButton } from '../CwButton'
-import { defaultTexts } from './texts'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwLoginPhoneDialog/texts'
 import { showLoginPhoneDialog } from './showLoginPhoneDialog'
 
 interface LoginPhoneDialogStoryArgs {

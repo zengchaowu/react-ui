@@ -6,9 +6,9 @@ import CwChatToolbarExpressionPanel from './CwChatToolbarExpressionPanel'
 import type {
   CwChatStickerPackItem,
   CwChatStickerPickPayload,
-} from './types/stickerPack'
-import type { CwChatToolbarTexts } from './types'
-import { defaultCwChatToolbarTexts } from './texts'
+} from '@zengchaowu/ui-shared/components/CwChatToolbar/types/stickerPack'
+import type { CwChatToolbarTexts } from '@zengchaowu/ui-shared/components/CwChatToolbar/types'
+import { defaultCwChatToolbarTexts } from '@zengchaowu/ui-shared/components/CwChatToolbar/texts'
 import { emojiPickerPopupPlugins } from './emojiPopupConfig'
 
 export interface CwChatToolbarEmojiPopupProps {

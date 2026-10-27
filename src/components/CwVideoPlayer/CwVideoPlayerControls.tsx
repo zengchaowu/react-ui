@@ -1,7 +1,7 @@
 import type { MouseEvent as ReactMouseEvent } from 'react'
 import { CwIcon } from '../CwIcon/CwIcon'
 import type { CwVideoPlayerControlsProps } from './types'
-import { videoPlayerBase } from './styles'
+import { videoPlayerBase } from '@zengchaowu/ui-shared/components/CwVideoPlayer/styles'
 
 export function CwVideoPlayerControls({
   visible,

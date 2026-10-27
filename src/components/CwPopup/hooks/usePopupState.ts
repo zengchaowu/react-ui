@@ -1,7 +1,7 @@
 import { useCallback, useReducer, useRef } from 'react'
-import type { PopupState } from '../types/state'
+import type { PopupState } from '@zengchaowu/ui-shared/components/CwPopup/types/state'
 import type { Placement } from '@zengchaowu/shared/types/placement'
-import type { PopupTrigger } from '../types/state'
+import type { PopupTrigger } from '@zengchaowu/ui-shared/components/CwPopup/types/state'
 
 /**
  * 弹出层状态管理 Hook

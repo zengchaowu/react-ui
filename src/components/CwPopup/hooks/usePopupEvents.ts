@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useRef } from 'react'
 import type { RefObject } from 'react'
-import type { PopupState, PopupTrigger } from '../types/state'
+import type { PopupState, PopupTrigger } from '@zengchaowu/ui-shared/components/CwPopup/types/state'
 import type { VirtualElement } from '../types'
 import { usePopupTimers } from './usePopupTimers'
 import { useHoverEvents } from './useHoverEvents'
-import { createCoarseHoverTouchTrigger } from './useCoarseHoverTouchTrigger'
+import { createCoarseHoverTouchTrigger } from '@zengchaowu/ui-shared/components/CwPopup/hooks/useCoarseHoverTouchTrigger'
 import { createFinePointerHoverMediaWatch } from './useFinePointerHoverMediaWatch'
 import { isRealElement } from '../utils/getElement'
 import {
   finePointerHoverMatches,
   isHoverCoarseTouchMode,
   isHoverFinePointerMode,
-} from '../utils/finePointerHoverMedia'
+} from '@zengchaowu/ui-shared/components/CwPopup/utils/finePointerHoverMedia'
 
 export interface UsePopupEventsOptions {
   state: PopupState

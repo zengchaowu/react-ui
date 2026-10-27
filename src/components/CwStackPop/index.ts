@@ -5,11 +5,5 @@ export {
   CwStackPopContext,
   useCwStackPopContext,
 } from './context'
-export type {
-  CwStackPopApi,
-  CwStackPopEmits,
-  CwStackPopHandle,
-  CwStackPopProps,
-  CwStackPopStepConfig,
-  CwStackPopTexts,
-} from './types'
+export type { CwStackPopApi, CwStackPopEmits, CwStackPopHandle, CwStackPopProps, CwStackPopStepConfig } from './types'
+export type { CwStackPopTexts } from '@zengchaowu/ui-shared/components/CwStackPop/types'

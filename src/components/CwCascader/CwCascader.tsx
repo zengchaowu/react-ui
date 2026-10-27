@@ -15,12 +15,12 @@ import type {
   CwCascaderPanelOption,
   CwCascaderPanelValue,
 } from '../CwCascaderPanel/types'
-import { createDimensions } from '../CwPopup/plugins/dimensions'
-import { createPosition } from '../CwPopup/plugins/position'
-import { createOffset } from '../CwPopup/plugins/offset'
-import { createFlip } from '../CwPopup/plugins/flip'
-import { createPreventOverflow } from '../CwPopup/plugins/prevent-overflow'
-import { createAdaptiveHeight } from '../CwPopup/plugins/adaptive-height'
+import { createDimensions } from '@zengchaowu/ui-shared/components/CwPopup/plugins/dimensions'
+import { createPosition } from '@zengchaowu/ui-shared/components/CwPopup/plugins/position'
+import { createOffset } from '@zengchaowu/ui-shared/components/CwPopup/plugins/offset'
+import { createFlip } from '@zengchaowu/ui-shared/components/CwPopup/plugins/flip'
+import { createPreventOverflow } from '@zengchaowu/ui-shared/components/CwPopup/plugins/prevent-overflow'
+import { createAdaptiveHeight } from '@zengchaowu/ui-shared/components/CwPopup/plugins/adaptive-height'
 import type {
   CwCascaderOption,
   CwCascaderProps,
@@ -33,7 +33,7 @@ import {
 import { defaultTexts } from './texts'
 import { useCascaderKeyboard } from './hooks/useCascaderKeyboard'
 import { cwClearIconSize } from '@zengchaowu/ui-shared/functions/ui/cwClearIconSize'
-import { scrollElementIntoCwDivViewport } from '../CwDiv/scrollElementIntoCwDivViewport'
+import { scrollElementIntoCwDivViewport } from '@zengchaowu/ui-shared/components/CwDiv/scrollElementIntoCwDivViewport'
 
 export interface CwCascaderComponentProps
   extends CwCascaderProps,

@@ -4,14 +4,10 @@ import type {
   MouseEvent as ReactMouseEvent,
 } from 'react'
 import { createPortal } from 'react-dom'
-import type {
-  CwChromeTabItem,
-  CwChromeTabProps,
-  CwChromeTabStyleSlots,
-  CwChromeTabTexts,
-} from './types'
-import { appearanceStyles, chromeTabBase } from './styles'
-import { defaultTexts } from './texts'
+import type { CwChromeTabProps } from './types'
+import type { CwChromeTabItem, CwChromeTabStyleSlots, CwChromeTabTexts } from '@zengchaowu/ui-shared/components/CwChromeTab/types'
+import { appearanceStyles, chromeTabBase } from '@zengchaowu/ui-shared/components/CwChromeTab/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwChromeTab/texts'
 import {
   buildChromeTabContextMenuItems,
   resolveChromeTabCloseTargetIds,

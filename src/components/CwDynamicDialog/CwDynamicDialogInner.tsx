@@ -18,8 +18,8 @@ import type {
   CwDynamicDialogInnerHandle,
   CwDynamicDialogInnerProps,
 } from './types'
-import { dialogBase } from './styles'
-import { defaultTexts } from './texts'
+import { dialogBase } from '@zengchaowu/ui-shared/components/CwDynamicDialog/styles'
+import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDynamicDialog/texts'
 import {
   isEventTargetInsideNodes,
   scheduleOverlayEnterVisible,
@@ -27,7 +27,7 @@ import {
 import {
   acquireOverlayBodyScrollLock,
   releaseOverlayBodyScrollLock,
-} from '../../constants/overlayBodyScrollLock'
+} from '@zengchaowu/ui-shared/constants/overlayBodyScrollLock'
 import { useCwDialogVariant } from './composables/useCwDialogVariant'
 import { useCwOverlayLayer } from './composables/useCwOverlayLayer'
 import { useDraggableDialog } from './composables/useDraggableDialog'

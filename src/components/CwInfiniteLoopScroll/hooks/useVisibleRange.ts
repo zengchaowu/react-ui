@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import type { CwInfiniteLoopScrollItem } from '../types'
+import type { CwInfiniteLoopScrollItem } from '@zengchaowu/ui-shared/components/CwInfiniteLoopScroll/types'
 import { findVisibleRange } from '../functions'
 
 export type LoopItem = {

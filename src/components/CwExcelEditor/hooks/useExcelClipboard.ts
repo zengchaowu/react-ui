@@ -1,7 +1,7 @@
 import type { MutableRefObject, RefObject } from 'react'
-import { applyClipboardGrid } from '../functions/sheetEdits'
-import { cloneWorkbook, excelKeyboardOwner } from '../functions/workbook'
-import type { CwExcelWorkbook } from '../types'
+import { applyClipboardGrid } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/sheetEdits'
+import { cloneWorkbook, excelKeyboardOwner } from '@zengchaowu/ui-shared/components/CwExcelEditor/functions/workbook'
+import type { CwExcelWorkbook } from '@zengchaowu/ui-shared/components/CwExcelEditor/types'
 import type { CellPosition } from './useExcelGridLayout'
 
 type CommitMove = 'stay' | 'down' | 'up' | 'left' | 'right'
