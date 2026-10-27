@@ -75,7 +75,9 @@ function calculateArrowPosition(
 
     case 'bottom':
       x = Math.max(margin, Math.min(floating.width - margin, floating.width / 2 + offsetX))
-      y = -pixelOffset - 0.5
+      // 与 top 镜像：中心落在气泡顶边内侧，菱形只露出上半截三角形；
+      // 若落在顶边外侧（负数），整块菱形几乎全露在气泡外，视觉上会像一块方块。
+      y = pixelOffset + 1
       break
 
     case 'left':
@@ -84,7 +86,8 @@ function calculateArrowPosition(
       break
 
     case 'right':
-      x = -pixelOffset - 0.5
+      // 与 left 镜像：中心落在气泡左边内侧，菱形只露出右半截三角形。
+      x = pixelOffset + 1
       y = Math.max(margin, Math.min(floating.height - margin, floating.height / 2 + offsetY))
       break
   }

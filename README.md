@@ -73,3 +73,16 @@ pnpm storybook                # 端口 6007
 | 框架映射 | Vue `*Exposed` → React `*Handle`；Vue `*InjectionKey` → React `*Context`（并保留 `*Key` 兼容别名）；Vue `Emits` / `Slot` 类型原样导出以免破坏名字对齐 |
 | 强制校验 | `pnpm check:export-parity` 在 CI/发版前执行，缺失即失败 |
 | 严格模式 | `pnpm check:export-parity --strict` 额外要求 `reactOnly = 0`，仅用于审计，不作为默认门禁 |
+
+## Storybook 规范（强制）
+
+与 vue-ui 同构的 Storybook 约定，`*.stories.tsx` 必须遵守：
+
+- **每个组件必须有 stories**，`title` 统一为 `1. Components/<分组>/<组件名>`。
+- **Controls / URL `args=...` 必须实时生效**：`render` 必须接收 `args` 并 `{...args}`（或只写 `args` 交给 Storybook 自动渲染）。`render: () => <CwX />` 直接把 props 写死属于违规。
+- **带局部状态的 demo** 只透传可配置的 props 子集（`Pick<Props, ...>`）；`value` / `onChange` / `visible` 等受控 prop 留在 demo 内部，避免被 args 覆盖。
+- **多实例对比 / showcase** 可以写死，但同一文件至少保留一个 `args` 驱动、可调参的 `Default` / `Playground`。
+- **数值控件**用 `numberControlArgType` / `NumberOnlyProps`（`src/storybook/argTypes.ts`），不要在 `args` 里写字符串。
+- **用户头像**必须用 `storybookChatDefaultAvatarSrc`，禁止 unsplash / picsum / 第三方 CDN。
+
+完整说明与示例见 [src/storybook/README.md](src/storybook/README.md)。

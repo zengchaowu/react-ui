@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwCenterRulerPicker } from './CwCenterRulerPicker'
-import type { CwCenterRulerPickerValue } from './types'
+import type { CwCenterRulerPickerProps, CwCenterRulerPickerValue } from './types'
 
 const meta: Meta<typeof CwCenterRulerPicker> = {
   title: '1. Components/Form/CwCenterRulerPicker',
@@ -30,17 +30,19 @@ const meta: Meta<typeof CwCenterRulerPicker> = {
 export default meta
 type Story = StoryObj<typeof CwCenterRulerPicker>
 
-function DefaultDemo() {
+type RulerSharedProps = Pick<CwCenterRulerPickerProps, 'min' | 'max' | 'tickWidthRem'>
+type RulerDefaultProps = RulerSharedProps & Pick<CwCenterRulerPickerProps, 'step'>
+type RulerReadonlyProps = RulerSharedProps & Pick<CwCenterRulerPickerProps, 'readonly'>
+type RulerDisabledProps = RulerSharedProps & Pick<CwCenterRulerPickerProps, 'disabled'>
+
+function DefaultDemo(props: RulerDefaultProps) {
   const [value, setValue] = useState<CwCenterRulerPickerValue>(30)
   return (
     <div className="w-[min(22rem,92vw)] rounded-xl bg-[var(--bg-color-container)] p-4">
       <CwCenterRulerPicker
+        {...props}
         value={value}
         onChange={(next) => setValue(next)}
-        min={1}
-        max={99}
-        step={1}
-        tickWidthRem={1.5}
         formatValue={(v) => `${v}px`}
         texts={{ ariaLabel: '字体大小' }}
       />
@@ -58,7 +60,7 @@ export const Default: Story = {
     step: 1,
     tickWidthRem: 1.5,
   },
-  render: () => <DefaultDemo />,
+  render: (args) => <DefaultDemo {...args} />,
 }
 
 function CustomOptionsDemo() {
@@ -80,17 +82,14 @@ export const CustomOptions: Story = {
   render: () => <CustomOptionsDemo />,
 }
 
-function ReadonlyDemo() {
+function ReadonlyDemo(props: RulerReadonlyProps) {
   const [value, setValue] = useState<CwCenterRulerPickerValue>(30)
   return (
     <div className="w-[min(22rem,92vw)] rounded-xl bg-[var(--bg-color-container)] p-4">
       <CwCenterRulerPicker
+        {...props}
         value={value}
         onChange={(next) => setValue(next)}
-        readonly
-        min={1}
-        max={99}
-        tickWidthRem={1.5}
       />
     </div>
   )
@@ -98,20 +97,17 @@ function ReadonlyDemo() {
 
 export const Readonly: Story = {
   args: { readonly: true, min: 1, max: 99, tickWidthRem: 1.5 },
-  render: () => <ReadonlyDemo />,
+  render: (args) => <ReadonlyDemo {...args} />,
 }
 
-function DisabledDemo() {
+function DisabledDemo(props: RulerDisabledProps) {
   const [value, setValue] = useState<CwCenterRulerPickerValue>(30)
   return (
     <div className="w-[min(22rem,92vw)] rounded-xl bg-[var(--bg-color-container)] p-4">
       <CwCenterRulerPicker
+        {...props}
         value={value}
         onChange={(next) => setValue(next)}
-        disabled
-        min={1}
-        max={99}
-        tickWidthRem={1.5}
       />
     </div>
   )
@@ -119,5 +115,5 @@ function DisabledDemo() {
 
 export const Disabled: Story = {
   args: { disabled: true, min: 1, max: 99, tickWidthRem: 1.5 },
-  render: () => <DisabledDemo />,
+  render: (args) => <DisabledDemo {...args} />,
 }

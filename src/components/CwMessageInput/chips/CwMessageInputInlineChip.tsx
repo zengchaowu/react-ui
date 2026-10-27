@@ -33,6 +33,8 @@ export interface CwMessageInputInlineChipProps
   labelClass?: string
   /** 文件名中间省略（`CwTruncateText` `placement="middle"`） */
   labelFilenameTruncate?: boolean
+  /** 文件名截断时是否显示内置 tooltip；外层已有整颗 chip 的路径 tooltip 时传 false */
+  labelTooltip?: boolean
   /** 绑定到内层根上的额外属性（如 data-*） */
   innerAttrs?: Record<string, string | undefined>
   /** 消息气泡等只读场景：不设 contenteditable=false，便于正文划选高亮 */
@@ -54,6 +56,7 @@ export function CwMessageInputInlineChip({
   closeAriaLabel = '关闭',
   labelClass = 'cw-inline-chip-label min-w-0 shrink truncate',
   labelFilenameTruncate = false,
+  labelTooltip = true,
   innerAttrs,
   readonly = false,
   leadingSlot,
@@ -104,6 +107,7 @@ export function CwMessageInputInlineChip({
           appearance="chip"
           maxWidth={FILE_CHIP_LABEL_MAX_WIDTH}
           title={text.trim() || undefined}
+          showTooltip={labelTooltip}
         />
       ) : (
         <span className={labelClass} title={text.trim() || undefined}>

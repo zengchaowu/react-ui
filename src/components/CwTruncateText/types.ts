@@ -35,6 +35,11 @@ export interface CwTruncateTextProps
   filenameHeadChars?: number
   /** 截断时悬停提示文案；默认与 `text` 相同。未截断时不显示 tooltip */
   title?: string
+  /**
+   * 是否启用内置截断 tooltip（默认 true）。
+   * 外层已提供整颗 chip / 整行的提示（如文件引用 chip 的完整路径 tooltip）时传 false，避免同时出现两层提示。
+   */
+  showTooltip?: boolean
   /** 根节点标签 */
   tag?: 'span' | 'div'
   /** 场景外观；布局用原生 class */

@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 import { CwCountDownButton } from './CwCountDownButton'
+import type { CwCountDownButtonProps } from './types'
 
 const meta: Meta<typeof CwCountDownButton> = {
   title: '1. Components/Action/CwCountDownButton',
@@ -65,7 +66,9 @@ const meta: Meta<typeof CwCountDownButton> = {
 export default meta
 type Story = StoryObj<typeof CwCountDownButton>
 
-function DefaultDemo() {
+type CountDownBasicProps = Pick<CwCountDownButtonProps, 'duration' | 'interval'>
+
+function DefaultDemo(props: CountDownBasicProps) {
   const [active, setActive] = useState(false)
   const handleBeforeStart = async () => {
     await new Promise((resolve) => setTimeout(resolve, 800))
@@ -74,10 +77,9 @@ function DefaultDemo() {
   return (
     <div className="flex w-64 flex-col gap-4">
       <CwCountDownButton
+        {...props}
         value={active}
         onChange={setActive}
-        duration={30}
-        interval={1}
         beforeStart={handleBeforeStart}
       />
     </div>
@@ -89,10 +91,10 @@ export const Default: Story = {
     duration: 30,
     interval: 1,
   },
-  render: () => <DefaultDemo />,
+  render: (args) => <DefaultDemo {...args} />,
 }
 
-function RetryOnFailureDemo() {
+function RetryOnFailureDemo(props: CountDownBasicProps) {
   const [active, setActive] = useState(false)
   const [failureCount, setFailureCount] = useState(0)
   const handleBeforeStart = async () => {
@@ -107,10 +109,9 @@ function RetryOnFailureDemo() {
   return (
     <div className="flex flex-col items-center gap-4">
       <CwCountDownButton
+        {...props}
         value={active}
         onChange={setActive}
-        duration={15}
-        interval={1}
         beforeStart={handleBeforeStart}
       />
       <div className="text-sm text-[var(--text-color-secondary)]">
@@ -125,10 +126,10 @@ export const RetryOnFailure: Story = {
     duration: 15,
     interval: 1,
   },
-  render: () => <RetryOnFailureDemo />,
+  render: (args) => <RetryOnFailureDemo {...args} />,
 }
 
-function WithSlotsDemo() {
+function WithSlotsDemo(props: CountDownBasicProps) {
   const [active, setActive] = useState(false)
   const handleBeforeStart = async () => {
     await new Promise((resolve) => setTimeout(resolve, 500))
@@ -137,10 +138,9 @@ function WithSlotsDemo() {
   return (
     <SlotStorySection slot="default">
       <CwCountDownButton
+        {...props}
         value={active}
         onChange={setActive}
-        duration={20}
-        interval={1}
         beforeStart={handleBeforeStart}
       >
         {({ status, remaining }) => {
@@ -160,7 +160,7 @@ export const WithSlots: Story = {
     duration: 20,
     interval: 1,
   },
-  render: () => <WithSlotsDemo />,
+  render: (args) => <WithSlotsDemo {...args} />,
 }
 
 const sizes = [
@@ -169,7 +169,12 @@ const sizes = [
   { value: 'large', label: '大号' },
 ] as const
 
-function SizesDemo() {
+type SizesDemoProps = Pick<
+  CwCountDownButtonProps,
+  'type' | 'variant' | 'shape' | 'duration' | 'interval'
+>
+
+function SizesDemo(props: SizesDemoProps) {
   const [active, setActive] = useState({ small: false, medium: false, large: false })
   return (
     <div className="flex flex-col gap-6">
@@ -177,16 +182,12 @@ function SizesDemo() {
       <div className="flex flex-wrap items-center gap-4">
         {sizes.map((item) => (
           <CwCountDownButton
+            {...props}
             key={item.value}
             value={active[item.value]}
             onChange={(next) =>
               setActive((prev) => ({ ...prev, [item.value]: next }))
             }
-            type="primary"
-            variant="solid"
-            shape="rounded"
-            duration={10}
-            interval={1}
             size={item.value}
           >
             {item.label}按钮
@@ -205,6 +206,6 @@ export const Sizes: Story = {
     duration: 10,
     interval: 1,
   },
-  render: () => <SizesDemo />,
+  render: (args) => <SizesDemo {...args} />,
 }
 

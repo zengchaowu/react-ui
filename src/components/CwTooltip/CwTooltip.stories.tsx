@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwTooltip } from './CwTooltip'
+import type { CwTooltipProps } from './types'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 
@@ -87,12 +88,15 @@ export const Basic: Story = {
 
 export const WithSlots: Story = {
   parameters: withSlotsStoryParameters,
-  render: () => (
+  args: {
+    placement: 'top',
+    trigger: 'hover',
+    content: '悬停触发区域查看提示内容。',
+  },
+  render: (args) => (
     <SlotStorySection slot="trigger">
       <CwTooltip
-        placement="top"
-        trigger="hover"
-        content="悬停触发区域查看提示内容。"
+        {...args}
         triggerSlot={
           <span className="px-3 py-1 rounded-md bg-[var(--brand-color-6)] text-[var(--text-color-anti)] cursor-pointer select-none">
             悬停查看提示
@@ -103,15 +107,12 @@ export const WithSlots: Story = {
   ),
 }
 
-function ManualTooltipDemo() {
+function ManualTooltipDemo(props: CwTooltipProps) {
   const [visible, setVisible] = useState(false)
   return (
     <div className="flex flex-col items-center gap-4">
       <CwTooltip
-        trigger="manual"
-        showArrow
-        closeOnClickOutside={false}
-        content="通过 v-model 手动控制 tooltip 的显示和隐藏。"
+        {...props}
         value={visible}
         onChange={setVisible}
         triggerSlot={
@@ -148,7 +149,7 @@ export const ManualControl: Story = {
     closeOnClickOutside: false,
     content: '通过 v-model 手动控制 tooltip 的显示和隐藏。',
   },
-  render: () => <ManualTooltipDemo />,
+  render: (args) => <ManualTooltipDemo {...args} />,
 }
 
 export const AppearanceInline: Story = {

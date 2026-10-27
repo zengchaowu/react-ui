@@ -140,6 +140,8 @@ export function CwChatInlineContentClip({
             appearance="chip"
             maxWidth={FILE_CHIP_LABEL_MAX_WIDTH}
             title={fileName.trim() || undefined}
+            /** 外层已有完整路径 tooltip，避免文件名截断 tooltip 叠成两层 */
+            showTooltip={false}
           />
         </span>
       }

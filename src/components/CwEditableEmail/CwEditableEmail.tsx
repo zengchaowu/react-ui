@@ -33,7 +33,7 @@ export function CwEditableEmail({
   asyncModify,
   disabled = false,
   readonly = false,
-  placeholder: _placeholder,
+  placeholder,
   align = 'left',
   appearance = 'default',
   emailSuffixes = DEFAULT_EMAIL_SUFFIXES,
@@ -80,8 +80,10 @@ export function CwEditableEmail({
   // tabindex 计算
   const tabIndex = disabled ? undefined : 0
 
+  // 占位文案：placeholder prop 优先，其次 texts.placeholder
+  const resolvedPlaceholder = placeholder ?? texts.placeholder
   // 预览文本显示值
-  const previewText = value || texts.placeholder
+  const previewText = value || resolvedPlaceholder
   // 是否有值（用于样式判断）
   const hasValue = !!value
 
@@ -325,7 +327,7 @@ export function CwEditableEmail({
             ref={autoCompleteEmailRef}
             className="min-w-0 flex-1"
             value={editingValue}
-            placeholder={texts.placeholder}
+            placeholder={resolvedPlaceholder}
             disabled={disabled}
             readonly={readonly}
             clearable={false}

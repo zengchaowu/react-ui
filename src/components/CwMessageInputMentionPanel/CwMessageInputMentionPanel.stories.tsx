@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '../../storybook/chatDefaultAvatar'
 import { CwMessageInputMentionPanel } from './CwMessageInputMentionPanel'
+import type { CwMessageInputMentionPanelProps } from './types'
 import type { CwMessageInputMentionItem } from '../CwMessageInput/types'
 
 const sampleItems: CwMessageInputMentionItem[] = [
@@ -93,10 +94,21 @@ export const EmptyNoMatch: Story = {
     items: [],
     highlightIndex: 0,
   },
-  render: () => <EmptyMentionDemo />,
+  render: (args) => <EmptyMentionDemo {...args} />,
 }
 
-function EmptyMentionDemo() {
+type EmptyMentionDemoProps = Partial<
+  Pick<
+    CwMessageInputMentionPanelProps,
+    'items' | 'highlightIndex' | 'mentionAvatarFallbackSrc'
+  >
+>
+
+function EmptyMentionDemo({
+  items = [],
+  highlightIndex = 0,
+  mentionAvatarFallbackSrc = chatDefaultAvatar,
+}: EmptyMentionDemoProps) {
   const [open, setOpen] = useState(true)
   const virtualReference = {
     getBoundingClientRect: () => new DOMRect(180, 120, 0, 0),
@@ -106,9 +118,9 @@ function EmptyMentionDemo() {
       <CwMessageInputMentionPanel
         value={open}
         virtualReference={virtualReference}
-        items={[]}
-        mentionAvatarFallbackSrc={chatDefaultAvatar}
-        highlightIndex={0}
+        items={items}
+        mentionAvatarFallbackSrc={mentionAvatarFallbackSrc}
+        highlightIndex={highlightIndex}
         onChange={setOpen}
       />
     </div>

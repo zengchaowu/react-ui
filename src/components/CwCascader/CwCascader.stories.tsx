@@ -326,7 +326,9 @@ function ControlledCascader({
   return <CwCascader {...args} value={value} onChange={setValue} />
 }
 
-function CascaderSizesDemo() {
+type CascaderSizesDemoProps = Pick<CwCascaderProps, 'clearable'>
+
+function CascaderSizesDemo(props: CascaderSizesDemoProps) {
   const sizes = [
     { value: 'small', label: '小号' },
     { value: 'medium', label: '中号' },
@@ -345,8 +347,8 @@ function CascaderSizesDemo() {
           <div key={item.value}>
             <div className="mb-2 text-xs text-[var(--text-color-secondary)]">{item.label}</div>
             <CwCascader
+              {...props}
               options={options}
-              clearable
               size={item.value}
               value={values[item.value]}
               onChange={(next) => setters[item.value](next)}
@@ -430,6 +432,6 @@ export const Sizes: Story = {
   args: {
     clearable: true,
   },
-  render: () => <CascaderSizesDemo />,
+  render: (args) => <CascaderSizesDemo {...args} />,
 }
 

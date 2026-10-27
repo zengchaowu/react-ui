@@ -44,6 +44,8 @@ export function FileRefNodeView({
       showClose
       closeAsIcon
       labelFilenameTruncate
+      /** 整颗 chip 已有路径 tooltip，避免文件名截断 tooltip 叠成两层 */
+      labelTooltip={false}
       closeAriaLabel={opts.removeAriaLabel ?? '移除引用'}
       innerAttrs={{
         'data-file-ref': id,

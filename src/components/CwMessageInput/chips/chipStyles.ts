@@ -1,6 +1,15 @@
 /** 芯片外层：与 @人 一致留少量水平间距，w-fit 避免右侧无背景空白 */
 const INLINE_CHIP_OUTER_WRAP_CLASS =
-  'inline-flex w-fit max-w-full cursor-text items-center align-middle leading-none px-0.5'
+  'inline-flex w-fit max-w-full cursor-text items-center px-0.5'
+
+/**
+ * 文字型 chip（文件 / @人）在行盒内纵向居中。
+ * `align-middle` 对齐的是父级 x-height 中线而非行盒中线，chip 与文字混排时会偏低
+ * （实测上方间隙 2.5px、下方 0.25px）；改为顶部对齐 + 上边距补足行盒与 chip 高度差的一半，
+ * `1lh` 取元素自身行高，故需 `leading-[inherit]` 继承正文行高（不能是 `leading-none`）。
+ */
+const INLINE_TEXT_CHIP_CENTER_CLASS =
+  'align-top leading-[inherit] mt-[calc((1lh_-_1.25rem)/2)]'
 
 /**
  * 编辑器内联 chip 触发包裹（搭配 `<CwTooltip appearance="inline" />` + `cursor-text`）。
@@ -11,17 +20,21 @@ export const INLINE_CHIP_EDITOR_TRIGGER_WRAP_CLASS =
 
 /**
  * React 专用：`@tiptap/react` 的 `ReactNodeViewRenderer` 会在 NodeView 外多包一层
- * `.react-renderer`（Vue 无此层）。该层默认 `display:inline` 会按基线对齐，吞掉
- * NodeViewWrapper 上的 `align-middle`，导致 chip 纵向偏移；让外层自身也 inline-flex
- * 居中，几何即可与 Vue 的单一 NodeViewWrapper 对齐。
+ * `.react-renderer`（Vue 无此层）。该层不参与居中计算，只需顶部对齐并继承正文行高，
+ * 让内层 chip 的 `margin-top: calc((1lh - chip高度)/2)` 按真实行盒高度生效。
  */
 export const INLINE_CHIP_REACT_RENDERER_CLASS =
+  'inline-flex items-center align-top leading-[inherit]'
+
+/** React 专用：图片 chip 高度可变（20~40px），沿用原 baseline 居中，不做按行高计算的偏移 */
+export const INLINE_IMAGE_CHIP_REACT_RENDERER_CLASS =
   'inline-flex items-center align-middle leading-none'
 
 /** 文件芯片外层（与编辑器 NodeViewWrapper 一致） */
 export const FILE_CHIP_WRAP_CLASS = [
   'cw-file-ref-wrap',
   INLINE_CHIP_OUTER_WRAP_CLASS,
+  INLINE_TEXT_CHIP_CENTER_CLASS,
   '[&.ProseMirror-selectednode_.cw-file-ref]:bg-[var(--rich-editor-chip-active-bg)]',
 ].join(' ')
 
@@ -29,6 +42,7 @@ export const FILE_CHIP_WRAP_CLASS = [
 export const USER_MENTION_WRAP_CLASS = [
   'cw-im-mention-wrap',
   INLINE_CHIP_OUTER_WRAP_CLASS,
+  INLINE_TEXT_CHIP_CENTER_CLASS,
   '[&.ProseMirror-selectednode_.cw-im-mention]:bg-[var(--rich-editor-chip-active-bg)]',
 ].join(' ')
 
@@ -40,7 +54,8 @@ const EMOJI_WRAP_SELECTED_CLASSES =
 export const EMOJI_WRAP_CLASS = [
   'cw-emoji-wrap',
   /** 用 flex 行内盒避免 `inline-block` 行盒在 img 下留白（与文件芯片外层思路一致） */
-  'inline-flex items-center align-middle leading-none',
+  /** 与文字型 chip 同理：行盒内纵向居中（emoji 高度 = 1.25em） */
+  'inline-flex items-center align-top leading-[inherit] mt-[calc((1lh_-_1.25em)/2)]',
   EMOJI_WRAP_SELECTED_CLASSES,
 ].join(' ')
 
@@ -86,6 +101,8 @@ export const READONLY_BUBBLE_CHIP_LAYOUT_CLASS =
 export const IMAGE_CHIP_WRAP_CLASS = [
   'cw-inline-image-wrap',
   INLINE_CHIP_OUTER_WRAP_CLASS,
+  /** 图片高度可变（20~40px），保留 baseline 居中，不套用按行高计算的偏移 */
+  'align-middle leading-none',
   /** 图片铺满内层，改 bg 不可见；选中态用半透明蒙层（无边框） */
   '[&.ProseMirror-selectednode_.cw-inline-image-clip]:after:pointer-events-none',
   '[&.ProseMirror-selectednode_.cw-inline-image-clip]:after:absolute',

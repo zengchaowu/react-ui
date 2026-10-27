@@ -21,6 +21,7 @@ export function CwTruncateText({
   maxWidth,
   filenameHeadChars = 2,
   title,
+  showTooltip = true,
   tag = 'span',
   appearance = 'default',
   texts: _texts,
@@ -97,7 +98,7 @@ export function CwTruncateText({
 
   /** 仅截断（出现 …）时才出 tooltip；`title` 只覆盖提示文案，不强制常显 */
   const tooltip = (() => {
-    if (!isAbbreviated) return undefined
+    if (!showTooltip || !isAbbreviated) return undefined
     const custom = title?.trim()
     if (custom) return custom
     return fullText || undefined

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 import { CwFileDropTarget } from './CwFileDropTarget'
+import type { CwFileDropTargetProps } from './types'
 import { defaultCwFileDropTargetTexts } from './texts'
 
 const meta: Meta<typeof CwFileDropTarget> = {
@@ -20,14 +21,16 @@ const meta: Meta<typeof CwFileDropTarget> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-function Demo() {
+type DemoProps = Pick<CwFileDropTargetProps, 'texts'>
+
+function Demo({ texts = defaultCwFileDropTargetTexts }: DemoProps) {
   const [names, setNames] = useState<string[]>([])
 
   return (
     <div className="h-72 w-[32rem]">
       <CwFileDropTarget
         className="h-full w-full overflow-hidden rounded-lg border border-dashed border-[var(--border-color)] transition-[border-color] duration-150"
-        texts={defaultCwFileDropTargetTexts}
+        texts={texts}
         onFilesDrop={(files) => setNames(files.map((file) => file.name))}
       >
         <div className="flex h-full min-h-0 flex-col items-center justify-center gap-2 px-4 text-center text-sm text-[var(--text-color-secondary)]">
@@ -44,7 +47,7 @@ function Demo() {
 }
 
 export const Default: Story = {
-  render: () => <Demo />,
+  render: (args) => <Demo {...args} />,
   args: {
     texts: defaultCwFileDropTargetTexts,
   },

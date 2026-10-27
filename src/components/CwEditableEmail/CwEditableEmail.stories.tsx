@@ -2,6 +2,7 @@ import { useState, type ComponentProps } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { storyAlert } from '../../storybook/storyAlert'
 import { CwEditableEmail } from './CwEditableEmail'
+import type { CwEditableEmailProps } from './types'
 
 const meta: Meta<typeof CwEditableEmail> = {
   title: '1. Components/Form/CwEditableEmail',
@@ -152,7 +153,9 @@ export const Disabled: Story = {
   ),
 }
 
-function EmptyDemo() {
+type EmptyDemoProps = Pick<CwEditableEmailProps, 'placeholder' | 'align'>
+
+function EmptyDemo({ placeholder = '请输入邮箱', align = 'left' }: EmptyDemoProps) {
   const [value, setValue] = useState<string | null>(null)
   const asyncModify = async () => {
     await new Promise((resolve) => setTimeout(resolve, 1000))
@@ -170,8 +173,8 @@ function EmptyDemo() {
       <CwEditableEmail
         value={value}
         asyncModify={asyncModify}
-        placeholder="请输入邮箱"
-        align="left"
+        placeholder={placeholder}
+        align={align}
         onChange={(nextValue) => setValue(nextValue)}
       />
       <div className="mt-4 text-sm text-[var(--text-color-secondary)]">
@@ -187,7 +190,7 @@ export const Empty: Story = {
     placeholder: '请输入邮箱',
     align: 'left',
   },
-  render: () => <EmptyDemo />,
+  render: (args) => <EmptyDemo {...args} />,
 }
 
 function MultipleDemo() {

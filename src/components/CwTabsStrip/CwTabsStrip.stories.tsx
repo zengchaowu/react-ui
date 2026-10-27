@@ -316,7 +316,15 @@ export const IndicatorOnTop: Story = {
   render: (args) => FixedValueDemo(args, 'overview'),
 }
 
-function SizesDemo() {
+type SizesDemoProps = Partial<
+  Pick<CwTabsStripProps, 'items' | 'orientation' | 'indicatorPlacement'>
+>
+
+function SizesDemo({
+  items = baseItems,
+  orientation,
+  indicatorPlacement,
+}: SizesDemoProps) {
   const sizes = [
     { value: 'small', label: '小号' },
     { value: 'medium', label: '中号' },
@@ -339,7 +347,9 @@ function SizesDemo() {
             </div>
             <CwTabsStrip
               size={item.value}
-              items={baseItems}
+              items={items}
+              orientation={orientation}
+              indicatorPlacement={indicatorPlacement}
               value={values[item.value]}
               onChange={(_i, v) =>
                 setValues((prev) => ({ ...prev, [item.value]: v }))
@@ -358,5 +368,5 @@ export const Sizes: Story = {
     indicatorPlacement: 'end',
     items: baseItems,
   },
-  render: () => <SizesDemo />,
+  render: (args) => <SizesDemo {...args} />,
 }
