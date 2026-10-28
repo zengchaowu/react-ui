@@ -4,18 +4,11 @@ import type {
   WechatPcQrcodeGenerateResult,
   WechatPcQrcodeLoginStatus,
 } from '@zengchaowu/shared/functions/wechat/openPlatform/resolveWechatPcQrcodeLoginSession'
-import type { CwInputTexts } from '@zengchaowu/ui-shared/components/CwInput/types'
-import type { CwButtonTexts } from '@zengchaowu/ui-shared/components/CwButton/types'
-import type { CwCountDownButtonTexts } from '@zengchaowu/ui-shared/components/CwCountDownButton/types'
-import type { CwCheckboxTexts } from '@zengchaowu/ui-shared/components/CwCheckbox/types'
 import type { CwSelectTexts, CwSelectOption } from '../CwSelect/types'
-import type { CwRichTextNode, CwRichTextTexts } from '@zengchaowu/ui-shared/components/CwRichText/types'
-import type { CwLoginDialogAgreementLink } from '@zengchaowu/ui-shared/components/CwLoginDialog/types'
+import type { CwRichTextNode } from '@zengchaowu/ui-shared/components/CwRichText/types'
+import type { CwLoginDialogAgreementLink, CwLoginDialogThirdPartyLink, CwLoginDialogCarrierOneTap, CwLoginDialogTextsCore } from '@zengchaowu/ui-shared/components/CwLoginDialog/types'
 
-export interface CwLoginDialogThirdPartyLink {
-  id: string
-  label: string
-}
+export type { CwLoginDialogThirdPartyLink, CwLoginDialogCarrierOneTap }
 
 export interface CwLoginDialogStyles {
   /** 根节点：布局用，外观由子类名承担 */
@@ -107,56 +100,8 @@ export interface CwLoginDialogStyles {
 }
 
 /** 展示文案均由调用方传入，组件内不含产品默认文案 */
-export interface CwLoginDialogTexts {
-  title: string
-  phonePlaceholder: string
-  nextStep: string
-  nextStepLoading: string
-  agreementPrefix: string
-  /** 未勾选协议时拦截登录的提示（手机号下一步 / 微信扫码） */
-  agreementRequiredError?: string
-  qrInstruction: string
-  /** 微信二维码加载中占位（可选） */
-  qrPlaceholder?: string
-  otpNavTitle: string
-  /** 返回按钮无障碍标签 */
-  backLabel: string
-  otpMainTitle: string
-  otpSentHint: string
-  sendCodeButton: string
-  countdownText: string
-  otpVerifyLoading: string
-  otpHelpLabel: string
-  switchToQrLabel: string
-  switchToPhoneLabel: string
-  sendCodeError: string
-  loginError: string
-  loginErrorGeneral: string
-  /** 窄屏顶栏标题（与系统设置等页的 CwNavBar 对齐） */
-  navTitle?: string
-  /** 本机号一键登录标题 */
-  oneTapTitle?: string
-  oneTapButton?: string
-  oneTapOther?: string
-  oneTapHint?: string
-  oneTapLoading?: string
-  inputTexts?: Partial<CwInputTexts>
+export interface CwLoginDialogTexts extends CwLoginDialogTextsCore {
   selectTexts?: Partial<CwSelectTexts>
-  primaryButtonTexts?: Partial<CwButtonTexts>
-  checkboxTexts?: Partial<CwCheckboxTexts>
-  countDownButtonTexts?: Partial<CwCountDownButtonTexts>
-  richTextTexts?: Partial<CwRichTextTexts>
-}
-
-export type CwLoginDialogCarrierOneTap = {
-  maskedPhone?: string
-  carrier?: string
-  onLogin: () => Promise<{
-    success: boolean
-    userInfo?: unknown
-    token?: string
-    error?: string
-  }>
 }
 
 /** 打开后再补齐一键登录的只读 ref（Vue 为 shallowRef；React 用 subscribe 触发重渲染） */
