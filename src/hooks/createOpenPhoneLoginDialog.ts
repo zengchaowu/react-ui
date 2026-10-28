@@ -1,4 +1,5 @@
 import type { TokenPair } from '@zengchaowu/shared/types/auth'
+import { expiresAtFromExpiresIn } from '@zengchaowu/shared/functions/auth/expiresAtFromExpiresIn'
 import { resolveWechatPcQrcodeLoginSession } from '@zengchaowu/shared/functions/wechat/openPlatform/resolveWechatPcQrcodeLoginSession'
 import { createDefaultApiErrorHandler } from '@zengchaowu/shared/functions/api/createDefaultApiErrorHandler'
 import type { CaptchaChallenge } from '@zengchaowu/shared/functions/captcha/captchaPublicApi'
@@ -109,11 +110,6 @@ function openDefaultAgreementLink(id: string) {
   const url = DEFAULT_AGREEMENT_URLS[id]
   if (!url || typeof window === 'undefined') return
   window.open(url, '_blank', 'noopener,noreferrer')
-}
-
-function expiresAtFromExpiresIn(expiresIn: number | undefined): number | null {
-  if (typeof expiresIn !== 'number' || !Number.isFinite(expiresIn) || expiresIn <= 0) return null
-  return Date.now() + expiresIn * 1000
 }
 
 type CarrierLoginTokens = {
