@@ -1,22 +1,7 @@
 import type { MouseEvent as ReactMouseEvent } from 'react'
 import ExcelGridCell from './ExcelGridCell'
 import { excelEditorBase } from '@zengchaowu/ui-shared/components/CwExcelEditor/styles'
-
-export interface ExcelMergePiece {
-  key: string
-  anchorKey: string
-  row: number
-  col: number
-  showText: boolean
-  text: string
-  align: 'left' | 'center' | 'right'
-  css?: Record<string, string>
-  borderShadow?: string
-  borderRight?: boolean
-  borderBottom?: boolean
-  edge: 'body' | 'header'
-  style: Record<string, string>
-}
+import type { ExcelMergePiece } from './types'
 
 export type ExcelMergeCommitMove = 'stay' | 'down' | 'up' | 'left' | 'right'
 

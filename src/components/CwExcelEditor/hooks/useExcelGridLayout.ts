@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import type { RefObject } from 'react'
 import type { CwDataTableColumn } from '../../CwDataTable'
-import type { ExcelMergePiece } from '../ExcelMergeOverlay'
+import type { ExcelMergePiece } from '../types'
 import {
   COL_WIDTH,
   GUTTER_WIDTH,
