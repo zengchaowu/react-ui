@@ -11,7 +11,7 @@ import type { CwInfiniteLoopScrollItem } from '@zengchaowu/ui-shared/components/
 import { droppedAttachmentNeedsObjectUrl } from './functions/attachmentKind'
 import { usePagedGalleryLayout } from './hooks/usePagedGalleryLayout'
 import { useBrowserFileObjectUrlMap } from './hooks/useBrowserFileObjectUrlMap'
-import { isImagePreviewScaledForPan } from '../CwImagePreview/functions'
+import { isImagePreviewScaledForPan } from '@zengchaowu/ui-shared/components/CwImagePreview/functions'
 
 const EMPTY_IMAGE_PREVIEW_CONFIG: NonNullable<
   CwAttachmentGalleryProps['imagePreviewConfig']

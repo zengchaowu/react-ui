@@ -1,18 +1,2 @@
-/**
- * 计算内容容器的 transform
- */
-export function calculateContentTransform(
-  scrollTop: number,
-  scrollLeft: number,
-  direction: 'vertical' | 'horizontal' | 'both'
-): string {
-  const transforms: string[] = []
-  if (direction !== 'horizontal') {
-    transforms.push(`translateY(-${scrollTop}px)`)
-  }
-  if (direction !== 'vertical') {
-    transforms.push(`translateX(-${scrollLeft}px)`)
-  }
-  return transforms.join(' ')
-}
-
+/** 已上移至 @zengchaowu/ui-shared，此处仅转出以保持原引用路径。 */
+export { calculateContentTransform } from '@zengchaowu/ui-shared/components/CwVirtualScroll/functions/calculateContentTransform'

@@ -11,17 +11,18 @@ import type {
 } from '../types'
 import {
   clampScaleByProps,
+  computeAnchorZoomOffset,
+  GESTURE_CLICK_SUPPRESS_MS,
   getAngle,
   getDistance,
+  getWheelZoomDelta,
+  isDragThresholdExceeded,
   isImagePreviewScaledForPan,
   isTransformDeviatedFromInitial,
   normalizeRotation,
-} from '../functions'
-import type { TouchPoint } from '../functions'
+} from '@zengchaowu/ui-shared/components/CwImagePreview/functions'
+import type { TouchPoint } from '@zengchaowu/ui-shared/components/CwImagePreview/functions'
 import { useBrowserFocusVisible } from '../../../hooks/useBrowserFocusVisible'
-
-/** 双指缩放/拖拽结束后，忽略浏览器合成的 click / dblclick（否则会突然重置或跳变缩放） */
-const GESTURE_CLICK_SUPPRESS_MS = 450
 
 export function useImagePreviewInteraction(
   props: CwImagePreviewProps,
@@ -222,7 +223,7 @@ export function useImagePreviewInteraction(
     event.preventDefault()
     const dx = event.clientX - lastPointerXRef.current
     const dy = event.clientY - lastPointerYRef.current
-    if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
+    if (isDragThresholdExceeded(dx, dy)) {
       pointerDragMovedRef.current = true
     }
     lastPointerXRef.current = event.clientX
@@ -248,37 +249,27 @@ export function useImagePreviewInteraction(
     event.stopPropagation()
     event.preventDefault()
 
-    const delta = event.deltaY > 0 ? -0.1 : 0.1
+    const delta = getWheelZoomDelta(event.deltaY)
     const prevScale = transformRef.current.scale || 1
-    const unclampedNext = prevScale + delta
-    const nextScale = clampScaleByProps(unclampedNext, props)
+    const nextScale = clampScaleByProps(prevScale + delta, props)
 
     if (nextScale === prevScale) return
 
-    const target = event.currentTarget as HTMLElement | null
-    const rect = target?.getBoundingClientRect()
-    const containerCenterX = rect ? rect.left + rect.width / 2 : 0
-    const containerCenterY = rect ? rect.top + rect.height / 2 : 0
+    const rect = (event.currentTarget as HTMLElement | null)?.getBoundingClientRect() ?? null
 
-    const pointerX = event.clientX
-    const pointerY = event.clientY
-
-    const prevCenterX = containerCenterX + transformRef.current.offsetX
-    const prevCenterY = containerCenterY + transformRef.current.offsetY
-
-    const k = nextScale / prevScale
-
-    const vx = prevCenterX - pointerX
-    const vy = prevCenterY - pointerY
-    const newCenterX = pointerX + vx * k
-    const newCenterY = pointerY + vy * k
-
-    const newOffsetX = newCenterX - containerCenterX
-    const newOffsetY = newCenterY - containerCenterY
+    const next = computeAnchorZoomOffset({
+      rect,
+      anchorX: event.clientX,
+      anchorY: event.clientY,
+      offsetX: transformRef.current.offsetX,
+      offsetY: transformRef.current.offsetY,
+      prevScale,
+      nextScale,
+    })
 
     setTransform({ ...transformRef.current, scale: nextScale })
     emit.onUpdateScale?.(nextScale)
-    setOffset(newOffsetX, newOffsetY)
+    setOffset(next.x, next.y)
   }
 
   const handleDoubleClick = (event: ReactMouseEvent<HTMLElement>) => {
@@ -367,7 +358,7 @@ export function useImagePreviewInteraction(
       const touch = touches[0]
       const dx = touch.clientX - lastPointerXRef.current
       const dy = touch.clientY - lastPointerYRef.current
-      if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
+      if (isDragThresholdExceeded(dx, dy)) {
         touchDragMovedRef.current = true
       }
       lastPointerXRef.current = touch.clientX
@@ -396,32 +387,21 @@ export function useImagePreviewInteraction(
 
         if (nextScale !== prevScale) {
           // 以双指中心点为缩放中心，调整偏移量
-          const target = event.currentTarget as HTMLElement | null
-          const rect = target?.getBoundingClientRect()
-          const containerCenterX = rect ? rect.left + rect.width / 2 : 0
-          const containerCenterY = rect ? rect.top + rect.height / 2 : 0
+          const rect = (event.currentTarget as HTMLElement | null)?.getBoundingClientRect() ?? null
 
-          const pinchCenterX = (touches[0].clientX + touches[1].clientX) / 2
-          const pinchCenterY = (touches[0].clientY + touches[1].clientY) / 2
-
-          // 缩放前图片中心位置（在视口坐标系下）
-          const prevCenterX = containerCenterX + transformRef.current.offsetX
-          const prevCenterY = containerCenterY + transformRef.current.offsetY
-
-          const k = nextScale / prevScale
-
-          // 让双指中心附近的内容尽量保持在原位置
-          const vx = prevCenterX - pinchCenterX
-          const vy = prevCenterY - pinchCenterY
-          const newCenterX = pinchCenterX + vx * k
-          const newCenterY = pinchCenterY + vy * k
-
-          const newOffsetX = newCenterX - containerCenterX
-          const newOffsetY = newCenterY - containerCenterY
+          const next = computeAnchorZoomOffset({
+            rect,
+            anchorX: (touches[0].clientX + touches[1].clientX) / 2,
+            anchorY: (touches[0].clientY + touches[1].clientY) / 2,
+            offsetX: transformRef.current.offsetX,
+            offsetY: transformRef.current.offsetY,
+            prevScale,
+            nextScale,
+          })
 
           setTransform({ ...transformRef.current, scale: nextScale })
           emit.onUpdateScale?.(nextScale)
-          setOffset(newOffsetX, newOffsetY)
+          setOffset(next.x, next.y)
         }
       }
       if (props.enablePinchRotate) {

@@ -6,7 +6,7 @@ import {
   paintEditedRunsOnCanvas,
   paintPdfRunEditBackdrop,
   type CwPdfViewport,
-} from '../functions/pdfDocument'
+} from '@zengchaowu/ui-shared/components/CwPdfEditor/functions/pdfDocument'
 import { pageEditSignature, type PdfPageSlot } from '@zengchaowu/ui-shared/components/CwPdfEditor/functions/pdfPageLayout'
 
 type PdfJsDoc = Awaited<ReturnType<typeof openPdfDocument>>

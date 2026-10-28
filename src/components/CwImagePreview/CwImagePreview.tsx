@@ -10,7 +10,7 @@ import { imagePreviewBase } from '@zengchaowu/ui-shared/components/CwImagePrevie
 import { defaultTexts } from '@zengchaowu/ui-shared/components/CwImagePreview/texts'
 import { CwImageFit } from '../CwImageFit'
 import { useImagePreviewInteraction } from './hooks'
-import { isImagePreviewScaledForPan } from './functions'
+import { isImagePreviewScaledForPan } from '@zengchaowu/ui-shared/components/CwImagePreview/functions'
 
 export interface CwImagePreviewComponentProps
   extends CwImagePreviewProps,

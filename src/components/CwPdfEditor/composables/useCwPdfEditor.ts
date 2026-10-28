@@ -25,7 +25,7 @@ import {
   readPdfSource,
   samePdfDocument,
   type CwPdfViewport,
-} from '../functions/pdfDocument'
+} from '@zengchaowu/ui-shared/components/CwPdfEditor/functions/pdfDocument'
 import {
   buildPageSlots,
   pageIndexAtScroll,
@@ -38,7 +38,7 @@ import {
   noteFontPx,
   runEditorInheritedStyle,
   runOverlayStyle,
-} from '../functions/pdfOverlayStyle'
+} from '@zengchaowu/ui-shared/components/CwPdfEditor/functions/pdfOverlayStyle'
 import {
   isRunEditorTarget,
   mountRunEditorContent,
@@ -46,7 +46,7 @@ import {
   queryRunEditor,
   selectAllInRunEditor,
   syncRunEditorDom,
-} from '../functions/pdfRunEditorDom'
+} from '@zengchaowu/ui-shared/components/CwPdfEditor/functions/pdfRunEditorDom'
 import { usePdfEditorCanvasPaint } from './usePdfEditorCanvasPaint'
 
 /** Vue nextTick 的等价：等本轮 state 落地、DOM 画完再执行。 */

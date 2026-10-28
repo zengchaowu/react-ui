@@ -27,10 +27,10 @@ import {
   parsePptx,
   readPptSource,
   sameDeck,
-} from './functions/pptx'
+} from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx'
 // Worker 必须内联进产物：lib 模式下 new URL('./x.ts', import.meta.url) 会内联成无法执行的原始源码，
 // 而独立 worker 资源在消费方应用里的 /assets/* 绝对路径会 404。inline 在构建时把打包结果做成 blob，产物自包含
-import FontDecompressWorker from './functions/fontDecompress.worker?worker&inline'
+import FontDecompressWorker from '@zengchaowu/ui-shared/components/CwPptEditor/functions/fontDecompress.worker?worker&inline'
 
 const SLIDE_GAP = 12
 const PPT_FONT_FALLBACK = '"Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif'

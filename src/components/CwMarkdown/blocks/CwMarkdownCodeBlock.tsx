@@ -9,7 +9,7 @@ import { CwIcon } from '../../CwIcon'
 import {
   escapeMarkdownCodeHtml,
   highlightMarkdownCode,
-} from '../functions/highlightMarkdownCode'
+} from '@zengchaowu/ui-shared/components/CwMarkdown/functions/highlightMarkdownCode'
 import { CwMarkdownCodeBlockFrame } from './CwMarkdownCodeBlockFrame'
 import './cw-markdown-code-highlight.css'
 

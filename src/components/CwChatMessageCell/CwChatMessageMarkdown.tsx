@@ -6,7 +6,7 @@ import { CwMarkdownInlineImageExtensionsContext } from '../CwMarkdown/context'
 import {
   collectMarkdownImageSrcsInParseOrder,
   normalizeMarkdownImageSrcForMatch,
-} from '../CwMarkdown/functions'
+} from '@zengchaowu/ui-shared/components/CwMarkdown/functions'
 import { useMarkdownPreprocessedContent } from '../CwMarkdown/hooks'
 import { markdownBase } from '../CwMarkdown/styles'
 import type {

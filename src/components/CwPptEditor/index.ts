@@ -1,5 +1,5 @@
 export { default as CwPptEditor } from './CwPptEditor'
 export { defaultTexts as defaultCwPptEditorTexts } from '@zengchaowu/ui-shared/components/CwPptEditor/texts'
-export { createBlankDeck, deckToArrayBuffer, parsePptx } from './functions/pptx'
+export { createBlankDeck, deckToArrayBuffer, parsePptx } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/pptx'
 export type * from './types'
 export type * from '@zengchaowu/ui-shared/components/CwPptEditor/types'

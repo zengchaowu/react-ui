@@ -1,14 +1,6 @@
-import { isRasterImageFile } from '@zengchaowu/shared/functions/file/isRasterImageFile'
-import { isVideoFile } from '@zengchaowu/shared/functions/file/inferMediaType'
-
-export type CwDroppedAttachmentKind = 'image' | 'video' | 'file'
-
-export function inferDroppedAttachmentKind(file: File): CwDroppedAttachmentKind {
-  if (isRasterImageFile(file)) return 'image'
-  if (isVideoFile(file)) return 'video'
-  return 'file'
-}
-
-export function droppedAttachmentNeedsObjectUrl(kind: CwDroppedAttachmentKind): boolean {
-  return kind === 'image' || kind === 'video'
-}
+/** 已上移至 @zengchaowu/ui-shared，此处仅转出以保持原引用路径。 */
+export {
+  inferDroppedAttachmentKind,
+  droppedAttachmentNeedsObjectUrl,
+} from '@zengchaowu/ui-shared/components/CwMessageInput/chips/attachmentKind'
+export type { CwDroppedAttachmentKind } from '@zengchaowu/ui-shared/components/CwMessageInput/chips/attachmentKind'

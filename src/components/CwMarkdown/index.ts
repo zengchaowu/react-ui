@@ -15,5 +15,5 @@ export {
 } from './context'
 export type * from './types'
 export type * from '@zengchaowu/ui-shared/components/CwMarkdown/types'
-export { applyCwMarkdownContentPreprocessors } from './functions'
+export { applyCwMarkdownContentPreprocessors } from '@zengchaowu/ui-shared/components/CwMarkdown/functions'
 export { useMarkdownBlocks, useMarkdownPreprocessedContent } from './hooks'
