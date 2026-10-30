@@ -72,9 +72,9 @@ export const cwLoginDialogBase: CwLoginDialogStyles = {
     'relative flex h-[13.75rem] w-[13.75rem] max-w-full min-h-0 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-transparent p-0',
   qrWxHost:
     'relative h-full w-full min-h-0 min-w-0 overflow-hidden border-0 bg-transparent [&_iframe]:absolute [&_iframe]:inset-0 [&_iframe]:h-full [&_iframe]:w-full [&_iframe]:max-h-full [&_iframe]:max-w-full [&_iframe]:border-0',
-  /** 未勾选协议时遮住扫码区；用浅底画出二维码占位，避免和弹窗底融成一块空白 */
+  /** 未勾选协议时盖住扫码区：近不透明白保证文字可读；协议行靠近底部，顶部二维码透出来 */
   qrAgreementMask:
-    'absolute inset-0 z-[var(--z-index-above)] flex items-center justify-center rounded-xl border border-[var(--border-color)] bg-[var(--bg-color-secondarycontainer)] px-4',
+    'absolute inset-0 z-[var(--z-index-above)] flex items-end justify-center rounded-xl border border-[var(--border-color)] bg-white/90 px-4 pb-4',
   qrAgreementMaskText:
     'text-sm leading-relaxed text-center text-[var(--text-color-secondary)]',
   qrHint: 'max-w-[13.75rem] text-xs leading-relaxed text-center text-[var(--text-color-secondary)]',
