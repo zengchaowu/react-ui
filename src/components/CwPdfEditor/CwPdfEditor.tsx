@@ -23,6 +23,7 @@ export const CwPdfEditor = forwardRef<CwPdfEditorHandle, CwPdfEditorComponentPro
       mode = 'edit',
       readonly = false,
       showHeader = true,
+      edgeToEdge = true,
       texts: textsProp,
       onModelValueChange,
       onChange,
@@ -158,8 +159,8 @@ export const CwPdfEditor = forwardRef<CwPdfEditorHandle, CwPdfEditorComponentPro
         <div className={pdfEditorBase.stage}>
           <CwDiv ref={stageRef} className="h-full" persistScrollbar onScroll={onScroll}>
             <div
-              className={pdfEditorBase.stack}
-              style={{ width: `${pageWidth}px`, height: `${totalHeight}px` }}
+              className={edgeToEdge ? pdfEditorBase.stackEdgeToEdge : pdfEditorBase.stack}
+              style={{ width: edgeToEdge ? '100%' : `${pageWidth}px`, height: `${totalHeight}px` }}
             >
               {visibleSlots.map((slot) => (
                 <div
@@ -246,6 +247,10 @@ export const CwPdfEditor = forwardRef<CwPdfEditorHandle, CwPdfEditorComponentPro
             <div className={pdfEditorBase.loading}>
               <CwLoading type="spinner" size="small" />
               <span className={pdfEditorBase.loadingText}>{texts.loadingText}</span>
+            </div>
+          ) : error ? (
+            <div className={pdfEditorBase.error}>
+              <span className={pdfEditorBase.errorText}>{error}</span>
             </div>
           ) : null}
         </div>

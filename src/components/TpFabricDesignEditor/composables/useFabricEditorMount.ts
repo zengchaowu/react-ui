@@ -1,4 +1,4 @@
-﻿import type { Canvas, FabricObject } from 'fabric'
+﻿﻿import type { Canvas, FabricObject } from 'fabric'
 import { useStableBox, type ReactiveRef } from './reactivity'
 import { attachFabricEditorInteractions } from '../attach/attachFabricEditorInteractions'
 import { attachFabricEditorKeyboard } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/attach/attachFabricEditorKeyboard'
