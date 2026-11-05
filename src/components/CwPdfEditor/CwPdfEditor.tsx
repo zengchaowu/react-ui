@@ -161,7 +161,7 @@ export const CwPdfEditor = forwardRef<CwPdfEditorHandle, CwPdfEditorComponentPro
           <CwDiv ref={stageRef} className="h-full" persistScrollbar onScroll={onScroll}>
             <div
               className={edgeToEdge ? pdfEditorBase.stackEdgeToEdge : pdfEditorBase.stack}
-              style={{ width: edgeToEdge ? '100%' : `${pageWidth}px`, height: `${totalHeight}px` }}
+              style={{ width: `${pageWidth}px`, height: `${totalHeight}px` }}
             >
               {visibleSlots.map((slot) => (
                 <div
