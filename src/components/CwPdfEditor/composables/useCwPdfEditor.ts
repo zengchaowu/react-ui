@@ -114,7 +114,7 @@ export function useCwPdfEditor(options: UseCwPdfEditorOptions) {
     return resolveCwDivViewport(optionsRef.current.stageRef.current)
   }
 
-  const pageWidth = Math.max(160, (stageWidth - 32) * zoom)
+  const pageWidth = Math.max(160, ((options.props as CwPdfEditorProps).edgeToEdge ? stageWidth : stageWidth - 32) * zoom)
   const layouts = useMemo(
     () => buildPageSlots(pdf.pages, pageWidth, aspects),
     [pdf, pageWidth, aspects],

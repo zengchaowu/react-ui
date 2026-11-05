@@ -26,6 +26,7 @@ const meta: Meta<typeof CwPdfEditor> = {
     },
     readonly: { control: 'boolean' },
     showHeader: { control: 'boolean' },
+    edgeToEdge: { control: 'boolean' },
   },
 }
 

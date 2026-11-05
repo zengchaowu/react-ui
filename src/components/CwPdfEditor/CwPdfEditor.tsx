@@ -78,6 +78,7 @@ export const CwPdfEditor = forwardRef<CwPdfEditorHandle, CwPdfEditorComponentPro
         mode,
         readonly,
         showHeader,
+        edgeToEdge,
         texts: textsProp,
         onModelValueChange,
         onChange,
