@@ -7,7 +7,7 @@ import {
   resolveFabricContainerPreset,
 } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/fabricContainerPresets.pure'
 import { isTpFabricShapeTool, type TpFabricDesignEditorTool, type TpFabricViewportTool } from '../types'
-import { notifyFabricPenToolChange, hasFabricPathEditSession } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/penTool'
+import { notifyFabricPenToolChange, hasFabricPathEditSession } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/penTool/index'
 import { tokenSolidColors } from '@zengchaowu/ui-shared/assets/tokens/tokenSolidColors'
 import { createFabricBrushCursor } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricLayerThumbnail.pure'
 

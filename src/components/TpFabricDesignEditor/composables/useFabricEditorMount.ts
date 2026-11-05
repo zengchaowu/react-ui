@@ -22,7 +22,7 @@ import {
 } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/selection/fabricEditorSelectionStyle'
 import { syncGroupsInteractionFromCanvasSelection } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricGroupPointerPolicy.pure'
 import { clearFabricEditorClipboard } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/document/fabricEditorClipboard'
-import { attachFabricPenTool, enterFabricPathEdit, hasFabricPathEditSession, commitFabricPathEdit } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/penTool'
+import { attachFabricPenTool, enterFabricPathEdit, hasFabricPathEditSession, commitFabricPathEdit } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/penTool/index'
 import type { FabricEditorToolMode } from './useFabricEditorToolMode'
 import type { useFabricStage } from './useFabricStage'
 import type { TpFabricDesignEditorTool } from '../types'

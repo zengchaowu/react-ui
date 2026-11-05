@@ -3,7 +3,7 @@ import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
 import './cw-row-col.css'
 import type { CwRowProps } from '@zengchaowu/ui-shared/components/CwRow/types'
 import { rowBase } from '@zengchaowu/ui-shared/components/CwRow/styles'
-import { CwRowGutterContext, useCwGridMeasuredLayout } from './keys'
+import { CwRowAlignContext, CwRowGutterContext, useCwGridMeasuredLayout } from './keys'
 
 export interface CwRowComponentProps
   extends CwRowProps,
@@ -77,13 +77,15 @@ export function CwRow({
 
   return (
     <CwRowGutterContext.Provider value={gutter}>
-      <div
-        {...rest}
-        className={rootClassName}
-        style={{ ...rowStyle, ...style }}
-      >
-        {children}
-      </div>
+      <CwRowAlignContext.Provider value={align}>
+        <div
+          {...rest}
+          className={rootClassName}
+          style={{ ...rowStyle, ...style }}
+        >
+          {children}
+        </div>
+      </CwRowAlignContext.Provider>
     </CwRowGutterContext.Provider>
   )
 }

@@ -1,6 +1,6 @@
 {
   "name": "@zengchaowu/react-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React 版 @zengchaowu/vue-ui 设计系统组件库（公共 API 按 Vue ⊆ React 对齐）",
   "type": "module",
   "publishConfig": {

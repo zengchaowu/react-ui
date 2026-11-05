@@ -11,7 +11,7 @@ import {
   syncPaintCloneTransforms,
 } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/appearance/fabricEditorPaintLayers.pure'
 import { assignDefaultFabricLayerName } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricLayerNaming.pure'
-import { hasFabricPathEditSession } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/penTool'
+import { hasFabricPathEditSession } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/tools/penTool/index'
 import { isFabricLayerRefreshSuspended } from '@zengchaowu/ui-shared/components/TpFabricDesignEditor/layers/fabricLayerRefreshGate.pure'
 import type { TpFabricDesignEditorTool } from '../types'
 
