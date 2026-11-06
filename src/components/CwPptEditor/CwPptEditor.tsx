@@ -18,6 +18,7 @@ import { defaultTexts } from '@zengchaowu/ui-shared/components/CwPptEditor/texts
 import type { CwPptEditorHandle, CwPptEditorProps } from './types'
 import type { CwPptBorderSide, CwPptBox, CwPptDeck, CwPptEmbeddedFont, CwPptImage, CwPptLine, CwPptSlide, CwPptTextParagraph, CwPptTextRun } from '@zengchaowu/ui-shared/components/CwPptEditor/types'
 import { polygonClipPathFromPoints100, roundRectRadiusPercent } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/presetGeometry'
+import { gradientBackgroundCss } from '@zengchaowu/ui-shared/components/CwPptEditor/functions/gradientFill'
 import {
   blankSlide,
   cloneDeck,
@@ -334,7 +335,9 @@ export const CwPptEditor = forwardRef<CwPptEditorHandle, CwPptEditorProps>(
         const frac = (box.roundRectRadius ?? roundRectRadiusPercent()) / 100
         style.borderRadius = `${frac * shortPx}px`
       }
-      if (box.fill && !box.polygonPoints) {
+      if (box.fillGradient && !box.polygonPoints) {
+        style.backgroundImage = gradientBackgroundCss(box.fillGradient)
+      } else if (box.fill && !box.polygonPoints) {
         style.backgroundColor = fillCssColor(box.fill, box.fillOpacity)
       }
       if (box.borders) {
