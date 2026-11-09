@@ -127,7 +127,7 @@ export const selectBase: CwSelectStyles = {
   arrowOpen: 'rotate-180',
   arrowIconStyles: {
     class:
-      'inline-flex items-center justify-center text-current text-[var(--text-color-placeholder)] transition-transform duration-200',
+      'inline-flex items-center justify-center text-[var(--text-color-placeholder)] transition-transform duration-200',
     size: 0.75,
   },
   /** 行高由 option 基类定（与 Dropdown 同高）；size 只调字号 */

@@ -598,6 +598,30 @@
       "import": "./dist/components/CwDatePicker/index.js",
       "default": "./dist/components/CwDatePicker/index.js"
     },
+    "./CwDesignAiPanel": {
+      "types": "./dist/components/CwDesignAiPanel/index.d.ts",
+      "node": "./dist/components/CwDesignAiPanel/index.js",
+      "import": "./dist/components/CwDesignAiPanel/index.js",
+      "default": "./dist/components/CwDesignAiPanel/index.js"
+    },
+    "./components/CwDesignAiPanel": {
+      "types": "./dist/components/CwDesignAiPanel/index.d.ts",
+      "node": "./dist/components/CwDesignAiPanel/index.js",
+      "import": "./dist/components/CwDesignAiPanel/index.js",
+      "default": "./dist/components/CwDesignAiPanel/index.js"
+    },
+    "./CwDesignEditor": {
+      "types": "./dist/components/CwDesignEditor/index.d.ts",
+      "node": "./dist/components/CwDesignEditor/index.js",
+      "import": "./dist/components/CwDesignEditor/index.js",
+      "default": "./dist/components/CwDesignEditor/index.js"
+    },
+    "./components/CwDesignEditor": {
+      "types": "./dist/components/CwDesignEditor/index.d.ts",
+      "node": "./dist/components/CwDesignEditor/index.js",
+      "import": "./dist/components/CwDesignEditor/index.js",
+      "default": "./dist/components/CwDesignEditor/index.js"
+    },
     "./CwDesignEditorShell": {
       "types": "./dist/components/CwDesignEditorShell/index.d.ts",
       "node": "./dist/components/CwDesignEditorShell/index.js",
@@ -634,6 +658,30 @@
       "import": "./dist/components/CwDesignLayersPanel/index.js",
       "default": "./dist/components/CwDesignLayersPanel/index.js"
     },
+    "./CwDesignPageLayersPanel": {
+      "types": "./dist/components/CwDesignPageLayersPanel/index.d.ts",
+      "node": "./dist/components/CwDesignPageLayersPanel/index.js",
+      "import": "./dist/components/CwDesignPageLayersPanel/index.js",
+      "default": "./dist/components/CwDesignPageLayersPanel/index.js"
+    },
+    "./components/CwDesignPageLayersPanel": {
+      "types": "./dist/components/CwDesignPageLayersPanel/index.d.ts",
+      "node": "./dist/components/CwDesignPageLayersPanel/index.js",
+      "import": "./dist/components/CwDesignPageLayersPanel/index.js",
+      "default": "./dist/components/CwDesignPageLayersPanel/index.js"
+    },
+    "./CwDesignPropertyPanel": {
+      "types": "./dist/components/CwDesignPropertyPanel/index.d.ts",
+      "node": "./dist/components/CwDesignPropertyPanel/index.js",
+      "import": "./dist/components/CwDesignPropertyPanel/index.js",
+      "default": "./dist/components/CwDesignPropertyPanel/index.js"
+    },
+    "./components/CwDesignPropertyPanel": {
+      "types": "./dist/components/CwDesignPropertyPanel/index.d.ts",
+      "node": "./dist/components/CwDesignPropertyPanel/index.js",
+      "import": "./dist/components/CwDesignPropertyPanel/index.js",
+      "default": "./dist/components/CwDesignPropertyPanel/index.js"
+    },
     "./CwDesignToolRail": {
       "types": "./dist/components/CwDesignToolRail/index.d.ts",
       "node": "./dist/components/CwDesignToolRail/index.js",
@@ -645,6 +693,18 @@
       "node": "./dist/components/CwDesignToolRail/index.js",
       "import": "./dist/components/CwDesignToolRail/index.js",
       "default": "./dist/components/CwDesignToolRail/index.js"
+    },
+    "./CwDesignViewportToolbar": {
+      "types": "./dist/components/CwDesignViewportToolbar/index.d.ts",
+      "node": "./dist/components/CwDesignViewportToolbar/index.js",
+      "import": "./dist/components/CwDesignViewportToolbar/index.js",
+      "default": "./dist/components/CwDesignViewportToolbar/index.js"
+    },
+    "./components/CwDesignViewportToolbar": {
+      "types": "./dist/components/CwDesignViewportToolbar/index.d.ts",
+      "node": "./dist/components/CwDesignViewportToolbar/index.js",
+      "import": "./dist/components/CwDesignViewportToolbar/index.js",
+      "default": "./dist/components/CwDesignViewportToolbar/index.js"
     },
     "./CwDiv": {
       "types": "./dist/components/CwDiv/index.d.ts",
@@ -2049,18 +2109,6 @@
       "node": "./dist/components/TpCodePreview/index.js",
       "import": "./dist/components/TpCodePreview/index.js",
       "default": "./dist/components/TpCodePreview/index.js"
-    },
-    "./TpDesignEditor": {
-      "types": "./dist/components/TpDesignEditor/index.d.ts",
-      "node": "./dist/components/TpDesignEditor/index.js",
-      "import": "./dist/components/TpDesignEditor/index.js",
-      "default": "./dist/components/TpDesignEditor/index.js"
-    },
-    "./components/TpDesignEditor": {
-      "types": "./dist/components/TpDesignEditor/index.d.ts",
-      "node": "./dist/components/TpDesignEditor/index.js",
-      "import": "./dist/components/TpDesignEditor/index.js",
-      "default": "./dist/components/TpDesignEditor/index.js"
     },
     "./TpGsap": {
       "types": "./dist/components/TpGsap/index.d.ts",

@@ -85,7 +85,7 @@ export const datePickerBase: CwDatePickerStyles = {
     size: 1.125
   },
   calendarIconStyles: {
-    class: 'inline-flex items-center justify-center text-current text-[var(--text-color-placeholder)]',
+    class: 'inline-flex items-center justify-center text-[var(--text-color-placeholder)]',
     size: 1.125
   },
   prevIconStyles: {

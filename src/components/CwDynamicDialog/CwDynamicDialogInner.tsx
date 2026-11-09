@@ -5,7 +5,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import type { PointerEvent as ReactPointerEvent } from 'react'
+import type { PointerEvent as ReactPointerEvent, KeyboardEvent as ReactKeyboardEvent } from 'react'
 import CwButton from '../CwButton/CwButton'
 import CwIcon from '../CwIcon/CwIcon'
 import CwDiv from '../CwDiv/CwDiv'
@@ -255,6 +255,22 @@ const CwDynamicDialogInner = forwardRef<
     setPressPointerDownTarget(e.target)
   }
 
+  /** `config.confirmOnEnter`：Enter 触发内容区内标记了 data-cw-dialog-confirm 的确认按钮 */
+  function handleConfirmKeyDown(e: ReactKeyboardEvent<HTMLDivElement>): void {
+    if (!config.confirmOnEnter) return
+    if (e.key !== 'Enter' || e.shiftKey || e.nativeEvent.isComposing) return
+    const target = e.target instanceof HTMLElement ? e.target : null
+    if (target?.closest('textarea, [contenteditable="true"]')) return
+    const root = dialogRef.current
+    if (!root) return
+    const confirm = root.querySelector<HTMLElement>('[data-cw-dialog-confirm="true"]')
+    if (!confirm || confirm.getAttribute('aria-disabled') === 'true') return
+    // 焦点已在确认按钮上时 button 自身的 Enter 处理会触发 click，避免重复提交
+    if (target && confirm.contains(target)) return
+    e.preventDefault()
+    confirm.click()
+  }
+
   useCwOverlayLayer({
     layerId: id,
     enabled: visible && dismissStackEnabled,
@@ -315,6 +331,7 @@ const CwDynamicDialogInner = forwardRef<
         className={contentClassList}
         style={config.draggable ? draggableStyle : {}}
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={handleConfirmKeyDown}
       >
         {config.header && isModalVariant ? (
           <div
