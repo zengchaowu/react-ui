@@ -91,9 +91,6 @@
   --bg-color-secondarycomponent-active: var(--brand-color-6);
   --bg-color-component-disabled: #eeeeee;
   --bg-color-specialcomponent: #ffffff;
-  /** TpFabric 透明画布棋盘格底色与格块色 */
-  --tp-fabric-editor-stage-bg: var(--bg-color-container);
-  --tp-fabric-editor-stage-checker: var(--bg-color-component-hover);
   /** CwExcelEditor，对齐 WPS 表格 */
   --cw-excel-bg-chrome: #E7F2E4;
   --cw-excel-bg-header: #F4F7F2;

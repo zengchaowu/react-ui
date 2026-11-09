@@ -2050,17 +2050,17 @@
       "import": "./dist/components/TpCodePreview/index.js",
       "default": "./dist/components/TpCodePreview/index.js"
     },
-    "./TpFabricDesignEditor": {
-      "types": "./dist/components/TpFabricDesignEditor/index.d.ts",
-      "node": "./dist/components/TpFabricDesignEditor/index.js",
-      "import": "./dist/components/TpFabricDesignEditor/index.js",
-      "default": "./dist/components/TpFabricDesignEditor/index.js"
+    "./TpDesignEditor": {
+      "types": "./dist/components/TpDesignEditor/index.d.ts",
+      "node": "./dist/components/TpDesignEditor/index.js",
+      "import": "./dist/components/TpDesignEditor/index.js",
+      "default": "./dist/components/TpDesignEditor/index.js"
     },
-    "./components/TpFabricDesignEditor": {
-      "types": "./dist/components/TpFabricDesignEditor/index.d.ts",
-      "node": "./dist/components/TpFabricDesignEditor/index.js",
-      "import": "./dist/components/TpFabricDesignEditor/index.js",
-      "default": "./dist/components/TpFabricDesignEditor/index.js"
+    "./components/TpDesignEditor": {
+      "types": "./dist/components/TpDesignEditor/index.d.ts",
+      "node": "./dist/components/TpDesignEditor/index.js",
+      "import": "./dist/components/TpDesignEditor/index.js",
+      "default": "./dist/components/TpDesignEditor/index.js"
     },
     "./TpGsap": {
       "types": "./dist/components/TpGsap/index.d.ts",
@@ -2214,7 +2214,6 @@
     "docx-preview": "^0.4.1",
     "emoji-datasource": "^16.0.0",
     "emoji-datasource-emojione": "^4.0.4",
-    "fabric": "6.7.1",
     "gsap": "3.13.0",
     "highlight.js": "11.11.1",
     "jszip": "3.10.1",

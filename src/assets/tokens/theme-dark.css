@@ -333,6 +333,4 @@
   --letter-spacing-body: -0.15px;
   --markdown-inline-code-bg: color-mix(in srgb, var(--text-color-anti) 12%, transparent);
   --text-color-explorer: rgba(255, 255, 255, 72%);
-  --tp-fabric-editor-stage-bg: #2a2a2a;
-  --tp-fabric-editor-stage-checker: #333333;
 }
