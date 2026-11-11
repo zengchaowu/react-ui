@@ -63,7 +63,7 @@ export const CwMusicPlayer = forwardRef<CwMusicPlayerExpose, CwMusicPlayerProps>
     const [currentTime, setCurrentTime] = useState(0)
     const [duration, setDuration] = useState(0)
     const [currentVolume, setCurrentVolume] = useState(volume)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(!!src)
     const [loopEnabled, setLoopEnabled] = useState(loop)
     const lastVolumeRef = useRef(volume)
 
@@ -219,7 +219,7 @@ export const CwMusicPlayer = forwardRef<CwMusicPlayerExpose, CwMusicPlayerProps>
     }
 
     useEffect(() => {
-      setLoading(true)
+      setLoading(!!src)
       setCurrentTime(0)
       setDuration(0)
       setIsPlaying(false)
@@ -312,8 +312,8 @@ export const CwMusicPlayer = forwardRef<CwMusicPlayerExpose, CwMusicPlayerProps>
                 <CwIcon
                   name="common--media--headphone-line"
                   prefix="icon"
-                  size={musicPlayerBase.playButtonIconStyles?.size ?? 1}
-                  className={musicPlayerBase.playButtonIconStyles?.class}
+                  size={musicPlayerBase.coverPlaceholderIconStyles?.size ?? 1}
+                  className={musicPlayerBase.coverPlaceholderIconStyles?.class}
                 />
               </div>
             )}
