@@ -1,0 +1,80 @@
+/**
+ * CwPage 页面容器样式。
+ *
+ * 高度 / 安全区都走 tokens（safe-area.css）里的全局变量与 class，
+ * 不在组件里重新算 env()，否则会绕过 `data-app-chrome`、
+ * `data-virtual-keyboard-open` 这些全局开关。
+ */
+
+.cw-page {
+  --cw-page-bg: var(--bg-color-page, #f8f8f8);
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--cw-page-bg);
+
+  /* 夸克 / UC 等由 JS 把可视高度写成 px；其余走 100dvh */
+  height: var(--app-viewport-height, 100vh);
+  max-height: var(--app-viewport-height, 100vh);
+}
+
+@supports (height: 100dvh) {
+  .cw-page {
+    height: var(--app-viewport-height, 100dvh);
+    max-height: var(--app-viewport-height, 100dvh);
+  }
+}
+
+/** 撑满父级：手机壳 / 画布帧 / 已有确定高度的弹层内 */
+.cw-page--height-full {
+  height: 100%;
+  max-height: 100%;
+}
+
+/** 由内容撑开，不锁高度 */
+.cw-page--height-auto {
+  height: auto;
+  max-height: none;
+}
+
+.cw-page--bg-container {
+  --cw-page-bg: var(--bg-color-container, #fff);
+}
+
+.cw-page--bg-none {
+  --cw-page-bg: transparent;
+}
+
+.cw-page__header,
+.cw-page__footer {
+  flex: none;
+}
+
+.cw-page__body {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+/** 内容区独立滚动：整页不回弹，滚动链不外溢 */
+.cw-page__body.is-scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/**
+ * 夸克 / UC 等 Android 网页：浏览器自带状态栏区域，
+ * 页面内再顶一次安全区会双份留白。
+ */
+html[data-app-android-web='true'] .cw-page.cw-safe-pt-page {
+  padding-top: 0;
+}
