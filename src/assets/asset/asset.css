@@ -2,9 +2,9 @@
 
 @font-face {
     font-family: "asset";
-    src: url('asset.woff2?v=2026-09-29T08%3A23%3A00.278Z') format("woff2"),
-url('asset.woff?v=2026-09-29T08%3A23%3A00.278Z') format("woff"),
-url('asset.ttf?v=2026-09-29T08%3A23%3A00.278Z') format("truetype");
+    src: url('asset.woff2?v=2026-11-16T08%3A19%3A42.441Z') format("woff2"),
+url('asset.woff?v=2026-11-16T08%3A19%3A42.441Z') format("woff"),
+url('asset.ttf?v=2026-11-16T08%3A19%3A42.441Z') format("truetype");
 }
 
 .asset {
@@ -16,7 +16,7 @@ url('asset.ttf?v=2026-09-29T08%3A23%3A00.278Z') format("truetype");
 
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
-    font-family: "asset" !important;
+    font-family: asset !important;
     font-style: normal;
     font-weight: normal !important;
     font-variant: normal;
