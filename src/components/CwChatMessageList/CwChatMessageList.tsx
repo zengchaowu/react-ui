@@ -140,6 +140,7 @@ export const CwChatMessageList = forwardRef<
     appendSlot,
     ownSideActionSlot,
     assistantMessageShareSlot,
+    renderMessageExtra,
     onContextMenu,
     className,
     ...rest
@@ -711,6 +712,11 @@ export const CwChatMessageList = forwardRef<
                               />
                             </div>
                           )}
+                          {renderMessageExtra ? (
+                            <div className="min-w-0 w-full">
+                              {renderMessageExtra(m)}
+                            </div>
+                          ) : null}
                         </div>
                         {selectionEnabled && m.type !== 'system' ? (
                           <div

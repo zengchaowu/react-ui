@@ -35,13 +35,18 @@ export type UseAgentAssistWorkbenchAiOptions = {
   ) => Promise<AgentAssistAiStreamResult>
   /** Selection / document context JSON at send time */
   buildSelectionContext: () => string | Promise<string>
+  /** 随用户消息展示的上下文缩略图（不参与请求，仅用于气泡展示） */
+  buildContextAttachments?: () =>
+    | CwWorkbenchAiMessage['contextAttachments']
+    | Promise<CwWorkbenchAiMessage['contextAttachments']>
   hasSelectionContext?: boolean
   selectedCount?: number
   materializePromptHtml?: (html: string) => string
   notConfiguredError?: string
   assistantFallbackName?: string
   streamPhase?: 'plan' | 'execute' | 'oneshot'
-  onProposal?: (proposal: unknown) => void
+  /** 领域提案回调；`ctx.messageId` 为产生该提案的助手消息 id */
+  onProposal?: (proposal: unknown, ctx: { messageId: string }) => void
 }
 
 const DEFAULT_NOT_CONFIGURED =
@@ -215,12 +220,17 @@ export function useAgentAssistWorkbenchAi(
       return
     }
 
+    const contextAttachments = optionsRef.current.buildContextAttachments
+      ? await optionsRef.current.buildContextAttachments()
+      : undefined
+
     const userMsg: CwWorkbenchAiMessage = {
       id: newWorkbenchAiMessageId('u'),
       role: 'user',
       text,
       status: 'done',
       at: new Date(),
+      ...(contextAttachments?.length ? { contextAttachments } : {}),
     }
     const assistantId = newWorkbenchAiMessageId('a')
     setMessages((prev) => [
@@ -252,7 +262,8 @@ export function useAgentAssistWorkbenchAi(
           acc += t
           patchAssistant(assistantId, { text: acc, status: 'streaming' })
         },
-        onProposal: optionsRef.current.onProposal,
+        onProposal: (p) =>
+          optionsRef.current.onProposal?.(p, { messageId: assistantId }),
         onDomain: (type, payload) => {
           if (type !== 'knowledge_sources') return
           const sources = parseKnowledgeSourcesFromDomain(payload)

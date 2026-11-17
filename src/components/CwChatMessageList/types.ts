@@ -188,6 +188,8 @@ export interface CwChatMessageListProps
   ownSideActionSlot?: (scope: { message: ChatMessage }) => ReactNode
   /** 等价 Vue 具名插槽 `assistant-message-share`（作用域插槽） */
   assistantMessageShareSlot?: (scope: { message: ChatMessage }) => ReactNode
+  /** 等价 Vue 作用域插槽 `message-extra`：渲染在单条消息 cell 正下方 */
+  renderMessageExtra?: (message: ChatMessage) => ReactNode
 
   className?: string
 }

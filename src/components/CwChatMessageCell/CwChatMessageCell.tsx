@@ -765,6 +765,39 @@ export function CwChatMessageCell({
                 isWorkspaceLayout ? 'items-stretch' : 'items-end',
               ].join(' ')}
             >
+              {message.contextAttachments?.length ? (
+                <div className="flex max-w-full flex-wrap items-center justify-end gap-1">
+                  {message.contextAttachments.map((ctxIcon, ctxIndex) => (
+                    <button
+                      key={`ctx-${ctxIndex}`}
+                      type="button"
+                      className="h-6 w-6 shrink-0 cursor-zoom-in overflow-hidden rounded border border-[var(--border-color)] bg-[var(--bg-color-container)] p-0.5"
+                      title={ctxIcon.name || ''}
+                      aria-label={ctxIcon.name || ''}
+                      onClick={(event) => {
+                        event.stopPropagation()
+                        const attachments = message.contextAttachments ?? []
+                        if (!attachments.length) return
+                        onAttachmentPreviewOpen?.({
+                          items: attachments.map((item, index) => ({
+                            key: item.url || `ctx-${index}`,
+                            src: item.url,
+                            alt: item.name || '',
+                          })),
+                          initialIndex: ctxIndex,
+                          chatMessageId: String(message.id),
+                        })
+                      }}
+                    >
+                      <img
+                        src={ctxIcon.url}
+                        alt={ctxIcon.name || ''}
+                        className="h-full w-full object-contain"
+                      />
+                    </button>
+                  ))}
+                </div>
+              ) : null}
               {message.quotePreview ? (
                 <div
                   className={[
@@ -911,6 +944,19 @@ export function CwChatMessageCell({
                   ) : isWorkspaceLayout ? (
                     <div className={workspaceOwnChromeClass}>
                       <div className={workspaceOwnChromeBodyClass}>
+                        {message.contextAttachments?.length ? (
+                          <div className="mb-1.5 flex flex-wrap items-center gap-1">
+                            {message.contextAttachments.map((ctxIcon, ctxIndex) => (
+                              <img
+                                key={`ctx-${ctxIndex}`}
+                                src={ctxIcon.url}
+                                alt={ctxIcon.name || ''}
+                                title={ctxIcon.name || ''}
+                                className="h-6 w-6 shrink-0 rounded border border-[var(--border-color)] bg-[var(--bg-color-container)] object-contain p-0.5"
+                              />
+                            ))}
+                          </div>
+                        ) : null}
                         <CwChatMessageCellBubbles
                           {...bubblesCommonProps}
                           hugStackWidth={ownHugStackWidth}
