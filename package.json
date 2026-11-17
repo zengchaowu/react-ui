@@ -1378,6 +1378,18 @@
       "import": "./dist/components/CwNumberInput/index.js",
       "default": "./dist/components/CwNumberInput/index.js"
     },
+    "./CwPage": {
+      "types": "./dist/components/CwPage/index.d.ts",
+      "node": "./dist/components/CwPage/index.js",
+      "import": "./dist/components/CwPage/index.js",
+      "default": "./dist/components/CwPage/index.js"
+    },
+    "./components/CwPage": {
+      "types": "./dist/components/CwPage/index.d.ts",
+      "node": "./dist/components/CwPage/index.js",
+      "import": "./dist/components/CwPage/index.js",
+      "default": "./dist/components/CwPage/index.js"
+    },
     "./CwPagination": {
       "types": "./dist/components/CwPagination/index.d.ts",
       "node": "./dist/components/CwPagination/index.js",
@@ -1485,6 +1497,18 @@
       "node": "./dist/components/CwPullRefreshScroll/index.js",
       "import": "./dist/components/CwPullRefreshScroll/index.js",
       "default": "./dist/components/CwPullRefreshScroll/index.js"
+    },
+    "./CwPushAside": {
+      "types": "./dist/components/CwPushAside/index.d.ts",
+      "node": "./dist/components/CwPushAside/index.js",
+      "import": "./dist/components/CwPushAside/index.js",
+      "default": "./dist/components/CwPushAside/index.js"
+    },
+    "./components/CwPushAside": {
+      "types": "./dist/components/CwPushAside/index.d.ts",
+      "node": "./dist/components/CwPushAside/index.js",
+      "import": "./dist/components/CwPushAside/index.js",
+      "default": "./dist/components/CwPushAside/index.js"
     },
     "./CwQuickAnswer": {
       "types": "./dist/components/CwQuickAnswer/index.d.ts",
