@@ -11,8 +11,8 @@ const explorerSections: CwSidebarNavSection[] = [
     key: 'quick',
     label: 'Quick access',
     items: [
-      { key: 'desktop', label: 'Desktop', icon: 'windows--desktop', pinned: true },
-      { key: 'downloads', label: 'Downloads', icon: 'windows--downloads', pinned: true },
+      { key: 'desktop', label: 'Desktop', icon: 'windows--desktop-color', pinned: true },
+      { key: 'downloads', label: 'Downloads', icon: 'windows--downloads-color', pinned: true },
     ],
   },
 ]
