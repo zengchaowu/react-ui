@@ -2,9 +2,9 @@
 
 @font-face {
     font-family: "asset";
-    src: url('asset.woff2?v=2026-11-18T01%3A53%3A52.222Z') format("woff2"),
-url('asset.woff?v=2026-11-18T01%3A53%3A52.222Z') format("woff"),
-url('asset.ttf?v=2026-11-18T01%3A53%3A52.222Z') format("truetype");
+    src: url('asset.woff2?v=2026-11-18T07%3A13%3A36.515Z') format("woff2"),
+url('asset.woff?v=2026-11-18T07%3A13%3A36.515Z') format("woff"),
+url('asset.ttf?v=2026-11-18T07%3A13%3A36.515Z') format("truetype");
 }
 
 .asset {
@@ -26,8 +26,41 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-common--design--video-line:before {
+    content: "\eec4";
+}
+.icon-chat--msg--bubble-line:before {
+    content: "\eec7";
+}
+.icon-chat--msg--bubble-fill:before {
+    content: "\eec8";
+}
+.icon-app--app-store:before {
+    content: "\eeca";
+}
+.icon-draw--board--whiteboard-line:before {
+    content: "\eec1";
+}
+.icon-common--file--test-line:before {
+    content: "\eec0";
+}
+.icon-common--data--table-line:before {
+    content: "\eec2";
+}
+.icon-common--action--low-code-line:before {
+    content: "\eebf";
+}
 .icon-common--nav--documents-line:before {
     content: "\eebd";
+}
+.icon-common--design--image-line:before {
+    content: "\eec5";
+}
+.icon-common--action--icon-set-line:before {
+    content: "\eec3";
+}
+.icon-common--state--empty-line:before {
+    content: "\eec6";
 }
 .icon-common--action--search-slim-line:before {
     content: "\eeb6";
