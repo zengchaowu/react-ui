@@ -2240,12 +2240,13 @@
   "scripts": {
     "scaffold": "node scripts/scaffold-from-vue-ui.mjs && node scripts/adapt-vue-types.mjs",
     "sync:package-exports": "node scripts/sync-package-exports.mjs",
+    "sync-asset": "node scripts/sync-asset-from-vue-ui.mjs",
     "check:component-parity": "node scripts/check-component-parity.mjs",
     "check:export-parity": "node scripts/check-export-parity.mjs",
-    "build": "vite build --mode lib && node scripts/sync-package-exports.mjs",
-    "build:fast": "vite build --mode lib-fast && node scripts/sync-package-exports.mjs",
-    "storybook": "storybook dev -p 6007",
-    "build-storybook": "storybook build",
+    "build": "pnpm run sync-asset && vite build --mode lib && node scripts/sync-package-exports.mjs",
+    "build:fast": "pnpm run sync-asset && vite build --mode lib-fast && node scripts/sync-package-exports.mjs",
+    "storybook": "pnpm run sync-asset && storybook dev -p 6007",
+    "build-storybook": "pnpm run sync-asset && storybook build",
     "type-check": "tsc --noEmit"
   },
   "peerDependencies": {
