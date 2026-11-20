@@ -11,8 +11,8 @@ export { isWorkspaceOwnMessageEditable } from '@zengchaowu/ui-shared/components/
 export {
   CW_AI_ASSISTANT_BUBBLE_APPEARANCE,
   CW_WORKSPACE_OWN_BUBBLE_APPEARANCE,
-} from './chatMessageBubbleSurface'
-export type { CwChatMessageBubbleAppearance } from './chatMessageBubbleSurface'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
+export type { CwChatMessageBubbleAppearance } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 export { defaultCwChatMessageCellTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/texts'
 export {
   CW_CHAT_OWN_OUTBOUND_STATUS_TOOLTIP_APPEARANCE,
@@ -20,4 +20,4 @@ export {
 export {
   CW_CHAT_MESSAGE_ASSISTANT_ACTIONS_ACTION_ICON_CLASS,
   cwChatMessageAssistantActionIconStyles,
-} from './assistantActionsStyles'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/assistantActionsStyles'

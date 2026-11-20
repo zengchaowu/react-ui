@@ -3,8 +3,8 @@ import type { MouseEvent as ReactMouseEvent } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import type { ChatMessage } from '@zengchaowu/shared/types/im-chat'
 import { CwLoading } from '../CwLoading'
-import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '../../storybook/chatDefaultAvatar'
-import { storybookChatWalletRedEnvelopeIconSrc as chatWalletRedEnvelopeIcon } from '../../storybook/chatWalletDemoAssets'
+import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '@zengchaowu/ui-shared/storybook/chatDefaultAvatar'
+import { storybookChatWalletRedEnvelopeIconSrc as chatWalletRedEnvelopeIcon } from '@zengchaowu/ui-shared/storybook/chatWalletDemoAssets'
 import {
   openStorybookChatMessageBatchContextMenu,
   openStorybookChatMessageContextMenu,
@@ -22,7 +22,8 @@ import {
   storybookChatMessageListLoadOlderMaxExtraPages,
   storybookChatMessageListLoadOlderPageSize,
   storybookChatMessageSelectable,
-} from '../../storybook/chatMessageListStoryDemo'
+} from '@zengchaowu/ui-shared/storybook/chatMessageListStoryDemo'
+import { showCwContextMenu } from '../CwContextMenu/showCwContextMenu'
 import { CwChatMessageList } from './CwChatMessageList'
 import type { CwChatMessageListProps } from './types'
 
@@ -90,22 +91,28 @@ function ChatLikeList({
 
   function onListContextMenu(event: ReactMouseEvent<HTMLDivElement>) {
     if (selectionActive && selectedIds.length > 0) {
-      const opened = openStorybookChatMessageBatchContextMenu({
-        event: event.nativeEvent,
-        selectedCount: selectedIds.length,
-        onSelect: (key) => {
-          setLastMenuAction(`批量 · ${key}`)
+      const opened = openStorybookChatMessageBatchContextMenu(
+        {
+          event: event.nativeEvent,
+          selectedCount: selectedIds.length,
+          onSelect: (key) => {
+            setLastMenuAction(`批量 · ${key}`)
+          },
         },
-      })
+        showCwContextMenu,
+      )
       if (opened) return
     }
-    const opened = openStorybookChatMessageContextMenu({
-      messages,
-      event: event.nativeEvent,
-      onSelect: (key, message) => {
-        setLastMenuAction(`${message.id} · ${key}`)
+    const opened = openStorybookChatMessageContextMenu(
+      {
+        messages,
+        event: event.nativeEvent,
+        onSelect: (key, message) => {
+          setLastMenuAction(`${message.id} · ${key}`)
+        },
       },
-    })
+      showCwContextMenu,
+    )
     if (!opened) setLastMenuAction('')
   }
 
@@ -197,7 +204,10 @@ function LoadOlderAtTopDemo({ args }: { args: CwChatMessageListProps }) {
   }
 
   function onListContextMenu(event: ReactMouseEvent<HTMLDivElement>) {
-    openStorybookChatMessageContextMenu({ messages, event: event.nativeEvent })
+    openStorybookChatMessageContextMenu(
+      { messages, event: event.nativeEvent },
+      showCwContextMenu,
+    )
   }
 
   return (

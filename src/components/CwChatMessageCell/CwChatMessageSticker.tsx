@@ -3,7 +3,7 @@ import type { CwChatMessageStickerProps } from './messageParts.types'
 import {
   computeImageOrVideoBubbleSizeStyle,
 } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
-import { chatOwnMediaBubbleRingClasses } from './chatMessageBubbleSurface'
+import { chatOwnMediaBubbleRingClasses } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 
 export function CwChatMessageSticker({
   chatMessageId,

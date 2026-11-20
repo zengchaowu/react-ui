@@ -1,4 +1,4 @@
-import { splitComposerPlainText } from './composerPlainText'
+import { splitComposerPlainText } from '@zengchaowu/ui-shared/components/CwAiChatComposer/composerPlainText'
 
 /** 与 tokens.css --line-height-composer 保持一致 */
 export const COMPOSER_LINE_HEIGHT_REM = 1.5

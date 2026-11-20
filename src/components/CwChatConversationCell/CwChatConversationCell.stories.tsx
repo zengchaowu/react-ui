@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { storybookChatDefaultAvatarSrc } from '../../storybook/chatDefaultAvatar'
+import { storybookChatDefaultAvatarSrc } from '@zengchaowu/ui-shared/storybook/chatDefaultAvatar'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 import { CwIcon } from '../CwIcon'

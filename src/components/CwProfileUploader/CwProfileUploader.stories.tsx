@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwProfileUploader } from './CwProfileUploader'
 import { numberControlArgType } from '../../storybook/argTypes'
-import { storybookChatDefaultAvatarSrc } from '../../storybook/chatDefaultAvatar'
+import { storybookChatDefaultAvatarSrc } from '@zengchaowu/ui-shared/storybook/chatDefaultAvatar'
 
 const storybookProfileImageSrc = storybookChatDefaultAvatarSrc
 

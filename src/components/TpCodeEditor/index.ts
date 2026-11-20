@@ -7,7 +7,7 @@ export {
   highlightHoveredLineGutter,
   tpCodeEditorGutterTheme,
 } from '@zengchaowu/ui-shared/components/TpCodeEditor/createTpCodeEditorBaseExtensions'
-export { createTpCodeEditorHighlightTheme } from './tpCodeEditorHighlightTheme'
+export { createTpCodeEditorHighlightTheme } from '@zengchaowu/ui-shared/components/TpCodeEditor/tpCodeEditorHighlightTheme'
 export { loadCodeMirrorLanguage } from '@zengchaowu/ui-shared/components/TpCodeEditor/loadCodeMirrorLanguage'
 export type { CodeMirrorLanguageFactory } from '@zengchaowu/ui-shared/components/TpCodeEditor/loadCodeMirrorLanguage'
 export { defaultTexts } from '@zengchaowu/ui-shared/components/TpCodeEditor/texts'

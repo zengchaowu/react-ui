@@ -85,6 +85,16 @@ html[data-virtual-keyboard-open] .cw-chat-message-composer-mobile .cw-message-in
   padding-top: var(--app-page-chrome-safe-top);
 }
 
+/**
+ * 夸克 / UC 等 Android 网页：浏览器自带状态栏区域，
+ * 页面内再顶一次安全区会双份留白。
+ */
+html[data-app-android-web='true'] .cw-safe-pt-page,
+html[data-app-android-web='true'] .cw-safe-pt-overlay,
+html[data-app-android-web='true'] .cw-safe-pt-chrome {
+  padding-top: 0;
+}
+
 .cw-safe-pb-page,
 .cw-safe-pb-overlay,
 .cw-safe-pb-tabbar {

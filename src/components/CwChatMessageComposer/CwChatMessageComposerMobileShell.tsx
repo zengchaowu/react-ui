@@ -23,7 +23,7 @@ import {
   COMPOSER_SHELL_HEIGHT_TRANSITION,
   computeComposerLayoutGeometry,
   toAbsoluteStyle,
-} from '../CwAiChatComposer/layoutGeometry'
+} from '@zengchaowu/ui-shared/components/CwAiChatComposer/layoutGeometry'
 import { useCwAiChatComposerContentRows } from '../CwAiChatComposer/useCwAiChatComposerContentRows'
 import type { CwChatMessageComposerMobileShellEmits, CwChatMessageComposerMobileShellHandle, CwChatMessageComposerMobileShellProps } from './types'
 import type { CwChatMessageComposerMobileShellTexts } from '@zengchaowu/ui-shared/components/CwChatMessageComposer/types'

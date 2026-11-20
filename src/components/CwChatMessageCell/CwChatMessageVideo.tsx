@@ -4,7 +4,7 @@ import {
   CHAT_MEDIA_BUBBLE_MAX_PX,
   computeImageOrVideoBubbleSizeStyle,
 } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
-import { chatOwnMediaBubbleRingClasses } from './chatMessageBubbleSurface'
+import { chatOwnMediaBubbleRingClasses } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 import {
   chatMessageMetaTextClass,
   chatMessageSecondaryTextClass,

@@ -8,4 +8,4 @@ export type {
   CwCascaderPanelHandle,
   CwCascaderPanelValue,
 } from './types'
-export { buildCascaderColumns } from './functions/buildCascaderColumns'
+export { buildCascaderColumns } from '@zengchaowu/ui-shared/components/CwCascaderPanel/functions/buildCascaderColumns'

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { storybookChatDefaultAvatarSrc } from '../../storybook/chatDefaultAvatar'
-import { storybookChatDownloadByUrl } from '../../storybook/chatMessageListStoryDemo'
-import { storybookChatWalletRedEnvelopeIconSrc } from '../../storybook/chatWalletDemoAssets'
+import { storybookChatDefaultAvatarSrc } from '@zengchaowu/ui-shared/storybook/chatDefaultAvatar'
+import { storybookChatDownloadByUrl } from '@zengchaowu/ui-shared/storybook/chatMessageListStoryDemo'
+import { storybookChatWalletRedEnvelopeIconSrc } from '@zengchaowu/ui-shared/storybook/chatWalletDemoAssets'
 import { CwChatMessageCell } from './index'
 import type { ChatMessage } from '@zengchaowu/shared/types/im-chat'
 

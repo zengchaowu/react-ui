@@ -20,14 +20,14 @@ import {
   sanitizeImRichContentHtml,
 } from '@zengchaowu/shared/functions/im/imRichContentHtml'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
-import { splitTextToEmojiParts } from '../../utils/emojioneEmoji'
+import { splitTextToEmojiParts } from '@zengchaowu/ui-shared/utils/emojioneEmoji'
 import { CwMessageInputMentionPanel } from '../CwMessageInputMentionPanel'
 import { CwMessageInputMentionSheet } from '../CwMessageInputMentionSheet'
 import { EmojiNode } from './extensions/EmojiNode'
 import { FileRefNode } from './extensions/FileRefNode'
 import { ImageClipNode } from './extensions/ImageClipNode'
 import { ImMentionNode } from './extensions/ImMentionNode'
-import { clipboardImageFiles } from './functions/clipboardImageFiles'
+import { clipboardImageFiles } from '@zengchaowu/ui-shared/components/CwMessageInput/functions/clipboardImageFiles'
 import {
   hasEditorClipboardHtmlMarkers,
   restorablePlainFromEditorSlice,
@@ -36,7 +36,7 @@ import {
 import {
   focusEditorWithKeyboardPolicy,
   syncEditorVirtualKeyboardPolicy,
-} from './functions/focusEditorWithKeyboardPolicy'
+} from '@zengchaowu/ui-shared/components/CwMessageInput/functions/focusEditorWithKeyboardPolicy'
 import { useComposerLayout } from './hooks/useComposerLayout'
 import { useComposerSelection } from './hooks/useComposerSelection'
 import { useEmojiComposer } from './hooks/useEmojiComposer'

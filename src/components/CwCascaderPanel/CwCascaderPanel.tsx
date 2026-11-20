@@ -8,7 +8,7 @@ import type {
   CwCascaderPanelOption,
 } from './types'
 import { cascaderPanelByAppearance } from './styles'
-import { buildCascaderColumns } from './functions/buildCascaderColumns'
+import { buildCascaderColumns } from '@zengchaowu/ui-shared/components/CwCascaderPanel/functions/buildCascaderColumns'
 
 export const CwCascaderPanel = forwardRef<
   CwCascaderPanelHandle,

@@ -9,7 +9,7 @@ import type {
   CwImMentionProfileResolver,
 } from './mentionProfile.types'
 import type { CwChatDownloadByUrlFn, CwChatRevealLocalFileFn } from '@zengchaowu/ui-shared/components/CwChatMessageCell/types'
-import type { CwChatMessageBubbleAppearance } from './chatMessageBubbleSurface'
+import type { CwChatMessageBubbleAppearance } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 
 /** 与 `ChatMessage.mediaUploadPhase` 对齐 */
 export type CwChatMessageMediaUploadPhase =

@@ -9,7 +9,7 @@ import type {
 } from '@zengchaowu/ui-shared/components/CwChatToolbar/types/stickerPack'
 import type { CwChatToolbarTexts } from '@zengchaowu/ui-shared/components/CwChatToolbar/types'
 import { defaultCwChatToolbarTexts } from '@zengchaowu/ui-shared/components/CwChatToolbar/texts'
-import { emojiPickerPopupPlugins } from './emojiPopupConfig'
+import { emojiPickerPopupPlugins } from '@zengchaowu/ui-shared/components/CwChatToolbar/emojiPopupConfig'
 
 export interface CwChatToolbarEmojiPopupProps {
   stickerPacks?: CwChatStickerPackItem[]

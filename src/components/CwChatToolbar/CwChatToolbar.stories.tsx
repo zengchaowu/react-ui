@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CwChatToolbar } from './index'
 import type { CwChatToolbarItemConfig } from './types'
-import { storybookChatToolbarDemoItems } from '../../storybook/chatToolbarDemoItems'
+import { storybookChatToolbarDemoItems } from '@zengchaowu/ui-shared/storybook/chatToolbarDemoItems'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 

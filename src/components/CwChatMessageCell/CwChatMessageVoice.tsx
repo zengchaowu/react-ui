@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import CwIcon from '../CwIcon/CwIcon'
 import { showCwToast } from '../CwToast'
-import { chatOwnBubbleBodyClasses } from './chatMessageBubbleSurface'
+import { chatOwnBubbleBodyClasses } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 import {
   chatVoiceBubbleWidthRem,
   formatChatVoiceDurationLabel,

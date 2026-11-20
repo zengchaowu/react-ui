@@ -4,7 +4,7 @@ import type {
   ReactNode,
 } from 'react'
 import type { ChatMessage, ChatMessageKnowledgeSource } from '@zengchaowu/shared/types/im-chat'
-import type { CwChatMessageBubbleAppearance } from './chatMessageBubbleSurface'
+import type { CwChatMessageBubbleAppearance } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 import type { CwChatMessageRedEnvelopeTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/redEnvelopeTexts'
 import type { CwChatMessageTransferTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/transferTexts'
 import type { CwChatMessageForwardBundleTexts } from '../CwChatMessageForwardBundle/types'

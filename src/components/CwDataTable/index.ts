@@ -8,4 +8,4 @@ export {
   collectExpandableTreeKeys,
   getTreeRowMeta,
   groupRowsByFieldAsTree,
-} from './functions/treeUtils'
+} from '@zengchaowu/ui-shared/components/CwDataTable/functions/treeUtils'

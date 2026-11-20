@@ -14,7 +14,7 @@ import {
   resolveEmojiItemToPicker,
   resolveEmojiPickerItems,
   type EmojiItem,
-} from '../../utils/emojioneEmoji'
+} from '@zengchaowu/ui-shared/utils/emojioneEmoji'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import CwGrid from '../CwGrid/CwGrid'
 import CwViewportImg from '../CwViewportImg/CwViewportImg'
@@ -44,7 +44,7 @@ import {
   emojiPickerTabBtnInactiveClass,
   emojiPickerTabsClass,
   resolveInitialEmojiCategory,
-} from './emojiPopupConfig'
+} from '@zengchaowu/ui-shared/components/CwChatToolbar/emojiPopupConfig'
 
 const EMOJI_PICKER_GRID_PADDING_PX = 8
 const EMOJI_PICKER_ROW_HEIGHT_FALLBACK_PX = 40

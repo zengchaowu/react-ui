@@ -1,4 +1,4 @@
-import { getVirtualWindow } from './virtualWindow'
+import { getVirtualWindow } from '@zengchaowu/ui-shared/virtual-scroll/getVirtualWindow'
 
 const uniformSizeCache = new WeakMap<object, { horizontal?: boolean; vertical?: boolean }>()
 

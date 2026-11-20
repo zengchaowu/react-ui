@@ -1,6 +1,6 @@
 import type { ReactNode, RefObject } from 'react'
 import { CW_OVERLAY_MODAL_Z_CLASS } from '@zengchaowu/ui-shared/constants/cwOverlayZIndex'
-import { buildPopupRootClass } from '../utils/popupRootClass'
+import { buildPopupRootClass } from '@zengchaowu/ui-shared/components/CwPopup/utils/popupRootClass'
 import { buildPopupRootStyle, canPaintPopup, POPUP_HIDDEN_STYLE } from '../utils/popupOffsetStyle'
 
 const BRIDGE_BASE_CLASS = `fixed top-0 left-0 ${CW_OVERLAY_MODAL_Z_CLASS}`

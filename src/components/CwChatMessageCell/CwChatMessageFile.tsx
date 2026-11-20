@@ -7,7 +7,7 @@ import type { CwChatMessageFileProps } from './messageParts.types'
 import {
   chatOwnMediaBubbleRingClasses,
   chatPeerBubbleBodyClasses,
-} from './chatMessageBubbleSurface'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 import {
   chatMessageFileMetaTextClass,
   chatMessageFileNameTextClass,

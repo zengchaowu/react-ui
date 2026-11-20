@@ -22,7 +22,7 @@ import {
   resolveChatBubbleTextShellClasses,
   resolveChatOwnBubbleBodyClasses,
   resolveChatPeerBubbleBodyClasses,
-} from './chatMessageBubbleSurface'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 import {
   chatMessageAssistantBodyTextClass,
   chatMessageBodyTextClass,

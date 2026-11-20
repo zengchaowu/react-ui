@@ -5,14 +5,14 @@ import { materializeImForwardBundlePreviewText } from '@zengchaowu/shared/functi
 import {
   CW_INLINE_EMOJI_IMG_CLASS,
   splitTextToEmojiParts,
-} from '../../utils/emojioneEmoji'
+} from '@zengchaowu/ui-shared/utils/emojioneEmoji'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import CwViewportImg from '../CwViewportImg/CwViewportImg'
 import { chatCardBubbleWrapperMaxWidthStyle } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleLayout'
 import {
   chatForwardBundleCardBodyClasses,
   chatOwnForwardBundleCardBodyClasses,
-} from '../CwChatMessageCell/chatMessageBubbleSurface'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 import { forwardBundleBase } from '@zengchaowu/ui-shared/components/CwChatMessageForwardBundle/styles'
 import {
   buildCwChatMessageForwardBundleTitle,

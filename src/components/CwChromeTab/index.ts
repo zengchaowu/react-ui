@@ -4,7 +4,7 @@ export {
   buildChromeTabContextMenuItems,
   isChromeTabClosable,
   resolveChromeTabCloseTargetIds,
-} from './chromeTabContextMenu'
-export type { ChromeTabContextAction, ChromeTabContextMenuItem } from './chromeTabContextMenu'
+} from '@zengchaowu/ui-shared/components/CwChromeTab/chromeTabContextMenu'
+export type { ChromeTabContextAction, ChromeTabContextMenuItem } from '@zengchaowu/ui-shared/components/CwChromeTab/chromeTabContextMenu'
 export type { CwChromeTabEmits, CwChromeTabIconScope, CwChromeTabProps } from './types'
 export type { CwChromeTabItem, CwChromeTabAppearance, CwChromeTabStyles, CwChromeTabTexts } from '@zengchaowu/ui-shared/components/CwChromeTab/types'

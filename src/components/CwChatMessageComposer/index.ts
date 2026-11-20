@@ -8,4 +8,4 @@ export {
   buildWorkspacePathMentionItems,
   collectWorkspaceFolderPrefixes,
   type WorkspacePathMentionMember,
-} from './functions/buildWorkspacePathMentionItems'
+} from '@zengchaowu/ui-shared/components/CwChatMessageComposer/functions/buildWorkspacePathMentionItems'

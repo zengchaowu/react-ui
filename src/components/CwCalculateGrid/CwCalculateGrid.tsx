@@ -31,7 +31,7 @@ import {
   type CalculateEditTiming,
   type CalculateLoadTiming,
 } from '@zengchaowu/ui-shared/components/CwCalculateGrid/functions/editTiming'
-import { getVirtualWindow } from '../CwVirtualScroll/virtual-scroll'
+import { getVirtualWindow } from '@zengchaowu/ui-shared/virtual-scroll/getVirtualWindow'
 import { calculateGridBase } from '@zengchaowu/ui-shared/components/CwCalculateGrid/styles'
 import { defaultTexts } from '@zengchaowu/ui-shared/components/CwCalculateGrid/texts'
 import CwDataTable from '../CwDataTable/CwDataTable'

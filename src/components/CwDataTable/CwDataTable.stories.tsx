@@ -11,7 +11,7 @@ import type {
   CwDataTableHeaderRenderContext,
   CwDataTableRow,
 } from './types'
-import { groupRowsByFieldAsTree } from './functions/treeUtils'
+import { groupRowsByFieldAsTree } from '@zengchaowu/ui-shared/components/CwDataTable/functions/treeUtils'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
 

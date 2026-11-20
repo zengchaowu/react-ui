@@ -4,7 +4,7 @@ import { CW_FULLSCREEN_PREVIEW_LEAVE_MS } from '@zengchaowu/ui-shared/constants/
 import { scheduleBringOverlayHostToFront } from '../../constants/cwOverlayStack'
 import { CwPublicAssetBaseUrlContext } from '../../utils/publicAssetBaseUrl'
 import CwAttachmentPreview from './CwAttachmentPreview'
-import { buildAttachmentGalleryItems } from '../CwAttachmentGallery/functions/buildAttachmentGalleryItems'
+import { buildAttachmentGalleryItems } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/functions/buildAttachmentGalleryItems'
 import { buildImageAttachmentItems } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/functions/buildImageAttachmentItems'
 import type { CwAttachmentGalleryItem } from '../CwAttachmentGallery/types'
 import { clampIndex } from '@zengchaowu/shared/functions/number/clampIndex'

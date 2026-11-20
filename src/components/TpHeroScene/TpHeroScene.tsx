@@ -2,7 +2,7 @@
 import { CwSlider } from '../CwSlider'
 import { CwGrid } from '../CwGrid'
 import type { SceneQuality, TpHeroSceneProps, TpHeroSceneResolvedProps } from './types'
-import { initScene, cleanupScene, type SceneState } from './lib/scene'
+import { initScene, cleanupScene, type SceneState } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/scene'
 import { updateSkyAndSun } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/sky'
 import { updateAllAnimations } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/animation'
 import { formatTime, getTimeOfDay, getTimeEmoji } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/utils'

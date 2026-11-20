@@ -36,7 +36,7 @@ import {
   CW_AI_ASSISTANT_BUBBLE_APPEARANCE,
   CW_WORKSPACE_OWN_BUBBLE_APPEARANCE,
   type CwChatMessageBubbleAppearance,
-} from './chatMessageBubbleSurface'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 import { chatAiDisplaySegmentStackClass } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageTypography'
 import type { CwChatAttachmentPreviewOpenPayload, CwChatDownloadByUrlFn, CwChatFileDownloadProgressResolver, CwChatMessageLayoutVariant, CwChatRevealLocalFileFn } from '@zengchaowu/ui-shared/components/CwChatMessageCell/types'
 import type { CwChatMessageForwardBundleTexts } from '../CwChatMessageForwardBundle/types'

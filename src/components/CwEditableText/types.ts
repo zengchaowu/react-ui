@@ -1,11 +1,11 @@
 import type { HTMLAttributes } from 'react'
 
 import type { CwInputTexts } from '@zengchaowu/ui-shared/components/CwInput/types'
+import type { CwEditableTextAppearance } from '@zengchaowu/ui-shared/components/CwEditableText/types'
 
 export type CwEditableTextEditIconVisibility = 'always' | 'hover' | 'never'
 
-/** 场景外观：plain（默认，裸输入）/ 资料页单元格 / 标题行等 */
-export type CwEditableTextAppearance = 'default' | 'field-inline' | 'title' | 'plain'
+export type { CwEditableTextAppearance }
 
 export interface CwEditableTextProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange' | 'onError'> {

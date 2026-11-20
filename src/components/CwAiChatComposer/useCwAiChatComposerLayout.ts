@@ -19,7 +19,7 @@ import {
   computeComposerLayoutGeometry,
   toAbsoluteStyle,
   type ComposerToolbarVariant,
-} from './layoutGeometry'
+} from '@zengchaowu/ui-shared/components/CwAiChatComposer/layoutGeometry'
 
 export interface ComposerEffectiveRowBounds {
   min: number

@@ -70,11 +70,3 @@
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
 }
-
-/**
- * 夸克 / UC 等 Android 网页：浏览器自带状态栏区域，
- * 页面内再顶一次安全区会双份留白。
- */
-html[data-app-android-web='true'] .cw-page.cw-safe-pt-page {
-  padding-top: 0;
-}

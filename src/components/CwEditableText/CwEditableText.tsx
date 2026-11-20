@@ -7,7 +7,7 @@ import CwIcon from '../CwIcon/CwIcon'
 import CwInput from '../CwInput/CwInput'
 import CwLoading from '../CwLoading/CwLoading'
 import type { CwEditableTextProps } from './types'
-import { resolveEditableTextStyles } from './editableTextAppearance'
+import { resolveEditableTextStyles } from '@zengchaowu/ui-shared/components/CwEditableText/editableTextAppearance'
 import { defaultTexts } from './texts'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 

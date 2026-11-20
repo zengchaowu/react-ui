@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { HTMLAttributes, ReactNode } from 'react'
-import { CW_AI_ASSISTANT_BUBBLE_APPEARANCE } from '../CwChatMessageCell/chatMessageBubbleSurface'
+import { CW_AI_ASSISTANT_BUBBLE_APPEARANCE } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 import CwAttachmentPreview from '../CwAttachmentPreview/CwAttachmentPreview'
 import type { CwAttachmentGalleryItem } from '../CwAttachmentGallery/types'
 import type { CwChatAttachmentPreviewOpenPayload } from '@zengchaowu/ui-shared/components/CwChatMessageCell/types'

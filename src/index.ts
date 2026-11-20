@@ -268,7 +268,7 @@ export {
   resolveEmojiPickerItems,
   hasEmojioneAsset,
   type EmojiTextPart,
-} from './utils/emojioneEmoji'
+} from '@zengchaowu/ui-shared/utils/emojioneEmoji'
 export {
   bindDeferredEmojiImages,
   CW_CONVERSATION_LIST_EMOJI_ROOT_MARGIN,

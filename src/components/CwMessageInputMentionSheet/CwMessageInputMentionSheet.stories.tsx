@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '../../storybook/chatDefaultAvatar'
+import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '@zengchaowu/ui-shared/storybook/chatDefaultAvatar'
 import { CwButton } from '../CwButton'
 import { CwMessageInputMentionSheet } from './CwMessageInputMentionSheet'
 import type { CwMessageInputMentionItem } from '@zengchaowu/ui-shared/components/CwMessageInput/types'

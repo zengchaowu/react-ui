@@ -3,7 +3,7 @@ import { CwTikTokFeed } from './CwTikTokFeed'
 import type { CwSocialActionEvent, CwTikTokFeedProps } from './types'
 import type { VideoItem } from '@zengchaowu/ui-shared/components/CwTikTokFeed/types'
 import { defaultTexts } from '@zengchaowu/ui-shared/components/CwTikTokFeed/texts'
-import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '../../storybook/chatDefaultAvatar'
+import { storybookChatDefaultAvatarSrc as chatDefaultAvatar } from '@zengchaowu/ui-shared/storybook/chatDefaultAvatar'
 import { storybookPlaceholderImage } from '../../storybook/placeholderImage'
 
 // 模拟视频数据

@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react'
 import CwCascaderPanel from '../CwCascaderPanel/CwCascaderPanel'
-import { buildCascaderColumns } from '../CwCascaderPanel/functions/buildCascaderColumns'
+import { buildCascaderColumns } from '@zengchaowu/ui-shared/components/CwCascaderPanel/functions/buildCascaderColumns'
 import { scrollElementIntoCwDivViewport } from '@zengchaowu/ui-shared/components/CwDiv/scrollElementIntoCwDivViewport'
 import type {
   CwCascaderPanelOption,

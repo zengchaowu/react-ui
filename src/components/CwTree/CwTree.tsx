@@ -35,7 +35,7 @@ import {
 import {
   flattenVisibleTreeRows,
   treeVirtualRowHeight,
-} from './functions/flattenVisibleTreeRows'
+} from '@zengchaowu/ui-shared/components/CwTree/functions/flattenVisibleTreeRows'
 import { useTreeVirtualScroll } from './hooks/useTreeVirtualScroll'
 
 const EMPTY_NODES: CwTreeNodeData[] = []

@@ -16,7 +16,7 @@ import {
   expressionPackTabsTopClass,
   expressionPackTabsMobileDockClass,
   EXPRESSION_PACK_TAB_ICON_SIZE,
-} from './emojiPopupConfig'
+} from '@zengchaowu/ui-shared/components/CwChatToolbar/emojiPopupConfig'
 import type {
   CwChatStickerItem,
   CwChatStickerPackItem,

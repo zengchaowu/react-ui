@@ -1,48 +1,15 @@
+import { createAppMessage } from '@zengchaowu/ui-shared/utils/appMessage'
 import { showConfirmDialog } from '../components/CwConfirmDialog'
 import { showCwToast } from '../components/CwToast/showCwToast'
-import type { ShowCwToastOptions } from '../components/CwToast/showCwToast'
-import { apiErrorMessageFrom } from '@zengchaowu/shared/functions/api/apiErrorMessageFrom'
 
-type CwToastType = NonNullable<ShowCwToastOptions['type']>
+export type { AppMessageToastType } from '@zengchaowu/ui-shared/utils/appMessage'
 
-const toastDuration = 2500
+/** 通用文案与提示规则在 ui-shared，本文件只绑定 React 端的 Toast / 确认框实现 */
+const appMessage = createAppMessage({
+  showToast: showCwToast,
+  showConfirmDialog,
+})
 
-export type AppMessageToastType = 'info' | 'success' | 'error' | 'warning'
-
-/** Only toast when the error carries a backend/request message */
-export function showApiError(
-  e: unknown,
-  type: 'error' | 'warning' = 'error',
-): void {
-  const msg = apiErrorMessageFrom(e)
-  if (msg) showMessage(msg, type)
-}
-
-export function showMessage(
-  message: string,
-  type: AppMessageToastType = 'info',
-): void {
-  const text = String(message ?? '').trim()
-  if (!text) return
-  const cwType: CwToastType = type === 'success' ? 'success' : 'text'
-  showCwToast({
-    message: text,
-    type: cwType,
-    duration: toastDuration,
-  })
-}
-
-export async function showConfirm(
-  message: string,
-  title: string = '确认',
-  confirmText: string = '确定',
-  cancelText: string = '取消',
-): Promise<boolean> {
-  const result = await showConfirmDialog({
-    title,
-    message,
-    confirmText,
-    cancelText,
-  })
-  return result === 'confirm'
-}
+export const showApiError = appMessage.showApiError
+export const showMessage = appMessage.showMessage
+export const showConfirm = appMessage.showConfirm

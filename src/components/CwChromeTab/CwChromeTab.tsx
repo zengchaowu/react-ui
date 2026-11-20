@@ -13,7 +13,7 @@ import {
   resolveChromeTabCloseTargetIds,
   type ChromeTabContextAction,
   type ChromeTabContextMenuItem,
-} from './chromeTabContextMenu'
+} from '@zengchaowu/ui-shared/components/CwChromeTab/chromeTabContextMenu'
 
 const CONTEXT_MENU_PANEL_CLASS = [
   'cw-context-menu-panel pointer-events-auto w-max min-w-[var(--size-context-menu-min)] max-w-[18rem] overflow-hidden',

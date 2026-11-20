@@ -6,4 +6,4 @@ export {
   flattenVisibleTreeRows,
   treeVirtualRowHeight,
   type CwTreeFlatRow,
-} from './functions/flattenVisibleTreeRows'
+} from '@zengchaowu/ui-shared/components/CwTree/functions/flattenVisibleTreeRows'

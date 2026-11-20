@@ -7,7 +7,7 @@ import {
 } from '@zengchaowu/shared/functions/im/imRichContentHtml'
 import { writeBubbleSelectionClipboard } from '@zengchaowu/shared/functions/im/imBubbleSelectionClipboard'
 import { buildInlineAttachmentPreviewItems, resolveInlineAttachmentPreviewIndex } from './chatInlineContentClip'
-import { splitTextToEmojiParts, getEmojionePngUrl } from '../../utils/emojioneEmoji'
+import { splitTextToEmojiParts, getEmojionePngUrl } from '@zengchaowu/ui-shared/utils/emojioneEmoji'
 import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import CwViewportImg from '../CwViewportImg/CwViewportImg'
 import CwChatInlineContentClip from './CwChatInlineContentClip'
@@ -27,7 +27,7 @@ import {
   resolveChatBubbleTextShellClasses,
   resolveChatOwnBubbleBodyClasses,
   resolveChatPeerBubbleBodyClasses,
-} from './chatMessageBubbleSurface'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 import type { CwChatMessageTextProps } from './messageParts.types'
 import type {
   CwImMentionProfile,

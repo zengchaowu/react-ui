@@ -6,7 +6,7 @@ import {
   demoDesktopContextMenuItems,
   demoMessageToolbarItems,
   openContextMenuStoryDemo,
-} from '../../storybook/contextMenuStoryDemo'
+} from '@zengchaowu/ui-shared/storybook/contextMenuStoryDemo'
 import { showCwContextMenu } from './showCwContextMenu'
 import type { CwContextMenuAppearance } from '@zengchaowu/ui-shared/components/CwContextMenu/types'
 
@@ -88,12 +88,15 @@ export const AttachmentGlass: Story = {
           className="flex cursor-context-menu items-center gap-3 rounded-lg border border-[var(--border-color)] bg-[var(--bg-color-container)] px-3 py-2.5 select-none"
           onContextMenu={(event) => {
             event.preventDefault()
-            openContextMenuStoryDemo({
-              event: event.nativeEvent,
-              items: demoAttachContextMenuItems,
-              appearance: args.appearance ?? 'glass-frosted',
-              onSelect: (key) => setLastKey(key),
-            })
+            openContextMenuStoryDemo(
+              {
+                event: event.nativeEvent,
+                items: demoAttachContextMenuItems,
+                appearance: args.appearance ?? 'glass-frosted',
+                onSelect: (key) => setLastKey(key),
+              },
+              showCwContextMenu,
+            )
           }}
         >
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--bg-color-component)] text-xs font-medium text-[var(--text-color-secondary)]">
@@ -125,12 +128,15 @@ export const SolidDefault: Story = {
           className="flex min-h-[8rem] cursor-context-menu items-center justify-center rounded-lg border border-dashed border-[var(--border-color)] bg-[var(--bg-color-container)] px-4 text-center text-sm text-[var(--text-color-secondary)] select-none"
           onContextMenu={(event) => {
             event.preventDefault()
-            openContextMenuStoryDemo({
-              event: event.nativeEvent,
-              items: demoDefaultContextMenuItems,
-              appearance: args.appearance,
-              onSelect: (key) => setLastKey(key),
-            })
+            openContextMenuStoryDemo(
+              {
+                event: event.nativeEvent,
+                items: demoDefaultContextMenuItems,
+                appearance: args.appearance,
+                onSelect: (key) => setLastKey(key),
+              },
+              showCwContextMenu,
+            )
           }}
         >
           在此区域单击右键打开菜单
@@ -158,16 +164,19 @@ export const MessageToolbar: Story = {
             event.preventDefault()
             const target = event.currentTarget
             const rect = target.getBoundingClientRect()
-            openContextMenuStoryDemo({
-              event: event.nativeEvent,
-              items: demoMessageToolbarItems,
-              appearance: args.appearance ?? 'toolbar',
-              layout: 'toolbar',
-              placement: 'top',
-              anchorRect: rect,
-              anchorOffset: 8,
-              onSelect: (key) => setLastKey(key),
-            })
+            openContextMenuStoryDemo(
+              {
+                event: event.nativeEvent,
+                items: demoMessageToolbarItems,
+                appearance: args.appearance ?? 'toolbar',
+                layout: 'toolbar',
+                placement: 'top',
+                anchorRect: rect,
+                anchorOffset: 8,
+                onSelect: (key) => setLastKey(key),
+              },
+              showCwContextMenu,
+            )
           }}
         >
           这是一条消息气泡。在气泡上右键，会在上方弹出横排工具条（与 chat 移动端长按效果一致）。

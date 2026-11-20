@@ -4,8 +4,8 @@ import type { Node as PMNode } from '@tiptap/pm/model'
 import {
   getEmojionePngUrl,
   splitTextToEmojiParts,
-} from '../../../utils/emojioneEmoji'
-import { focusEditorWithKeyboardPolicy } from '../functions/focusEditorWithKeyboardPolicy'
+} from '@zengchaowu/ui-shared/utils/emojioneEmoji'
+import { focusEditorWithKeyboardPolicy } from '@zengchaowu/ui-shared/components/CwMessageInput/functions/focusEditorWithKeyboardPolicy'
 
 export type EmojiComposerNode =
   | { type: 'text'; text: string }

@@ -80,10 +80,10 @@ const meta = {
 
 ## 头像（强制）
 
-**所有 Story 中的用户头像**必须使用 `assets/chat-default-avatar.png`，经 `chatDefaultAvatar.ts` 导出为 `storybookChatDefaultAvatarSrc`：
+**所有 Story 中的用户头像**必须使用 `@zengchaowu/ui-shared/storybook/chatDefaultAvatar` 导出的 `storybookChatDefaultAvatarSrc`（内置 data URI，不再维护本地 png）：
 
 ```ts
-import { storybookChatDefaultAvatarSrc } from '../../storybook/chatDefaultAvatar'
+import { storybookChatDefaultAvatarSrc } from '@zengchaowu/ui-shared/storybook/chatDefaultAvatar'
 ```
 
 适用于 `CwAvatar`、聊天消息 / 会话列表、`@` 提及面板等一切头像 props 与演示数据。**禁止**在 Story 中使用 unsplash / picsum / 第三方 CDN 作为头像。

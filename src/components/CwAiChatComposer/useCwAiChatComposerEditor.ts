@@ -14,8 +14,8 @@ import {
   insertComposerPlainTextAtCaret,
   normalizeComposerPastePlainText,
   setComposerCaretToEnd,
-} from './composerPlainText'
-import { scheduleScrollComposerSelectionIntoView } from './scrollComposerSelectionIntoView'
+} from '@zengchaowu/ui-shared/components/CwAiChatComposer/composerPlainText'
+import { scheduleScrollComposerSelectionIntoView } from '@zengchaowu/ui-shared/components/CwAiChatComposer/scrollComposerSelectionIntoView'
 
 export interface UseCwAiChatComposerEditorOptions {
   value: string

@@ -1,6 +1,6 @@
 export { CwAttachmentGallery } from './CwAttachmentGallery'
 export { CwAttachmentGallerySlide } from './CwAttachmentGallerySlide'
-export { buildAttachmentGalleryItems } from './functions/buildAttachmentGalleryItems'
+export { buildAttachmentGalleryItems } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/functions/buildAttachmentGalleryItems'
 export { buildImageAttachmentItems } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/functions/buildImageAttachmentItems'
 export { defaultCwAttachmentGalleryTexts } from '@zengchaowu/ui-shared/components/CwAttachmentGallery/texts'
 export type { CwAttachmentGalleryComponentProps } from './CwAttachmentGallery'

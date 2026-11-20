@@ -11,7 +11,7 @@ import { CwAutoCompleteEmail } from '../CwAutoCompleteEmail/CwAutoCompleteEmail'
 import { CwLoading } from '../CwLoading/CwLoading'
 import type { CwAutoCompleteEmailHandle } from '../CwAutoCompleteEmail/types'
 import type { CwEditableEmailProps } from './types'
-import { resolveEditableEmailStyles } from './editableEmailAppearance'
+import { resolveEditableEmailStyles } from '@zengchaowu/ui-shared/components/CwEditableEmail/editableEmailAppearance'
 import { defaultTexts } from './texts'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
 

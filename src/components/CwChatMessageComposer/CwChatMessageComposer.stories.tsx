@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CwChatMessageComposer } from './CwChatMessageComposer'
 import { SlotStorySection } from '../../storybook/SlotStorySection'
 import { withSlotsStoryParameters } from '../../storybook/slotStory'
-import { storybookChatDefaultAvatarSrc } from '../../storybook/chatDefaultAvatar'
+import { storybookChatDefaultAvatarSrc } from '@zengchaowu/ui-shared/storybook/chatDefaultAvatar'
 import {
   storybookChatMobileMoreDemoItems,
   storybookChatToolbarDemoItems,
-} from '../../storybook/chatToolbarDemoItems'
+} from '@zengchaowu/ui-shared/storybook/chatToolbarDemoItems'
 
 const meta: Meta<typeof CwChatMessageComposer> = {
   title: '1. Components/Chat/CwChatMessageComposer',

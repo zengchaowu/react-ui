@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
-import { getVirtualWindow } from '../../CwVirtualScroll/virtual-scroll'
-import type { CwTreeFlatRow } from '../functions/flattenVisibleTreeRows'
+import { getVirtualWindow } from '@zengchaowu/ui-shared/virtual-scroll/getVirtualWindow'
+import type { CwTreeFlatRow } from '@zengchaowu/ui-shared/components/CwTree/functions/flattenVisibleTreeRows'
 
 export type CwTreeVisibleRow = CwTreeFlatRow & { startIndex: number }
 

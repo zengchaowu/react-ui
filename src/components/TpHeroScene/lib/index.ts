@@ -4,7 +4,7 @@
  */
 
 // 场景管理
-export { initScene, cleanupScene, type SceneState, type InitSceneConfig } from './scene'
+export { initScene, cleanupScene, type SceneState, type InitSceneConfig } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/scene'
 
 // 动画更新
 export { updateAllAnimations, type AnimationState } from '@zengchaowu/ui-shared/components/TpHeroScene/lib/animation'

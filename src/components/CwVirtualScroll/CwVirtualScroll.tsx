@@ -24,7 +24,7 @@ import { virtualScrollBase } from '@zengchaowu/ui-shared/components/CwVirtualScr
 import { defaultTexts } from './texts'
 import { useContainerSize, useItemPositions, useScrollPosition, usePadding, useTotalSize, useVisibleRange, useVirtualScrollWatchers } from './hooks'
 import { calculateItemStyle, normalizePadding } from './functions'
-import { EMPTY_VIRTUAL_WINDOW, getVirtualContentSize, getVirtualWindow, scrollOffsetForIndex } from './virtual-scroll'
+import { EMPTY_VIRTUAL_WINDOW, getVirtualContentSize, getVirtualWindow, scrollOffsetForIndex } from '@zengchaowu/ui-shared/virtual-scroll/getVirtualWindow'
 
 function itemMatchesFixedSize(
   item: { height?: number; width?: number },

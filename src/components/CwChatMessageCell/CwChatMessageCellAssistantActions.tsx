@@ -5,7 +5,7 @@ import type { CwChatAssistantMessageFeedbackVote } from '@zengchaowu/ui-shared/c
 import {
   assistantActionsBase,
   cwChatMessageAssistantActionIconStyles,
-} from './assistantActionsStyles'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/assistantActionsStyles'
 import { defaultCwChatMessageAssistantActionsTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/assistantActionsTexts'
 import { useChatVoiceIconFrame } from './useChatVoiceIconFrame'
 

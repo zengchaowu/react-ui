@@ -27,7 +27,7 @@ import type {
 import { useCwAiChatComposerEditor } from './useCwAiChatComposerEditor'
 import { useCwAiChatComposerLayout } from './useCwAiChatComposerLayout'
 import { useCwAiChatComposerVoiceHold } from './useCwAiChatComposerVoiceHold'
-import { shouldProgrammaticFocusComposerPointer } from './shouldProgrammaticFocusComposerPointer'
+import { shouldProgrammaticFocusComposerPointer } from '@zengchaowu/ui-shared/components/CwAiChatComposer/shouldProgrammaticFocusComposerPointer'
 import {
   COMPOSER_ACTION_CLOSE_DURATION,
   COMPOSER_ACTION_CLOSE_EASE,
@@ -37,7 +37,7 @@ import {
   COMPOSER_TOOLBAR_GAP_REM,
   COMPOSER_TOOLBAR_HEIGHT_REM,
 } from './constants'
-import { COMPOSER_LAYOUT_TRANSITION_MS } from './layoutGeometry'
+import { COMPOSER_LAYOUT_TRANSITION_MS } from '@zengchaowu/ui-shared/components/CwAiChatComposer/layoutGeometry'
 
 const ACTION_ICON_SIZE = 1.75
 

@@ -2,7 +2,7 @@ import { useMemo, useRef } from 'react'
 import {
   getVirtualWindow,
   MAX_VIRTUAL_SCROLL_PX,
-} from '../../CwVirtualScroll/virtual-scroll'
+} from '@zengchaowu/ui-shared/virtual-scroll/getVirtualWindow'
 import { getRowKey } from '../functions/columnUtils'
 import type { CwDataTableRow } from '../types'
 

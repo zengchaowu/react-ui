@@ -2,7 +2,7 @@ import type { HTMLAttributes, ReactNode } from 'react'
 import type { ChatMessage } from '@zengchaowu/shared/types/im-chat'
 import type { CwChatMessageMarkdownCodeBlockCopyPayload, CwChatMessageMarkdownImageContextMenuPayload, CwChatOwnMessageEditSubmitPayload } from '../CwChatMessageCell/types'
 import type { CwChatAssistantMessageFeedbackVote, CwChatDownloadByUrlFn, CwChatFileDownloadProgressResolver, CwChatAttachmentPreviewOpenPayload, CwChatMessageCellTexts, CwChatMessageLayoutVariant, CwChatRevealLocalFileFn } from '@zengchaowu/ui-shared/components/CwChatMessageCell/types'
-import type { CwChatMessageBubbleAppearance } from '../CwChatMessageCell/chatMessageBubbleSurface'
+import type { CwChatMessageBubbleAppearance } from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 import type { CwChatMessageRedEnvelopeTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/redEnvelopeTexts'
 import type { CwChatMessageTransferTexts } from '@zengchaowu/ui-shared/components/CwChatMessageCell/transferTexts'
 import type {

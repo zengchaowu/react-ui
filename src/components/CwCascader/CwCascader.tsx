@@ -10,7 +10,7 @@ import CwPopup from '../CwPopup/CwPopup'
 import CwInput from '../CwInput/CwInput'
 import CwIcon from '../CwIcon/CwIcon'
 import CwCascaderPanel from '../CwCascaderPanel/CwCascaderPanel'
-import { buildCascaderColumns } from '../CwCascaderPanel/functions/buildCascaderColumns'
+import { buildCascaderColumns } from '@zengchaowu/ui-shared/components/CwCascaderPanel/functions/buildCascaderColumns'
 import type {
   CwCascaderPanelOption,
   CwCascaderPanelValue,

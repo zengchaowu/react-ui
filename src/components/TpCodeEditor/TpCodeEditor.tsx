@@ -18,7 +18,7 @@ import {
   createTpCodeEditorBaseExtensions,
   tpCodeEditorGutterTheme,
 } from '@zengchaowu/ui-shared/components/TpCodeEditor/createTpCodeEditorBaseExtensions'
-import { createTpCodeEditorHighlightTheme } from './tpCodeEditorHighlightTheme'
+import { createTpCodeEditorHighlightTheme } from '@zengchaowu/ui-shared/components/TpCodeEditor/tpCodeEditorHighlightTheme'
 import { loadCodeMirrorLanguage } from '@zengchaowu/ui-shared/components/TpCodeEditor/loadCodeMirrorLanguage'
 import { resolveDesignCssSize } from '@zengchaowu/ui-shared/functions/ui/cwRemSize'
 import { readAppTheme, useAppThemeTick } from '../../utils/appThemeDom'

@@ -6,7 +6,7 @@ import {
 import {
   chatOwnMediaBubbleRingClasses,
   chatPeerBubbleBodyClasses,
-} from './chatMessageBubbleSurface'
+} from '@zengchaowu/ui-shared/components/CwChatMessageCell/chatMessageBubbleSurface'
 import {
   chatMessageMetaTextClass,
   chatMessageSecondaryTextClass,
