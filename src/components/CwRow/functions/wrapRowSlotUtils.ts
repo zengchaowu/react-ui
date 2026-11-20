@@ -51,6 +51,9 @@ export function resolveMaxVisibleItems(
   itemsPerRow: number,
   hasControls: boolean,
 ): number {
+  // 低代码 schema 可能把 maxRows 生成成非数字（{}），此时按不折叠处理，避免 slice(0, NaN) 清空整行
+  if (!Number.isFinite(maxRows)) return Number.POSITIVE_INFINITY
+
   const maxItems = Math.max(0, maxRows) * Math.max(1, itemsPerRow)
   return hasControls ? Math.max(0, maxItems - 1) : maxItems
 }

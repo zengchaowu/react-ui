@@ -8,6 +8,7 @@ import {
 } from 'react'
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
 import type { CwWrapRowProps } from './types'
+import type { CwColProps } from '@zengchaowu/ui-shared/components/CwRow/types'
 import {
   findBreakpointConfig,
   getCurrentBreakpoint,
@@ -51,8 +52,9 @@ export const CwWrapRow = forwardRef<
     align = 'top',
     justify = 'start',
     rowGap = 0,
-    maxRows,
-    colPros,
+    // 低代码 / AI 生成的节点可能省略这两个必填项：缺省不折叠，colPros 缺失时按 1 列渲染
+    maxRows = Number.POSITIVE_INFINITY,
+    colPros = {} as CwColProps,
     texts,
     children,
     controlsSlot,
@@ -82,7 +84,7 @@ export const CwWrapRow = forwardRef<
     if (measured && measured.columns > 0) return measured.columns
 
     const matched = findBreakpointConfig(colPros, currentBreakpoint)
-    return resolveItemsPerRowFromColProps(matched ?? colPros.xs)
+    return resolveItemsPerRowFromColProps(matched ?? colPros?.xs)
   }, [gridLayout, colPros, currentBreakpoint])
 
   const childNodes = useMemo(() => flattenReactNodes(children), [children])
