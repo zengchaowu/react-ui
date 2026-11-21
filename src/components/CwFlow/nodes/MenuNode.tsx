@@ -1,21 +1,14 @@
-import type { Node, NodeProps } from '@xyflow/react'
+import type { CwFlowMenuNodeData, CwFlowNodeRendererProps } from '@zengchaowu/ui-shared/components/CwFlow/types'
 
-export type TpVueFlowMenuNodeData = {
-  label: string
-  menuItems: Array<{
-    label: string
-    value: string
-  }>
-}
-
-export type TpVueFlowMenuFlowNode = Node<TpVueFlowMenuNodeData, 'menu'>
-
-export function MenuNode({ data, selected }: NodeProps<TpVueFlowMenuFlowNode>) {
+/** 菜单节点 */
+export function CwFlowMenuNode({ node, selected, disabled }: CwFlowNodeRendererProps) {
+  const data = node.data as unknown as CwFlowMenuNodeData
   return (
     <div
       className={[
         'min-w-[9.375rem] overflow-hidden rounded border-2 border-[var(--border-color)] bg-[var(--bg-color-container)] transition-all duration-200',
         selected ? 'border-[var(--brand-color-6)] ring-2 ring-[var(--brand-color-focus)]' : '',
+        disabled ? 'opacity-60' : '',
       ]
         .filter(Boolean)
         .join(' ')}
@@ -24,9 +17,9 @@ export function MenuNode({ data, selected }: NodeProps<TpVueFlowMenuFlowNode>) {
         {data.label}
       </div>
       <div className="max-h-[12.5rem] overflow-y-auto">
-        {data.menuItems.map((item, index) => (
+        {data.menuItems.map((item) => (
           <div
-            key={index}
+            key={item.value}
             className="cursor-pointer hairline-border-b border-[var(--border-color)] px-3 py-2 text-xs text-[var(--text-color-primary)] transition-colors last:hairline-border-b-0 hover:bg-[var(--bg-color-secondarycomponent-hover)]"
           >
             {item.label}
@@ -37,4 +30,4 @@ export function MenuNode({ data, selected }: NodeProps<TpVueFlowMenuFlowNode>) {
   )
 }
 
-export default MenuNode
+export default CwFlowMenuNode

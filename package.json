@@ -2218,17 +2218,11 @@
       "import": "./dist/components/TpTipTapEditor/index.js",
       "default": "./dist/components/TpTipTapEditor/index.js"
     },
-    "./TpVueFlow": {
-      "types": "./dist/components/TpVueFlow/index.d.ts",
-      "node": "./dist/components/TpVueFlow/index.js",
-      "import": "./dist/components/TpVueFlow/index.js",
-      "default": "./dist/components/TpVueFlow/index.js"
-    },
-    "./components/TpVueFlow": {
-      "types": "./dist/components/TpVueFlow/index.d.ts",
-      "node": "./dist/components/TpVueFlow/index.js",
-      "import": "./dist/components/TpVueFlow/index.js",
-      "default": "./dist/components/TpVueFlow/index.js"
+    "./components/TpTipTapEditor": {
+      "types": "./dist/components/TpTipTapEditor/index.d.ts",
+      "node": "./dist/components/TpTipTapEditor/index.js",
+      "import": "./dist/components/TpTipTapEditor/index.js",
+      "default": "./dist/components/TpTipTapEditor/index.js"
     }
   },
   "files": [
@@ -2280,7 +2274,6 @@
     "@tiptap/pm": "^2.27.2",
     "@tiptap/react": "^2.27.3",
     "@tiptap/starter-kit": "^2.27.2",
-    "@xyflow/react": "^12.12.0",
     "@zengchaowu/shared": "workspace:*",
     "@zengchaowu/ui-shared": "workspace:*",
     "cherry-markdown": "0.10.1",
