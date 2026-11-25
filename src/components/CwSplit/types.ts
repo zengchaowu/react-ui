@@ -40,6 +40,12 @@ export interface CwSplitProps {
    * @default 11
    */
   dividerHitPx?: number
+  /**
+   * 第一面板尺寸变化时是否过渡（收起 / 展开、双击复位）。
+   * 拖拽过程中自动关闭过渡，保证跟手。
+   * @default false
+   */
+  animated?: boolean
   /** 第一面板追加 class */
   firstClass?: string
   /** 第二面板追加 class */

@@ -83,6 +83,7 @@ export function CwSplit({
   secondMaxSize: _secondMaxSize,
   texts: textsProp,
   dividerHitPx = 11,
+  animated = false,
   firstClass = '',
   secondClass = '',
   dividerClass = '',
@@ -352,6 +353,13 @@ export function CwSplit({
   } else {
     // 固定像素值
     firstStyle[isRowSplit(direction) ? 'width' : 'height'] = currentFirstSize
+  }
+
+  // 过渡只在非拖拽时开启：拖拽中每帧写宽度，过渡会让分隔条跟不上指针
+  if (animated && !isDragging) {
+    firstStyle.transitionProperty = isRowSplit(direction) ? 'width' : 'height'
+    firstStyle.transitionDuration = '200ms'
+    firstStyle.transitionTimingFunction = 'ease'
   }
 
   // 分隔条：宽热区叠在两栏接缝上（负 margin 使 flex 净占位 0），避免留透明缝透出父级背景；视觉线仍由内层 handle 画

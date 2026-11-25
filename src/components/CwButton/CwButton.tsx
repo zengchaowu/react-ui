@@ -282,30 +282,30 @@ export function CwButton({
     if (isIconButton) {
       switch (size) {
         case 'compact':
-          buttonSizeStyles = 'h-8 w-8 min-w-8'
+          buttonSizeStyles = 'h-7 w-7 min-w-7'
           break
         case 'small':
-          buttonSizeStyles = 'h-7 w-7'
+          buttonSizeStyles = 'h-6 w-6'
           break
         case 'large':
-          buttonSizeStyles = 'h-11 w-11'
+          buttonSizeStyles = 'h-10 w-10'
           break
         default:
-          buttonSizeStyles = 'h-9 w-9'
+          buttonSizeStyles = 'h-8 w-8'
       }
     } else {
       switch (size) {
         case 'compact':
-          buttonSizeStyles = 'min-h-6 px-2 py-0.5 text-xs font-medium leading-5 tabular-nums'
+          buttonSizeStyles = 'min-h-5 px-1.5 py-0.5 text-[0.6875rem] font-medium leading-4 tabular-nums'
           break
         case 'small':
-          buttonSizeStyles = 'px-3 py-1 text-xs'
+          buttonSizeStyles = 'px-2.5 py-0.5 text-xs'
           break
         case 'large':
-          buttonSizeStyles = 'px-6 py-2.5 text-base'
+          buttonSizeStyles = 'px-5 py-2 text-[0.9375rem]'
           break
         default:
-          buttonSizeStyles = 'px-4 py-1.5 text-sm'
+          buttonSizeStyles = 'px-3.5 py-1 text-[0.8125rem]'
       }
     }
   }
