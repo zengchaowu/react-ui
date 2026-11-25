@@ -20,6 +20,8 @@ export interface CwIconProps
    * 默认 `1`。
    */
   size?: number
+  /** 图标颜色；不传时继承 currentColor */
+  color?: string
   /** 自定义文本 */
   texts?: Partial<CwIconTexts>
 }

@@ -16,6 +16,7 @@ export function CwIcon({
   spin = false,
   prefix = 'icon',
   size = iconBase.defaultSize,
+  color,
   texts,
   className,
   style,
@@ -47,6 +48,8 @@ export function CwIcon({
 
   const rootStyle = {
     ...resolveCwBoxSizeStyle(sizeBox, iconBase.defaultSize),
+    // symbol 模式保留 SVG 多色，不向根节点注入 color
+    ...(color && iconType !== 'symbol' ? { color } : null),
     ...style,
   }
 

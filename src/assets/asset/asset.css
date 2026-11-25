@@ -2,9 +2,9 @@
 
 @font-face {
     font-family: "asset";
-    src: url('asset.woff2?v=2026-11-25T07%3A44%3A00.771Z') format("woff2"),
-url('asset.woff?v=2026-11-25T07%3A44%3A00.771Z') format("woff"),
-url('asset.ttf?v=2026-11-25T07%3A44%3A00.771Z') format("truetype");
+    src: url('asset.woff2?v=2026-11-25T08%3A58%3A25.764Z') format("woff2"),
+url('asset.woff?v=2026-11-25T08%3A58%3A25.764Z') format("woff"),
+url('asset.ttf?v=2026-11-25T08%3A58%3A25.764Z') format("truetype");
 }
 
 .asset {
@@ -31,6 +31,9 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 }
 .icon-draw--canvas--mail:before {
     content: "\eecf";
+}
+.icon-draw--canvas--tag:before {
+    content: "\eed0";
 }
 .icon-common--file--page-line:before {
     content: "\eecd";

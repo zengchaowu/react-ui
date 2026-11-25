@@ -20,6 +20,13 @@
       "unicode_decimal": 61135
     },
     {
+      "icon_id": "56a97744-23c8-4195-80b3-310c09bbff08",
+      "name": "draw--canvas--tag",
+      "font_class": "draw--canvas--tag",
+      "unicode": "eed0",
+      "unicode_decimal": 61136
+    },
+    {
       "icon_id": "7e4c18e3-b187-45dc-b449-ce45967ab3ec",
       "name": "common--file--page-line",
       "font_class": "common--file--page-line",
