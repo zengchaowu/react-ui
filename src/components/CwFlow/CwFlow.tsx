@@ -8,7 +8,12 @@ import {
   MAX_FLOW_ZOOM,
   MIN_FLOW_ZOOM,
 } from '@zengchaowu/ui-shared/components/CwFlow/geometry'
-import { flowBackgroundStyle, flowBase } from '@zengchaowu/ui-shared/components/CwFlow/styles'
+import {
+  flowArrow,
+  flowBackgroundStyle,
+  flowBase,
+  flowHandles,
+} from '@zengchaowu/ui-shared/components/CwFlow/styles'
 import { defaultTexts } from '@zengchaowu/ui-shared/components/CwFlow/texts'
 import type {
   CwFlowEdge,
@@ -169,13 +174,22 @@ export function CwFlow({
 
   const handleKeydown = useCwFlowKeyboard({ disabled, onDelete: handleDelete })
 
-  const previousCount = useRef(0)
+  // 首次自动适应画布：等所有节点完成尺寸测量后再计算，避免用默认尺寸得到错误的缩放与偏移；
+  // 只在第一次测量齐全时执行一次，之后由用户手动「适应画布」控制。
+  const autoFitPendingRef = useRef(fitViewOnInit)
+  const fitView = viewportApi.fitView
   useEffect(() => {
-    if (flowNodes.length > 0 && previousCount.current === 0 && fitViewOnInit) {
-      viewportApi.fitView(nodesApi.placedNodes, nodesApi.sizes)
-    }
-    previousCount.current = flowNodes.length
-  }, [flowNodes.length, fitViewOnInit, nodesApi.placedNodes, nodesApi.sizes, viewportApi])
+    if (!autoFitPendingRef.current) return
+    const list = nodesApi.placedNodes
+    if (list.length === 0) return
+    const measured = list.every(
+      (node) =>
+        (node.width != null && node.height != null) || nodesApi.sizes[node.id] !== undefined,
+    )
+    if (!measured) return
+    autoFitPendingRef.current = false
+    fitView(list, nodesApi.sizes)
+  }, [fitView, nodesApi.placedNodes, nodesApi.sizes])
 
   const wheelZoom = viewportApi.wheelZoom
   useEffect(() => {
@@ -226,8 +240,8 @@ export function CwFlow({
       <div className={flowBase.graph} style={viewportApi.graphStyle}>
         <svg className="pointer-events-none absolute left-0 top-0 overflow-visible" width={1} height={1}>
           <defs>
-            <marker id={markerIdRef.current} markerWidth={10} markerHeight={10} refX={9} refY={3} orient="auto">
-              <path d="M0,0 L8,3 L0,6 z" className="fill-[var(--border-color)]" />
+            <marker id={markerIdRef.current} {...flowArrow.attrs}>
+              <path d={flowArrow.path} className={flowArrow.pathClass} />
             </marker>
           </defs>
 
@@ -296,15 +310,19 @@ export function CwFlow({
                 selected={nodesApi.isNodeSelected(item.node.id)}
                 disabled={disabled}
               />
-              {!disabled && item.node.connectable !== false && (
-                <div
-                  className={flowBase.handle}
-                  onPointerDown={(event) => {
-                    event.stopPropagation()
-                    connectApi.startConnect(item.node.id, event)
-                  }}
-                />
-              )}
+              {!disabled &&
+                item.node.connectable !== false &&
+                flowHandles.map((handle) => (
+                  <div
+                    key={handle.side}
+                    data-cw-flow-handle={handle.side}
+                    className={`${flowBase.handle} ${handle.className}`}
+                    onPointerDown={(event) => {
+                      event.stopPropagation()
+                      connectApi.startConnect(item.node.id, event, handle.side)
+                    }}
+                  />
+                ))}
             </div>
           )
         })}
