@@ -18,7 +18,7 @@ import type {
   CwDynamicDialogInnerHandle,
   CwDynamicDialogInnerProps,
 } from './types'
-import { dialogBase } from '@zengchaowu/ui-shared/components/CwDynamicDialog/styles'
+import { dialogBase, dialogHeaderTitleAppearanceClass } from '@zengchaowu/ui-shared/components/CwDynamicDialog/styles'
 import { defaultTexts } from '@zengchaowu/ui-shared/components/CwDynamicDialog/texts'
 import {
   isEventTargetInsideNodes,
@@ -116,7 +116,12 @@ const CwDynamicDialogInner = forwardRef<
 
   const dialogAriaBusy = isHudVariant ? 'true' : undefined
 
-  const hasHeader = !!config.header && isModalVariant
+  const hasHeaderContent = !!(config.header || config.headerTitle)
+  const hasHeader = hasHeaderContent && isModalVariant
+
+  /** 有 headerTitle 时由组件渲染标题，外观决定排版（业务不再手写标题 class） */
+  const headerTitleClass =
+    dialogHeaderTitleAppearanceClass[config.headerAppearance ?? 'default']
 
   const bodyVerticalPaddingClass = hasHeader ? 'pt-2 pb-4' : 'py-4'
 
@@ -172,7 +177,7 @@ const CwDynamicDialogInner = forwardRef<
     transitionDuration: `${leaveDurationMs}ms`,
   }
 
-  const dialogDragHandleRef = config.dragHandleRef ?? (config.header ? headerRef : dialogRef)
+  const dialogDragHandleRef = config.dragHandleRef ?? (hasHeaderContent ? headerRef : dialogRef)
 
   const { style: draggableStyle } = useDraggableDialog({
     enabled: !!config.draggable && isModalVariant,
@@ -333,14 +338,22 @@ const CwDynamicDialogInner = forwardRef<
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleConfirmKeyDown}
       >
-        {config.header && isModalVariant ? (
+        {hasHeader ? (
           <div
             ref={headerRef}
-            className={[styles.header, config.draggable ? styles.headerDraggable : '']
+            className={[
+              styles.header,
+              config.headerDivider ? styles.headerDivider : '',
+              config.draggable ? styles.headerDraggable : '',
+            ]
               .filter(Boolean)
               .join(' ')}
           >
-            {config.header}
+            {config.header ? (
+              config.header
+            ) : (
+              <div className={headerTitleClass}>{config.headerTitle}</div>
+            )}
             {showCloseButton ? (
               <CwButton
                 shape="circle"

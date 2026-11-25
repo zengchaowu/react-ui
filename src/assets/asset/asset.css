@@ -2,9 +2,9 @@
 
 @font-face {
     font-family: "asset";
-    src: url('asset.woff2?v=2026-11-18T07%3A13%3A36.515Z') format("woff2"),
-url('asset.woff?v=2026-11-18T07%3A13%3A36.515Z') format("woff"),
-url('asset.ttf?v=2026-11-18T07%3A13%3A36.515Z') format("truetype");
+    src: url('asset.woff2?v=2026-11-25T07%3A44%3A00.771Z') format("woff2"),
+url('asset.woff?v=2026-11-25T07%3A44%3A00.771Z') format("woff"),
+url('asset.ttf?v=2026-11-25T07%3A44%3A00.771Z') format("truetype");
 }
 
 .asset {
@@ -26,6 +26,21 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-common--design--component-library-fill:before {
+    content: "\eecc";
+}
+.icon-draw--canvas--mail:before {
+    content: "\eecf";
+}
+.icon-common--file--page-line:before {
+    content: "\eecd";
+}
+.icon-common--notice--bell-line:before {
+    content: "\eece";
+}
+.icon-common--design--component-fill:before {
+    content: "\eecb";
+}
 .icon-common--design--video-line:before {
     content: "\eec4";
 }
@@ -112,9 +127,6 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 }
 .icon-chat--new-line:before {
     content: "\eeb3";
-}
-.icon-chat--msg--sidebar-left-line:before {
-    content: "\eeb4";
 }
 .icon-common--nav--workflow-line:before {
     content: "\ee8c";

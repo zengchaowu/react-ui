@@ -128,15 +128,17 @@ export function useCwDialogVariant(options: UseCwDialogVariantOptions) {
         .join(' ')
     }
 
+    const hasHeaderContent = !!(config.header || config.headerTitle)
+
     const showCloseButton =
       isToastVariant || isHudVariant
         ? false
         : config.showCloseButton !== undefined
           ? config.showCloseButton
-          : !!config.header
+          : hasHeaderContent
 
     const showStandaloneCloseButton =
-      showCloseButton && (isModalVariant || isFullscreenVariant) && !config.header
+      showCloseButton && (isModalVariant || isFullscreenVariant) && !hasHeaderContent
 
     const bodyScrollDisabled =
       config.bodyScroll === false ||

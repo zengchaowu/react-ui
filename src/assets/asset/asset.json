@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "05b9e61f-224c-4d53-9ae2-22bfa1daa6e1",
+      "name": "common--design--component-library-fill",
+      "font_class": "common--design--component-library-fill",
+      "unicode": "eecc",
+      "unicode_decimal": 61132
+    },
+    {
+      "icon_id": "51252929-2851-41c9-8cba-c7e59e5cc386",
+      "name": "draw--canvas--mail",
+      "font_class": "draw--canvas--mail",
+      "unicode": "eecf",
+      "unicode_decimal": 61135
+    },
+    {
+      "icon_id": "7e4c18e3-b187-45dc-b449-ce45967ab3ec",
+      "name": "common--file--page-line",
+      "font_class": "common--file--page-line",
+      "unicode": "eecd",
+      "unicode_decimal": 61133
+    },
+    {
+      "icon_id": "7f116cb9-26a4-4d09-a712-1a53720fa975",
+      "name": "common--notice--bell-line",
+      "font_class": "common--notice--bell-line",
+      "unicode": "eece",
+      "unicode_decimal": 61134
+    },
+    {
+      "icon_id": "a8e6c8e0-fd20-4ae8-895f-224ea684f672",
+      "name": "common--design--component-fill",
+      "font_class": "common--design--component-fill",
+      "unicode": "eecb",
+      "unicode_decimal": 61131
+    },
+    {
       "icon_id": "cb1b22b3-5d6b-41c8-b0fc-fc14ef44479e",
       "name": "common--design--video-line",
       "font_class": "common--design--video-line",
@@ -207,13 +242,6 @@
       "font_class": "chat--new-line",
       "unicode": "eeb3",
       "unicode_decimal": 61107
-    },
-    {
-      "icon_id": "39b09087-b29e-4cac-9c51-3ac66acc9d47",
-      "name": "chat--msg--sidebar-left-line",
-      "font_class": "chat--msg--sidebar-left-line",
-      "unicode": "eeb4",
-      "unicode_decimal": 61108
     },
     {
       "icon_id": "d020599f-a371-4120-bd78-d5c2ee5e4f73",
