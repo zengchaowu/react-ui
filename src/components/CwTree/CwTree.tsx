@@ -136,6 +136,7 @@ export function CwTree({
   showLine = false,
   showIcon = false,
   switcherIcon = true,
+  switcherIconName = 'common--dir--arrow-down-line',
   reserveLeafSwitcherSpace = true,
   expandOnClickNode = false,
   accordion = false,
@@ -615,6 +616,7 @@ export function CwTree({
       showLine={showLineValue}
       showIcon={showIcon}
       switcherIcon={switcherIcon}
+      switcherIconName={switcherIconName}
       reserveLeafSwitcherSpace={reserveLeafSwitcherSpace}
       expandOnClickNode={expandOnClickNode}
       accordion={accordion}

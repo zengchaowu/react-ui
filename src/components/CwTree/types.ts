@@ -137,6 +137,11 @@ export interface CwTreeProps
    */
   switcherIcon?: boolean
   /**
+   * 展开/折叠图标名。默认 chevron（`common--dir--arrow-down-line`），
+   * 需要小三角时传 `common--dir--arrow-down-filled`。
+   */
+  switcherIconName?: string
+  /**
    * 叶子节点是否预留与展开箭头同宽的空白占位（默认 true）
    */
   reserveLeafSwitcherSpace?: boolean

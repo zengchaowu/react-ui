@@ -50,6 +50,7 @@ export const CwInput = forwardRef<CwInputHandle, CwInputProps>(function CwInput(
     iconSlot,
     clearSlot,
     suffixSlot,
+    displaySlot,
     suffix,
     className,
     onChange,
@@ -63,6 +64,7 @@ export const CwInput = forwardRef<CwInputHandle, CwInputProps>(function CwInput(
   ref,
 ) {
   const inputRef = useRef<HTMLInputElement | null>(null)
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
   const [wrapperHovered, setWrapperHovered] = useState(false)
   const [inputFocused, setInputFocused] = useState(false)
   const { isFocusVisible, handleFocus: handleFocusVisibleFocus, handleBlur: handleFocusVisibleBlur } =
@@ -89,6 +91,8 @@ export const CwInput = forwardRef<CwInputHandle, CwInputProps>(function CwInput(
 
   const hasIcon = iconSlot != null
   const hasSuffix = suffixSlot != null || suffix != null
+  /** 展示区插槽存在时不渲染原生 input，改由插槽内容承担展示 */
+  const hasDisplaySlot = displaySlot != null
 
   const slotProps: CwInputSlotProps = { disabled, readonly }
   const renderSlot = (slot: CwInputSlotContent): ReactNode =>
@@ -218,6 +222,18 @@ export const CwInput = forwardRef<CwInputHandle, CwInputProps>(function CwInput(
     .filter(Boolean)
     .join(' ')
 
+  /** displaySlot 内容的排版：复用 input 的内边距 / 字号 / 颜色 / 外观，去掉边框与原生控件相关样式 */
+  const displayClassList = [
+    appearance === 'plain' ? 'min-w-0' : 'min-w-0 flex-1 w-full',
+    appearance === 'plain' ? '' : inputBase.input,
+    sizeClass,
+    inputStateClass,
+    appearanceInputClass[appearance],
+    inputAlignClass,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   const displayLabel = label ?? texts.label
   const displayPlaceholder = placeholder ?? texts.placeholder
 
@@ -231,8 +247,12 @@ export const CwInput = forwardRef<CwInputHandle, CwInputProps>(function CwInput(
 
   const focusInput = useCallback(() => {
     if (disabled) return
+    if (hasDisplaySlot) {
+      wrapperRef.current?.focus()
+      return
+    }
     inputRef.current?.focus()
-  }, [disabled])
+  }, [disabled, hasDisplaySlot])
 
   const handleInput = () => {
     if (disabled || readonly) return
@@ -263,6 +283,21 @@ export const CwInput = forwardRef<CwInputHandle, CwInputProps>(function CwInput(
   }
 
   const handleInputBlur = (event: FocusEvent<HTMLInputElement>) => {
+    setInputFocused(false)
+    handleFocusVisibleBlur()
+    onBlur?.(event.nativeEvent)
+  }
+
+  /** displaySlot 模式下焦点落在 wrapper 上，事件语义与原生 input 保持一致 */
+  const handleWrapperFocus = (event: FocusEvent<HTMLDivElement>) => {
+    if (!hasDisplaySlot || disabled) return
+    setInputFocused(true)
+    handleFocusVisibleFocus()
+    onFocus?.(event.nativeEvent)
+  }
+
+  const handleWrapperBlur = (event: FocusEvent<HTMLDivElement>) => {
+    if (!hasDisplaySlot) return
     setInputFocused(false)
     handleFocusVisibleBlur()
     onBlur?.(event.nativeEvent)
@@ -299,10 +334,18 @@ export const CwInput = forwardRef<CwInputHandle, CwInputProps>(function CwInput(
   return (
     <div {...rest} className={rootClassList}>
       <div
+        ref={wrapperRef}
         className={wrapperClassList}
+        tabIndex={hasDisplaySlot && !disabled ? 0 : undefined}
+        role={hasDisplaySlot ? 'textbox' : undefined}
+        aria-label={hasDisplaySlot ? displayLabel ?? displayPlaceholder : undefined}
+        aria-readonly={hasDisplaySlot ? readonly : undefined}
+        aria-disabled={hasDisplaySlot ? disabled : undefined}
         onClick={focusInput}
         onMouseEnter={() => setWrapperHovered(true)}
         onMouseLeave={() => setWrapperHovered(false)}
+        onFocus={handleWrapperFocus}
+        onBlur={handleWrapperBlur}
       >
         {iconSlot != null && (
           <div className={iconClassList}>{renderSlot(iconSlot)}</div>
@@ -311,26 +354,30 @@ export const CwInput = forwardRef<CwInputHandle, CwInputProps>(function CwInput(
         {showLabel && <div className={labelClassList}>{displayLabel}</div>}
 
         <div className={inputMainClassList}>
-          <input
-            ref={inputRef}
-            type={type || 'text'}
-            value={boundValue}
-            maxLength={maxLength}
-            placeholder={displayPlaceholder}
-            disabled={disabled}
-            readOnly={readonly}
-            aria-readonly={readonly}
-            aria-disabled={disabled}
-            aria-label={displayLabel ?? displayPlaceholder}
-            spellCheck={spellcheck}
-            className={inputClassList}
-            onInput={handleInput}
-            onKeyDown={handleKeydown}
-            onClick={handlePointerSelection}
-            onKeyUp={handlePointerSelection}
-            onFocus={handleInputFocus}
-            onBlur={handleInputBlur}
-          />
+          {displaySlot != null ? (
+            <div className={displayClassList}>{renderSlot(displaySlot)}</div>
+          ) : (
+            <input
+              ref={inputRef}
+              type={type || 'text'}
+              value={boundValue}
+              maxLength={maxLength}
+              placeholder={displayPlaceholder}
+              disabled={disabled}
+              readOnly={readonly}
+              aria-readonly={readonly}
+              aria-disabled={disabled}
+              aria-label={displayLabel ?? displayPlaceholder}
+              spellCheck={spellcheck}
+              className={inputClassList}
+              onInput={handleInput}
+              onKeyDown={handleKeydown}
+              onClick={handlePointerSelection}
+              onKeyUp={handlePointerSelection}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+            />
+          )}
         </div>
 
         {showClearButton && (

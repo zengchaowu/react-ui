@@ -30,6 +30,8 @@ export interface CwTreeNodeComponentProps {
   showLine: boolean
   showIcon: boolean
   switcherIcon: boolean
+  /** 展开/折叠图标名 */
+  switcherIconName: string
   /** 叶子是否预留箭头列空白；默认 true */
   reserveLeafSwitcherSpace: boolean
   expandOnClickNode: boolean
@@ -107,6 +109,7 @@ export function CwTreeNode({
   showLine,
   showIcon,
   switcherIcon,
+  switcherIconName,
   reserveLeafSwitcherSpace,
   expandOnClickNode,
   accordion,
@@ -309,17 +312,16 @@ export function CwTreeNode({
     const currentExpandedKeys = expandedKeysRef.current
     const newExpandedKeys = new Set(currentExpandedKeys)
     if (currentExpandedKeys.has(node.key)) {
-      const removeNodeAndChildren = (nodeKey: string | number) => {
-        newExpandedKeys.delete(nodeKey)
-        if (node.children) {
-          node.children.forEach((child) => {
-            if (newExpandedKeys.has(child.key)) {
-              removeNodeAndChildren(child.key)
-            }
-          })
-        }
+      // 递归删除当前节点及其所有后代（必须用各自节点的 children）
+      const removeNodeAndChildren = (target: TreeNode) => {
+        newExpandedKeys.delete(target.key)
+        target.children?.forEach((child) => {
+          if (newExpandedKeys.has(child.key)) {
+            removeNodeAndChildren(child)
+          }
+        })
       }
-      removeNodeAndChildren(node.key)
+      removeNodeAndChildren(node)
     } else {
       if (treeLazy) {
         const ok = await treeLazy.tryExpandAndThen(node)
@@ -532,7 +534,7 @@ export function CwTreeNode({
             }}
           >
             <CwIcon
-              name="common--dir--arrow-down-line"
+              name={switcherIconName}
               prefix="icon"
               size={switcherIconStyles.size}
               className={switcherIconStyles.class}
@@ -639,6 +641,7 @@ export function CwTreeNode({
                 showLine={showLine}
                 showIcon={showIcon}
                 switcherIcon={switcherIcon}
+                switcherIconName={switcherIconName}
                 reserveLeafSwitcherSpace={reserveLeafSwitcherSpace}
                 expandOnClickNode={expandOnClickNode}
                 accordion={accordion}

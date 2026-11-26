@@ -662,3 +662,13 @@ html {
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: auto;
 }
+
+/*
+ * 层级令牌防覆盖：部分第三方样式（如 cherry-markdown）也用 :root 声明
+ * --z-index-modal（1050），会把弹窗抬到 toast 之上。用 html:root 提高优先级。
+ */
+html:root {
+  --z-index-modal: 100;
+  --z-index-toast: 200;
+}
+

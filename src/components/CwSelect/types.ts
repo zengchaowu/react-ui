@@ -12,6 +12,22 @@ export interface CwSelectOption {
   [key: string]: unknown
 }
 
+/** 自定义选项内容渲染上下文（对齐 vue / uni 侧 `#option` 插槽） */
+export interface CwSelectOptionRenderContext {
+  option: CwSelectOption
+  index: number
+  selected: boolean
+  disabled: boolean
+}
+
+/** 自定义选中值展示上下文（对齐 vue / uni 侧 `#value` 插槽，仅单选） */
+export interface CwSelectValueRenderContext {
+  /** 当前选中的选项；未选中时为空 */
+  option?: CwSelectOption
+  /** 选中项 label；未选中时为空字符串 */
+  label: string
+}
+
 /** CwSelectTags 可透传的属性子集（React 侧多选标签由 CwSelect 内联渲染） */
 export interface CwSelectTagsOverrides {
   /** 最大显示行数 */
@@ -84,6 +100,10 @@ export interface CwSelectProps {
   onMoreClick?: (event: MouseEvent) => void
   /** 具名插槽 icon（单选模式） */
   iconSlot?: ReactNode
+  /** 自定义选项内容（对齐 vue / uni 侧 `#option` 插槽）；不传则渲染 option.label 纯文本 */
+  renderOption?: (context: CwSelectOptionRenderContext) => ReactNode
+  /** 自定义选中值展示（对齐 vue / uni 侧 `#value` 插槽，仅单选） */
+  renderValue?: (context: CwSelectValueRenderContext) => ReactNode
   className?: string
 }
 

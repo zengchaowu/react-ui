@@ -54,6 +54,7 @@ const meta: Meta<typeof CwButton> = {
         'list-item',
         'preset',
         'surface-light',
+        'neutral-surface',
         'text-on-image',
         'overlay-icon',
       ],
@@ -463,6 +464,14 @@ export const AppearanceSurfaceLight: Story = {
       <CwButton appearance="surface-light" shape="circle" texts={{ label: '登录' }}>
         登录
       </CwButton>
+    </div>
+  ),
+}
+
+export const AppearanceNeutralSurface: Story = {
+  render: () => (
+    <div className="rounded-lg bg-[var(--bg-color-component-hover)] p-4">
+      <CwButton appearance="neutral-surface">预览</CwButton>
     </div>
   ),
 }

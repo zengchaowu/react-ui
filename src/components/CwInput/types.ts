@@ -61,6 +61,8 @@ export interface CwInputProps
   clearSlot?: CwInputSlotContent
   /** 后缀插槽 */
   suffixSlot?: CwInputSlotContent
+  /** 展示区插槽：提供时替代原生 input 渲染只读富内容 */
+  displaySlot?: CwInputSlotContent
   /** 兼容直接以 suffix 传入后缀内容 */
   suffix?: ReactNode
   className?: string

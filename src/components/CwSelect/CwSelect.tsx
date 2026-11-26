@@ -124,6 +124,8 @@ export function CwSelect({
   onTagClose,
   onMoreClick,
   iconSlot,
+  renderOption,
+  renderValue,
   className,
   ...rest
 }: CwSelectComponentProps) {
@@ -259,6 +261,14 @@ export function CwSelect({
     if (Array.isArray(modelValue)) return ''
     const option = options.find((opt) => opt.value === modelValue)
     return option?.label || ''
+  }, [multiple, modelValue, options])
+
+  /** 单选模式下当前选中的选项（供 renderValue 使用） */
+  const selectedOption = useMemo(() => {
+    if (multiple) return undefined
+    if (modelValue === null || modelValue === undefined) return undefined
+    if (Array.isArray(modelValue)) return undefined
+    return options.find((opt) => opt.value === modelValue)
   }, [multiple, modelValue, options])
 
   // 多选模式下的选中值数组
@@ -921,6 +931,17 @@ export function CwSelect({
           texts={texts.inputTexts}
           iconSlot={iconSlot}
           suffixSlot={renderSuffix()}
+          displaySlot={
+            renderValue
+              ? selectedOption
+                ? renderValue({ option: selectedOption, label: displayValue })
+                : (
+                    <span className="text-[var(--text-color-placeholder)]">
+                      {placeholder ?? texts.placeholder}
+                    </span>
+                  )
+              : undefined
+          }
           onFocus={(event) => {
             setTriggerFocused(true)
             onFocus?.(event)
@@ -1011,7 +1032,19 @@ export function CwSelect({
                     aria-disabled={option.disabled ? 'true' : 'false'}
                     onClick={() => handleOptionClick(option)}
                   >
-                    <span className={TRUNCATE_TEXT_CLASS}>{option.label}</span>
+                    {/* 自定义选项内容（富文本 / 多行等），未提供时回退为纯文本 */}
+                    {renderOption ? (
+                      <div className="block w-full min-w-0">
+                        {renderOption({
+                          option,
+                          index,
+                          selected: isOptionSelected(option),
+                          disabled: !!option.disabled,
+                        })}
+                      </div>
+                    ) : (
+                      <span className={TRUNCATE_TEXT_CLASS}>{option.label}</span>
+                    )}
                   </div>
                 ))}
               </>
