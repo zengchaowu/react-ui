@@ -24,6 +24,7 @@ import {
   appearanceSuffixClass,
   appearanceWrapperClass,
   inputBase,
+  resolveCwInputDisplayClass,
 } from '@zengchaowu/ui-shared/components/CwInput/styles'
 import { defaultTexts } from '@zengchaowu/ui-shared/components/CwInput/texts'
 import { cwClearIconSize } from '@zengchaowu/ui-shared/functions/ui/cwClearIconSize'
@@ -222,17 +223,14 @@ export const CwInput = forwardRef<CwInputHandle, CwInputProps>(function CwInput(
     .filter(Boolean)
     .join(' ')
 
-  /** displaySlot 内容的排版：复用 input 的内边距 / 字号 / 颜色 / 外观，去掉边框与原生控件相关样式 */
-  const displayClassList = [
-    appearance === 'plain' ? 'min-w-0' : 'min-w-0 flex-1 w-full',
-    appearance === 'plain' ? '' : inputBase.input,
+  /** displaySlot 内容的排版：统一走 ui-shared 的内容盒契约（居中 / 省略 / 尺寸） */
+  const displayClassList = resolveCwInputDisplayClass({
+    appearance,
     sizeClass,
-    inputStateClass,
-    appearanceInputClass[appearance],
-    inputAlignClass,
-  ]
-    .filter(Boolean)
-    .join(' ')
+    stateClass: inputStateClass,
+    appearanceInputClass: appearanceInputClass[appearance],
+    alignClass: inputAlignClass,
+  })
 
   const displayLabel = label ?? texts.label
   const displayPlaceholder = placeholder ?? texts.placeholder
