@@ -2,9 +2,9 @@
 
 @font-face {
     font-family: "asset";
-    src: url('asset.woff2?v=2026-11-25T08%3A58%3A25.764Z') format("woff2"),
-url('asset.woff?v=2026-11-25T08%3A58%3A25.764Z') format("woff"),
-url('asset.ttf?v=2026-11-25T08%3A58%3A25.764Z') format("truetype");
+    src: url('asset.woff2?v=2026-11-26T08%3A58%3A13.078Z') format("woff2"),
+url('asset.woff?v=2026-11-26T08%3A58%3A13.078Z') format("woff"),
+url('asset.ttf?v=2026-11-26T08%3A58%3A13.078Z') format("truetype");
 }
 
 .asset {
@@ -44,8 +44,17 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 .icon-common--design--component-fill:before {
     content: "\eecb";
 }
+.icon-draw--canvas--tag-more:before {
+    content: "\eed1";
+}
 .icon-common--design--video-line:before {
     content: "\eec4";
+}
+.icon-draw--canvas--tag-line:before {
+    content: "\eed2";
+}
+.icon-common--user--invite-line:before {
+    content: "\eed3";
 }
 .icon-chat--msg--bubble-line:before {
     content: "\eec7";

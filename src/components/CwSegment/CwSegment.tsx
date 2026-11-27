@@ -111,6 +111,13 @@ export function CwSegment({
     large: 1.125,
   }[size ?? 'medium']
 
+  /** 纯图标项强制正方形，与 vue-ui 对齐 */
+  const iconOnlySizeClass = {
+    small: 'h-6 w-6',
+    medium: 'h-7 w-7',
+    large: 'h-9 w-9',
+  }[size ?? 'medium']
+
   const handleSelect = (opt: CwSegmentOption) => {
     if (disabled || opt.disabled) return
     if (value !== opt.value) {
@@ -169,9 +176,9 @@ export function CwSegment({
             title={opt.title}
             className={[
               styles.item,
-              sizeHeightClass,
+              opt.label ? sizeHeightClass : iconOnlySizeClass,
               isActive ? styles.itemActive : styles.itemInactive,
-              opt.label ? 'px-2' : 'px-1.5',
+              opt.label ? 'px-2' : '',
               isDisabled ? 'pointer-events-none opacity-50' : 'cursor-pointer',
             ]
               .filter(Boolean)

@@ -12,8 +12,6 @@ export interface CwIconPickerProps {
   defaultValue?: string
   /** 是否禁用 */
   disabled?: boolean
-  /** 是否使用 emoji 动图（当前 CDN 仅静态，预留扩展） */
-  emojiAnimated?: boolean
   /** 自定义文本 */
   texts?: Partial<CwIconPickerTexts>
   /** 追加到根节点的 class（对应 Vue `attrs.class`） */

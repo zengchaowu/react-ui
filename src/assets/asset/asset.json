@@ -48,11 +48,32 @@
       "unicode_decimal": 61131
     },
     {
+      "icon_id": "af8320cd-bc01-4a05-8286-891b820a62f5",
+      "name": "draw--canvas--tag-more",
+      "font_class": "draw--canvas--tag-more",
+      "unicode": "eed1",
+      "unicode_decimal": 61137
+    },
+    {
       "icon_id": "cb1b22b3-5d6b-41c8-b0fc-fc14ef44479e",
       "name": "common--design--video-line",
       "font_class": "common--design--video-line",
       "unicode": "eec4",
       "unicode_decimal": 61124
+    },
+    {
+      "icon_id": "e7e0be6c-f16e-49ea-b782-5c8e789d3dcd",
+      "name": "draw--canvas--tag-line",
+      "font_class": "draw--canvas--tag-line",
+      "unicode": "eed2",
+      "unicode_decimal": 61138
+    },
+    {
+      "icon_id": "f28f0a96-c074-401f-990e-591307907858",
+      "name": "common--user--invite-line",
+      "font_class": "common--user--invite-line",
+      "unicode": "eed3",
+      "unicode_decimal": 61139
     },
     {
       "icon_id": "ebdfa8d1-98c8-44e8-ae88-28fcb270b944",

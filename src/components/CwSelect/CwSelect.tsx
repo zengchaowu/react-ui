@@ -21,6 +21,7 @@ import { createOffset } from '@zengchaowu/ui-shared/components/CwPopup/plugins/o
 import { createFlip } from '@zengchaowu/ui-shared/components/CwPopup/plugins/flip'
 import { createAdaptiveHeight } from '@zengchaowu/ui-shared/components/CwPopup/plugins/adaptive-height'
 import { cwClearIconSize } from '@zengchaowu/ui-shared/functions/ui/cwClearIconSize'
+import { CW_TEXT_OPTICAL_CENTER_INPUT_CLASS } from '@zengchaowu/ui-shared/functions/ui/textOpticalCenterStyles'
 import { FORM_CONTROL_FOCUS_CLASS } from '@zengchaowu/ui-shared/functions/ui/focusStyles'
 import { scrollElementIntoCwDivViewport } from '@zengchaowu/ui-shared/components/CwDiv/scrollElementIntoCwDivViewport'
 import { useBrowserFocusVisible } from '../../hooks/useBrowserFocusVisible'
@@ -929,6 +930,7 @@ export function CwSelect({
           appearance={inputAppearance}
           align={align}
           texts={texts.inputTexts}
+          className={CW_TEXT_OPTICAL_CENTER_INPUT_CLASS}
           iconSlot={iconSlot}
           suffixSlot={renderSuffix()}
           displaySlot={

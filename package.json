@@ -934,6 +934,18 @@
       "import": "./dist/components/CwFloatingWindowShell/index.js",
       "default": "./dist/components/CwFloatingWindowShell/index.js"
     },
+    "./CwFlow": {
+      "types": "./dist/components/CwFlow/index.d.ts",
+      "node": "./dist/components/CwFlow/index.js",
+      "import": "./dist/components/CwFlow/index.js",
+      "default": "./dist/components/CwFlow/index.js"
+    },
+    "./components/CwFlow": {
+      "types": "./dist/components/CwFlow/index.d.ts",
+      "node": "./dist/components/CwFlow/index.js",
+      "import": "./dist/components/CwFlow/index.js",
+      "default": "./dist/components/CwFlow/index.js"
+    },
     "./CwForm": {
       "types": "./dist/components/CwForm/index.d.ts",
       "node": "./dist/components/CwForm/index.js",
@@ -2207,12 +2219,6 @@
       "default": "./dist/components/TpThreeJs/index.js"
     },
     "./TpTipTapEditor": {
-      "types": "./dist/components/TpTipTapEditor/index.d.ts",
-      "node": "./dist/components/TpTipTapEditor/index.js",
-      "import": "./dist/components/TpTipTapEditor/index.js",
-      "default": "./dist/components/TpTipTapEditor/index.js"
-    },
-    "./components/TpTipTapEditor": {
       "types": "./dist/components/TpTipTapEditor/index.d.ts",
       "node": "./dist/components/TpTipTapEditor/index.js",
       "import": "./dist/components/TpTipTapEditor/index.js",

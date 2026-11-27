@@ -1,15 +1,29 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { CwIconPickerProps } from './types'
 import type { IconCategory, IconItem, IconPickerType } from '@zengchaowu/ui-shared/components/CwIconPicker/types'
 import { iconPickerBase } from '@zengchaowu/ui-shared/components/CwIconPicker/styles'
 import { defaultTexts } from '@zengchaowu/ui-shared/components/CwIconPicker/texts'
-import { fetchAllEmojiData, buildAllEmojiCategories } from '@zengchaowu/ui-shared/components/CwIconPicker/emojiData'
+import { resolveCwChatToolbarEmojiCategoryLabel } from '@zengchaowu/ui-shared/components/CwChatToolbar/texts'
+import {
+  COMMON_CHAT_EMOJI_CHARS,
+  getEmojiCategoryOrder,
+  getEmojiZhName,
+  getEmojionePngUrl,
+  loadEmojioneEmojisByCategoryAsync,
+  resolveEmojiItemToPicker,
+  resolveEmojiPickerItems,
+  type EmojiItem,
+} from '@zengchaowu/ui-shared/utils/emojioneEmoji'
+import { usePublicAssetBaseUrl } from '../../utils/publicAssetBaseUrl'
 import CwTabsStrip from '../CwTabsStrip/CwTabsStrip'
 import CwButton from '../CwButton/CwButton'
 import CwInput from '../CwInput/CwInput'
 import CwIcon from '../CwIcon/CwIcon'
-import CwDiv from '../CwDiv/CwDiv'
 import CwGrid from '../CwGrid/CwGrid'
+import CwVirtualScroll from '../CwVirtualScroll/CwVirtualScroll'
+import CwViewportImg from '../CwViewportImg/CwViewportImg'
+import { useContainerSize } from '../CwVirtualScroll/hooks/useContainerSize'
+import type { CwVirtualScrollHandle, CwVirtualScrollItem } from '../CwVirtualScroll/types'
 import assetData from '../../assets/asset/asset.json'
 
 function extractAssetIconNames(data: { glyphs: { font_class: string }[] }): string[] {
@@ -21,120 +35,49 @@ function extractAssetIconNames(data: { glyphs: { font_class: string }[] }): stri
 
 const ALL_ASSET_NAMES = extractAssetIconNames(assetData)
 
-/** 常用 emoji 列表（按分类组织） */
-const COMMON_EMOJIS: IconCategory[] = [
-  {
-    name: '表情',
-    icons: [
-      { value: 'smile', content: '😊', type: 'emoji', label: '微笑' },
-      { value: 'grin', content: '😁', type: 'emoji', label: '大笑' },
-      { value: 'joy', content: '😂', type: 'emoji', label: '笑哭' },
-      { value: 'heart-eyes', content: '😍', type: 'emoji', label: '爱心眼' },
-      { value: 'kiss', content: '😘', type: 'emoji', label: '飞吻' },
-      { value: 'wink', content: '😉', type: 'emoji', label: '眨眼' },
-      { value: 'sunglasses', content: '😎', type: 'emoji', label: '墨镜' },
-      { value: 'thinking', content: '🤔', type: 'emoji', label: '思考' },
-      { value: 'surprised', content: '😲', type: 'emoji', label: '惊讶' },
-      { value: 'cry', content: '😢', type: 'emoji', label: '哭泣' },
-      { value: 'sob', content: '😭', type: 'emoji', label: '大哭' },
-      { value: 'angry', content: '😠', type: 'emoji', label: '生气' },
-      { value: 'sleepy', content: '😴', type: 'emoji', label: '睡觉' },
-      { value: 'dizzy', content: '😵', type: 'emoji', label: '晕' },
-      { value: 'sick', content: '🤒', type: 'emoji', label: '生病' },
-      { value: 'vomit', content: '🤮', type: 'emoji', label: '呕吐' },
-    ],
-  },
-  {
-    name: '手势',
-    icons: [
-      { value: 'thumbs-up', content: '👍', type: 'emoji', label: '点赞' },
-      { value: 'thumbs-down', content: '👎', type: 'emoji', label: '点踩' },
-      { value: 'clap', content: '👏', type: 'emoji', label: '鼓掌' },
-      { value: 'pray', content: '🙏', type: 'emoji', label: '祈祷' },
-      { value: 'handshake', content: '🤝', type: 'emoji', label: '握手' },
-      { value: 'fist', content: '✊', type: 'emoji', label: '拳头' },
-      { value: 'ok', content: '👌', type: 'emoji', label: 'OK' },
-      { value: 'victory', content: '✌️', type: 'emoji', label: '胜利' },
-      { value: 'love', content: '🤟', type: 'emoji', label: '我爱你' },
-      { value: 'point-right', content: '👉', type: 'emoji', label: '指向右' },
-      { value: 'point-left', content: '👈', type: 'emoji', label: '指向左' },
-      { value: 'point-up', content: '👆', type: 'emoji', label: '指向上' },
-      { value: 'point-down', content: '👇', type: 'emoji', label: '指向下' },
-    ],
-  },
-  {
-    name: '物品',
-    icons: [
-      { value: 'fire', content: '🔥', type: 'emoji', label: '火焰' },
-      { value: 'star', content: '⭐', type: 'emoji', label: '星星' },
-      { value: 'heart', content: '❤️', type: 'emoji', label: '爱心' },
-      { value: 'sparkles', content: '✨', type: 'emoji', label: '闪光' },
-      { value: 'gift', content: '🎁', type: 'emoji', label: '礼物' },
-      { value: 'party', content: '🎉', type: 'emoji', label: '庆祝' },
-      { value: 'cake', content: '🎂', type: 'emoji', label: '蛋糕' },
-      { value: 'coffee', content: '☕', type: 'emoji', label: '咖啡' },
-      { value: 'beer', content: '🍺', type: 'emoji', label: '啤酒' },
-      { value: 'wine', content: '🍷', type: 'emoji', label: '红酒' },
-      { value: 'pizza', content: '🍕', type: 'emoji', label: '披萨' },
-      { value: 'hamburger', content: '🍔', type: 'emoji', label: '汉堡' },
-      { value: 'phone', content: '📱', type: 'emoji', label: '手机' },
-      { value: 'computer', content: '💻', type: 'emoji', label: '电脑' },
-      { value: 'book', content: '📖', type: 'emoji', label: '书' },
-      { value: 'money', content: '💰', type: 'emoji', label: '钱' },
-    ],
-  },
-  {
-    name: '动物',
-    icons: [
-      { value: 'dog', content: '🐶', type: 'emoji', label: '狗' },
-      { value: 'cat', content: '🐱', type: 'emoji', label: '猫' },
-      { value: 'panda', content: '🐼', type: 'emoji', label: '熊猫' },
-      { value: 'bear', content: '🐻', type: 'emoji', label: '熊' },
-      { value: 'rabbit', content: '🐰', type: 'emoji', label: '兔子' },
-      { value: 'tiger', content: '🐯', type: 'emoji', label: '老虎' },
-      { value: 'lion', content: '🦁', type: 'emoji', label: '狮子' },
-      { value: 'cow', content: '🐮', type: 'emoji', label: '牛' },
-      { value: 'pig', content: '🐷', type: 'emoji', label: '猪' },
-      { value: 'monkey', content: '🐵', type: 'emoji', label: '猴子' },
-      { value: 'chicken', content: '🐔', type: 'emoji', label: '鸡' },
-      { value: 'bird', content: '🐦', type: 'emoji', label: '鸟' },
-    ],
-  },
-  {
-    name: '旗帜',
-    icons: [
-      { value: 'flag-cn', content: '🇨🇳', type: 'emoji', label: '中国' },
-      { value: 'flag-us', content: '🇺🇸', type: 'emoji', label: '美国' },
-      { value: 'flag-jp', content: '🇯🇵', type: 'emoji', label: '日本' },
-      { value: 'flag-kr', content: '🇰🇷', type: 'emoji', label: '韩国' },
-      { value: 'flag-gb', content: '🇬🇧', type: 'emoji', label: '英国' },
-      { value: 'flag-fr', content: '🇫🇷', type: 'emoji', label: '法国' },
-      { value: 'flag-de', content: '🇩🇪', type: 'emoji', label: '德国' },
-      { value: 'flag-it', content: '🇮🇹', type: 'emoji', label: '意大利' },
-      { value: 'flag-es', content: '🇪🇸', type: 'emoji', label: '西班牙' },
-      { value: 'flag-ru', content: '🇷🇺', type: 'emoji', label: '俄罗斯' },
-      { value: 'flag-ca', content: '🇨🇦', type: 'emoji', label: '加拿大' },
-      { value: 'flag-au', content: '🇦🇺', type: 'emoji', label: '澳大利亚' },
-    ],
-  },
-  {
-    name: '符号',
-    icons: [
-      { value: 'check', content: '✅', type: 'emoji', label: '对勾' },
-      { value: 'cross', content: '❌', type: 'emoji', label: '叉号' },
-      { value: 'warning', content: '⚠️', type: 'emoji', label: '警告' },
-      { value: 'info', content: 'ℹ️', type: 'emoji', label: '信息' },
-      { value: 'question', content: '❓', type: 'emoji', label: '问号' },
-      { value: 'exclamation', content: '❗', type: 'emoji', label: '感叹号' },
-      { value: 'arrow-right', content: '➡️', type: 'emoji', label: '向右' },
-      { value: 'arrow-left', content: '⬅️', type: 'emoji', label: '向左' },
-      { value: 'arrow-up', content: '⬆️', type: 'emoji', label: '向上' },
-      { value: 'arrow-down', content: '⬇️', type: 'emoji', label: '向下' },
-      { value: 'recycle', content: '♻️', type: 'emoji', label: '回收' },
-      { value: 'zap', content: '⚡', type: 'emoji', label: '闪电' },
-    ],
-  },
-]
+/** 网格列数 / 间距 / 内边距 / 分类标题行高（虚拟滚动按像素行高切分） */
+const GRID_COLUMNS = 8
+const GRID_GAP = 4
+const GRID_PADDING = 8
+const HEADER_HEIGHT = 28
+
+type PreparedIcon = IconItem & { labelText: string; searchText: string }
+
+type VirtualRow =
+  | { kind: 'header'; name: string }
+  | { kind: 'row'; icons: PreparedIcon[] }
+
+/** 全量分类：只保留本地有 EmojiOne 资源的 emoji（不回退外部 CDN） */
+function buildEmojiCategories(
+  grouped: Record<string, EmojiItem[]>,
+  baseUrl?: string,
+): IconCategory[] {
+  const categories: IconCategory[] = []
+  for (const category of getEmojiCategoryOrder()) {
+    const icons: IconItem[] = []
+    for (const item of grouped[category] ?? []) {
+      const cell = resolveEmojiItemToPicker(item, baseUrl)
+      if (!cell || !cell.src) continue
+      const zhName = getEmojiZhName(cell.emoji)
+      icons.push({
+        value: cell.emoji,
+        content: cell.emoji,
+        type: 'emoji',
+        // 常用表情有中文名（可直接搜中文），其余用英文名，英文名始终可搜
+        label: zhName ?? cell.name,
+        keywords: zhName ? cell.name : undefined,
+        imageSrc: cell.src,
+      })
+    }
+    if (icons.length) {
+      categories.push({
+        name: resolveCwChatToolbarEmojiCategoryLabel(category),
+        icons,
+      })
+    }
+  }
+  return categories
+}
 
 export function CwIconPicker({
   value,
@@ -142,7 +85,6 @@ export function CwIconPicker({
   categories = [],
   defaultValue = '',
   disabled = false,
-  emojiAnimated = false,
   texts: textsProp,
   className,
   onChange,
@@ -153,6 +95,8 @@ export function CwIconPicker({
     () => ({ ...defaultTexts, ...(textsProp ?? {}) }),
     [textsProp],
   )
+
+  const publicAssetBaseUrl = usePublicAssetBaseUrl()
 
   /** 全量 emoji 分类（懒加载，未传 categories 时使用） */
   const [allEmojiCategories, setAllEmojiCategories] = useState<IconCategory[] | null>(null)
@@ -165,27 +109,45 @@ export function CwIconPicker({
   // 搜索关键词
   const [searchKeyword, setSearchKeyword] = useState('')
 
+  /** 常用表情：直接复用聊天表情面板的数据源，运行时按 EmojiOne 资源过滤 */
+  const commonEmojis = useMemo<IconCategory[]>(
+    () => [
+      {
+        name: texts.emojiTab || '表情',
+        icons: resolveEmojiPickerItems(COMMON_CHAT_EMOJI_CHARS, publicAssetBaseUrl).map(
+          (item) => ({
+            value: item.emoji,
+            content: item.emoji,
+            type: 'emoji' as const,
+            label: getEmojiZhName(item.emoji) ?? item.emoji,
+            imageSrc: item.src,
+          }),
+        ),
+      },
+    ],
+    [publicAssetBaseUrl, texts.emojiTab],
+  )
+
   /** 当未传入 categories 时，根据当前类型自动展示全部图标 */
   const autoCategories = useMemo<IconCategory[]>(() => {
     if (currentType === 'emoji') {
       // Emoji 模式：优先使用已加载的全量列表，否则先用常用 emoji
-      return allEmojiCategories ?? COMMON_EMOJIS
-    } else {
-      // Icon 模式：返回全部 asset 图标
-      return [
-        {
-          name: '',
-          icons: ALL_ASSET_NAMES.map((name) => ({
-            value: name,
-            content: name,
-            type: 'asset' as const,
-            label: name,
-            prefix: 'icon',
-          })),
-        },
-      ]
+      return allEmojiCategories ?? commonEmojis
     }
-  }, [currentType, allEmojiCategories])
+    // Icon 模式：返回全部 asset 图标
+    return [
+      {
+        name: '',
+        icons: ALL_ASSET_NAMES.map((name) => ({
+          value: name,
+          content: name,
+          type: 'asset' as const,
+          label: name,
+          prefix: 'icon',
+        })),
+      },
+    ]
+  }, [currentType, allEmojiCategories, commonEmojis])
 
   const categoriesSource = useMemo<IconCategory[]>(() => {
     return categories && categories.length > 0 ? categories : autoCategories
@@ -200,58 +162,80 @@ export function CwIconPicker({
     [texts],
   )
 
-  // 根据类型和搜索关键词过滤分类
-  const filteredCategories = useMemo(() => {
-    const filtered = categoriesSource.filter((cat) => {
-      // 根据类型过滤
-      const hasMatchingType = cat.icons.some((icon) => {
-        if (currentType === 'icon') {
-          return icon.type === 'asset'
-        } else {
-          return icon.type === 'emoji'
-        }
-      })
-      if (!hasMatchingType) return false
+  /** 预处理：一次算好 emoji 图片地址与搜索串，避免渲染 / 每次输入时重复计算 */
+  const preparedCategories = useMemo(
+    () =>
+      categoriesSource.map((cat) => ({
+        name: cat.name,
+        // emoji 统一解析为本地 EmojiOne 图片，缺失资源的直接丢弃（不回退外部 CDN）
+        icons: cat.icons.flatMap<PreparedIcon>((icon) => {
+          const imageSrc =
+            icon.type === 'emoji'
+              ? icon.imageSrc ?? getEmojionePngUrl(icon.content, publicAssetBaseUrl) ?? undefined
+              : undefined
+          if (icon.type === 'emoji' && !imageSrc) return []
+          const labelText = icon.label || icon.value
+          return [
+            {
+              ...icon,
+              imageSrc,
+              labelText,
+              searchText: `${labelText} ${icon.keywords ?? ''} ${icon.content} ${cat.name}`.toLowerCase(),
+            },
+          ]
+        }),
+      })),
+    [categoriesSource, publicAssetBaseUrl],
+  )
 
-      // 根据搜索关键词过滤
-      if (searchKeyword.trim()) {
-        const keyword = searchKeyword.toLowerCase()
-        return cat.icons.some((icon) => {
-          const label = icon.label || icon.value
-          return (
-            label.toLowerCase().includes(keyword) ||
-            icon.content.toLowerCase().includes(keyword)
-          )
+  // 按当前标签页与关键词一次遍历过滤，避免先过滤分类再过滤图标的两遍扫描
+  const filteredCategories = useMemo(() => {
+    const wantAsset = currentType === 'icon'
+    const keyword = searchKeyword.trim().toLowerCase()
+    const result: Array<{ name: string; icons: PreparedIcon[] }> = []
+    for (const category of preparedCategories) {
+      const icons = category.icons.filter(
+        (icon) =>
+          (wantAsset ? icon.type === 'asset' : icon.type === 'emoji') &&
+          (!keyword || icon.searchText.includes(keyword)),
+      )
+      if (icons.length) result.push({ name: category.name, icons })
+    }
+    return result
+  }, [preparedCategories, currentType, searchKeyword])
+
+  const [gridHost, setGridHost] = useState<HTMLDivElement | null>(null)
+  const { containerWidth } = useContainerSize(gridHost)
+
+  /** 单行高度：单元格为正方形，行高 = 单元格宽 + 行间距 */
+  const rowHeight = useMemo(() => {
+    const inner = containerWidth - GRID_PADDING * 2
+    if (inner <= 0) return 40
+    const cell = (inner - (GRID_COLUMNS - 1) * GRID_GAP) / GRID_COLUMNS
+    return Math.max(32, Math.ceil(cell + GRID_GAP))
+  }, [containerWidth])
+
+  /** 把分类拍平成「标题行 + 图标行」，交给 CwVirtualScroll 只渲染可见部分 */
+  const virtualRows = useMemo<CwVirtualScrollItem<VirtualRow>[]>(() => {
+    const rows: CwVirtualScrollItem<VirtualRow>[] = []
+    for (const category of filteredCategories) {
+      if (category.name) {
+        rows.push({
+          key: `header:${category.name}`,
+          height: HEADER_HEIGHT,
+          data: { kind: 'header', name: category.name },
         })
       }
-
-      return true
-    })
-
-    // 过滤每个分类下的图标
-    return filtered
-      .map((cat) => ({
-        ...cat,
-        icons: cat.icons.filter((icon) => {
-          // 类型过滤
-          if (currentType === 'icon' && icon.type !== 'asset') return false
-          if (currentType === 'emoji' && icon.type !== 'emoji') return false
-
-          // 搜索过滤
-          if (searchKeyword.trim()) {
-            const keyword = searchKeyword.toLowerCase()
-            const label = icon.label || icon.value
-            return (
-              label.toLowerCase().includes(keyword) ||
-              icon.content.toLowerCase().includes(keyword)
-            )
-          }
-
-          return true
-        }),
-      }))
-      .filter((cat) => cat.icons.length > 0)
-  }, [categoriesSource, currentType, searchKeyword])
+      for (let start = 0; start < category.icons.length; start += GRID_COLUMNS) {
+        rows.push({
+          key: `${category.name || '_'}:${start}`,
+          height: rowHeight,
+          data: { kind: 'row', icons: category.icons.slice(start, start + GRID_COLUMNS) },
+        })
+      }
+    }
+    return rows
+  }, [filteredCategories, rowHeight])
 
   // 处理图标选择
   const handleIconSelect = (icon: IconItem) => {
@@ -269,16 +253,6 @@ export function CwIconPicker({
     onReset?.()
   }
 
-  // 将 emoji 字符转换为图片 URL（使用 EmojiCDN；动图需外部 CDN 支持时再扩展）
-  function getEmojiImageUrl(emoji: string): string {
-    const base = `https://emojicdn.elk.sh/${encodeURIComponent(emoji)}`
-    // 当前 EmojiCDN 仅支持 style=apple|google|facebook|twitter，无动图；预留 animated 扩展
-    if (emojiAnimated) {
-      return `${base}?style=apple`
-    }
-    return base
-  }
-
   // 监听 value（对应 Vue modelValue）变化
   useEffect(() => {
     if (value !== undefined) {
@@ -286,7 +260,13 @@ export function CwIconPicker({
     }
   }, [value])
 
-  // 未传 categories 且为 emoji 模式时，懒加载全量 emoji-data
+  /** 筛选结果变化后回到顶部：否则行数变少时仍停留在旧滚动位置，看起来像「搜不到」 */
+  const scrollRef = useRef<CwVirtualScrollHandle | null>(null)
+  useEffect(() => {
+    scrollRef.current?.scrollTo(0)
+  }, [searchKeyword, currentType])
+
+  // 未传 categories 且为 emoji 模式时，懒加载全量分类（复用表情面板的数据源）
   const categoriesLength = categories?.length ?? 0
   useEffect(() => {
     if (
@@ -298,14 +278,14 @@ export function CwIconPicker({
       return
     }
     setAllEmojiLoading(true)
-    fetchAllEmojiData()
-      .then((data) => {
-        setAllEmojiCategories(buildAllEmojiCategories(data))
+    loadEmojioneEmojisByCategoryAsync()
+      .then((grouped) => {
+        setAllEmojiCategories(buildEmojiCategories(grouped, publicAssetBaseUrl))
       })
       .finally(() => {
         setAllEmojiLoading(false)
       })
-  }, [currentType, categoriesLength, allEmojiCategories, allEmojiLoading])
+  }, [currentType, categoriesLength, allEmojiCategories, allEmojiLoading, publicAssetBaseUrl])
 
   return (
     <div className={[iconPickerBase.root, className].filter(Boolean).join(' ')}>
@@ -353,54 +333,71 @@ export function CwIconPicker({
         />
       </div>
 
-      {/* 内容区域：CwDiv 提供自定义滚动条 */}
-      <CwDiv className={iconPickerBase.content} contentClass={iconPickerBase.contentInner}>
-        {allEmojiLoading && currentType === 'emoji' && !(categories && categories.length) ? (
-          <div className={iconPickerBase.category}>
-            <span className="text-[var(--text-color-secondary)] text-sm">加载全量 Emoji…</span>
-          </div>
-        ) : null}
-        {filteredCategories.map((category) => (
-          <div key={category.name || '__auto__'} className={iconPickerBase.category}>
-            {category.name ? (
-              <div className={iconPickerBase.categoryTitle}>{category.name}</div>
-            ) : null}
-            <CwGrid columns={8} gutter={4} rowGap={4} align="stretch">
-              {category.icons.map((icon) => (
+      {/* 内容区域：虚拟滚动，只渲染可见行（emoji 全量时 DOM 从数千降到几十） */}
+      <div className="min-h-0 flex-1 overflow-hidden" ref={setGridHost}>
+        {allEmojiLoading && currentType === 'emoji' && filteredCategories.length === 0 ? (
+          <div className="px-3 py-3 text-sm text-[var(--text-color-secondary)]">加载全量 Emoji…</div>
+        ) : (
+          <CwVirtualScroll
+            ref={scrollRef}
+            className={[iconPickerBase.content, 'h-full w-full'].filter(Boolean).join(' ')}
+            items={virtualRows}
+            itemHeight={rowHeight}
+            bufferSize={4}
+            padding={GRID_PADDING}
+            showScrollbar
+          >
+            {(args) => {
+              const item = args.item
+              return item.kind === 'header' ? (
                 <div
-                  key={icon.value}
-                  className={[
-                    iconPickerBase.iconItem,
-                    iconPickerBase.iconItemHover,
-                    currentValue === icon.value ? iconPickerBase.iconItemActive : '',
-                  ]
+                  className={[iconPickerBase.categoryTitle, iconPickerBase.rowInner, 'flex h-full items-center']
                     .filter(Boolean)
                     .join(' ')}
-                  onClick={() => handleIconSelect(icon)}
                 >
-                  {icon.type === 'asset' ? (
-                    <CwIcon
-                      name={icon.content}
-                      prefix={icon.prefix || 'icon'}
-                      size={1.375}
-                    />
-                  ) : icon.type === 'emoji' ? (
-                    <img
-                      src={getEmojiImageUrl(icon.content)}
-                      alt={icon.label || icon.value}
-                      className={[iconPickerBase.iconContent, iconPickerBase.emojiImage]
+                  {item.name}
+                </div>
+              ) : (
+                <CwGrid
+                  className={iconPickerBase.rowInner}
+                  columns={GRID_COLUMNS}
+                  gutter={GRID_GAP}
+                  rowGap={GRID_GAP}
+                  align="stretch"
+                >
+                  {item.icons.map((icon) => (
+                    <div
+                      key={icon.value}
+                      className={[
+                        iconPickerBase.iconItem,
+                        iconPickerBase.iconItemHover,
+                        currentValue === icon.value ? iconPickerBase.iconItemActive : '',
+                      ]
                         .filter(Boolean)
                         .join(' ')}
-                    />
-                  ) : (
-                    <span className={iconPickerBase.iconContent}>{icon.content}</span>
-                  )}
-                </div>
-              ))}
-            </CwGrid>
-          </div>
-        ))}
-      </CwDiv>
+                      onClick={() => handleIconSelect(icon)}
+                    >
+                      {icon.type === 'asset' ? (
+                        <CwIcon name={icon.content} prefix={icon.prefix || 'icon'} size={1.25} />
+                      ) : icon.type === 'emoji' ? (
+                        <CwViewportImg
+                          src={icon.imageSrc}
+                          alt={icon.labelText}
+                          className={[iconPickerBase.iconContent, iconPickerBase.emojiImage]
+                            .filter(Boolean)
+                            .join(' ')}
+                        />
+                      ) : (
+                        <span className={iconPickerBase.iconContent}>{icon.content}</span>
+                      )}
+                    </div>
+                  ))}
+                </CwGrid>
+              )
+            }}
+          </CwVirtualScroll>
+        )}
+      </div>
     </div>
   )
 }
